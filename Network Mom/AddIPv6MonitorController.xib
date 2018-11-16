@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AddIPv6MonitorController" customModule="Network_Mom" customModuleProvider="target">
+            <connections>
+                <outlet property="addMonitorButtonOutlet" destination="iqO-xk-Bcs" id="V2d-VA-Sli"/>
+                <outlet property="ipv6InputField" destination="2Hw-1k-WP6" id="fxm-Ma-caI"/>
+                <outlet property="ipv6ValidatedField" destination="wbC-ks-gzP" id="7dK-VN-hDv"/>
+                <outlet property="latencyButtonOutlet" destination="p3K-v8-6XL" id="595-3Y-jbG"/>
+                <outlet property="validatedHostnameField" destination="izS-bU-ch7" id="mAj-5H-ecZ"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Add IPv6 Monitor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="493" height="249"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="493" height="249"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Hw-1k-WP6">
+                        <rect key="frame" x="290" y="207" width="183" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Per-CI-Smy">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="ipv6InputFieldPressed:" target="-2" id="E0S-q2-MQ8"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ATz-dK-2tB">
+                        <rect key="frame" x="18" y="212" width="266" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Enter Hostname or IPv6 address to monitor" id="4pY-aX-uUV">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TKb-la-rZu">
+                        <rect key="frame" x="141" y="154" width="143" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Validated IPv6 address" id="e68-M9-OfB">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wbC-ks-gzP">
+                        <rect key="frame" x="290" y="152" width="183" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="9gp-EP-dXd">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z2i-x5-5Vy">
+                        <rect key="frame" x="18" y="191" width="266" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="(then hit &lt;enter&gt;  or &lt;return&gt;)" id="lMd-lv-7DG">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hoj-FN-pLf">
+                        <rect key="frame" x="158" y="122" width="126" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Validated Hostname" id="qAk-Be-Tcx">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="izS-bU-ch7">
+                        <rect key="frame" x="290" y="120" width="183" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="6fj-1a-Zgz">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="112" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QsJ-ey-O2T">
+                        <rect key="frame" x="104" y="20" width="285" height="21"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yPf-AL-DZi">
+                                <rect key="frame" x="-6" y="-7" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YnB-JZ-XpI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelButton:" target="-2" id="saI-0A-DcX"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iqO-xk-Bcs">
+                                <rect key="frame" x="176" y="-7" width="115" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add Monitor" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Qd-Mg-6Hi">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addButtonPressed:" target="-2" id="f6S-la-jok"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p3K-v8-6XL">
+                        <rect key="frame" x="288" y="75" width="188" height="25"/>
+                        <popUpButtonCell key="cell" type="push" title="Latency Disabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Q8I-mB-G3i" id="LlK-rc-jCJ">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="G86-B2-qgL">
+                                <items>
+                                    <menuItem title="Latency Disabled" state="on" id="Q8I-mB-G3i"/>
+                                    <menuItem title="Latency Enabled" id="8Uj-Wf-Ypm"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="latencyButton:" target="-2" id="J84-zE-Q4c"/>
+                        </connections>
+                    </popUpButton>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xJp-Vj-m9L">
+                        <rect key="frame" x="18" y="63" width="266" height="51"/>
+                        <textFieldCell key="cell" selectable="YES" alignment="justified" title="Latency monitoring is only recommended for a small number of monitors with latencies of at least 20msec" id="VwO-YA-tcg">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="z2i-x5-5Vy" firstAttribute="trailing" secondItem="ATz-dK-2tB" secondAttribute="trailing" id="1FI-L7-ksY"/>
+                    <constraint firstItem="izS-bU-ch7" firstAttribute="leading" secondItem="wbC-ks-gzP" secondAttribute="leading" id="5aW-UV-N8G"/>
+                    <constraint firstItem="ATz-dK-2tB" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="7gz-gK-san"/>
+                    <constraint firstItem="p3K-v8-6XL" firstAttribute="leading" secondItem="izS-bU-ch7" secondAttribute="leading" id="AN4-oh-S4b"/>
+                    <constraint firstItem="2Hw-1k-WP6" firstAttribute="leading" secondItem="ATz-dK-2tB" secondAttribute="trailing" constant="8" symbolic="YES" id="F6o-HD-Z7c"/>
+                    <constraint firstAttribute="trailing" secondItem="p3K-v8-6XL" secondAttribute="trailing" constant="20" symbolic="YES" id="Gac-3P-Vef"/>
+                    <constraint firstItem="p3K-v8-6XL" firstAttribute="leading" secondItem="xJp-Vj-m9L" secondAttribute="trailing" constant="8" symbolic="YES" id="J8n-N2-YV5"/>
+                    <constraint firstItem="ATz-dK-2tB" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="JOA-Jw-CXp"/>
+                    <constraint firstItem="wbC-ks-gzP" firstAttribute="leading" secondItem="2Hw-1k-WP6" secondAttribute="leading" id="L9U-Nu-veM"/>
+                    <constraint firstItem="wbC-ks-gzP" firstAttribute="leading" secondItem="TKb-la-rZu" secondAttribute="trailing" constant="8" symbolic="YES" id="LqO-1N-Y0b"/>
+                    <constraint firstItem="TKb-la-rZu" firstAttribute="top" secondItem="z2i-x5-5Vy" secondAttribute="bottom" constant="20" id="P0c-ZM-hn7"/>
+                    <constraint firstItem="z2i-x5-5Vy" firstAttribute="leading" secondItem="ATz-dK-2tB" secondAttribute="leading" id="QJ3-XP-N1o"/>
+                    <constraint firstItem="izS-bU-ch7" firstAttribute="leading" secondItem="hoj-FN-pLf" secondAttribute="trailing" constant="8" symbolic="YES" id="YsS-dG-x8f"/>
+                    <constraint firstItem="izS-bU-ch7" firstAttribute="centerY" secondItem="hoj-FN-pLf" secondAttribute="centerY" id="ZDv-SA-Wn8"/>
+                    <constraint firstItem="izS-bU-ch7" firstAttribute="top" secondItem="wbC-ks-gzP" secondAttribute="bottom" constant="10" symbolic="YES" id="Zb6-pr-pjc"/>
+                    <constraint firstItem="p3K-v8-6XL" firstAttribute="trailing" secondItem="izS-bU-ch7" secondAttribute="trailing" id="aS9-g1-R86"/>
+                    <constraint firstItem="p3K-v8-6XL" firstAttribute="centerY" secondItem="xJp-Vj-m9L" secondAttribute="centerY" id="cqw-Tz-10L"/>
+                    <constraint firstAttribute="trailing" secondItem="2Hw-1k-WP6" secondAttribute="trailing" constant="20" symbolic="YES" id="jPw-Ed-3zN"/>
+                    <constraint firstItem="xJp-Vj-m9L" firstAttribute="top" secondItem="hoj-FN-pLf" secondAttribute="bottom" constant="8" symbolic="YES" id="lDA-pm-Hra"/>
+                    <constraint firstItem="z2i-x5-5Vy" firstAttribute="top" secondItem="ATz-dK-2tB" secondAttribute="bottom" constant="4" id="ntG-Mu-Z3m"/>
+                    <constraint firstItem="izS-bU-ch7" firstAttribute="trailing" secondItem="wbC-ks-gzP" secondAttribute="trailing" id="qOA-jC-F4j"/>
+                    <constraint firstItem="xJp-Vj-m9L" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="tot-YI-YBu"/>
+                    <constraint firstItem="QsJ-ey-O2T" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="vYS-Og-aDs"/>
+                    <constraint firstItem="wbC-ks-gzP" firstAttribute="trailing" secondItem="2Hw-1k-WP6" secondAttribute="trailing" id="wL1-bi-duM"/>
+                    <constraint firstItem="wbC-ks-gzP" firstAttribute="centerY" secondItem="TKb-la-rZu" secondAttribute="centerY" id="xPY-lt-G2L"/>
+                    <constraint firstAttribute="bottom" secondItem="QsJ-ey-O2T" secondAttribute="bottom" constant="20" symbolic="YES" id="xfD-wm-Ob6"/>
+                    <constraint firstItem="2Hw-1k-WP6" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="xg6-3W-Jcw"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="145.5" y="136.5"/>
+        </window>
+    </objects>
+</document>

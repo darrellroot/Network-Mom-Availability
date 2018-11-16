@@ -1,0 +1,49 @@
+
+Menu items
+
+Network Mom:
+    About Network Mom
+    Preferences
+    License
+
+Maps:
+    New Map
+    Import Map
+    Export Map
+    separator
+    Delete Map
+
+Edit:
+    Cut
+    Copy
+    Paste
+    Delete
+    Select All
+
+Monitors:
+    Add IPv4 Monitor
+    Add IPv6 Monitor
+    separator
+    Add IPv4 Monitors
+    Add IPv6 Monitors
+    separator
+    Delete Selected Monitors
+
+Notifications:
+    Add Email
+    Add iMessage
+    separator
+    Configure Outage Alerts
+    Configure Periodic Reports
+    separator
+    Delete Email
+    Delete iMessage
+
+Reports:
+    Map Availability Report
+
+Help:
+    Network Mom Manual
+    Email Feedback
+    Email Bug Report
+

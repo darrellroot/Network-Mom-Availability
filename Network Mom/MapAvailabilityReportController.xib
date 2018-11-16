@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MapAvailabilityReportController" customModule="Network_Mom" customModuleProvider="target">
+            <connections>
+                <outlet property="lineChart" destination="EYe-LM-WiW" id="z3l-kk-ltR"/>
+                <outlet property="mapNameOutlet" destination="lMU-UN-TxJ" id="17Y-W8-lA9"/>
+                <outlet property="selectDataOutlet" destination="dem-ty-Q6u" id="ZgM-PC-a8e"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="521"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="521"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="EYe-LM-WiW" customClass="LineChartView" customModule="Charts">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="321"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="321" id="QQN-RL-LpU"/>
+                        </constraints>
+                    </customView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nNX-ig-4Mn">
+                        <rect key="frame" x="18" y="484" width="68" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Map name" id="j34-bL-hww">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lMU-UN-TxJ">
+                        <rect key="frame" x="92" y="482" width="150" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="6kl-zx-GMk"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Qo0-Pn-NH4">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="mapNameAction:" target="-2" id="H9V-c3-45b"/>
+                        </connections>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dem-ty-Q6u">
+                        <rect key="frame" x="18" y="326" width="160" height="25"/>
+                        <popUpButtonCell key="cell" type="push" title="Graph Hourly Data" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="bdL-Tr-FgS" id="ssY-oC-cHw">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="rR7-5F-xRd">
+                                <items>
+                                    <menuItem title="Graph Hourly Data" state="on" id="bdL-Tr-FgS"/>
+                                    <menuItem title="Graph Daily Data" id="wDG-NS-32b"/>
+                                    <menuItem title="Graph Weekly Data" id="u5N-Vh-0tp"/>
+                                    <menuItem title="Graph Monthly Data" id="hI4-Mn-9Qg"/>
+                                    <menuItem title="Graph Test Data" id="MuK-9g-1Nj"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="selectDataButton:" target="-2" id="1Yu-tD-BSr"/>
+                        </connections>
+                    </popUpButton>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="EYe-LM-WiW" secondAttribute="bottom" id="0pm-yV-1AN"/>
+                    <constraint firstItem="lMU-UN-TxJ" firstAttribute="centerY" secondItem="nNX-ig-4Mn" secondAttribute="centerY" id="98J-25-EdG"/>
+                    <constraint firstAttribute="trailing" secondItem="EYe-LM-WiW" secondAttribute="trailing" id="DQG-ag-1su"/>
+                    <constraint firstItem="nNX-ig-4Mn" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="aWH-BD-IDC"/>
+                    <constraint firstItem="dem-ty-Q6u" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="dyy-63-t7y"/>
+                    <constraint firstItem="EYe-LM-WiW" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" id="qGN-Cc-LrW"/>
+                    <constraint firstItem="lMU-UN-TxJ" firstAttribute="leading" secondItem="nNX-ig-4Mn" secondAttribute="trailing" constant="8" symbolic="YES" id="rKa-lk-xf0"/>
+                    <constraint firstItem="EYe-LM-WiW" firstAttribute="top" secondItem="dem-ty-Q6u" secondAttribute="bottom" constant="8" symbolic="YES" id="sed-L8-Bgr"/>
+                    <constraint firstItem="nNX-ig-4Mn" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="vEc-wM-Rw3"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="146.5"/>
+        </window>
+    </objects>
+</document>
