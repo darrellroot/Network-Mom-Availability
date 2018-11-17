@@ -8,41 +8,40 @@
 import Cocoa
 import HeliumLogger
 import LoggerAPI
+import DLog
 
 class ShowLogController: NSWindowController {
+
+    @IBOutlet weak var logMenuOutlet: NSMenu!
 
     @IBOutlet var logTextOutlet: NSTextView!
     override func windowDidLoad() {
         super.windowDidLoad()
-
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        for category in DLogCategories.allCases {
+            let newMenuItem = NSMenuItem(title: category.rawValue, action: nil, keyEquivalent: "")
+            logMenuOutlet.addItem(newMenuItem)
+        }
+        if let logData = DLog.logdata[DLogCategories.allCases.first!]?.getData().joined() {
+            logTextOutlet.string = logData
+        }
     }
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("ShowLogController")
     }
 
+    
     @IBAction func selectLogButton(_ sender: NSPopUpButton) {
-        var logType: LoggerMessageType
-        switch sender.indexOfSelectedItem {
-        case 0:
-            logType = .error
-        case 1:
-            logType = .warning
-        case 2:
-            logType = .info
-        case 3:
-            logType = .verbose
-        case 4:
-            logType = .debug
-        case 5:
-            logType = .exit
-        case 6:
-            logType = .entry
-        default:
-            print("should not get here")
-            logType = .verbose
+        print("select log selected")
+        
+        if let title = sender.titleOfSelectedItem {
+            print("log title is \(title)")
+            for category in DLogCategories.allCases {
+                if title == category.rawValue {
+                    if let logData = DLog.logdata[category]?.getData().joined() {
+                        logTextOutlet.string = logData
+                    }
+                }
+            }
         }
-        let logData = HeliumLogger.logData[logType]!.getData().joined()
-            logTextOutlet.string = logData
     }
 }

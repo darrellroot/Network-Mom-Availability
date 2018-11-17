@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ShowLogController" customModule="Network_Mom" customModuleProvider="target">
             <connections>
+                <outlet property="logMenuOutlet" destination="9VX-vQ-0C5" id="2nL-1p-qhL"/>
                 <outlet property="logTextOutlet" destination="P6g-lb-beV" id="ahG-gs-dzX"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -53,29 +54,11 @@
                         </scroller>
                     </scrollView>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-kR-zm5">
-                        <rect key="frame" x="165" y="458" width="87" height="25"/>
-                        <popUpButtonCell key="cell" type="push" title="error" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="s5p-Uq-xfF" id="QZA-2R-e9M">
+                        <rect key="frame" x="165" y="458" width="38" height="25"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="QZA-2R-e9M">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="9VX-vQ-0C5">
-                                <items>
-                                    <menuItem title="error" state="on" id="s5p-Uq-xfF"/>
-                                    <menuItem title="warning" id="yNA-gI-ajB"/>
-                                    <menuItem title="info" id="bO3-fm-fO8"/>
-                                    <menuItem title="verbose" id="aja-Ej-HB6">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="debug" id="vmD-wk-ltk">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="exit" id="o7g-gt-ZTM">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="entry" id="zvU-A1-VlF">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                </items>
-                            </menu>
+                            <menu key="menu" id="9VX-vQ-0C5"/>
                         </popUpButtonCell>
                         <connections>
                             <action selector="selectLogButton:" target="-2" id="qoM-FU-CUZ"/>

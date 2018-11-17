@@ -15,6 +15,7 @@ import Network
 import AppKit
 import HeliumLogger
 import LoggerAPI
+import DLog
 
 @NSApplicationMain
 
@@ -192,6 +193,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //maps[0].showWindow(self)
         HeliumLogger.use()
         Log.warning("this is a log test")
+        DLog.log(.userInterface, msg: "dlog test")
         restoreAllConfig(self)
         
         if maps.count == 0 {
