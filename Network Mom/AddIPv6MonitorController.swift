@@ -8,6 +8,7 @@
 
 import Cocoa
 import Network
+import DLog
 
 class AddIPv6MonitorController: NSWindowController {
     
@@ -77,10 +78,10 @@ class AddIPv6MonitorController: NSWindowController {
         default: latencyEnabled = false
         }
         if let validatedIP = validatedIP {
-            debugPrint("adding new monitor \(validatedIP.debugDescription) with latency \(latencyEnabled)")
+            DLog.log(.userInterface,"adding new monitor \(validatedIP.debugDescription) with latency \(latencyEnabled)")
             if let newMonitor = MonitorIPv6(ipv6: validatedIP, hostname: validatedHostname, latencyEnabled: latencyEnabled) {
                 newMonitor.comment = comment
-                debugPrint("set new monitor comment \(String(describing: comment))")
+                DLog.log(.userInterface,"set new monitor comment \(String(describing: comment))")
                 delegate?.addIPv6Monitor(monitor: newMonitor)
             }
         }
@@ -104,7 +105,7 @@ class AddIPv6MonitorController: NSWindowController {
     }
     
     override func windowDidLoad() {
-        print("loading window")
+        DLog.log(.userInterface,"loading AddIPv6MonitorController window")
         super.windowDidLoad()
         ipv6ValidatedField.stringValue = "Not Validated"
     }
@@ -123,9 +124,9 @@ class AddIPv6MonitorController: NSWindowController {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 self?.possibleHostname = nil
                 if let validatedIP = self?.validatedIP {
-                    print("starting host \(validatedIP)")
+                    DLog.log(.dns,"starting host resolution \(validatedIP)")
                     let host = Host(address: validatedIP.debugDescription)
-                    print("completed host \(String(describing: host.name))")
+                    DLog.log(.dns,"completed host resolution \(String(describing: host.name))")
                     self?.possibleHostname = host.name
                     DispatchQueue.main.async {
                         if let possibleHostname = self?.possibleHostname {
@@ -144,24 +145,21 @@ class AddIPv6MonitorController: NSWindowController {
 }
 extension AddIPv6MonitorController: HostAddressQueryDelegate {
     func didComplete(addresses: [Data], hostAddressQuery query: HostAddressQuery) {
-        print("query completed")
+        DLog.log(.dns,"DNS query completed")
         cfResolutionInProgress = false
         for address in addresses {
             if let addressString = numeric(for: address) {
-                print("\(query.name) address \(addressString)")
+                DLog.log(.dns, "DNS\(query.name) address \(addressString)")
                 if let addressString = IPv6Address(addressString) {
                     validatedIP = addressString
                     validatedHostname = query.name
                 }
             }
         }
-        //let addressList = addresses.map { numeric(for: $0) }.joined(separator: ", ")
-        //print("\(query.name) -> \(addressList)")
     }
     
     func didComplete(error: Error, hostAddressQuery query: HostAddressQuery) {
-        print("query error")
-        
+        DLog.log(.dns,"DNS query error \(error)")
     }
     func numeric(for address: Data) -> String? {
         var name = [CChar](repeating: 0, count: Int(NI_MAXHOST))
@@ -174,5 +172,4 @@ extension AddIPv6MonitorController: HostAddressQueryDelegate {
         }
         return String(cString: name)
     }
-
 }

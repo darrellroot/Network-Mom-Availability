@@ -8,6 +8,7 @@
 
 import Cocoa
 import Network
+import DLog
 
 class MapWindowController: NSWindowController, Codable {
 
@@ -93,7 +94,7 @@ class MapWindowController: NSWindowController, Codable {
     }
     
     @IBAction func AddIPv4MonitorMenuItem(_ sender: NSMenuItem) {
-        print("addIPv4monitor clicked")
+        DLog.log(.userInterface,"addIPv4monitor clicked")
         ipv4Monitor = AddIPv4MonitorController()
         ipv4Monitor.delegate = self as AddMonitorDelegate
         //ipv4Monitor.showWindow(self)
@@ -103,7 +104,7 @@ class MapWindowController: NSWindowController, Codable {
     }
     
     @IBAction func AddIPv6MonitorMenuItem(_ sender: NSMenuItem) {
-        debugPrint("addIPv6monitor clicked")
+        DLog.log(.userInterface,"addIPv6monitor clicked")
         ipv6Monitor = AddIPv6MonitorController()
         ipv6Monitor.delegate = self
         window?.beginSheet(ipv6Monitor.window!, completionHandler: {
@@ -121,17 +122,17 @@ class MapWindowController: NSWindowController, Codable {
     }
 
     @IBAction func exportMap(_ sender: NSMenuItem) {
-        print("attempting to export map")
+        DLog.log(.dataIntegrity,"attempting to export map")
         let savePanel = NSSavePanel()
         savePanel.allowedFileTypes = ["mom1"]
         savePanel.begin { (result: NSApplication.ModalResponse) -> Void in
             if result == NSApplication.ModalResponse.OK {
                 if let url = savePanel.url {
-                    print("saving to \(url.debugDescription)")
+                    DLog.log(.dataIntegrity,"saving to \(url.debugDescription)")
                     self.exportMap(url: url)
                 }
             } else {
-                print("File selection not successful")
+                DLog.log(.dataIntegrity,"File selection not successful")
             }
         }
     }
@@ -146,7 +147,7 @@ class MapWindowController: NSWindowController, Codable {
             let data = try encoder.encode(self)
             try data.write(to: url, options: Data.WritingOptions.atomic)
         } catch {
-            print("error encoding map")
+            DLog.log(.dataIntegrity,"error encoding map")
             showSaveAlert(url: url)
         }
     }
@@ -159,23 +160,23 @@ class MapWindowController: NSWindowController, Codable {
         alert.addButton(withTitle: "Confirm Map Deletion")
         alert.beginSheetModal(for: window!, completionHandler: { (modalResponse) -> Void in
             if modalResponse == NSApplication.ModalResponse.alertFirstButtonReturn {
-                print("first button aborts delete")
+                DLog.log(.userInterface,"first button aborts delete")
             }
             if modalResponse == NSApplication.ModalResponse.alertSecondButtonReturn {
-                print("second button confirms delete")
+                DLog.log(.userInterface,"second button confirms delete")
                 self.appDelegate.deleteMap(index: self.mapIndex, name: self.name)
             }
         })
     }
     
     private func deleteSelectedMonitor() -> Bool {
-        debugPrint("entered deleteSelectedMonitor")
+        DLog.log(.dataIntegrity,"entered deleteSelectedMonitor")
         for (viewIndex,monitorView) in monitorViews.enumerated() {
             if monitorView.selected == true {
                 if let deletedMonitor = monitorView.monitor {
                     for (monitorIndex,monitor) in monitors.enumerated() {
                         if monitor === deletedMonitor {
-                            debugPrint("removing monitor \(monitor.label) at index \(monitorIndex)")
+                            DLog.log(.dataIntegrity,"removing monitor \(monitor.label) at index \(monitorIndex)")
                             monitors.remove(at: monitorIndex)
                             monitorViews.remove(at: viewIndex)
                             monitorView.removeFromSuperview()
@@ -183,14 +184,14 @@ class MapWindowController: NSWindowController, Codable {
                         }
                     }
                 }
-                debugPrint("WARNING: monitor at index \(viewIndex) was selected but could not be deleted")
+                DLog.log(.dataIntegrity,"WARNING: monitor at index \(viewIndex) was selected but could not be deleted")
                 monitorView.selected = false
             }
         }
         return false
     }
     @IBAction func deleteSelectedMonitors(_ sender: NSMenuItem) {
-        print("entered deleteSelectedMonitors")
+        DLog.log(.dataIntegrity,"entered deleteSelectedMonitors")
         var didADelete: Bool
         repeat {
             didADelete = deleteSelectedMonitor()
@@ -277,7 +278,7 @@ class MapWindowController: NSWindowController, Codable {
     override func windowDidLoad() {
         super.windowDidLoad()
         if let windowFrame = windowFrame {
-            print("window frame \(windowFrame)")
+            DLog.log(.userInterface,"window frame \(windowFrame)")
             window?.setFrame(windowFrame,display: true)
         }
         resizeWindow()

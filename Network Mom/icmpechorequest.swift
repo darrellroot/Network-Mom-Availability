@@ -57,7 +57,6 @@ struct ICMPHeader {
 }
 */
 func ipstring2in_addr(ipstring: String) -> in_addr_t? {
-    let debug = true
     let split = ipstring.components(separatedBy: ".")
     var ip: UInt32 = 0
     for octetString in split {
@@ -68,7 +67,6 @@ func ipstring2in_addr(ipstring: String) -> in_addr_t? {
             return nil
         }
     }
-    if debug { print("ip \(ip)") }
     return ip
 }
 /*

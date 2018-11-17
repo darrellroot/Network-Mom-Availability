@@ -8,6 +8,7 @@
 
 import Cocoa
 import Charts
+import DLog
 
 class MonitorWindowController: NSWindowController {
     
@@ -34,18 +35,18 @@ class MonitorWindowController: NSWindowController {
         self.init(windowNibName: "MonitorWindowController")
     }
     deinit {
-        debugPrint("deinit MonitorWindowController")
+        DLog.log(.dataIntegrity,"deinit MonitorWindowController")
     }
     
     @IBAction func commentField(_ sender: NSTextField) {
-        debugPrint("comment field action")
+        DLog.log(.userInterface,"comment field action")
         monitor?.comment = sender.stringValue
-        print("sender string value \(sender.stringValue) monitor comment \(String(describing: monitor?.comment))")
+        DLog.log(.userInterface,"sender string value \(sender.stringValue) monitor comment \(String(describing: monitor?.comment))")
         updateTitle()
     }
     
     private func updateTitle() {
-        debugPrint("updateTitle")
+        DLog.log(.userInterface,"updateTitle")
         if let monitor = monitor, let window = window {
             window.title = monitor.label.replacingOccurrences(of: "\n", with: "   ")
         }
@@ -73,10 +74,10 @@ class MonitorWindowController: NSWindowController {
         updateFrames()
     }
     func updateFrames() {
-        print("in update frames")
+        DLog.log(.userInterface,"in update frames")
         let standardHeight: CGFloat = 321.0
         if monitor?.latencyEnabled ?? false {
-            print("detected latency enable")
+            DLog.log(.userInterface,"detected latency enable")
             availabilityChart.isHidden = false
             
             let heightConstraint = NSLayoutConstraint(item: availabilityChart, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: standardHeight)

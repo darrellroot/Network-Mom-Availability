@@ -56,15 +56,6 @@ struct RRDGauge: Codable {
             currentNumerator[dataType] = currentNumerator[dataType]! + newData
             currentDenominator[dataType] = currentDenominator[dataType]! + 1
         }
-        /*let currentTimeInterval = currentTime / RRDGauge.fiveMinute * RRDGauge.fiveMinute
-        if currentTimeInterval - currentStartTimestamp >= RRDGauge.fiveMinute {
-            fiveMinDataUpdate()
-        }
-        guard currentTime - currentStartTimestamp < 300 else {
-            fatalError("current time - currentStartTimestamp > 300")
-        }
-        currentNumerator += newData
-        currentDenominator += 1*/
     }
     mutating private func dataUpdate(dataType: MonitorDataType) {
         //debugPrint("dataUpdate \(dataType)")
@@ -91,75 +82,7 @@ struct RRDGauge: Codable {
             currentDenominator[dataType] = 0
             
         }
-        //removeOldData(dataType: dataType)
     }
-/*    mutating private func fiveMinDataUpdate() {
-        debugPrint("fiveMinDataUpdate")
-        while currentTime - currentStartTimestamp >= 300 {
-            var value: Double?
-            if currentDenominator == 0 {
-                value = nil
-            } else {
-                value = currentNumerator / currentDenominator
-            }
-            let newData = RRDData(timestamp: currentStartTimestamp, value: value)
-            self.fiveMinuteData.insert(newData, at: 0)
-            currentStartTimestamp += 300
-            currentNumerator = 0
-            currentDenominator = 0
-        }
-        removeOldData()
-    }*/
-/*    mutating private func removeOldData(dataType: MonitorDataType) {
-        debugPrint("removeOldData type \(dataType)")
-        var done = false
-        while !done {
-            var lastData: RRDData?
-            switch dataType {
-            case .FiveMinute:
-                lastData = fiveMinuteData.last
-            case .ThirtyMinute:
-                lastData = thirtyMinuteData.last
-            case .TwoHour:
-                lastData = twoHourData.last
-            case .OneDay:
-                lastData = dayData.last
-            }
-            if let lastData = lastData {
-                if currentTime - lastData.timestamp > dataType.rawValue * RRDGauge.maxData {
-                    switch dataType {
-                    case .FiveMinute:
-                        fiveMinuteData.removeLast()
-                    case .ThirtyMinute:
-                        thirtyMinuteData.removeLast()
-                    case .TwoHour:
-                        twoHourData.removeLast()
-                    case .OneDay:
-                        dayData.removeLast()
-                    }
-                } else {
-                    done = true
-                }
-            } else {
-                done = true
-            }
-        }
-    }*/
-/*    mutating private func removeOldData() {
-        debugPrint("removeOldData")
-        var done = false
-        while !done {
-            if let lastData = fiveMinuteData.last {
-                if currentTime - lastData.timestamp > RRDGauge.fiveMinute * RRDGauge.maxData {
-                    fiveMinuteData.removeLast()
-                } else {
-                    done = true
-                }
-            } else {
-                done = true
-            }
-        }
-    }*/
     public func getData(dataType: MonitorDataType) -> [RRDData] {
         switch dataType {
         case .FiveMinute:
@@ -172,18 +95,4 @@ struct RRDGauge: Codable {
             return dayData.getData()
         }
     }
-/*    public func getFiveMinuteData() -> [RRDData] {
-        return fiveMinuteData
-    }*/
-/*    func dataString() -> String {
-        var retval : String = ""
-        for data in fiveMinuteData {
-            if let value = data.value {
-                retval += "\(data.timestamp) \(value) "
-            } else {
-                retval += "\(data.timestamp) nil "
-            }
-        }
-        return retval
-    }*/
 }

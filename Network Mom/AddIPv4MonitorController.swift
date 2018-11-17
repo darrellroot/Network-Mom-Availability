@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import DLog
 
 class AddIPv4MonitorController: NSWindowController {
 
@@ -117,9 +118,9 @@ class AddIPv4MonitorController: NSWindowController {
             DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                 self?.possibleHostname = nil
                 if let validatedIP = self?.validatedIP {
-                    print("starting host \(validatedIP)")
+                    DLog.log(.dns,"starting host resolution \(validatedIP)")
                     let host = Host(address: validatedIP)
-                    print("completed host \(String(describing: host.name))")
+                    DLog.log(.dns,"completed host resolution \(String(describing: host.name))")
                     self?.possibleHostname = host.name
                     DispatchQueue.main.async {
                         if let possibleHostname = self?.possibleHostname {
@@ -141,23 +142,21 @@ class AddIPv4MonitorController: NSWindowController {
 
 extension AddIPv4MonitorController: HostAddressQueryDelegate {
     func didComplete(addresses: [Data], hostAddressQuery query: HostAddressQuery) {
-        print("query completed")
+        DLog.log(.dns,"DNS query completed")
         cfResolutionInProgress = false
         for address in addresses {
             if let addressString = numeric(for: address) {
-                print("\(query.name) address \(addressString)")
+                DLog.log(.dns,"\(query.name) address \(addressString)")
                 if let addressString = addressString.ipv4address {
                     validatedIP = addressString
                     validatedHostname = query.name
                 }
             }
         }
-        //let addressList = addresses.map { numeric(for: $0) }.joined(separator: ", ")
-        //print("\(query.name) -> \(addressList)")
     }
     
     func didComplete(error: Error, hostAddressQuery query: HostAddressQuery) {
-        print("query error")
+        DLog.log(.dns,"DNS query error \(error)")
         
     }
     func numeric(for address: Data) -> String? {

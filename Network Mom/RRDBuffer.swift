@@ -14,7 +14,7 @@ public struct RRDBuffer<T> {
     //private var readIndex = 0
     private var writeIndex = 0 {
         didSet {
-            if writeIndex > array.count {
+            if writeIndex >= array.count {
                 writeIndex = 0
             }
         }

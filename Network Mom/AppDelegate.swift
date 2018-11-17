@@ -44,13 +44,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return paths[0]
     }
     func deleteMap(index: Int, name: String) {
-        print("delete map requested index \(index) name \(name)")
+        DLog.log(.dataIntegrity,"delete map requested index \(index) name \(name)")
         if index >= maps.count {
-            print("error map index out of range aborting delte")
+            DLog.log(.dataIntegrity,"error map index out of range aborting delete")
             return
         }
         if maps[index].name != name {
-            print("error map name mismatch aborting delete")
+            DLog.log(.dataIntegrity,"error map name mismatch aborting delete")
             return
         }
         maps[index].close()
@@ -63,16 +63,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
             if result == NSApplication.ModalResponse.OK {
                 if let url = openPanel.url {
-                    print("opening from \(url.debugDescription)")
+                    DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
                     self.importData(url: url)
                 }
             } else {
-                print("open selection not successful")
+                DLog.log(.dataIntegrity,"open selection not successful")
             }
         }
     }
     @IBAction func sendEmail(_ sender: NSMenuItem) {
-        print("doing nothing, email not implemented")
+        DLog.log(.userInterface,"sendEmail selected")
         emailServerController = EmailServerController()
         emailServerController.showWindow(self)
     }
@@ -83,11 +83,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
             if result == NSApplication.ModalResponse.OK {
                 if let url = openPanel.url {
-                    print("opening from \(url.debugDescription)")
+                    DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
                     self.restoreAllConfig(url)
                 }
             } else {
-                print("open selection not successful")
+                DLog.log(.dataIntegrity,"open selection not successful")
             }
         }
 
@@ -99,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             do {
                 importedMap = try decoder.decode(MapWindowController.self, from: data)
             } catch {
-                print("error decoding map")
+                DLog.log(.dataIntegrity,"error decoding map")
             }
             if let importedMap = importedMap {
                 maps.append(importedMap)
@@ -110,7 +110,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func fixMapIndex() {
-        print("fixing ids in each map")
+        DLog.log(.dataIntegrity,"fixing ids in each map")
         for (index,map) in maps.enumerated() {
             map.mapIndex = index
         }
@@ -133,20 +133,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     _ = self.exportFullConfig(url: url)
                 }
             } else {
-                print("File selection not successful")
+                DLog.log(.dataIntegrity,"File selection not successful")
             }
         }
     }
     
     func exportFullConfig(url: URL) -> Bool {
-        print("saving to \(url.debugDescription)")
+        DLog.log(.dataIntegrity,"saving to \(url.debugDescription)")
         var success = true
         let encoder = PropertyListEncoder()
         do {
             let data = try encoder.encode(self.maps)
             try data.write(to: url, options: Data.WritingOptions.atomic)
         } catch {
-            print("error writing data to \(url)")
+            DLog.log(.dataIntegrity,"error writing data to \(url)")
             self.showSaveAlert(url: url)
             success = false
         }
@@ -154,7 +154,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     func saveAllConfig(_ sender: Any) -> Bool {
         // we also save 2 copies of our data.  The 2nd copy only gets saved if the first save is successful.
-        print("saving all config")
+        DLog.log(.dataIntegrity,"saving all config")
         let dataUrl1 = documentsDirectory().appendingPathComponent("autosavedata1.mom2")
         let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
         let successfulFirstSave = exportFullConfig(url: dataUrl1)
@@ -166,21 +166,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func showLogMenu(_ sender: NSMenuItem) {
-        print("show log menu")
+        DLog.log(.userInterface,"show log menu")
         showLogController = ShowLogController()
         showLogController.showWindow(self)
     }
     @IBAction func restoreAllConfig(_ sender: Any) {
-        print("restoring all config")
+        DLog.log(.dataIntegrity,"restoring all config")
         let decoder = PropertyListDecoder()
         let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
-        print("restoring data from \(dataUrl2)")
+        DLog.log(.dataIntegrity,"restoring data from \(dataUrl2)")
         if let data = try? Data(contentsOf: dataUrl2) {
             if let maps = try? decoder.decode([MapWindowController].self, from: data) {
                 self.maps = self.maps + maps
             }
             for map in maps {
-                print("map name \(map.name)")
+                DLog.log(.dataIntegrity,"map name \(map.name)")
                 map.showWindow(self)
             }
             fixMapIndex()
@@ -191,9 +191,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //let newMap = MapWindowController(name: "Default", mapIndex: maps.count)
         //maps.append(newMap)
         //maps[0].showWindow(self)
-        HeliumLogger.use()
-        Log.warning("this is a log test")
-        DLog.log(.userInterface, msg: "dlog test")
+        //HeliumLogger.use()
+        //Log.warning("this is a log test")
+        DLog.log(.userInterface,"DLog.log test")
         restoreAllConfig(self)
         
         if maps.count == 0 {
@@ -213,12 +213,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let typedData = data.bindMemory(to: UInt16.self, capacity: 80)
             let replyid = CFSwapInt16(typedData.advanced(by: 26).pointee)
             let replysequence = CFSwapInt16(typedData.advanced(by: 27).pointee)
-            print("got ipv6 packet from \(addr6.string) id \(replyid) sequence \(replysequence)")
+            DLog.log(.monitor,"got ipv6 packet from \(addr6.string) id \(replyid) sequence \(replysequence)")
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             if let ipv6 = IPv6Address(addr6.string) {
                 appDelegate.receivedPing6(ipv6: ipv6, sequence: replysequence, id: replyid)
             } else {
-                print("failed to create ipv6 address from \(addr6.string)")
+                DLog.log(.monitor,"failed to create ipv6 address from \(addr6.string)")
             }
             
         }, &context)
@@ -239,7 +239,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let sequenceLowByte = typedData.advanced(by: 75).pointee
             let sequence = UInt16(sequenceHighByte) * 256 + UInt16(sequenceLowByte)
             let id = UInt16(idHighByte) * 256 + UInt16(idLowByte)
-            debugPrint("received icmp from \(sourceOctet1).\(sourceOctet2).\(sourceOctet3).\(sourceOctet4) id \(id)")
+            DLog.log(.monitor,"received icmp from \(sourceOctet1).\(sourceOctet2).\(sourceOctet3).\(sourceOctet4) id \(id)")
             let sourceIP: UInt32 = UInt32(sourceOctet1) * 256 * 256 * 256 + UInt32(sourceOctet2) * 256 * 256 + UInt32(sourceOctet3) * 256 + UInt32(sourceOctet4)
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.receivedPing4(ip: sourceIP, sequence: sequence, id: id)
@@ -267,18 +267,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let response = alert.runModal()
         switch response {
         case NSApplication.ModalResponse.alertFirstButtonReturn:
-            print("first button return")
+            DLog.log(.userInterface,"first button return")
             return NSApplication.TerminateReply.terminateCancel
         case NSApplication.ModalResponse.alertSecondButtonReturn:
-            print("second button return")
+            DLog.log(.userInterface,"second button return")
             return NSApplication.TerminateReply.terminateNow
         default:
-            print("ERROR: unexpected response \(response)")
+            DLog.log(.userInterface,"ERROR: unexpected response \(response)")
             return NSApplication.TerminateReply.terminateLater
         }
     }
     @IBAction func newMap(_ sender: NSMenuItem) {
-        print("New Map Selected")
+        DLog.log(.userInterface,"New Map Selected")
         let newmap = MapWindowController(name: "New", mapIndex: maps.count)
         maps.append(newmap)
         maps.last?.showWindow(self)

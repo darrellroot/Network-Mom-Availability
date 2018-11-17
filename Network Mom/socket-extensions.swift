@@ -9,6 +9,7 @@
 import Foundation
 import Network
 import CFNetwork
+import DLog
 
 //var targetaddr: sockaddr_in = sockaddr_in(sin_len: mysize, sin_family: sa_family_t(AF_INET), sin_port: 0, sin_addr: in_addr(s_addr: targetIP), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
 
@@ -99,19 +100,19 @@ extension sockaddr_in6 {
         self.sin6_port = port
         self.sin6_flowinfo = 0
         let retval = inet_pton(AF_INET6, ipv6.debugDescription, &(self.sin6_addr))
-        debugPrint("inet_pton \(ipv6.debugDescription)")
+        DLog.log(.dataIntegrity,"inet_pton \(ipv6.debugDescription)")
         self.printout()
         if retval != 1 {
-            debugPrint("inet_pton failed")
+            DLog.log(.dataIntegrity,"inet_pton failed")
             return nil
         }
     }
     func printout() {
-        print("printing sockaddr_in6")
-        print("length \(self.sin6_len)")
-        print("family \(self.sin6_family)")
-        print("port \(self.sin6_port)")
-        print("flowinfo \(self.sin6_flowinfo)")
+        DLog.log(.monitor,"printing sockaddr_in6")
+        DLog.log(.monitor,"length \(self.sin6_len)")
+        DLog.log(.monitor,"family \(self.sin6_family)")
+        DLog.log(.monitor,"port \(self.sin6_port)")
+        DLog.log(.monitor,"flowinfo \(self.sin6_flowinfo)")
         //print("sin6 addr \(self.sin6_addr)")
         var tmpaddr = self.sin6_addr
         var bytecount = 0

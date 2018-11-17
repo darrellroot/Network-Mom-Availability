@@ -12,6 +12,8 @@ public enum DLogCategories: String, CaseIterable {
     case monitor
     case mail
     case userInterface
+    case dns
+    case dataIntegrity
 }
 
 public class DLog {
@@ -20,8 +22,11 @@ public class DLog {
             .monitor:RRDBuffer<String>(count: 1000),
             .mail:RRDBuffer<String>(count: 1000),
             .userInterface:RRDBuffer<String>(count: 1000),
+            .dns:RRDBuffer<String>(count: 1000),
+            .dataIntegrity:RRDBuffer<String>(count: 1000),
             ]
-    public static let defaultDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+    //public static let defaultDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+    public static let defaultDateFormat = "yyyy-MM-dd HH:mm:ss"
     static fileprivate var dateFormatter: DateFormatter = DLog.getDateFormatter()
 
     static func getDateFormatter(format: String? = nil, timeZone: TimeZone? = nil) -> DateFormatter {
@@ -46,8 +51,8 @@ public class DLog {
     static func doPrint(_ message: String) {
         print(message)
     }
-    static public func log(_ category: DLogCategories, msg: String) {
-        let message = DLog.formatDate() + " " + msg
+    static public func log(_ category: DLogCategories,_ msg: String) {
+        let message = DLog.formatDate() + " " + msg + "\n"
         DLog.logdata[category]!.insert(message)
         DLog.doPrint(message)
     }

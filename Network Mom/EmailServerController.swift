@@ -7,6 +7,7 @@
 
 import Cocoa
 import SwiftSMTP
+import DLog
 
 class EmailServerController: NSWindowController {
     
@@ -26,14 +27,14 @@ class EmailServerController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-        print("window loaded")
+        DLog.log(.userInterface,"EmailServerController window loaded")
     }
     
     @IBAction func hostnamePressed(_ sender: Any) {
-        print("hostname pressed")
+        DLog.log(.userInterface,"hostname pressed")
     }
     @IBAction func sendTestEmail(_ sender: NSButton) {
-        print("in sendEmail function")
+        DLog.log(.mail,"in sendEmail function")
         let hostname = serverHostnameOutlet.stringValue
         let senderEmail = senderEmailUsernameOutlet.stringValue
         let senderPassword = senderEmailPasswordOutlet.stringValue
@@ -45,7 +46,7 @@ class EmailServerController: NSWindowController {
         smtp = SMTP(hostname: hostname, email: senderEmail, password: senderPassword, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
         smtp.send(mail) { (error) in
             if let error = error {
-                print("email error ", error)
+                DLog.log(.mail,"email error \(error)")
             }
         }
     }

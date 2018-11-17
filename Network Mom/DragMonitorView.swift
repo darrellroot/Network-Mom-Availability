@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import DLog
 
 class DragMonitorView: NSView {
 
@@ -73,16 +74,17 @@ class DragMonitorView: NSView {
     }
     
     required init?(coder decoder: NSCoder) {
+        DLog.log(.dataIntegrity,"init(coder:) has not been implemented")
         fatalError("init(coder:) has not been implemented")
     }
     deinit {
-        debugPrint("deallocating drag monitor view \(boxes[0].title)")
+        DLog.log(.userInterface,"deallocating drag monitor view \(boxes[0].title)")
     }
     public func updateLabel() {
         //debugPrint("updateLabel")
         if let title = monitor?.label {
             boxes[0].title = title
-            print("drawing title \(title)")
+            DLog.log(.userInterface,"drawing title \(title)")
         } else {
             boxes[0].title = "No title error 2"
         }
@@ -155,7 +157,7 @@ extension DragMonitorView {
             selected = !selected
         }
         if event.clickCount == 2 {
-            print("doubleclick")
+            DLog.log(.userInterface,"doubleclick")
             if let monitor = monitor {
                 monitorWindowController = MonitorWindowController()
                 monitorWindowController?.monitor = monitor
@@ -163,7 +165,7 @@ extension DragMonitorView {
             }
         }
         //debugPrint("x \(event.locationInWindow.x) y \(event.locationInWindow.y)")
-        debugPrint("updated view frame location \(frame)")
+        DLog.log(.userInterface,"updated view frame location \(frame)")
         monitor?.viewFrame = frame
     }
     

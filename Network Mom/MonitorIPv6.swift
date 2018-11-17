@@ -8,6 +8,7 @@
 
 import Foundation
 import Network
+import DLog
 
 class MonitorIPv6: Monitor, Codable {
     
@@ -116,7 +117,7 @@ class MonitorIPv6: Monitor, Codable {
     }
 
     deinit {
-        debugPrint("deallocating ipv6 monitor \(ipv6.debugDescription)")
+        DLog.log(.dataIntegrity,"deallocating ipv6 monitor \(ipv6.debugDescription)")
     }
 
     func sendPing(pingSocket: CFSocket?) {
@@ -130,7 +131,7 @@ class MonitorIPv6: Monitor, Codable {
             let oldstatus = status
             status = status.worsen
             if oldstatus != status {
-                debugPrint("target \(ipv6.debugDescription) status worsened to \(status)")
+                DLog.log(.monitor,"target \(ipv6.debugDescription) status worsened to \(status)")
             }
             if status != .Blue {
                 // we don't count availability for devices which were never online
@@ -143,11 +144,11 @@ class MonitorIPv6: Monitor, Codable {
         lastPingSequence += 1
         var myPacket = IcmpV6EchoRequest(id: lastPingID, sequence: lastPingSequence)
         let myPacketCFData = NSData(bytes: &myPacket, length: MemoryLayout<IcmpEchoRequest>.size) as CFData
-        guard pingSocket != nil else { print("sendPing failed: socket nil"); return}
+        guard pingSocket != nil else { DLog.log(.monitor,"sendPing failed: socket nil"); return}
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr_in6>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
         if latencyEnabled { pingSentDate = Date() }
-        debugPrint("sent ping to \(ipv6.debugDescription)")
+        DLog.log(.monitor,"sent ping to \(ipv6.debugDescription)")
     }
     public func latencyStatus() -> MonitorStatus? {
         if !latencyEnabled {
@@ -168,16 +169,16 @@ class MonitorIPv6: Monitor, Codable {
         return MonitorStatus.Blue
     }
     func receivedPing(receivedip: IPv6Address, sequence: UInt16, id: UInt16) {
-        debugPrint("\(self.ipv6.debugDescription) received ping")
+        DLog.log(.monitor,"\(self.ipv6.debugDescription) received ping")
         guard receivedip == self.ipv6 && sequence == lastPingSequence && id == lastPingID else {
-            debugPrint("icmp return mismatch sent \(ipv6.debugDescription) seq \(lastPingSequence) id \(lastPingID)")
-            debugPrint("icmp return mismatch received \(receivedip) seq \(sequence) id \(id)")
+            DLog.log(.monitor,"icmp return mismatch sent \(ipv6.debugDescription) seq \(lastPingSequence) id \(lastPingID)")
+            DLog.log(.monitor,"icmp return mismatch received \(receivedip) seq \(sequence) id \(id)")
             return
         }
         if latencyEnabled, let pingSentDate = pingSentDate {
             let interval = Date().timeIntervalSince(pingSentDate) * 1000
             latency?.update(newData: interval)
-            print("ping interval \(interval)msec")
+            DLog.log(.monitor,"ping interval \(interval)msec")
         }
         lastSequenceReceived = sequence
         lastIdReceived = id
@@ -188,7 +189,7 @@ class MonitorIPv6: Monitor, Codable {
         let oldstatus = status
         status = status.improve
         if oldstatus != status {
-            debugPrint("target \(ipv6.debugDescription) status improved to \(status)")
+            DLog.log(.monitor,"target \(ipv6.debugDescription) status improved to \(status)")
         }
     }
 }

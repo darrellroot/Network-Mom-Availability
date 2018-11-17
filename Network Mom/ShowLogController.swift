@@ -31,10 +31,10 @@ class ShowLogController: NSWindowController {
 
     
     @IBAction func selectLogButton(_ sender: NSPopUpButton) {
-        print("select log selected")
+        DLog.log(.userInterface,"select log selected")
         
         if let title = sender.titleOfSelectedItem {
-            print("log title is \(title)")
+            DLog.log(.userInterface,"log title is \(title)")
             for category in DLogCategories.allCases {
                 if title == category.rawValue {
                     if let logData = DLog.logdata[category]?.getData().joined() {

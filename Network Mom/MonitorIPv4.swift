@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DLog
 
 let latencyStaticThreshold = 10.0
 let latencyPercentThresholdRed = 1.80
@@ -126,7 +127,7 @@ class MonitorIPv4: Monitor, Codable {
     
     
     deinit {
-        debugPrint("deallocating ipv4 monitor \(ipv4string)")
+        DLog.log(.dataIntegrity,"deallocating ipv4 monitor \(ipv4string)")
     }
     func sendPing(pingSocket: CFSocket?) {
         sendPing(pingSocket: pingSocket, id: 400)
@@ -137,7 +138,7 @@ class MonitorIPv4: Monitor, Codable {
             let oldstatus = status
             status = status.worsen
             if oldstatus != status {
-                debugPrint("target \(ipv4string) status worsened to \(status)")
+                DLog.log(.monitor,"target \(ipv4string) status worsened to \(status)")
             }
             if status != .Blue {
                 // we don't count availability on devices which were never online
@@ -150,11 +151,11 @@ class MonitorIPv4: Monitor, Codable {
         lastPingSequence += 1
         var myPacket = IcmpEchoRequest(id: pingID, sequence: lastPingSequence)
         let myPacketCFData = NSData(bytes: &myPacket, length: MemoryLayout<IcmpEchoRequest>.size) as CFData
-        guard pingSocket != nil else { print("sendPing failed: socket nil"); return}
+        guard pingSocket != nil else { DLog.log(.monitor,"sendPing failed: socket nil"); return}
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
         if latencyEnabled { pingSentDate = Date() }
-        debugPrint("sent ping to \(ipv4string)")
+        DLog.log(.monitor,"sent ping to \(ipv4string)")
     }
     
     public func latencyStatus() -> MonitorStatus? {
@@ -182,16 +183,16 @@ class MonitorIPv4: Monitor, Codable {
         return MonitorStatus.Blue
     }
     func receivedPing(ip: UInt32, sequence: UInt16, id: UInt16) {
-        print("\(self.ipv4string) received ping")
+        DLog.log(.monitor,"\(self.ipv4string) received ping")
         guard ip == self.ipv4 && sequence == lastPingSequence && id == lastPingID else {
-            print("icmp return mismatch sent \(ipv4) seq \(lastPingSequence) id \(lastPingID)")
-            print("icmp return mismatch received \(ip) seq \(sequence) id \(id)")
+            DLog.log(.monitor,"icmp return mismatch sent \(ipv4) seq \(lastPingSequence) id \(lastPingID)")
+            DLog.log(.monitor,"icmp return mismatch received \(ip) seq \(sequence) id \(id)")
             return
         }
         if latencyEnabled, let pingSentDate = pingSentDate {
             let interval = Date().timeIntervalSince(pingSentDate) * 1000
             latency?.update(newData: interval)
-            print("ping interval \(interval)msec")
+            DLog.log(.monitor,"ping interval \(interval)msec")
         }
         lastSequenceReceived = sequence
         lastIdReceived = id
@@ -202,7 +203,7 @@ class MonitorIPv4: Monitor, Codable {
         let oldstatus = status
         status = status.improve
         if oldstatus != status {
-            debugPrint("target \(ipv4string) status improved to \(status)")
+            DLog.log(.monitor,"target \(ipv4string) status improved to \(status)")
         }
     }
 }

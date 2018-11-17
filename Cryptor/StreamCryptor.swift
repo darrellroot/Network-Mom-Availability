@@ -16,6 +16,7 @@
 //
 
 import Foundation
+import DLog
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 	import CommonCrypto
@@ -763,7 +764,7 @@ public class StreamCryptor {
 			
 				if status != .success {
 				
-					NSLog("WARNING: CCCryptoRelease failed with status \(rawStatus).")
+					DLog.log(.mail,"WARNING: CCCryptoRelease failed with status \(rawStatus).")
 				}
 			
 			} else {
