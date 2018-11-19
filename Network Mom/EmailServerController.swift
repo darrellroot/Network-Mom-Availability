@@ -54,7 +54,9 @@ class EmailServerController: NSWindowController {
         testDestinationEmailOutlet.stringValue = ""
         defaults.removeObject(forKey: Constants.emailServerHostname)
         defaults.removeObject(forKey: Constants.emailServerUsername)
-        
+        clearEmailKeychain()
+    }
+    func clearEmailKeychain() {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrProtocol as String: Constants.networkmom]
         let status = SecItemDelete(query as CFDictionary)
@@ -91,6 +93,7 @@ class EmailServerController: NSWindowController {
                 var status: OSStatus = 0
                 var statusString = "unknown \(status)"
                 if let senderPassword = senderPassword.data(using: String.Encoding.utf8) {
+                    self.clearEmailKeychain()
                     let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                                 kSecAttrAccount as String: senderEmail,
                                                 kSecAttrServer as String: hostname,
