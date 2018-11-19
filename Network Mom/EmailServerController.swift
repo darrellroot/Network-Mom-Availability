@@ -42,7 +42,7 @@ class EmailServerController: NSWindowController {
         if let emailServerUsername = defaults.object(forKey: Constants.emailServerUsername) as? String {
             senderEmailUsernameOutlet.stringValue = emailServerUsername
         }
-        if let emailPassword = appDelegate.emailPassword {
+        if let emailPassword = appDelegate.emailConfiguration?.password {
             senderEmailPasswordOutlet.stringValue = emailPassword
         }
     }
@@ -61,7 +61,9 @@ class EmailServerController: NSWindowController {
                                     kSecAttrProtocol as String: Constants.networkmom]
         let status = SecItemDelete(query as CFDictionary)
         DLog.log(.mail,"mail credentials keychain delete status \(status)")
-        emailResultOutlet.stringValue = "Email credentials keychain deletion status \(status)"
+        DispatchQueue.main.async { [unowned self] in
+            self.emailResultOutlet.stringValue = "Email credentials keychain deletion status \(status)"
+        }
     }
     @IBAction func hostnamePressed(_ sender: Any) {
         DLog.log(.userInterface,"hostname pressed")
@@ -89,7 +91,7 @@ class EmailServerController: NSWindowController {
             } else {
                 self.defaults.set(hostname, forKey: Constants.emailServerHostname)
                 self.defaults.set(senderEmail, forKey: Constants.emailServerUsername)
-                self.appDelegate.emailPassword = senderPassword
+                self.appDelegate.emailConfiguration = EmailConfiguration(server: hostname, username: senderEmail, password: senderPassword)
                 var status: OSStatus = 0
                 var statusString = "unknown \(status)"
                 if let senderPassword = senderPassword.data(using: String.Encoding.utf8) {

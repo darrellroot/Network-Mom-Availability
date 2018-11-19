@@ -39,7 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var socket6Source: CFRunLoopSource?
     var emailServerController: EmailServerController!
     var showLogController: ShowLogController!
-    var emailPassword: String?
+    var emailConfiguration: EmailConfiguration?
     let defaults = UserDefaults.standard
     
     func documentsDirectory() -> URL {
@@ -150,7 +150,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 DLog.log(.mail,"Mail account keychain info did not match userdefaults at startup")
                 return
             }
-            emailPassword = keychainPassword
+            emailConfiguration = EmailConfiguration(server: emailServerHostname, username: emailServerUsername, password: keychainPassword)
             DLog.log(.dataIntegrity,"Mail account password successfully restored from keychain at startup")
             DLog.log(.mail,"Mail account password successfully restored from keychain at startup")
         }

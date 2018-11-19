@@ -238,6 +238,7 @@
 		2F904FBD219FC25C0040530B /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FBC219FC25C0040530B /* DLog.swift */; };
 		2F904FBE219FCA480040530B /* RRDBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E56219F7A430040530B /* RRDBuffer.swift */; };
 		2F904FC021A206250040530B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FBF21A206250040530B /* Constants.swift */; };
+		2F904FC421A3687C0040530B /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FC321A3687C0040530B /* Types.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -554,6 +555,7 @@
 		2F904FB0219FC1C60040530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F904FBC219FC25C0040530B /* DLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
 		2F904FBF21A206250040530B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2F904FC321A3687C0040530B /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -672,6 +674,7 @@
 				2F904E30219F7A130040530B /* AddIPv6MonitorController.xib */,
 				2F904E5C219F7A450040530B /* AddMonitorDelegate.swift */,
 				2F904E31219F7A130040530B /* AppDelegate.swift */,
+				2F904FC321A3687C0040530B /* Types.swift */,
 				2F904E36219F7A140040530B /* ChartsFormatter.swift */,
 				2F904FBF21A206250040530B /* Constants.swift */,
 				2F904E51219F7A420040530B /* ControllerDelegate.swift */,
@@ -1488,6 +1491,7 @@
 				2F904E62219F7A460040530B /* ControllerDelegate.swift in Sources */,
 				2F904E4E219F7A330040530B /* DragMonitorView.swift in Sources */,
 				2F904E63219F7A460040530B /* MonitorIPv6.swift in Sources */,
+				2F904FC421A3687C0040530B /* Types.swift in Sources */,
 				2F904E4D219F7A330040530B /* MapWindowController.swift in Sources */,
 				2F904E6E219F7A460040530B /* MonitorIPv4.swift in Sources */,
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
