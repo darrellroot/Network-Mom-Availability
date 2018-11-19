@@ -16,6 +16,7 @@ import AppKit
 import HeliumLogger
 import LoggerAPI
 import DLog
+import Security
 
 @NSApplicationMain
 
@@ -38,6 +39,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var socket6Source: CFRunLoopSource?
     var emailServerController: EmailServerController!
     var showLogController: ShowLogController!
+    var emailPassword: String?
+    let defaults = UserDefaults.standard
     
     func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -71,12 +74,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-    @IBAction func sendEmail(_ sender: NSMenuItem) {
-        DLog.log(.userInterface,"sendEmail selected")
+    @IBAction func configureEmailServer(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"Configure Email Server selected")
         emailServerController = EmailServerController()
         emailServerController.showWindow(self)
     }
-    
+    @IBAction func configurePagerRecipient(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"Configure Pager Recipient selected")
+
+    }
+    @IBAction func configureEmailRecipient(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"Configure Email Recipient selected")
+        
+    }
+
     @IBAction func importFullConfiguration(_ sender: NSMenuItem) {
         let openPanel = NSOpenPanel()
         openPanel.allowedFileTypes = ["mom2"]
@@ -106,6 +117,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 importedMap.showWindow(self)
             }
             fixMapIndex()
+        }
+    }
+    
+    func loadEmailPassword() {
+        if let emailServerHostname = defaults.string(forKey: Constants.emailServerHostname), let emailServerUsername = defaults.string(forKey: Constants.emailServerUsername) {
+            let query: [String: Any] = [
+                kSecClass as String: kSecClassInternetPassword,
+                kSecAttrServer as String: emailServerHostname,
+                kSecMatchLimit as String: kSecMatchLimitOne,
+                kSecReturnAttributes as String: true,
+                kSecReturnData as String: true,
+                kSecAttrProtocol as String: Constants.networkmom]
+            var item: CFTypeRef?
+            let status = SecItemCopyMatching(query as CFDictionary, &item)
+            guard status == errSecSuccess else {
+                DLog.log(.dataIntegrity,"Mail account keychain not found at startup, status \(status)")
+                DLog.log(.mail,"Mail account keychain not found at startup, status \(status)")
+                return
+            }
+            guard let existingItem = item as? [String : Any],
+                let passwordData = existingItem[kSecValueData as String] as? Data,
+                let keychainPassword = String(data: passwordData, encoding: String.Encoding.utf8),
+                let keychainEmail = existingItem[kSecAttrAccount as String] as? String
+                else {
+                    DLog.log(.dataIntegrity,"Unexpected mail account keychain info found at startup")
+                    DLog.log(.mail,"Unexpected mail account keychain info found at startup")
+                    return
+            }
+            if keychainEmail != emailServerUsername {
+                DLog.log(.dataIntegrity,"Mail account keychain info did not match userdefaults at startup")
+                DLog.log(.mail,"Mail account keychain info did not match userdefaults at startup")
+                return
+            }
+            emailPassword = keychainPassword
+            DLog.log(.dataIntegrity,"Mail account password successfully restored from keychain at startup")
+            DLog.log(.mail,"Mail account password successfully restored from keychain at startup")
         }
     }
     
@@ -172,6 +219,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     @IBAction func restoreAllConfig(_ sender: Any) {
         DLog.log(.dataIntegrity,"restoring all config")
+        loadEmailPassword()
         let decoder = PropertyListDecoder()
         let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
         DLog.log(.dataIntegrity,"restoring data from \(dataUrl2)")

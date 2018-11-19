@@ -237,6 +237,7 @@
 		2F904FBB219FC2300040530B /* RRDBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E56219F7A430040530B /* RRDBuffer.swift */; };
 		2F904FBD219FC25C0040530B /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FBC219FC25C0040530B /* DLog.swift */; };
 		2F904FBE219FCA480040530B /* RRDBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E56219F7A430040530B /* RRDBuffer.swift */; };
+		2F904FC021A206250040530B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FBF21A206250040530B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -552,6 +553,7 @@
 		2F904FAF219FC1C60040530B /* DLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		2F904FB0219FC1C60040530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F904FBC219FC25C0040530B /* DLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
+		2F904FBF21A206250040530B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -671,6 +673,7 @@
 				2F904E5C219F7A450040530B /* AddMonitorDelegate.swift */,
 				2F904E31219F7A130040530B /* AppDelegate.swift */,
 				2F904E36219F7A140040530B /* ChartsFormatter.swift */,
+				2F904FBF21A206250040530B /* Constants.swift */,
 				2F904E51219F7A420040530B /* ControllerDelegate.swift */,
 				2F904E40219F7A200040530B /* Design.txt */,
 				2F904E46219F7A320040530B /* DragMonitorView.swift */,
@@ -1475,6 +1478,7 @@
 				2F904E49219F7A330040530B /* MapAvailabilityReportController.swift in Sources */,
 				2F904FBA219FC1DF0040530B /* RRDBuffer.swift in Sources */,
 				2F904E50219F7A330040530B /* MonitorWindowController.swift in Sources */,
+				2F904FC021A206250040530B /* Constants.swift in Sources */,
 				2F904E39219F7A140040530B /* AppDelegate.swift in Sources */,
 				2F904E2E219F79FF0040530B /* ShowLogController.swift in Sources */,
 				2F904E68219F7A460040530B /* RRDGauge.swift in Sources */,

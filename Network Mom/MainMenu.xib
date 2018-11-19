@@ -640,17 +640,23 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Notifications" id="z9h-bs-PKo">
                         <items>
-                            <menuItem title="Send Email" id="hOo-6G-Lcp">
+                            <menuItem title="Configure Email Server" id="hOo-6G-Lcp">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="sendEmail:" target="Voe-Tx-rLC" id="Lmk-TG-h9e"/>
+                                    <action selector="configureEmailServer:" target="Voe-Tx-rLC" id="XQI-uP-TzL"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Item 2" id="aOL-U4-5Pu">
+                            <menuItem title="Configure Pager Recipient" id="aOL-U4-5Pu">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="configurePagerRecipient:" target="Voe-Tx-rLC" id="MYr-8y-pmG"/>
+                                </connections>
                             </menuItem>
-                            <menuItem title="Item 3" id="3lD-9h-C3A">
+                            <menuItem title="Configure Email Recipient" id="3lD-9h-C3A">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="configureEmailRecipient:" target="Voe-Tx-rLC" id="3S4-Dh-qKS"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
