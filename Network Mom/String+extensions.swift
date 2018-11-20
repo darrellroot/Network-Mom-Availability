@@ -31,4 +31,16 @@ extension String {
         guard octet1 > 0 else { return nil }
         return UInt32(octet4) + UInt32(octet3) * 256 + UInt32(octet2) * 256 * 256 + UInt32(octet1) * 256 * 256 * 256
     }
+    var djb2hash: Int {
+        let unicodeScalars = self.unicodeScalars.map { $0.value }
+        return unicodeScalars.reduce(5381) {
+            ($0 << 5) &+ $0 &+ Int($1)
+        }
+    }
+    var sdbmhash: Int {
+        let unicodeScalars = self.unicodeScalars.map { $0.value }
+        return unicodeScalars.reduce(0) {
+            Int($1) &+ ($0 << 6) &+ ($0 << 16) - $0
+        }
+    }
 }

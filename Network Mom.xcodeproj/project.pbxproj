@@ -239,6 +239,9 @@
 		2F904FBE219FCA480040530B /* RRDBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E56219F7A430040530B /* RRDBuffer.swift */; };
 		2F904FC021A206250040530B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FBF21A206250040530B /* Constants.swift */; };
 		2F904FC421A3687C0040530B /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FC321A3687C0040530B /* Types.swift */; };
+		2F904FC621A36D190040530B /* EmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FC521A36D190040530B /* EmailAddress.swift */; };
+		2F904FD121A3707B0040530B /* AddEmailRecipientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */; };
+		2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -556,6 +559,9 @@
 		2F904FBC219FC25C0040530B /* DLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
 		2F904FBF21A206250040530B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2F904FC321A3687C0040530B /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		2F904FC521A36D190040530B /* EmailAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddress.swift; sourceTree = "<group>"; };
+		2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailRecipientController.swift; sourceTree = "<group>"; };
+		2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddEmailRecipientController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -668,6 +674,8 @@
 		2F904D3C219F76170040530B /* Network Mom */ = {
 			isa = PBXGroup;
 			children = (
+				2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */,
+				2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */,
 				2F904E32219F7A130040530B /* AddIPv4MonitorController.swift */,
 				2F904E37219F7A140040530B /* AddIPv4MonitorController.xib */,
 				2F904E33219F7A130040530B /* AddIPv6MonitorController.swift */,
@@ -680,6 +688,7 @@
 				2F904E51219F7A420040530B /* ControllerDelegate.swift */,
 				2F904E40219F7A200040530B /* Design.txt */,
 				2F904E46219F7A320040530B /* DragMonitorView.swift */,
+				2F904FC521A36D190040530B /* EmailAddress.swift */,
 				2F904E34219F7A130040530B /* EmailServerController.swift */,
 				2F904E35219F7A140040530B /* EmailServerController.xib */,
 				2F904E5E219F7A450040530B /* FlipStackView.swift */,
@@ -1398,6 +1407,7 @@
 			files = (
 				2F904E2F219F79FF0040530B /* ShowLogController.xib in Resources */,
 				2F904E4A219F7A330040530B /* MonitorWindowController.xib in Resources */,
+				2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */,
 				2F904E4F219F7A330040530B /* MapWindowController.xib in Resources */,
 				2F904E3F219F7A140040530B /* AddIPv4MonitorController.xib in Resources */,
 				2F904E38219F7A140040530B /* AddIPv6MonitorController.xib in Resources */,
@@ -1473,6 +1483,7 @@
 				2F904E3A219F7A140040530B /* AddIPv4MonitorController.swift in Sources */,
 				2F904E6A219F7A460040530B /* icmpechorequest.swift in Sources */,
 				2F904E6F219F7A460040530B /* FlipStackView.swift in Sources */,
+				2F904FD121A3707B0040530B /* AddEmailRecipientController.swift in Sources */,
 				2F904E69219F7A460040530B /* FlipView.swift in Sources */,
 				2F904E6D219F7A460040530B /* AddMonitorDelegate.swift in Sources */,
 				2F904E65219F7A460040530B /* HostAddressQuery.swift in Sources */,
@@ -1497,6 +1508,7 @@
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,
 				2F904E70219F7A460040530B /* RRDData.swift in Sources */,
+				2F904FC621A36D190040530B /* EmailAddress.swift in Sources */,
 				2F904E66219F7A460040530B /* socket-extensions.swift in Sources */,
 				2F904E64219F7A460040530B /* MonitorEnumeration.swift in Sources */,
 			);

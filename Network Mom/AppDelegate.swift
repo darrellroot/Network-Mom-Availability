@@ -32,12 +32,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+    var emails: [String:EmailAddress] = [:]
 
     public var ping4Socket: CFSocket?
     public var ping6Socket: CFSocket?
     private var socket4Source: CFRunLoopSource?
     private var socket6Source: CFRunLoopSource?
     var emailServerController: EmailServerController!
+    var addEmailRecipientController: AddEmailRecipientController!
     var showLogController: ShowLogController!
     var emailConfiguration: EmailConfiguration?
     let defaults = UserDefaults.standard
@@ -79,13 +81,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         emailServerController = EmailServerController()
         emailServerController.showWindow(self)
     }
-    @IBAction func configurePagerRecipient(_ sender: NSMenuItem) {
-        DLog.log(.userInterface,"Configure Pager Recipient selected")
-
-    }
     @IBAction func configureEmailRecipient(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"Configure Email Recipient selected")
-        
+        addEmailRecipientController = AddEmailRecipientController()
+        addEmailRecipientController.showWindow(self)
     }
 
     @IBAction func importFullConfiguration(_ sender: NSMenuItem) {

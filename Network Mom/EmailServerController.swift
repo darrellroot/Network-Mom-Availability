@@ -78,7 +78,7 @@ class EmailServerController: NSWindowController {
         let sender = Mail.User(name: "Network Mom", email: senderEmail)
         let droot = Mail.User(name: "Darrell Root", email: "darrellroot@mac.com")
         let destination = Mail.User(name: "Network Mom User", email: destinationEmail)
-        let mail = Mail(from: sender, to: [droot], subject: "My program can now email you", text: "How is your application?")
+        let mail = Mail(from: sender, to: [droot], subject: "Test email from Network Mom", text: "If you got this, your email server configuration is working.")
         smtp = SMTP(hostname: hostname, email: senderEmail, password: senderPassword, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
         smtp.send(mail) { (error) in
             if let error = error {

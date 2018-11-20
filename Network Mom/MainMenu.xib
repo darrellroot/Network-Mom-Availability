@@ -646,12 +646,6 @@
                                     <action selector="configureEmailServer:" target="Voe-Tx-rLC" id="XQI-uP-TzL"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Configure Pager Recipient" id="aOL-U4-5Pu">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="configurePagerRecipient:" target="Voe-Tx-rLC" id="MYr-8y-pmG"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Configure Email Recipient" id="3lD-9h-C3A">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
