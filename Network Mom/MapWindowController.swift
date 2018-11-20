@@ -33,7 +33,8 @@ class MapWindowController: NSWindowController, Codable {
 
     var name: String {
         didSet {
-            window?.title = name + " Map"
+            window?.title = name
+            DLog.log(.userInterface,"Window title updated \(name)")
         }
     }
     var ipv4Monitor: AddIPv4MonitorController!
@@ -223,6 +224,7 @@ class MapWindowController: NSWindowController, Codable {
         self.name = name
         self.mapIndex = mapIndex
     }
+    
     required init?(coder: NSCoder) {
         numberSweeps = pingSweepDuration / pingTimerDuration
         guard pingSweepDuration % pingTimerDuration == 0 else {

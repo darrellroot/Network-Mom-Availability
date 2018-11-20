@@ -70,6 +70,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if let url = openPanel.url {
                     DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
                     self.importData(url: url)
+                    DispatchQueue.main.async { [unowned self] in
+                        self.makeMapNamesUnique()
+                    }
                 }
             } else {
                 DLog.log(.dataIntegrity,"open selection not successful")
@@ -95,12 +98,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 if let url = openPanel.url {
                     DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
                     self.restoreAllConfig(url)
+                    DispatchQueue.main.async { [unowned self] in
+                        self.makeMapNamesUnique()
+                    }
                 }
             } else {
                 DLog.log(.dataIntegrity,"open selection not successful")
             }
         }
-
     }
     func importData(url: URL) {
         if let data = try? Data(contentsOf: url) {
@@ -245,7 +250,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if maps.count == 0 {
             // initial launch
-            let newMap = MapWindowController(name: "Default", mapIndex: maps.count)
+            let newMap = MapWindowController(name: "Map 0", mapIndex: maps.count)
             maps.append(newMap)
             maps[0].showWindow(self)
         }
@@ -298,9 +303,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     }
     
-/*
-    then calls the delegate’s applicationShouldTerminate(_:) method. If applicationShouldTerminate(_:) returns NSApplication.TerminateReply.terminateCancel, the termination process is aborted and control is handed back to the main event loop. If the method returns NSApplication.TerminateReply.terminateLater, the app runs its run loop in the modalPanel mode until the reply(toApplicationShould
-*/
     func applicationWillTerminate(_ aNotification: Notification) {
         _ = saveAllConfig(self)
     }
@@ -326,9 +328,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     @IBAction func newMap(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"New Map Selected")
-        let newmap = MapWindowController(name: "New", mapIndex: maps.count)
+        let newName = createUniqueMapName()
+        let newmap = MapWindowController(name: newName, mapIndex: maps.count)
         maps.append(newmap)
         maps.last?.showWindow(self)
+    }
+    func createUniqueMapName() -> String {
+        var candidateName: String
+        var count = maps.count
+        repeat {
+            count = count + 1
+            candidateName = "Map \(count)"
+        } while !mapNameIsUnique(name: candidateName)
+        return candidateName
+    }
+    func mapNameIsUnique(name: String) -> Bool {
+        for map in maps {
+            if map.name == name {
+                return false
+            }
+        }
+        return true
+    }
+    func makeMapNamesUnique() {
+        var changed = false
+        repeat {
+            changed = false
+            for (index,map) in maps.enumerated() {
+                for loop in 0 ..< index {
+                    if map.name == maps[loop].name {
+                        DLog.log(.dataIntegrity, "Changed \(map.name) to \(map.name) copy")
+                        map.name = map.name + " copy"
+                        changed = true
+                    }
+                }
+            }
+        } while changed
     }
 }
 extension AppDelegate: ReceivedPing4Delegate {
