@@ -82,17 +82,22 @@ class AddEmailRecipientController: NSWindowController {
             // should not get here
             pagerOnly = false
         }
-        if let email = appDelegate.emails[emailAddressOutlet.stringValue] {
-            emailResultOutlet.stringValue = "Updated existing email recipient"
-            if emailNameOutlet.stringValue != "" {
-                email.name = emailNameOutlet.stringValue
+        for email in appDelegate.emails {
+            if email.email == emailAddressOutlet.stringValue {
+                emailResultOutlet.stringValue = "Updated existing email recipient"
+                if emailNameOutlet.stringValue != "" {
+                    email.name = emailNameOutlet.stringValue
+                } else {
+                    emailNameOutlet.stringValue = email.name
+                }
+                email.pagerOnly = pagerOnly
+                return
             }
-            email.pagerOnly = pagerOnly
-        } else {
-            let newEmail = EmailAddress(name: emailNameOutlet.stringValue, email: emailAddressOutlet.stringValue, pagerOnly: pagerOnly)
-            appDelegate.emails[emailAddressOutlet.stringValue] = newEmail
-            emailResultOutlet.stringValue = "Created new email recipient"
         }
+        // if we got here, we need to create a new email
+        let newEmail = EmailAddress(name: emailNameOutlet.stringValue, email: emailAddressOutlet.stringValue, pagerOnly: pagerOnly)
+            appDelegate.emails.append(newEmail)
+            emailResultOutlet.stringValue = "Created new email recipient"
     }
     
     private func validateEmail(candidate: String) -> Bool {

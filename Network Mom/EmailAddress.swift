@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import SwiftSMTP
+//import SwiftSMTP
 
-class EmailAddress: Equatable, Hashable {
+class EmailAddress: Equatable, Hashable, Codable {
     var name: String
     var email: String
     var pagerOnly: Bool
@@ -18,14 +18,14 @@ class EmailAddress: Equatable, Hashable {
         // A deterministic 4-digit code to validate that the user can receive
         // emails to this address
         // this code is not currently used but kept here to document our deterministic hash
-        return abs(user.email.djb2hash % 10000)
+        return abs(email.djb2hash % 10000)
     }
-    var user: Mail.User {
+/*    var user: Mail.User {
         let user = Mail.User(name: name, email: email)
         return user
-    }
+    }*/
     
-    init(name: String, email: String, pagerOnly: Bool) {
+    public init(name: String, email: String, pagerOnly: Bool) {
         self.name = name
         self.email = email
         self.pagerOnly = pagerOnly

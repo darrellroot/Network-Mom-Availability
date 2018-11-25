@@ -13,7 +13,7 @@
 import Cocoa
 import Network
 import AppKit
-import HeliumLogger
+//import HeliumLoggerCustom
 import LoggerAPI
 import DLog
 import Security
@@ -32,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-    var emails: [String:EmailAddress] = [:]
+    var emails: [EmailAddress] = []
 
     public var ping4Socket: CFSocket?
     public var ping6Socket: CFSocket?
@@ -40,6 +40,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var socket6Source: CFRunLoopSource?
     var emailServerController: EmailServerController!
     var addEmailRecipientController: AddEmailRecipientController!
+    var deleteEmailRecipientController: DeleteEmailRecipientController!
+    var manageEmailNotificationsController:
+    ManageEmailNotificationsController!
     var showLogController: ShowLogController!
     var emailConfiguration: EmailConfiguration?
     let defaults = UserDefaults.standard
@@ -90,6 +93,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         addEmailRecipientController.showWindow(self)
     }
 
+    @IBAction func deleteEmailRecipient(_ sender: NSMenuItem) {
+        deleteEmailRecipientController = DeleteEmailRecipientController()
+        deleteEmailRecipientController.showWindow(self)
+    }
     @IBAction func importFullConfiguration(_ sender: NSMenuItem) {
         let openPanel = NSOpenPanel()
         openPanel.allowedFileTypes = ["mom2"]
@@ -193,8 +200,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DLog.log(.dataIntegrity,"saving to \(url.debugDescription)")
         var success = true
         let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
         do {
-            let data = try encoder.encode(self.maps)
+            let codableDataStructure = CodableDataStructure()
+            //let data = try encoder.encode(self.maps)
+            let data = try encoder.encode(codableDataStructure)
             try data.write(to: url, options: Data.WritingOptions.atomic)
         } catch {
             DLog.log(.dataIntegrity,"error writing data to \(url)")
@@ -228,13 +238,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
         DLog.log(.dataIntegrity,"restoring data from \(dataUrl2)")
         if let data = try? Data(contentsOf: dataUrl2) {
-            if let maps = try? decoder.decode([MapWindowController].self, from: data) {
+            if let codableDataStructure = try? decoder.decode(CodableDataStructure.self, from: data) {
+                self.maps = codableDataStructure.maps
+                self.emails = codableDataStructure.emailAddresses
+                for map in maps {
+                    DLog.log(.dataIntegrity,"Loaded map name \(map.name)")
+                    map.showWindow(self)
+                }
+                DLog.log(.dataIntegrity,"data restore complete")
+            }
+/*            if let maps = try? decoder.decode([MapWindowController].self, from: data) {
                 self.maps = self.maps + maps
             }
             for map in maps {
                 DLog.log(.dataIntegrity,"map name \(map.name)")
                 map.showWindow(self)
             }
+ */
             fixMapIndex()
         }
     }
@@ -326,6 +346,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return NSApplication.TerminateReply.terminateLater
         }
     }
+    
+    @IBAction func manageEmailNotifications(_ sender: NSMenuItem) {
+        manageEmailNotificationsController = ManageEmailNotificationsController()
+        manageEmailNotificationsController.showWindow(self)
+    }
+    
     @IBAction func newMap(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"New Map Selected")
         let newName = createUniqueMapName()

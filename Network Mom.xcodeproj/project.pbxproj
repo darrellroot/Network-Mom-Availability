@@ -7,16 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F904D55219F769D0040530B /* LoggerAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F904D53219F769D0040530B /* LoggerAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
-		2F904D7A219F779A0040530B /* HeliumLoggerCustom.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F904D78219F779A0040530B /* HeliumLoggerCustom.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2F904D7D219F779A0040530B /* HeliumLoggerCustom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D76219F779A0040530B /* HeliumLoggerCustom.framework */; };
-		2F904D7E219F779A0040530B /* HeliumLoggerCustom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D76219F779A0040530B /* HeliumLoggerCustom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D84219F77B20040530B /* HeliumLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D82219F77B20040530B /* HeliumLogger.swift */; };
 		2F904D85219F77B20040530B /* HeliumStreamLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D83219F77B20040530B /* HeliumStreamLogger.swift */; };
-		2F904DB6219F78AF0040530B /* Cryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F904DB4219F78AF0040530B /* Cryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F904DB9219F78AF0040530B /* Cryptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DB2219F78AF0040530B /* Cryptor.framework */; };
 		2F904DBA219F78AF0040530B /* Cryptor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DB2219F78AF0040530B /* Cryptor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904DC9219F78C30040530B /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DBE219F78C20040530B /* Random.swift */; };
@@ -30,18 +25,15 @@
 		2F904DD1219F78C30040530B /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DC6219F78C30040530B /* Crypto.swift */; };
 		2F904DD2219F78C30040530B /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DC7219F78C30040530B /* Status.swift */; };
 		2F904DD3219F78C30040530B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DC8219F78C30040530B /* Utilities.swift */; };
-		2F904DDD219F78E70040530B /* Socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F904DDB219F78E70040530B /* Socket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F904DE0219F78E70040530B /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2F904DE1219F78E70040530B /* Socket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904DE8219F78FE0040530B /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DE5219F78FD0040530B /* Socket.swift */; };
 		2F904DE9219F78FE0040530B /* SocketProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DE6219F78FE0040530B /* SocketProtocols.swift */; };
 		2F904DEA219F78FE0040530B /* SocketUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DE7219F78FE0040530B /* SocketUtils.swift */; };
-		2F904DF4219F79200040530B /* SSLService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F904DF2219F79200040530B /* SSLService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F904DF7219F79200040530B /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
 		2F904DF8219F79200040530B /* SSLService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904DFE219F792E0040530B /* SSLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DFC219F792E0040530B /* SSLService.swift */; };
 		2F904DFF219F792E0040530B /* SSLPointerTricks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DFD219F792E0040530B /* SSLPointerTricks.swift */; };
-		2F904E09219F79520040530B /* SwiftSMTP.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F904E07219F79520040530B /* SwiftSMTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F904E0C219F79520040530B /* SwiftSMTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904E05219F79520040530B /* SwiftSMTP.framework */; };
 		2F904E0D219F79520040530B /* SwiftSMTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904E05219F79520040530B /* SwiftSMTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904E1E219F79620040530B /* TLSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E11219F795F0040530B /* TLSConfiguration.swift */; };
@@ -91,7 +83,6 @@
 		2F904E70219F7A460040530B /* RRDData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E5F219F7A450040530B /* RRDData.swift */; };
 		2F904E71219F7A460040530B /* String+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E60219F7A460040530B /* String+extensions.swift */; };
 		2F904E72219F7A460040530B /* IcmpV6EchoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E61219F7A460040530B /* IcmpV6EchoRequest.swift */; };
-		2F904E81219F7C750040530B /* Charts.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F904E7F219F7C750040530B /* Charts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2F904E84219F7C750040530B /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904E7D219F7C750040530B /* Charts.framework */; };
 		2F904E85219F7C750040530B /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904E7D219F7C750040530B /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904E96219F7D460040530B /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E94219F7D460040530B /* Animator.swift */; };
@@ -242,6 +233,17 @@
 		2F904FC621A36D190040530B /* EmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FC521A36D190040530B /* EmailAddress.swift */; };
 		2F904FD121A3707B0040530B /* AddEmailRecipientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */; };
 		2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */; };
+		2F904FD921A4B17D0040530B /* ManageEmailNotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FD721A4B17D0040530B /* ManageEmailNotificationsController.swift */; };
+		2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */; };
+		2F96034421A9F28E0037E026 /* CodableDataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F96034321A9F28E0037E026 /* CodableDataStructure.swift */; };
+		2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */; };
+		2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */; };
+		2FA35D8D21AA4C6900556A26 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
+		2FA35D9021AA4CA500556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
+		2FA35D9121AA4CB800556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
+		2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
+		2FA35D9321AA4CC300556A26 /* Cryptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DB2219F78AF0040530B /* Cryptor.framework */; };
+		2FA35D9421AA4CC900556A26 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,13 +253,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2F904D50219F769D0040530B;
 			remoteInfo = LoggerAPI;
-		};
-		2F904D7B219F779A0040530B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2F904D32219F76170040530B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2F904D75219F779A0040530B;
-			remoteInfo = HeliumLoggerCustom;
 		};
 		2F904DB7219F78AF0040530B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -301,6 +296,41 @@
 			remoteGlobalIDString = 2F904FAC219FC1C60040530B;
 			remoteInfo = DLog;
 		};
+		2FA35D8421AA4C2000556A26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F904D32219F76170040530B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F904D50219F769D0040530B;
+			remoteInfo = LoggerAPI;
+		};
+		2FA35D8621AA4C2400556A26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F904D32219F76170040530B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F904DB1219F78AF0040530B;
+			remoteInfo = Cryptor;
+		};
+		2FA35D8821AA4C2900556A26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F904D32219F76170040530B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F904DEF219F79200040530B;
+			remoteInfo = SSLService;
+		};
+		2FA35D8A21AA4C2D00556A26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F904D32219F76170040530B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F904DD8219F78E70040530B;
+			remoteInfo = Socket;
+		};
+		2FA35D8E21AA4C9700556A26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F904D32219F76170040530B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F904DD8219F78E70040530B;
+			remoteInfo = Socket;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -316,7 +346,6 @@
 				2F904E0D219F79520040530B /* SwiftSMTP.framework in Embed Frameworks */,
 				2F904E85219F7C750040530B /* Charts.framework in Embed Frameworks */,
 				2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */,
-				2F904D7E219F779A0040530B /* HeliumLoggerCustom.framework in Embed Frameworks */,
 				2F904DF8219F79200040530B /* SSLService.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -562,6 +591,11 @@
 		2F904FC521A36D190040530B /* EmailAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddress.swift; sourceTree = "<group>"; };
 		2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailRecipientController.swift; sourceTree = "<group>"; };
 		2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddEmailRecipientController.xib; sourceTree = "<group>"; };
+		2F904FD721A4B17D0040530B /* ManageEmailNotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageEmailNotificationsController.swift; sourceTree = "<group>"; };
+		2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageEmailNotificationsController.xib; sourceTree = "<group>"; };
+		2F96034321A9F28E0037E026 /* CodableDataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataStructure.swift; sourceTree = "<group>"; };
+		2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEmailRecipientController.swift; sourceTree = "<group>"; };
+		2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteEmailRecipientController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,7 +609,6 @@
 				2F904E0C219F79520040530B /* SwiftSMTP.framework in Frameworks */,
 				2F904E84219F7C750040530B /* Charts.framework in Frameworks */,
 				2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */,
-				2F904D7D219F779A0040530B /* HeliumLoggerCustom.framework in Frameworks */,
 				2F904DF7219F79200040530B /* SSLService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +624,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA35D8D21AA4C6900556A26 /* LoggerAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +646,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA35D9021AA4CA500556A26 /* Socket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +654,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA35D9421AA4CC900556A26 /* LoggerAPI.framework in Frameworks */,
+				2FA35D9321AA4CC300556A26 /* Cryptor.framework in Frameworks */,
+				2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */,
+				2FA35D9121AA4CB800556A26 /* Socket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +691,7 @@
 				2F904E7E219F7C750040530B /* Charts */,
 				2F904FAE219FC1C60040530B /* DLog */,
 				2F904D3B219F76170040530B /* Products */,
+				2FA35D8C21AA4C6900556A26 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -682,10 +722,12 @@
 				2F904E30219F7A130040530B /* AddIPv6MonitorController.xib */,
 				2F904E5C219F7A450040530B /* AddMonitorDelegate.swift */,
 				2F904E31219F7A130040530B /* AppDelegate.swift */,
-				2F904FC321A3687C0040530B /* Types.swift */,
 				2F904E36219F7A140040530B /* ChartsFormatter.swift */,
+				2F96034321A9F28E0037E026 /* CodableDataStructure.swift */,
 				2F904FBF21A206250040530B /* Constants.swift */,
 				2F904E51219F7A420040530B /* ControllerDelegate.swift */,
+				2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */,
+				2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */,
 				2F904E40219F7A200040530B /* Design.txt */,
 				2F904E46219F7A320040530B /* DragMonitorView.swift */,
 				2F904FC521A36D190040530B /* EmailAddress.swift */,
@@ -697,6 +739,8 @@
 				2F904E59219F7A440040530B /* icmpechorequest.swift */,
 				2F904E61219F7A460040530B /* IcmpV6EchoRequest.swift */,
 				2F904E44219F7A320040530B /* MainMenu.xib */,
+				2F904FD721A4B17D0040530B /* ManageEmailNotificationsController.swift */,
+				2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */,
 				2F904E41219F7A310040530B /* MapAvailabilityReportController.swift */,
 				2F904E43219F7A320040530B /* MapAvailabilityReportController.xib */,
 				2F904E45219F7A320040530B /* MapWindowController.swift */,
@@ -717,6 +761,7 @@
 				2F904E2D219F79FF0040530B /* ShowLogController.xib */,
 				2F904E55219F7A430040530B /* socket-extensions.swift */,
 				2F904E60219F7A460040530B /* String+extensions.swift */,
+				2F904FC321A3687C0040530B /* Types.swift */,
 			);
 			path = "Network Mom";
 			sourceTree = "<group>";
@@ -1082,6 +1127,13 @@
 			path = DLog;
 			sourceTree = "<group>";
 		};
+		2FA35D8C21AA4C6900556A26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1089,7 +1141,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F904D55219F769D0040530B /* LoggerAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,7 +1148,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F904D7A219F779A0040530B /* HeliumLoggerCustom.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,7 +1155,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F904DB6219F78AF0040530B /* Cryptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,7 +1162,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F904DDD219F78E70040530B /* Socket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,7 +1169,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F904DF4219F79200040530B /* SSLService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,7 +1176,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F904E09219F79520040530B /* SwiftSMTP.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,7 +1183,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F904E81219F7C750040530B /* Charts.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1165,7 +1210,6 @@
 			);
 			dependencies = (
 				2F904D57219F769D0040530B /* PBXTargetDependency */,
-				2F904D7C219F779A0040530B /* PBXTargetDependency */,
 				2F904DB8219F78AF0040530B /* PBXTargetDependency */,
 				2F904DDF219F78E70040530B /* PBXTargetDependency */,
 				2F904DF6219F79200040530B /* PBXTargetDependency */,
@@ -1262,6 +1306,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2FA35D8F21AA4C9700556A26 /* PBXTargetDependency */,
 			);
 			name = SSLService;
 			productName = SSLService;
@@ -1280,6 +1325,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				2FA35D8B21AA4C2D00556A26 /* PBXTargetDependency */,
+				2FA35D8921AA4C2900556A26 /* PBXTargetDependency */,
+				2FA35D8721AA4C2400556A26 /* PBXTargetDependency */,
+				2FA35D8521AA4C2000556A26 /* PBXTargetDependency */,
 			);
 			name = SwiftSMTP;
 			productName = SwiftSMTP;
@@ -1388,10 +1437,10 @@
 			projectRoot = "";
 			targets = (
 				2F904D39219F76170040530B /* Network Mom */,
+				2F904DD8219F78E70040530B /* Socket */,
 				2F904D50219F769D0040530B /* LoggerAPI */,
 				2F904D75219F779A0040530B /* HeliumLoggerCustom */,
 				2F904DB1219F78AF0040530B /* Cryptor */,
-				2F904DD8219F78E70040530B /* Socket */,
 				2F904DEF219F79200040530B /* SSLService */,
 				2F904E04219F79520040530B /* SwiftSMTP */,
 				2F904E7C219F7C750040530B /* Charts */,
@@ -1413,6 +1462,8 @@
 				2F904E38219F7A140040530B /* AddIPv6MonitorController.xib in Resources */,
 				2F904E3D219F7A140040530B /* EmailServerController.xib in Resources */,
 				2F904E4C219F7A330040530B /* MainMenu.xib in Resources */,
+				2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */,
+				2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */,
 				2F904E4B219F7A330040530B /* MapAvailabilityReportController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1489,6 +1540,7 @@
 				2F904E65219F7A460040530B /* HostAddressQuery.swift in Sources */,
 				2F904E6C219F7A460040530B /* MonitorProtocol.swift in Sources */,
 				2F904E72219F7A460040530B /* IcmpV6EchoRequest.swift in Sources */,
+				2F96034421A9F28E0037E026 /* CodableDataStructure.swift in Sources */,
 				2F904E49219F7A330040530B /* MapAvailabilityReportController.swift in Sources */,
 				2F904FBA219FC1DF0040530B /* RRDBuffer.swift in Sources */,
 				2F904E50219F7A330040530B /* MonitorWindowController.swift in Sources */,
@@ -1498,6 +1550,7 @@
 				2F904E68219F7A460040530B /* RRDGauge.swift in Sources */,
 				2F904E3C219F7A140040530B /* EmailServerController.swift in Sources */,
 				2F904E3B219F7A140040530B /* AddIPv6MonitorController.swift in Sources */,
+				2F904FD921A4B17D0040530B /* ManageEmailNotificationsController.swift in Sources */,
 				2F904E71219F7A460040530B /* String+extensions.swift in Sources */,
 				2F904E62219F7A460040530B /* ControllerDelegate.swift in Sources */,
 				2F904E4E219F7A330040530B /* DragMonitorView.swift in Sources */,
@@ -1511,6 +1564,7 @@
 				2F904FC621A36D190040530B /* EmailAddress.swift in Sources */,
 				2F904E66219F7A460040530B /* socket-extensions.swift in Sources */,
 				2F904E64219F7A460040530B /* MonitorEnumeration.swift in Sources */,
+				2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1749,11 +1803,6 @@
 			target = 2F904D50219F769D0040530B /* LoggerAPI */;
 			targetProxy = 2F904D56219F769D0040530B /* PBXContainerItemProxy */;
 		};
-		2F904D7C219F779A0040530B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2F904D75219F779A0040530B /* HeliumLoggerCustom */;
-			targetProxy = 2F904D7B219F779A0040530B /* PBXContainerItemProxy */;
-		};
 		2F904DB8219F78AF0040530B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2F904DB1219F78AF0040530B /* Cryptor */;
@@ -1783,6 +1832,31 @@
 			isa = PBXTargetDependency;
 			target = 2F904FAC219FC1C60040530B /* DLog */;
 			targetProxy = 2F904FB2219FC1C60040530B /* PBXContainerItemProxy */;
+		};
+		2FA35D8521AA4C2000556A26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F904D50219F769D0040530B /* LoggerAPI */;
+			targetProxy = 2FA35D8421AA4C2000556A26 /* PBXContainerItemProxy */;
+		};
+		2FA35D8721AA4C2400556A26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F904DB1219F78AF0040530B /* Cryptor */;
+			targetProxy = 2FA35D8621AA4C2400556A26 /* PBXContainerItemProxy */;
+		};
+		2FA35D8921AA4C2900556A26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F904DEF219F79200040530B /* SSLService */;
+			targetProxy = 2FA35D8821AA4C2900556A26 /* PBXContainerItemProxy */;
+		};
+		2FA35D8B21AA4C2D00556A26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F904DD8219F78E70040530B /* Socket */;
+			targetProxy = 2FA35D8A21AA4C2D00556A26 /* PBXContainerItemProxy */;
+		};
+		2FA35D8F21AA4C9700556A26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F904DD8219F78E70040530B /* Socket */;
+			targetProxy = 2FA35D8E21AA4C9700556A26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

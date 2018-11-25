@@ -652,6 +652,19 @@
                                     <action selector="configureEmailRecipient:" target="Voe-Tx-rLC" id="3S4-Dh-qKS"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Manage Email Notifications" id="Ccy-E4-Im0">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="manageEmailNotifications:" target="Voe-Tx-rLC" id="WBw-xM-fjx"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="2iN-Lf-DJA"/>
+                            <menuItem title="Delete Email Recipient" id="H4z-zR-oc6">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="deleteEmailRecipient:" target="Voe-Tx-rLC" id="pA2-Ts-95f"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>

@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import HeliumLogger
+//import HeliumLogger
 import LoggerAPI
 import DLog
 
