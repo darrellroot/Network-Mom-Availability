@@ -23,26 +23,30 @@ class DeleteEmailRecipientController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
+        resultLabel.stringValue = ""
+        updateEmailList()
     }
     
     func updateEmailList() {
 
         emailSelectorOutlet.removeAllItems()
         for email in appDelegate.emails {
-            
             emailSelectorOutlet.addItem(withTitle: "\(email.email) \(email.name)")
         }
     }
     
     @IBAction func deleteButton(_ sender: NSButton) {
         let index = emailSelectorOutlet.indexOfSelectedItem
+        resultLabel.stringValue = "Attempted to delete email"
         if let title = emailSelectorOutlet.selectedItem?.title, let titleEmail = title.components(separatedBy: " ").first {
-            if appDelegate.emails.count > index && appDelegate.emails[index].name == titleEmail {
+            if appDelegate.emails.count > index && appDelegate.emails[index].email == titleEmail {
+                resultLabel.stringValue = "Deleted email \(titleEmail)"
                 appDelegate.emails.remove(at: index)
                 DLog.log(.dataIntegrity, "Deleted email \(titleEmail) at index \(index)")
-                updateEmailList()
+                
             }
         }
+        updateEmailList()
     }
 }
 

@@ -20,27 +20,27 @@
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="86"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oK1-2v-jR7">
-                        <rect key="frame" x="39" y="194" width="184" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="qyT-wi-uwI" id="LtW-Ia-is0">
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oK1-2v-jR7">
+                        <rect key="frame" x="18" y="42" width="323" height="25"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="LtW-Ia-is0">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="tco-Lt-TSx">
-                                <items>
-                                    <menuItem title="Item 1" state="on" id="qyT-wi-uwI"/>
-                                    <menuItem title="Item 2" id="ZjE-gh-iLH"/>
-                                    <menuItem title="Item 3" id="Lcq-Mp-Hxd"/>
-                                </items>
-                            </menu>
+                            <menu key="menu" id="tco-Lt-TSx"/>
                         </popUpButtonCell>
                     </popUpButton>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OFQ-9E-0dy">
-                        <rect key="frame" x="279" y="190" width="80" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="335-lv-wvK">
+                        <rect key="frame" x="18" y="20" width="444" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KFf-nd-6W9">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OFQ-9E-0dy">
+                        <rect key="frame" x="340" y="38" width="126" height="32"/>
                         <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8vS-hV-ZGl">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -49,20 +49,24 @@
                             <action selector="deleteButton:" target="-2" id="hwg-3x-FTU"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="335-lv-wvK">
-                        <rect key="frame" x="126" y="136" width="243" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KFf-nd-6W9">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="OFQ-9E-0dy" secondAttribute="trailing" constant="20" symbolic="YES" id="1nd-hX-snl"/>
+                    <constraint firstItem="OFQ-9E-0dy" firstAttribute="width" secondItem="oK1-2v-jR7" secondAttribute="width" multiplier="9:25" id="DMG-JV-TM6"/>
+                    <constraint firstAttribute="bottom" secondItem="335-lv-wvK" secondAttribute="bottom" constant="20" symbolic="YES" id="FJq-sV-Oal"/>
+                    <constraint firstItem="OFQ-9E-0dy" firstAttribute="leading" secondItem="oK1-2v-jR7" secondAttribute="trailing" constant="8" symbolic="YES" id="NUA-Wk-g81"/>
+                    <constraint firstAttribute="trailing" secondItem="335-lv-wvK" secondAttribute="trailing" constant="20" symbolic="YES" id="OvC-X8-aCS"/>
+                    <constraint firstItem="OFQ-9E-0dy" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="SJ2-vg-ef1"/>
+                    <constraint firstItem="335-lv-wvK" firstAttribute="top" secondItem="oK1-2v-jR7" secondAttribute="bottom" constant="8" symbolic="YES" id="a51-4W-vt4"/>
+                    <constraint firstItem="335-lv-wvK" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="kF9-Ag-fUS"/>
+                    <constraint firstItem="oK1-2v-jR7" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="oxe-BR-0wq"/>
+                    <constraint firstItem="oK1-2v-jR7" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="rtT-BJ-ptE"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
+            <point key="canvasLocation" x="52" y="117"/>
         </window>
     </objects>
 </document>
