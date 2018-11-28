@@ -10,7 +10,7 @@ import Cocoa
 
 class ManageEmailNotificationsController: NSWindowController {
 
-    @IBOutlet weak var mapNameOutlet: NSPopUpButton!
+    @IBOutlet weak var mapSelectorOutlet: NSPopUpButton!
     @IBOutlet weak var emailSelectorOutlet: NSPopUpButton!
     @IBOutlet weak var radioNoneOutlet: NSButton!
     @IBOutlet weak var radioAlertOutlet: NSButton!
@@ -22,35 +22,46 @@ class ManageEmailNotificationsController: NSWindowController {
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("ManageEmailNotificationsController")
     }
+    
+    // setup local copies so we dont need to monitor changes elsewhere
+    var maps : [MapWindowController] = []
+    var emails : [EmailAddress] = []
 
     override func windowDidLoad() {
         super.windowDidLoad()
-
-        for map in appDelegate.maps {
-            mapNameOutlet.addItem(withTitle: map.name)
+        maps = appDelegate.maps
+        emails = appDelegate.emails
+        updateMenus()
+        setRadioButtons()
+    }
+    
+    private func updateMenus() {
+        mapSelectorOutlet.removeAllItems()
+        for map in maps {
+            mapSelectorOutlet.addItem(withTitle: map.name)
         }
-        for email in appDelegate.emails {
+        emailSelectorOutlet.removeAllItems()
+        for email in emails {
             emailSelectorOutlet.addItem(withTitle: "\(email.email) \(email.name)")
-        }
-        if appDelegate.emails.count > 0, let email = appDelegate.emails.first {
-            setRadioButtons(email: email)
         }
     }
     
     @IBAction func emailSelectorButton(_ sender: NSPopUpButton) {
-        let index = emailSelectorOutlet.indexOfSelectedItem
-        //first we need to validate that the selection matches what we expect
-        //this can be wrong if the appdelegate email list changed due to activity in other windows
-        if let title = emailSelectorOutlet.selectedItem?.title, let titleEmail = title.components(separatedBy: " ").first {
-            if appDelegate.emails.count > index && appDelegate.emails[index].email == titleEmail {
-                // validation complete
-                let email = appDelegate.emails[index]
-                setRadioButtons(email: email)
-            }
-        }
+        setRadioButtons()
+    }
+    @IBAction func mapSelectorButton(_ sender: NSPopUpButton) {
+        setRadioButtons()
     }
     
-    private func setRadioButtons(email: EmailAddress) {
+    private func setRadioButtons() {
+        let mapIndex = mapSelectorOutlet.indexOfSelectedItem
+        guard mapIndex >= 0 else { return }
+        guard mapIndex < maps.count else { return }
+        let map = maps[mapIndex]
+        let emailIndex = emailSelectorOutlet.indexOfSelectedItem
+        guard emailIndex >= 0 else { return }
+        guard emailIndex < emails.count else { return }
+        let email = emails[emailIndex]
         if email.pagerOnly {
             radioReportOutlet.isEnabled = false
             radioAlertReportOutlet.isEnabled = false
@@ -58,10 +69,68 @@ class ManageEmailNotificationsController: NSWindowController {
             radioReportOutlet.isEnabled = true
             radioAlertReportOutlet.isEnabled = true
         }
+        var reports = false
+        if map.emailReports.contains(email.email) {
+            reports = true
+        }
+        var alerts = false
+        if map.emailAlerts.contains(email.email) {
+            alerts = true
+        }
+        switch (alerts,reports) {
+        case (false, false):
+            radioNoneOutlet.state = .on
+        case (true, false):
+            radioAlertOutlet.state = .on
+        case (false, true):
+            radioReportOutlet.state = .on
+        case (true, true):
+            radioAlertReportOutlet.state = .on
+        }
     }
     
     @IBAction func notificationRadioButtonChanged(_ sender: NSButton) {
+        let mapIndex = mapSelectorOutlet.indexOfSelectedItem
+        guard mapIndex < maps.count else { return }
+        let map = maps[mapIndex]
+        let emailIndex = emailSelectorOutlet.indexOfSelectedItem
+        guard emailIndex < emails.count else { return }
+        let email = emails[emailIndex]
+        var reports = false
+        let reportIndex = map.emailReports.firstIndex(of: email.email)
+        let alertIndex = map.emailAlerts.firstIndex(of: email.email)
+        
+        if radioNoneOutlet.state == .on {
+            if let reportIndex = reportIndex {
+                map.emailReports.remove(at: reportIndex)
+            }
+            if let alertIndex = alertIndex {
+                map.emailAlerts.remove(at: alertIndex)
+            }
+        }
+        if radioAlertOutlet.state == .on {
+            if let reportIndex = reportIndex {
+                map.emailReports.remove(at: reportIndex)
+            }
+            if alertIndex == nil {
+                map.emailAlerts.append(email.email)
+            }
+        }
+        if radioReportOutlet.state == .on {
+            if let alertIndex = alertIndex {
+                map.emailAlerts.remove(at: alertIndex)
+            }
+            if reportIndex == nil {
+                map.emailReports.append(email.email)
+            }
+        }
+        if radioAlertReportOutlet.state == .on {
+            if alertIndex == nil {
+                map.emailAlerts.append(email.email)
+            }
+            if reportIndex == nil {
+                map.emailReports.append(email.email)
+            }
+        }
     }
-    
-    
 }

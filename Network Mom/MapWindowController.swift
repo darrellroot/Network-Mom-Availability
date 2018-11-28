@@ -18,6 +18,8 @@ class MapWindowController: NSWindowController, Codable {
         case ipv6monitors
         case name
         case frame
+        case emailAlerts
+        case emailReports
     }
 
     var windowFrame: NSRect? // used during decoding
@@ -28,6 +30,8 @@ class MapWindowController: NSWindowController, Codable {
     var monitorViews: [DragMonitorView] = []
     var ipv4monitors: [MonitorIPv4] = []  // just used during encoding
     var ipv6monitors: [MonitorIPv6] = []  // just used during encoding
+    var emailAlerts: [String] = [] //each string is an email address inside the appDelegate.emails
+    var emailReports: [String] = [] //each string is an email address inside the appDelegate.emails
     
     @IBOutlet weak var mainView: NSView!
 
@@ -53,6 +57,10 @@ class MapWindowController: NSWindowController, Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         availability = try container.decode(RRDGauge.self, forKey: .availability)
         name = try container.decode(String.self, forKey: .name)
+        let emailAlertsOptional = try? container.decode([String].self, forKey: .emailAlerts)
+        emailAlerts = emailAlertsOptional ?? []
+        let emailReportsOptional = try? container.decode([String].self, forKey: .emailReports)
+        emailReports = emailReportsOptional ?? []
         ipv4monitors = try container.decode([MonitorIPv4].self, forKey: .ipv4monitors)
         ipv6monitors = try container.decode([MonitorIPv6].self, forKey: .ipv6monitors)
         windowFrame = try? container.decode(NSRect.self, forKey: .frame)
@@ -77,6 +85,8 @@ class MapWindowController: NSWindowController, Codable {
         try container.encode(self.availability, forKey: .availability)
         try container.encode(self.name, forKey: .name)
 //        try container.encode(self.monitors, forKey: .monitors)
+        try container.encode(self.emailAlerts, forKey: .emailAlerts)
+        try container.encode(self.emailReports, forKey: .emailReports)
         for monitor in monitors {
             if let monitor = monitor as? MonitorIPv4 {
                 ipv4monitors.append(monitor)

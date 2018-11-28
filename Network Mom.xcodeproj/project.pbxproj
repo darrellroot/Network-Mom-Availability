@@ -10,8 +10,6 @@
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
-		2F904D84219F77B20040530B /* HeliumLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D82219F77B20040530B /* HeliumLogger.swift */; };
-		2F904D85219F77B20040530B /* HeliumStreamLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D83219F77B20040530B /* HeliumStreamLogger.swift */; };
 		2F904DB9219F78AF0040530B /* Cryptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DB2219F78AF0040530B /* Cryptor.framework */; };
 		2F904DBA219F78AF0040530B /* Cryptor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DB2219F78AF0040530B /* Cryptor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904DC9219F78C30040530B /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904DBE219F78C20040530B /* Random.swift */; };
@@ -227,7 +225,6 @@
 		2F904FBA219FC1DF0040530B /* RRDBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E56219F7A430040530B /* RRDBuffer.swift */; };
 		2F904FBB219FC2300040530B /* RRDBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E56219F7A430040530B /* RRDBuffer.swift */; };
 		2F904FBD219FC25C0040530B /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FBC219FC25C0040530B /* DLog.swift */; };
-		2F904FBE219FCA480040530B /* RRDBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904E56219F7A430040530B /* RRDBuffer.swift */; };
 		2F904FC021A206250040530B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FBF21A206250040530B /* Constants.swift */; };
 		2F904FC421A3687C0040530B /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FC321A3687C0040530B /* Types.swift */; };
 		2F904FC621A36D190040530B /* EmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904FC521A36D190040530B /* EmailAddress.swift */; };
@@ -238,7 +235,6 @@
 		2F96034421A9F28E0037E026 /* CodableDataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F96034321A9F28E0037E026 /* CodableDataStructure.swift */; };
 		2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */; };
 		2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */; };
-		2FA35D8D21AA4C6900556A26 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2FA35D9021AA4CA500556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9121AA4CB800556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
@@ -359,7 +355,6 @@
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
 		2F904D54219F769D0040530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F904D5E219F76D00040530B /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		2F904D76219F779A0040530B /* HeliumLoggerCustom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HeliumLoggerCustom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D78219F779A0040530B /* HeliumLoggerCustom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeliumLoggerCustom.h; sourceTree = "<group>"; };
 		2F904D79219F779A0040530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F904D82219F77B20040530B /* HeliumLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeliumLogger.swift; sourceTree = "<group>"; };
@@ -620,14 +615,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2F904D73219F779A0040530B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2FA35D8D21AA4C6900556A26 /* LoggerAPI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2F904DAF219F78AF0040530B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -700,7 +687,6 @@
 			children = (
 				2F904D3A219F76170040530B /* Network Mom.app */,
 				2F904D51219F769D0040530B /* LoggerAPI.framework */,
-				2F904D76219F779A0040530B /* HeliumLoggerCustom.framework */,
 				2F904DB2219F78AF0040530B /* Cryptor.framework */,
 				2F904DD9219F78E70040530B /* Socket.framework */,
 				2F904DF0219F79200040530B /* SSLService.framework */,
@@ -1144,13 +1130,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2F904D71219F779A0040530B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2F904DAD219F78AF0040530B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1238,24 +1217,6 @@
 			name = LoggerAPI;
 			productName = LoggerAPI;
 			productReference = 2F904D51219F769D0040530B /* LoggerAPI.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		2F904D75219F779A0040530B /* HeliumLoggerCustom */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2F904D7F219F779A0040530B /* Build configuration list for PBXNativeTarget "HeliumLoggerCustom" */;
-			buildPhases = (
-				2F904D71219F779A0040530B /* Headers */,
-				2F904D72219F779A0040530B /* Sources */,
-				2F904D73219F779A0040530B /* Frameworks */,
-				2F904D74219F779A0040530B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = HeliumLoggerCustom;
-			productName = HeliumLoggerCustom;
-			productReference = 2F904D76219F779A0040530B /* HeliumLoggerCustom.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		2F904DB1219F78AF0040530B /* Cryptor */ = {
@@ -1394,10 +1355,6 @@
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
 					};
-					2F904D75219F779A0040530B = {
-						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
-					};
 					2F904DB1219F78AF0040530B = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
@@ -1439,7 +1396,6 @@
 				2F904D39219F76170040530B /* Network Mom */,
 				2F904DD8219F78E70040530B /* Socket */,
 				2F904D50219F769D0040530B /* LoggerAPI */,
-				2F904D75219F779A0040530B /* HeliumLoggerCustom */,
 				2F904DB1219F78AF0040530B /* Cryptor */,
 				2F904DEF219F79200040530B /* SSLService */,
 				2F904E04219F79520040530B /* SwiftSMTP */,
@@ -1469,13 +1425,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2F904D4F219F769D0040530B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2F904D74219F779A0040530B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1573,16 +1522,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F904D5F219F76D00040530B /* Logger.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2F904D72219F779A0040530B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2F904FBE219FCA480040530B /* RRDBuffer.swift in Sources */,
-				2F904D84219F77B20040530B /* HeliumLogger.swift in Sources */,
-				2F904D85219F77B20040530B /* HeliumStreamLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2082,67 +2021,6 @@
 			};
 			name = Release;
 		};
-		2F904D80219F779A0040530B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = HeliumLoggerCustom/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = darrellroot.com.HeliumLoggerCustom;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		2F904D81219F779A0040530B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = HeliumLoggerCustom/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = darrellroot.com.HeliumLoggerCustom;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		2F904DBC219F78AF0040530B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2532,15 +2410,6 @@
 			buildConfigurations = (
 				2F904D5B219F769D0040530B /* Debug */,
 				2F904D5C219F769D0040530B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2F904D7F219F779A0040530B /* Build configuration list for PBXNativeTarget "HeliumLoggerCustom" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2F904D80219F779A0040530B /* Debug */,
-				2F904D81219F779A0040530B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

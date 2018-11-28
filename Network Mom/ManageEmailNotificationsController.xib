@@ -8,7 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ManageEmailNotificationsController" customModule="Network_Mom" customModuleProvider="target">
             <connections>
                 <outlet property="emailSelectorOutlet" destination="v0X-8I-8Xe" id="wS4-Qo-KRJ"/>
-                <outlet property="mapNameOutlet" destination="r2T-2w-MrH" id="5Ry-3e-7md"/>
+                <outlet property="mapSelectorOutlet" destination="r2T-2w-MrH" id="5Ry-3e-7md"/>
                 <outlet property="radioAlertOutlet" destination="qFv-5J-DcR" id="kY6-Pg-r50"/>
                 <outlet property="radioAlertReportOutlet" destination="Q76-Mx-BI2" id="sa0-qo-1fr"/>
                 <outlet property="radioNoneOutlet" destination="0M6-eH-g1z" id="lwM-s5-0AT"/>
@@ -35,6 +35,9 @@
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="YSi-Sz-v5S"/>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="mapSelectorButton:" target="-2" id="GHS-TY-Aep"/>
+                        </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0X-8I-8Xe">
                         <rect key="frame" x="38" y="73" width="182" height="25"/>
