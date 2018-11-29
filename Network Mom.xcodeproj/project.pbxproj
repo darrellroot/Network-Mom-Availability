@@ -240,6 +240,8 @@
 		2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
 		2FA35D9321AA4CC300556A26 /* Cryptor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DB2219F78AF0040530B /* Cryptor.framework */; };
 		2FA35D9421AA4CC900556A26 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
+		2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0B3A021AFB51B00C44DB5 /* Notification.swift */; };
+		2FC0B3A321AFC06800C44DB5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0B3A221AFC06800C44DB5 /* Defaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -591,6 +593,8 @@
 		2F96034321A9F28E0037E026 /* CodableDataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataStructure.swift; sourceTree = "<group>"; };
 		2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEmailRecipientController.swift; sourceTree = "<group>"; };
 		2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteEmailRecipientController.xib; sourceTree = "<group>"; };
+		2FC0B3A021AFB51B00C44DB5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		2FC0B3A221AFC06800C44DB5 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -708,6 +712,7 @@
 				2F904E30219F7A130040530B /* AddIPv6MonitorController.xib */,
 				2F904E5C219F7A450040530B /* AddMonitorDelegate.swift */,
 				2F904E31219F7A130040530B /* AppDelegate.swift */,
+				2FC0B3A221AFC06800C44DB5 /* Defaults.swift */,
 				2F904E36219F7A140040530B /* ChartsFormatter.swift */,
 				2F96034321A9F28E0037E026 /* CodableDataStructure.swift */,
 				2F904FBF21A206250040530B /* Constants.swift */,
@@ -733,6 +738,7 @@
 				2F904E47219F7A320040530B /* MapWindowController.xib */,
 				2F904E53219F7A420040530B /* MonitorEnumeration.swift */,
 				2F904E5D219F7A450040530B /* MonitorIPv4.swift */,
+				2FC0B3A021AFB51B00C44DB5 /* Notification.swift */,
 				2F904E52219F7A420040530B /* MonitorIPv6.swift */,
 				2F904E5B219F7A450040530B /* MonitorProtocol.swift */,
 				2F904E48219F7A330040530B /* MonitorWindowController.swift */,
@@ -1489,6 +1495,7 @@
 				2F904E65219F7A460040530B /* HostAddressQuery.swift in Sources */,
 				2F904E6C219F7A460040530B /* MonitorProtocol.swift in Sources */,
 				2F904E72219F7A460040530B /* IcmpV6EchoRequest.swift in Sources */,
+				2FC0B3A321AFC06800C44DB5 /* Defaults.swift in Sources */,
 				2F96034421A9F28E0037E026 /* CodableDataStructure.swift in Sources */,
 				2F904E49219F7A330040530B /* MapAvailabilityReportController.swift in Sources */,
 				2F904FBA219FC1DF0040530B /* RRDBuffer.swift in Sources */,
@@ -1511,6 +1518,7 @@
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,
 				2F904E70219F7A460040530B /* RRDData.swift in Sources */,
 				2F904FC621A36D190040530B /* EmailAddress.swift in Sources */,
+				2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */,
 				2F904E66219F7A460040530B /* socket-extensions.swift in Sources */,
 				2F904E64219F7A460040530B /* MonitorEnumeration.swift in Sources */,
 				2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */,

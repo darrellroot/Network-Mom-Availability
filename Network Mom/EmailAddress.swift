@@ -6,14 +6,24 @@
 //  Copyright © 2018 Darrell Root LLC. All rights reserved.
 //
 
-import Foundation
-//import SwiftSMTP
+import AppKit
+import SwiftSMTP
+import DLog
 
 class EmailAddress: Equatable, Hashable, Codable {
+    
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
     var name: String
     var email: String
     var pagerOnly: Bool
+    var pendingNotifications: [EmailNotification] = []
     
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case email
+        case pagerOnly
+    }
     var code: Int {
         // A deterministic 4-digit code to validate that the user can receive
         // emails to this address
@@ -40,5 +50,31 @@ class EmailAddress: Equatable, Hashable, Codable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(email)
+    }
+    public func emailAlert() {
+        if pendingNotifications.isEmpty { return }
+        if let emailConfiguration = appDelegate.emailConfiguration {
+            let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
+            let recipient = Mail.User(name: self.name, email: self.email)
+            var message = ""
+            for notification in pendingNotifications {
+                message = message + notification.description + "\n"
+            }
+            pendingNotifications = []
+            let mail = Mail(from: sender, to: [recipient], subject: "Network Mom Alert", text: message)
+            let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
+            smtp.send(mail) { (error) in
+                if let error = error {
+                    DLog.log(.mail,"email error \(error)")
+                    if let error = error as? SMTPError {
+                        DLog.log(.mail,error.description)
+                    } else {
+                        DLog.log(.mail,error.localizedDescription)
+                    }
+                } else {
+                    DLog.log(.mail,"alert mail sent successfully")
+                }
+            }
+        }
     }
 }

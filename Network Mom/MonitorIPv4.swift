@@ -16,6 +16,8 @@ let latencyPercentThresholdYellow = 1.20
 
 class MonitorIPv4: Monitor, Codable {
     
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
     enum CodingKeys: String, CodingKey {
         case ipv4string
         case ipv4
@@ -124,8 +126,6 @@ class MonitorIPv4: Monitor, Codable {
         }
     }
     
-    
-    
     deinit {
         DLog.log(.dataIntegrity,"deallocating ipv4 monitor \(ipv4string)")
     }
@@ -143,6 +143,14 @@ class MonitorIPv4: Monitor, Codable {
             if status != .Blue {
                 // we don't count availability on devices which were never online
                 availability.update(newData: 0.0)
+            }
+            if oldstatus == .Orange && status == .Red {
+                if let map = mapDelegate {
+                    let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv4string, comment: comment, type: self.type, newStatus: .Red)
+                    for emailAddress in map.emailAlerts {
+                        appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
+                    }
+                }
             }
         }
         if lastPingID == UInt16.max { lastPingID = 0 }
@@ -204,6 +212,14 @@ class MonitorIPv4: Monitor, Codable {
         status = status.improve
         if oldstatus != status {
             DLog.log(.monitor,"target \(ipv4string) status improved to \(status)")
+        }
+        if oldstatus == .Yellow && status == .Green {
+            if let map = mapDelegate {
+                let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv4string, comment: comment, type: self.type, newStatus: .Green)
+                for emailAddress in map.emailAlerts {
+                    appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
+                }
+            }
         }
     }
 }

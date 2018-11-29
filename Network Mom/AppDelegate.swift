@@ -13,7 +13,6 @@
 import Cocoa
 import Network
 import AppKit
-//import HeliumLoggerCustom
 import LoggerAPI
 import DLog
 import Security
@@ -46,10 +45,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var showLogController: ShowLogController!
     var emailConfiguration: EmailConfiguration?
     let defaults = UserDefaults.standard
+    var emailAlertTimer : Timer!
     
     func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
+    }
+    public func pendNotification(emailAddress: String, notification: EmailNotification) {
+        for email in emails {
+            if email.email == emailAddress {
+                email.pendingNotifications.append(notification)
+            }
+        }
     }
     func deleteMap(index: Int, name: String) {
         DLog.log(.dataIntegrity,"delete map requested index \(index) name \(name)")
@@ -321,6 +328,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         socket4Source = CFSocketCreateRunLoopSource(nil, ping4Socket, 0)
         CFRunLoopAddSource(CFRunLoopGetMain(), socket4Source, .commonModes)
 
+        emailAlertTimer = Timer.scheduledTimer(timeInterval: Double(Defaults.emailTimerDuration), target: self, selector: #selector(sendAlertEmails), userInfo: nil, repeats: true)
+        emailAlertTimer.tolerance = Defaults.emailTimerTolerance
+        RunLoop.current.add(emailAlertTimer,forMode: .common)
+    }
+    
+    @objc func sendAlertEmails() {
+        for email in emails {
+            email.emailAlert()
+        }
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
