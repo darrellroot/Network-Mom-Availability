@@ -334,6 +334,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func sendAlertEmails() {
+        DLog.log(.mail,"Checking for email alerts to send")
         for email in emails {
             email.emailAlert()
         }

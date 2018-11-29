@@ -65,8 +65,6 @@ class MapWindowController: NSWindowController, Codable {
         ipv6monitors = try container.decode([MonitorIPv6].self, forKey: .ipv6monitors)
         windowFrame = try? container.decode(NSRect.self, forKey: .frame)
         monitors = ipv4monitors as [Monitor] + ipv6monitors as [Monitor]
-        ipv4monitors = []  // temp variables just used during decoding
-        ipv6monitors = []
         numberSweeps = pingSweepDuration / pingTimerDuration
         guard pingSweepDuration % pingTimerDuration == 0 else {
             fatalError("pingSweepDuration is not an integer multiple of pingTimerDuration")
@@ -78,6 +76,8 @@ class MapWindowController: NSWindowController, Codable {
         for monitor in ipv6monitors {
             monitor.mapDelegate = self
         }
+        ipv4monitors = []  // temp variables just used during decoding
+        ipv6monitors = []
         //monitors = try container.decode([Monitor].self, forKey: .monitors)
     }
     func encode(to encoder: Encoder) throws {

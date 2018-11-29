@@ -44,6 +44,7 @@ class MonitorIPv4: Monitor, Codable {
             viewDelegate?.needsDisplay = true
         }
     }
+    var lastAlertStatus: MonitorStatus = .Blue
     var hostname: String?
     var comment: String? {
         didSet {
@@ -145,12 +146,16 @@ class MonitorIPv4: Monitor, Codable {
                 availability.update(newData: 0.0)
             }
             if oldstatus == .Orange && status == .Red {
-                if let map = mapDelegate {
-                    let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv4string, comment: comment, type: self.type, newStatus: .Red)
-                    for emailAddress in map.emailAlerts {
-                        appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
+                if lastAlertStatus == .Green {
+                    if let map = mapDelegate {
+                        DLog.log(.mail, "Adding email alert for \(ipv4string)")
+                        let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv4string, comment: comment, type: self.type, newStatus: .Red)
+                        for emailAddress in map.emailAlerts {
+                            appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
+                        }
                     }
                 }
+                lastAlertStatus = .Red
             }
         }
         if lastPingID == UInt16.max { lastPingID = 0 }
@@ -214,12 +219,16 @@ class MonitorIPv4: Monitor, Codable {
             DLog.log(.monitor,"target \(ipv4string) status improved to \(status)")
         }
         if oldstatus == .Yellow && status == .Green {
-            if let map = mapDelegate {
-                let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv4string, comment: comment, type: self.type, newStatus: .Green)
-                for emailAddress in map.emailAlerts {
-                    appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
+            if lastAlertStatus == .Red {
+                if let map = mapDelegate {
+                    DLog.log(.mail, "Adding email alert for \(ipv4string)")
+                    let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv4string, comment: comment, type: self.type, newStatus: .Green)
+                    for emailAddress in map.emailAlerts {
+                        appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
+                    }
                 }
             }
+            lastAlertStatus = .Green
         }
     }
 }

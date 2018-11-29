@@ -12,6 +12,8 @@ import DLog
 
 class MonitorIPv6: Monitor, Codable {
     
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
     enum CodingKeys: String, CodingKey {
         case ipv6
         case latencyEnabled
@@ -39,6 +41,7 @@ class MonitorIPv6: Monitor, Codable {
             viewDelegate?.needsDisplay = true
         }
     }
+    var lastAlertStatus: MonitorStatus = .Blue
     var hostname: String?
     var comment: String? {
         didSet {
@@ -137,6 +140,18 @@ class MonitorIPv6: Monitor, Codable {
                 // we don't count availability for devices which were never online
                 availability.update(newData: 0.0)
             }
+            if oldstatus == .Orange && status == .Red {
+                if lastAlertStatus == .Green {
+                    if let map = mapDelegate {
+                        DLog.log(.mail, "Adding email alert for \(ipv6.debugDescription)")
+                        let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv6.debugDescription, comment: comment, type: self.type, newStatus: .Red)
+                        for emailAddress in map.emailAlerts {
+                            appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
+                        }
+                    }
+                }
+                lastAlertStatus = .Red
+            }
         }
         if lastPingID == UInt16.max { lastPingID = 0 }
         if lastPingSequence == UInt16.max { lastPingSequence = 0 }
@@ -190,6 +205,18 @@ class MonitorIPv6: Monitor, Codable {
         status = status.improve
         if oldstatus != status {
             DLog.log(.monitor,"target \(ipv6.debugDescription) status improved to \(status)")
+        }
+        if oldstatus == .Yellow && status == .Green {
+            if lastAlertStatus == .Red {
+                if let map = mapDelegate {
+                    DLog.log(.mail, "Adding email alert for \(ipv6.debugDescription)")
+                    let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv6.debugDescription, comment: comment, type: self.type, newStatus: .Green)
+                    for emailAddress in map.emailAlerts {
+                        appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
+                    }
+                }
+            }
+            lastAlertStatus = .Green
         }
     }
 }
