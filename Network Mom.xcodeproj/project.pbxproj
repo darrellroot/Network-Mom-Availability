@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F50618021B1B89B00C19984 /* Network Mom.help in Resources */ = {isa = PBXBuildFile; fileRef = 2F50617F21B1B89A00C19984 /* Network Mom.help */; };
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
@@ -352,6 +353,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F50617F21B1B89A00C19984 /* Network Mom.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Network Mom.help"; path = "Network Mom/Network Mom.help"; sourceTree = "<group>"; };
 		2F904D3A219F76170040530B /* Network Mom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D51219F769D0040530B /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 		2F904D31219F76170040530B = {
 			isa = PBXGroup;
 			children = (
+				2F50617F21B1B89A00C19984 /* Network Mom.help */,
 				2F904D3C219F76170040530B /* Network Mom */,
 				2F904D52219F769D0040530B /* LoggerAPI */,
 				2F904D77219F779A0040530B /* HeliumLoggerCustom */,
@@ -1426,6 +1429,7 @@
 				2F904E4C219F7A330040530B /* MainMenu.xib in Resources */,
 				2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */,
 				2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */,
+				2F50618021B1B89B00C19984 /* Network Mom.help in Resources */,
 				2F904E4B219F7A330040530B /* MapAvailabilityReportController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
