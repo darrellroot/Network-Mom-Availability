@@ -13,7 +13,7 @@
 Network mom is a network and host monitoring application for IT professionals.  It has the following features:
 <ul>
 	<li>Group devices to be monitored into <em>maps</em>.
-	<li>Associate each <em>map</em> with <em>alert</em> notification recipients and <em>report</em> notification recipients.  In the current version all notifications go through email.
+	<li>Associate each <em>map</em> with <em>alert</em> notification recipients and <em>report</em> notification recipients.  In the current version all notifications use email delivery (most cell providers have email->SMS gateways).
 	<li>Ping hosts or network devices with an IPv4 ICMP ping.  
 	<li>Ping hosts or network devices with an IPv6 ICMP ping.
 	<li>Measure and graph the "availability" of hosts (what percentage of pings they respond to).
@@ -24,15 +24,28 @@ Network mom is a network and host monitoring application for IT professionals.  
 	<li>Automatically backup the configuration daily and before (gracefully) exiting.
 	<li>Manually backup the configuration when requested (recommended before upgrades).
 </ul>
+<h2>Network Mom Task List</h2>
+Here are the steps to build a fully operational Network Mom monitoring system.
+<ol>
+	<li>Install and configure your monitoring system Macintosh.
+	<li>Install Network Mom from the App Store
+	<li>If needed, configure and test Network Mom's ability to automatically restart after a reboot.
+	<li><em>Maps -> New Maps</em> to create your maps (one map is preconfigured by default)
+	<li><em>Monitors -> Add IPv4/6 Monitor</em> to add targets to monitor
+	<li><em>Notifications -> Configure Email Server</em> to configure your "from" email address and credentials.
+	<li><em>Notifications -> Configure Email Recipients</em> to create potential alert and report recipients.
+	<li><em>Notifications -> Manage Email Notifications</em> to activate alert and report emails.
+	<li>While Network Mom automatically saves its configuration at every graceful exit and every 24 hours, use <em>Maps -> Export Full Configuration</em> manually after major configuration changes to save an extra backup.
+</ol>
 <h2>Recommended System Configuration</h2>
-Because Network Mom measures <em>availability</em> and <em>latency</em>, for accurate measurements it is important to pick a monitoring system configuration which minimizes the loss or delay of network traffic.  We recommend the following system configuration to achieve the highest possible availability result:
+Because Network Mom measures <em>availability</em> and <em>latency</em>, for accurate measurements pick a monitoring system configuration which minimizes the loss or delay of network traffic.  Delay or loss at your monitoring host can mask out issues with your network.  We recommend the following system configuration to achieve the highest possible availability result:
 <ul>
 	<li>A dedicated Network Mom monitoring host will minimize packet loss or latency changes due to competing applications on the system.
 	<li>A <em>desktop</em> system (such as an iMac or a Mac Mini) is superior to a laptop for 24-hour network monitoring.
 	<li>Use a physical ethernet port, rather than WiFi, for the monitoring host.  If you are using a laptop, this may require purchasing an ethernet dongle.
 	<li>If possible, plug the monitoring host in a highly available and central part of the network.
 	<li>Configure the monitoring host to <em>never</em> go to sleep in <em>system preferences -> energy saver.</em>
-	<li>Network Mom saves its "from" email password in the MacOS Keychain.  We recommend using a non-personal account for Network Mom "from" email.  This may affect whether you want to enable iCloud Keychain Syncing.  See "Configure Email Server" below for details.
+	<li>Network Mom saves its "from" email password in the MacOS Keychain.  We recommend using a non-personal account with a unique password for Network Mom "from" email.  This may affect whether you want to enable iCloud Keychain Syncing.  See "Configure Email Server" below for details.
 </ul>
 <h3>Configuring monitoring to automatically restart after a power failure</h3>
 Configuring monitoring to automatically restart after a power failure is difficult but possible on desktop systems.  Because this will require "automatic login", this is only recommended if you use a dedicated monitoring host in a secure area.  Avoid putting personal information (such as personal email) on such a system.  We recommend creating a separate non-personal account for monitoring systems.  This may warrant creating a non-personal iCloud account for purchasing the Network Mom license and originating Network Mom alert and report email.
@@ -44,6 +57,11 @@ Here are the steps to have Network Mom automatically restart after a power outag
 	<li>In  <em>System Preferences -> Users & Groups -> User -> Login Items</em> add Network Mom to the list of applications to automatically start when the user logs in.
 	<li>We recommend testing that this works, but make sure to manually <em>Maps -> Manual Save</em> in Network Mom before abruptly shutting down the system.
 </ul>
+<h2>Maps</h2>
+Email alerts and reports are <em>per map</em>.  The theory is that all the devices in a map are supported by a particular support team.  If you have multiple teams, use a different map for each team.  We recommend at least 2 maps per team: one for devices which require 24x7 paging, a second for less important devices where emailing the support team is sufficient.
+<p>
+Network Mom creates one map by default.  You can rename this map in <em>Maps -> Edit Map</em>.  You can create a new map with <em>Maps -> New Map</em>.  You can delete a map with <em>Maps -> Delete Map</em>.  <strong>Deleting a map deletes all data for all monitors in the map and cannot be undone.</strong>
+<img src="new-map-menu.png">
 <h2>Monitors</h2>
 A <em>monitor</em> has several elements:
 <dl>
@@ -65,7 +83,7 @@ A <em>monitor</em> has several elements:
 	<li>Enter the hostname or IP address of the target, and hit return.  Network Mom will validate the hostname/ip address and perform DNS resolution.</li>
 	<li>Choose whether to enable latency.
 	<li>Click "add monitor"
-	<li><em>Optional</em>Click and drag the monitor on the map to reposition it</li>
+	<li><em>Optional</em> Click and drag the monitor on the map to reposition it</li>
 </ol>
 <img src="./add-ipv4-monitor-menu.png">
 <img src="./add-ipv4-monitor.png">
@@ -77,6 +95,46 @@ It is possible to shift-click to select multiple monitors for deletion.
 <img src="delete-selected-monitor.png">
     </body>
 </html>
+<h3>Availability Monitor states</h3>
+By default, availability monitors (IPv4 ping, IPv6 ping) test every 30 seconds.  Availability monitors have the following states:
+<dl>
+	<dt>Blue</dt>
+	<dd>Never online.  This monitor never responded to a ping since it was added to Network Mom</dd>
+	<dt>Green<dt>
+	<dd>Passed recent tests and responsive to ping.  Green is good!  That's on the CCNA exam!</dd>
+	<dt>Yellow</dt>
+	<dd>Failed the most recent test</dd>
+	<dt>Orange</dt>
+	<dd>Failed the two most recent tests</dd>
+	<dt>Red</dt>
+	<dd>Failed the three most recent tests.  Red is bad!</dd>
+</dl>
+<h3>When alerts are generated</h3>
+An alert is generated when a monitor moves from the red state to a green state (3 successful pings, by default over a 90 second interval), or from the green state to the red state (3 failed pings, 90 second interval).  Moving from green to yellow to green will <em>not</em> result in an alert.  Alerts are queued for 5 minutes and sent in one email.  This prevents major outages (affecting dozens or hundreds of monitors) from resulting in hundreds of emails.  This results in alert emails being sent 2-7 minutes after a device first goes unresponsive.  A slow email provider may further delay notification.  <strong>Some outages may cause the email provider to be inaccessible to Network Mom, resulting in no email alert being delivered</strong>.  Having Network Mom physically viewable in a NOC with audio warnings enabled can mitigate this risk.
+<h3>Blue: Never online: the special case</h3>
+When a monitor is first added to a map, it is displayed as blue until it successfully responds to a ping.  The first time it transitions from blue to green or red, it will not result in an alert.  Blue devices do <em>not</em> count toward overall map availability data.  Only after the first successful ping response will monitors transition out of blue state and be counted for overall map availability metrics.
+<p>
+This lets you add new (possibly offline) monitors without generating alerts and without wrecking availability "scores".
+<h3>Default latency monitor states and thresholds</h3>
+The optional latency monitor has it's own colored small rectangle inside the larger availability monitor rectangle.  The color of the latency rectangle is based on a comparison of:
+<ol>
+	<li>The latency of ICMP to that target during the most recently completed 5-minute interval (ignoring the interval currently in progress).
+	<li>"Yesterdays average latency" to that target.
+</ol>
+<img src="monitors-with-latency.png">
+<dl>
+	<dt>Blue</dt>
+	<dd>No data for "yesterday's latency" is available, presumably because this is a recently created monitor.</dd>
+	<dt>Green<dt>
+	<dd>Current latency &lt yesterday latency * 1.2 + 10msec</dd>
+	<dt>Yellow</dt>
+	<dd>Current latency &lt yesterday latency * 1.5 + 10msec</dd>
+	<dt>Orange</dt>
+	<dd>Current latency &lt yesterday latency * 1.8 + 10msec</dd>
+	<dt>Red</dt>
+	<dd>Current latency &gt= yesterday latency * 1.8 + 10msec</dd>
+</dl>
+Latency measurements are highly susceptible to load on the Network Mom host as well as time-of-day fluctuations due to routine network usage.  Latency changes never result in email or audible alerts.  Historic latency data can be helpful when troubleshooting performance issues.
 <h3>Showing monitor detail</h3>
 To show detailed information about a monitor, including a graph of historic availability and latency, double-click on the monitor in the map.  The detail view will show:
 <ul>
@@ -113,7 +171,7 @@ In order for outbound email notifications to function, Network Mom requires cred
 	<dd>This is for regular email addresses which can accept large emails, including attachments.  Network Mom allows both alerts and reports to go to a regular email address.</dd>
 </dl>
 <h3>Email -> SMS gateways from cellphone providers</h3>
-Most cellphone providers have gateway email->SMS addresses.  For example, emailing 5551234567@txt.att.net will result in a SMS/text message to 5551234567 <em>If that cellphone number is with ATT</em>.  Here's a few common email->SMS gateways:
+Most cellphone providers have gateway email->SMS addresses.  For example, emailing 5551234567@txt.att.net will result in a SMS/text message to 5551234567 <em>if and only if that cellphone number is with ATT</em>.  Here are a few common email->SMS gateways:
 <dl>
 	<dt>ATT</dt>
 	<dd>5551234567@txt.att.net</dd>
@@ -126,7 +184,7 @@ Most cellphone providers have gateway email->SMS addresses.  For example, emaili
 </dl>
 These address types should always be configured for alerts only.
 <h3>Email Validation</h3>
-To avoid accidentally spamming users with unwanted alerts, each email address must be <em>validated</em>.  When an email destination is added, Network Mom will send a 4-digit validation code to the email address.  This code must be entered into Network Mom before that email can receive alerts or reports.  This "proves" that the email owner gives permission for the additional email traffic.  The code sent is deterministic and permanent, so there is no time limit to the validation and any resent codes will be identical.  We suggest you email an explanation to each user before sending them a validation code.
+To avoid accidentally spamming users with unwanted alerts, each email address must be <em>validated</em>.  When an email destination is added, Network Mom will send a 4-digit validation code to the email address.  This code must be entered into Network Mom before that email can receive alerts or reports.  This "proves" that the email owner gives permission for the additional email traffic.  The code sent is deterministic and permanent, so there is no time limit to the validation and any resent codes will be identical.  We suggest you email an explanation to each user before having Network Mom send them a validation code.
 <h3>Recommended Email and Map Strategy</h3>
 Email alerts and reports are <em>per map</em>.  The theory is that all the devices in a map are supported by a particular support team.  If you have multiple teams, use a different map for each team (we recommend at least 2 maps per team: one for devices which require 24x7 paging, a second for less important devices where emailing the support team is sufficient).
 <p>
@@ -141,7 +199,7 @@ We recommend:
 	<li>Subscribe your on-call engineer's SMS email to the <em>important device</em> map for alerts.
 	<li>Subscribe your entire support team email group (not SMS) to all maps for both alerts and reports.  This should include your 1st level manager.
 	<li>Subscribe your 2nd level manager to reports only.
-	<li>Consider adding your network operation center (if any) to alerts or reports.
+	<li>Consider adding your network operation center (if any) to alerts or reports.  Physically positioning Network Mom in your NOC and enabling audio alerts can be helpful for situational awareness and for major outages where email connectivity goes offline.
 </ol>
 <h3>Configure Email Server</h3>
 Once per each Network Mom installation you need to configure an email server, including username and password credentials (the "from" address when sending alerts).  We recommend setting up a separate (non-personal) email account for this purpose.  Use a different password than a personal account and record the passwords in your password manager.<p>
@@ -157,7 +215,7 @@ Due to security incidents and spam, many email providers tightened security and 
 <img src="./configure-email-server-menu.png">
 <img src="./configure-email-server.png">
 <p>
-Network Mom stores the email password you entered in the MacOS Keychain.  Anyone with access to the Mac and the password to the user account can run Utilities -> KeyChain Access and view the email password.  This is another reason to use a non-personal account for your "from" email address.  This password is _not_ exported with "Export Full Configuration" and not saved anywhere other than the Keychain.
+Network Mom stores the email password you entered in the MacOS Keychain.  Anyone with access to the Mac and the password to the user account can run Utilities -> KeyChain Access and view the email password.  This is another reason to use a non-personal account for your "from" email address.  This password is _not_ exported with "Export Full Configuration" and not saved anywhere other than the Keychain and the in-process memory of the Network Mom application.
 
 
 <h2>Network Mom data integrity and version upgrades</h2>
