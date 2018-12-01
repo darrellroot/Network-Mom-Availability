@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2F50618021B1B89B00C19984 /* Network Mom.help in Resources */ = {isa = PBXBuildFile; fileRef = 2F50617F21B1B89A00C19984 /* Network Mom.help */; };
+		2F50619621B2401C00C19984 /* delete-selected-monitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50618E21B2401C00C19984 /* delete-selected-monitor.png */; };
+		2F50619821B2401C00C19984 /* add-ipv4-monitor-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619221B2401C00C19984 /* add-ipv4-monitor-menu.png */; };
+		2F50619921B2401C00C19984 /* add-ipv4-monitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619421B2401C00C19984 /* add-ipv4-monitor.png */; };
+		2F50619C21B2417900C19984 /* monitor-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619A21B2417900C19984 /* monitor-detail.png */; };
+		2F5061A121B26E9D00C19984 /* configure-email-server.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619D21B26E9C00C19984 /* configure-email-server.png */; };
+		2F5061A221B26E9D00C19984 /* configure-email-server-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619F21B26E9C00C19984 /* configure-email-server-menu.png */; };
+		2F5061A521B33A6900C19984 /* new-map-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061A321B33A6900C19984 /* new-map-menu.png */; };
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
@@ -353,7 +360,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2F50617F21B1B89A00C19984 /* Network Mom.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Network Mom.help"; path = "Network Mom/Network Mom.help"; sourceTree = "<group>"; };
+		2F50617F21B1B89A00C19984 /* Network Mom.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Network Mom.help"; sourceTree = "<group>"; };
+		2F50618F21B2401C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/delete-selected-monitor.png"; sourceTree = "<group>"; };
+		2F50619321B2401C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/add-ipv4-monitor-menu.png"; sourceTree = "<group>"; };
+		2F50619521B2401C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/add-ipv4-monitor.png"; sourceTree = "<group>"; };
+		2F50619B21B2417900C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/monitor-detail.png"; sourceTree = "<group>"; };
+		2F50619E21B26E9C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/configure-email-server.png"; sourceTree = "<group>"; };
+		2F5061A021B26E9C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/configure-email-server-menu.png"; sourceTree = "<group>"; };
+		2F5061A421B33A6900C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/new-map-menu.png"; sourceTree = "<group>"; };
 		2F904D3A219F76170040530B /* Network Mom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D51219F769D0040530B /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
@@ -671,10 +685,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F904D31219F76170040530B = {
+		2F50618121B23CF200C19984 /* Network Mom Help */ = {
 			isa = PBXGroup;
 			children = (
 				2F50617F21B1B89A00C19984 /* Network Mom.help */,
+				2F50619221B2401C00C19984 /* add-ipv4-monitor-menu.png */,
+				2F50619F21B26E9C00C19984 /* configure-email-server-menu.png */,
+				2F50619D21B26E9C00C19984 /* configure-email-server.png */,
+				2F50619421B2401C00C19984 /* add-ipv4-monitor.png */,
+				2F50618E21B2401C00C19984 /* delete-selected-monitor.png */,
+				2F5061A321B33A6900C19984 /* new-map-menu.png */,
+				2F50619A21B2417900C19984 /* monitor-detail.png */,
+			);
+			path = "Network Mom Help";
+			sourceTree = "<group>";
+		};
+		2F904D31219F76170040530B = {
+			isa = PBXGroup;
+			children = (
+				2F50618121B23CF200C19984 /* Network Mom Help */,
 				2F904D3C219F76170040530B /* Network Mom */,
 				2F904D52219F769D0040530B /* LoggerAPI */,
 				2F904D77219F779A0040530B /* HeliumLoggerCustom */,
@@ -1420,16 +1449,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F904E2F219F79FF0040530B /* ShowLogController.xib in Resources */,
+				2F5061A521B33A6900C19984 /* new-map-menu.png in Resources */,
 				2F904E4A219F7A330040530B /* MonitorWindowController.xib in Resources */,
 				2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */,
 				2F904E4F219F7A330040530B /* MapWindowController.xib in Resources */,
+				2F50619921B2401C00C19984 /* add-ipv4-monitor.png in Resources */,
+				2F50619621B2401C00C19984 /* delete-selected-monitor.png in Resources */,
 				2F904E3F219F7A140040530B /* AddIPv4MonitorController.xib in Resources */,
+				2F50619821B2401C00C19984 /* add-ipv4-monitor-menu.png in Resources */,
 				2F904E38219F7A140040530B /* AddIPv6MonitorController.xib in Resources */,
 				2F904E3D219F7A140040530B /* EmailServerController.xib in Resources */,
 				2F904E4C219F7A330040530B /* MainMenu.xib in Resources */,
+				2F5061A121B26E9D00C19984 /* configure-email-server.png in Resources */,
 				2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */,
+				2F50619C21B2417900C19984 /* monitor-detail.png in Resources */,
 				2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */,
 				2F50618021B1B89B00C19984 /* Network Mom.help in Resources */,
+				2F5061A221B26E9D00C19984 /* configure-email-server-menu.png in Resources */,
 				2F904E4B219F7A330040530B /* MapAvailabilityReportController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1810,6 +1846,65 @@
 			targetProxy = 2FA35D8E21AA4C9700556A26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2F50618E21B2401C00C19984 /* delete-selected-monitor.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F50618F21B2401C00C19984 /* en */,
+			);
+			name = "delete-selected-monitor.png";
+			sourceTree = "<group>";
+		};
+		2F50619221B2401C00C19984 /* add-ipv4-monitor-menu.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F50619321B2401C00C19984 /* en */,
+			);
+			name = "add-ipv4-monitor-menu.png";
+			sourceTree = "<group>";
+		};
+		2F50619421B2401C00C19984 /* add-ipv4-monitor.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F50619521B2401C00C19984 /* en */,
+			);
+			name = "add-ipv4-monitor.png";
+			sourceTree = "<group>";
+		};
+		2F50619A21B2417900C19984 /* monitor-detail.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F50619B21B2417900C19984 /* en */,
+			);
+			name = "monitor-detail.png";
+			sourceTree = "<group>";
+		};
+		2F50619D21B26E9C00C19984 /* configure-email-server.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F50619E21B26E9C00C19984 /* en */,
+			);
+			name = "configure-email-server.png";
+			sourceTree = "<group>";
+		};
+		2F50619F21B26E9C00C19984 /* configure-email-server-menu.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F5061A021B26E9C00C19984 /* en */,
+			);
+			name = "configure-email-server-menu.png";
+			sourceTree = "<group>";
+		};
+		2F5061A321B33A6900C19984 /* new-map-menu.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F5061A421B33A6900C19984 /* en */,
+			);
+			name = "new-map-menu.png";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2F904D46219F76180040530B /* Debug */ = {

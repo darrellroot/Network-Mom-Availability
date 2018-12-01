@@ -50,7 +50,7 @@ enum MonitorStatus: String, Codable {
         switch self {
         case .Green: return NSColor.systemGreen
         case .Yellow: return NSColor.systemYellow
-        case .Orange: return NSColor.systemYellow
+        case .Orange: return NSColor.systemOrange
         case .Red: return NSColor.systemRed
         case .Blue: return NSColor.systemBlue
         }
@@ -59,7 +59,7 @@ enum MonitorStatus: String, Codable {
         switch self {
         case .Green: return NSColor.systemGreen.cgColor
         case .Yellow: return NSColor.systemYellow.cgColor
-        case .Orange: return NSColor.systemYellow.cgColor
+        case .Orange: return NSColor.systemOrange.cgColor
         case .Red: return NSColor.systemRed.cgColor
         case .Blue: return NSColor.systemBlue.cgColor
         }
