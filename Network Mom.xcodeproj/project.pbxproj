@@ -17,7 +17,8 @@
 		2F5061A721B33CCF00C19984 /* Network Mom.help in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061A621B33CCF00C19984 /* Network Mom.help */; };
 		2F5061AA21B3486500C19984 /* monitors-with-latency.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061A821B3486500C19984 /* monitors-with-latency.png */; };
 		2F5061AD21B3548600C19984 /* manage-email-notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061AB21B3548600C19984 /* manage-email-notifications.png */; };
-		2F5061B021B35D6700C19984 /* delete-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061AE21B35D6700C19984 /* delete-email-recipient.png */; };
+		2F5061B321B35E6700C19984 /* configure-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B121B35E6700C19984 /* configure-email-recipient.png */; };
+		2F5061B621B35E6D00C19984 /* delete-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B421B35E6D00C19984 /* delete-email-recipient.png */; };
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
@@ -373,7 +374,8 @@
 		2F5061A621B33CCF00C19984 /* Network Mom.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Network Mom.help"; sourceTree = "<group>"; };
 		2F5061A921B3486500C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/monitors-with-latency.png"; sourceTree = "<group>"; };
 		2F5061AC21B3548600C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/manage-email-notifications.png"; sourceTree = "<group>"; };
-		2F5061AF21B35D6700C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/delete-email-recipient.png"; sourceTree = "<group>"; };
+		2F5061B221B35E6700C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/configure-email-recipient.png"; sourceTree = "<group>"; };
+		2F5061B521B35E6D00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/delete-email-recipient.png"; sourceTree = "<group>"; };
 		2F904D3A219F76170040530B /* Network Mom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D51219F769D0040530B /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
@@ -697,8 +699,9 @@
 				2F50619221B2401C00C19984 /* add-ipv4-monitor-menu.png */,
 				2F50619421B2401C00C19984 /* add-ipv4-monitor.png */,
 				2F50619F21B26E9C00C19984 /* configure-email-server-menu.png */,
+				2F5061B121B35E6700C19984 /* configure-email-recipient.png */,
 				2F50619D21B26E9C00C19984 /* configure-email-server.png */,
-				2F5061AE21B35D6700C19984 /* delete-email-recipient.png */,
+				2F5061B421B35E6D00C19984 /* delete-email-recipient.png */,
 				2F50618E21B2401C00C19984 /* delete-selected-monitor.png */,
 				2F5061AB21B3548600C19984 /* manage-email-notifications.png */,
 				2F50619A21B2417900C19984 /* monitor-detail.png */,
@@ -1458,7 +1461,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F5061A721B33CCF00C19984 /* Network Mom.help in Resources */,
-				2F5061B021B35D6700C19984 /* delete-email-recipient.png in Resources */,
 				2F904E2F219F79FF0040530B /* ShowLogController.xib in Resources */,
 				2F5061A521B33A6900C19984 /* new-map-menu.png in Resources */,
 				2F904E4A219F7A330040530B /* MonitorWindowController.xib in Resources */,
@@ -1467,9 +1469,11 @@
 				2F5061AA21B3486500C19984 /* monitors-with-latency.png in Resources */,
 				2F904E4F219F7A330040530B /* MapWindowController.xib in Resources */,
 				2F50619921B2401C00C19984 /* add-ipv4-monitor.png in Resources */,
+				2F5061B321B35E6700C19984 /* configure-email-recipient.png in Resources */,
 				2F50619621B2401C00C19984 /* delete-selected-monitor.png in Resources */,
 				2F904E3F219F7A140040530B /* AddIPv4MonitorController.xib in Resources */,
 				2F50619821B2401C00C19984 /* add-ipv4-monitor-menu.png in Resources */,
+				2F5061B621B35E6D00C19984 /* delete-email-recipient.png in Resources */,
 				2F904E38219F7A140040530B /* AddIPv6MonitorController.xib in Resources */,
 				2F904E3D219F7A140040530B /* EmailServerController.xib in Resources */,
 				2F904E4C219F7A330040530B /* MainMenu.xib in Resources */,
@@ -1932,10 +1936,18 @@
 			name = "manage-email-notifications.png";
 			sourceTree = "<group>";
 		};
-		2F5061AE21B35D6700C19984 /* delete-email-recipient.png */ = {
+		2F5061B121B35E6700C19984 /* configure-email-recipient.png */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2F5061AF21B35D6700C19984 /* en */,
+				2F5061B221B35E6700C19984 /* en */,
+			);
+			name = "configure-email-recipient.png";
+			sourceTree = "<group>";
+		};
+		2F5061B421B35E6D00C19984 /* delete-email-recipient.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F5061B521B35E6D00C19984 /* en */,
 			);
 			name = "delete-email-recipient.png";
 			sourceTree = "<group>";
