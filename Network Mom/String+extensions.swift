@@ -43,4 +43,10 @@ extension String {
             Int($1) &+ ($0 << 6) &+ ($0 << 16) - $0
         }
     }
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 }

@@ -125,15 +125,16 @@ When a monitor is first added to a map, it is displayed as blue until it success
 <p>
 This lets you add new (possibly offline) monitors without generating alerts and without wrecking availability "scores".
 <h3>Default latency monitor states and thresholds</h3>
-The optional latency monitor has it's own colored small rectangle inside the larger availability monitor rectangle.  The color of the latency rectangle is based on a comparison of:
+The optional latency monitor has its own colored small rectangle inside the larger availability monitor rectangle.  The color of the latency rectangle is based on a comparison of:
 <ol>
 	<li>The latency of ICMP to that target during the most recently completed 5-minute interval (ignoring the interval currently in progress).
-	<li>"Yesterdays average latency" to that target.
-</ol>
+	<li>"Yesterdays average latency" to that target ("yesterday" is based on midnight UTC time)
+	</ol>
+	If "yesterdays latency" is not yet available, the "prior 30 minute latency", if available, will be used.  If the availability of the target goes offline (red), the latency monitor will also go red.
 <img src="monitors-with-latency.png">
 <dl>
 	<dt>Blue</dt>
-	<dd>No data for "yesterday's latency" is available, presumably because this is a recently created monitor.</dd>
+	<dd>No data for "yesterday's latency" or "prior 30 minute latency" is available, presumably because this is a recently created monitor.</dd>
 	<dt>Green<dt>
 	<dd>Current latency &lt yesterday latency * 1.2 + 10msec</dd>
 	<dt>Yellow</dt>
@@ -260,4 +261,4 @@ Network Mom data is preserved through restarts of Network Mom but Darrell Root L
 By default, Network Mom saves two copies of your data in ~Library/Containers/darrellrootllc.com.Network-Mom/Data/Documents/autosavedata1.mom2 and autosavedata2.mom2.  By default autosavedata2.mom2 (the 2nd file saved) is loaded at application launch.  If data is missing after an application launch, immediately make copies of both of those files.  It may be possible to <em>Maps -> Import Full Configuration</em> from your copy of autosavedata1.mom2 to recover. Recovery may require the prior version of Network Mom if the application was just upgraded.
 <p>
 Logs of data saves, exports, and imports (since the last application restart) can be viewed in <em>Help -> Show Logs -> Data Integrity</em>
- 
+</body>

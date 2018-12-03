@@ -25,16 +25,22 @@
                                     <action selector="aboutNetworkMom:" target="Voe-Tx-rLC" id="kel-YX-l3W"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Network Mom License Agreement" id="sas-0w-iIj">
+                            <menuItem title="License Agreement" id="sas-0w-iIj">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="networkMomLicenseAgreement:" target="Voe-Tx-rLC" id="pso-XX-hDg"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Network Mom Privacy Policy" id="4ee-Ea-4Af">
+                            <menuItem title="Privacy Policy" id="4ee-Ea-4Af">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="privacyPolicy:" target="Voe-Tx-rLC" id="W92-oA-Sqg"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Credits" id="czO-eO-OTM">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="networkMomCredits:" target="Voe-Tx-rLC" id="Foz-au-K0T"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="D9k-t6-vT9"/>

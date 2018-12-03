@@ -170,6 +170,10 @@ class MonitorIPv4: Monitor, Codable {
         if !latencyEnabled {
             return nil
         }
+        //if device is not responding to pings, latency display should be red
+        if status == .Red {
+            return MonitorStatus.Red
+        }
         var yesterdayLatency: Double? = nil
         if let tempLatency = latency?.lastDay?.value {
             yesterdayLatency = tempLatency

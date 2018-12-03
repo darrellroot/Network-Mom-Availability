@@ -29,6 +29,7 @@ class StaticHtmlController: NSWindowController {
         guard let resource = resource else {
             return("Error: no resource file specified")
         }
+        window?.title = resource.capitalizingFirstLetter()
         guard let filePath = Bundle.main.path(forResource: resource, ofType:"html") else {
             return("Error reading \(resource).html file")
         }

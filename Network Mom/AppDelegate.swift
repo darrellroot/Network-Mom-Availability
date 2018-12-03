@@ -188,6 +188,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @IBAction func networkMomCredits(_ sender: NSMenuItem) {
+        let staticHtmlController = StaticHtmlController()
+        staticHtmlController.resource = "credits"
+        staticHtmlController.showWindow(self)
+    }
     @IBAction func networkMomLicenseAgreement(_ sender: NSMenuItem) {
         let staticHtmlController = StaticHtmlController()
         staticHtmlController.resource = "license"
