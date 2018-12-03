@@ -22,6 +22,10 @@
 		2F5061B921B49B0600C19984 /* AboutNetworkMomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */; };
 		2F5061BA21B49B0600C19984 /* AboutNetworkMomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */; };
 		2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061BC21B4A48D00C19984 /* mom-picture.jpg */; };
+		2F5061C421B4CC3600C19984 /* StaticHtmlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */; };
+		2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */; };
+		2F5061C821B4CDEC00C19984 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061C721B4CDEB00C19984 /* license.html */; };
+		2F5061CA21B4E1DE00C19984 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061C921B4E1DE00C19984 /* privacy.html */; };
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
@@ -382,6 +386,10 @@
 		2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNetworkMomController.swift; sourceTree = "<group>"; };
 		2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutNetworkMomController.xib; sourceTree = "<group>"; };
 		2F5061BC21B4A48D00C19984 /* mom-picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mom-picture.jpg"; sourceTree = "<group>"; };
+		2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticHtmlController.swift; sourceTree = "<group>"; };
+		2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticHtmlController.xib; sourceTree = "<group>"; };
+		2F5061C721B4CDEB00C19984 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
+		2F5061C921B4E1DE00C19984 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
 		2F904D3A219F76170040530B /* Network Mom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D51219F769D0040530B /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
@@ -726,6 +734,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		2F5061C621B4CD6700C19984 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				2F5061C721B4CDEB00C19984 /* license.html */,
+				2F5061C921B4E1DE00C19984 /* privacy.html */,
+			);
+			path = HTML;
+			sourceTree = "<group>";
+		};
 		2F904D31219F76170040530B = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +779,7 @@
 		2F904D3C219F76170040530B /* Network Mom */ = {
 			isa = PBXGroup;
 			children = (
+				2F5061C621B4CD6700C19984 /* HTML */,
 				2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */,
 				2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */,
 				2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */,
@@ -813,6 +831,8 @@
 				2F904E2C219F79FF0040530B /* ShowLogController.swift */,
 				2F904E2D219F79FF0040530B /* ShowLogController.xib */,
 				2F904E55219F7A430040530B /* socket-extensions.swift */,
+				2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */,
+				2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */,
 				2F904E60219F7A460040530B /* String+extensions.swift */,
 				2F904FC321A3687C0040530B /* Types.swift */,
 			);
@@ -1495,11 +1515,14 @@
 				2F5061B621B35E6D00C19984 /* delete-email-recipient.png in Resources */,
 				2F904E38219F7A140040530B /* AddIPv6MonitorController.xib in Resources */,
 				2F904E3D219F7A140040530B /* EmailServerController.xib in Resources */,
+				2F5061CA21B4E1DE00C19984 /* privacy.html in Resources */,
 				2F904E4C219F7A330040530B /* MainMenu.xib in Resources */,
 				2F5061A121B26E9D00C19984 /* configure-email-server.png in Resources */,
 				2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */,
+				2F5061C821B4CDEC00C19984 /* license.html in Resources */,
 				2F50619C21B2417900C19984 /* monitor-detail.png in Resources */,
 				2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */,
+				2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */,
 				2F5061A221B26E9D00C19984 /* configure-email-server-menu.png in Resources */,
 				2F904E4B219F7A330040530B /* MapAvailabilityReportController.xib in Resources */,
 			);
@@ -1588,6 +1611,7 @@
 				2F904E63219F7A460040530B /* MonitorIPv6.swift in Sources */,
 				2F904FC421A3687C0040530B /* Types.swift in Sources */,
 				2F904E4D219F7A330040530B /* MapWindowController.swift in Sources */,
+				2F5061C421B4CC3600C19984 /* StaticHtmlController.swift in Sources */,
 				2F904E6E219F7A460040530B /* MonitorIPv4.swift in Sources */,
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,

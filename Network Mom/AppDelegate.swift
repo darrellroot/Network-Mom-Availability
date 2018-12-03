@@ -188,6 +188,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @IBAction func networkMomLicenseAgreement(_ sender: NSMenuItem) {
+        let staticHtmlController = StaticHtmlController()
+        staticHtmlController.resource = "license"
+        staticHtmlController.showWindow(self)
+    }
+    
+    @IBAction func privacyPolicy(_ sender: NSMenuItem) {
+        let staticHtmlController = StaticHtmlController()
+        staticHtmlController.resource = "privacy"
+        staticHtmlController.showWindow(self)
+    }
+    
     func showSaveAlert(url: URL) {
         let alert = NSAlert()
         alert.alertStyle = NSAlert.Style.critical
