@@ -11,4 +11,14 @@ import Foundation
 struct Defaults {
     static let emailTimerDuration = 300.0
     static let emailTimerTolerance = 10.0
+    
+    static let latencyStaticThreshold = 10.0
+    static let latencyPercentThresholdRed = 1.80
+    static let latencyPercentThresholdOrange = 1.50
+    static let latencyPercentThresholdYellow = 1.20
+    static let pingSweepDuration: Int = 20 //must be an integer multiple of pingTimerDuration
+
+    static let pingTimerDuration: Int = 4
+
+    private init() {}
 }

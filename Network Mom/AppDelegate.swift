@@ -45,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     ManageEmailNotificationsController!
     var showLogController: ShowLogController!
     var emailConfiguration: EmailConfiguration?
-    let defaults = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
     var emailAlertTimer : Timer!
     
     func documentsDirectory() -> URL {
@@ -146,7 +146,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func loadEmailPassword() {
-        if let emailServerHostname = defaults.string(forKey: Constants.emailServerHostname), let emailServerUsername = defaults.string(forKey: Constants.emailServerUsername) {
+        if let emailServerHostname = userDefaults.string(forKey: Constants.emailServerHostname), let emailServerUsername = userDefaults.string(forKey: Constants.emailServerUsername) {
             let query: [String: Any] = [
                 kSecClass as String: kSecClassInternetPassword,
                 kSecAttrServer as String: emailServerHostname,

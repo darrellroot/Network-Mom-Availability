@@ -30,16 +30,16 @@ class EmailServerController: NSWindowController {
     
     @IBOutlet weak var emailResultOutlet: NSTextField!
     
-    let defaults = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
     
     override func windowDidLoad() {
         super.windowDidLoad()
         DLog.log(.userInterface,"EmailServerController window loaded")
             emailResultOutlet.stringValue = ""
-        if let emailServerHostname = defaults.object(forKey: Constants.emailServerHostname) as? String {
+        if let emailServerHostname = userDefaults.object(forKey: Constants.emailServerHostname) as? String {
             serverHostnameOutlet.stringValue = emailServerHostname
         }
-        if let emailServerUsername = defaults.object(forKey: Constants.emailServerUsername) as? String {
+        if let emailServerUsername = userDefaults.object(forKey: Constants.emailServerUsername) as? String {
             senderEmailUsernameOutlet.stringValue = emailServerUsername
         }
         if let emailPassword = appDelegate.emailConfiguration?.password {
@@ -52,8 +52,8 @@ class EmailServerController: NSWindowController {
         senderEmailUsernameOutlet.stringValue = ""
         senderEmailPasswordOutlet.stringValue = ""
         testDestinationEmailOutlet.stringValue = ""
-        defaults.removeObject(forKey: Constants.emailServerHostname)
-        defaults.removeObject(forKey: Constants.emailServerUsername)
+        userDefaults.removeObject(forKey: Constants.emailServerHostname)
+        userDefaults.removeObject(forKey: Constants.emailServerUsername)
         clearEmailKeychain()
     }
     func clearEmailKeychain() {
@@ -89,8 +89,8 @@ class EmailServerController: NSWindowController {
                     DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.localizedDescription }
                 }
             } else {
-                self.defaults.set(hostname, forKey: Constants.emailServerHostname)
-                self.defaults.set(senderEmail, forKey: Constants.emailServerUsername)
+                self.userDefaults.set(hostname, forKey: Constants.emailServerHostname)
+                self.userDefaults.set(senderEmail, forKey: Constants.emailServerUsername)
                 self.appDelegate.emailConfiguration = EmailConfiguration(server: hostname, username: senderEmail, password: senderPassword)
                 var status: OSStatus = 0
                 var statusString = "unknown \(status)"

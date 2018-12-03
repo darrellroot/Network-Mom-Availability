@@ -170,13 +170,13 @@ class MonitorIPv6: Monitor, Codable {
             return nil
         }
         if let currentLatency = latency?.lastFiveMinute?.value, let yesterdayLatency = latency?.lastThirtyMinute?.value {   // change to lastDay when we go production
-            if currentLatency > yesterdayLatency * latencyPercentThresholdRed + latencyStaticThreshold {
+            if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdRed + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Red
             }
-            if currentLatency > yesterdayLatency * latencyPercentThresholdOrange + latencyStaticThreshold {
+            if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdOrange + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Orange
             }
-            if currentLatency > yesterdayLatency * latencyPercentThresholdYellow + latencyStaticThreshold {
+            if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdYellow + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Yellow
             }
             return MonitorStatus.Green

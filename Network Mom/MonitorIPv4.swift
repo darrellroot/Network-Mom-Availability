@@ -9,11 +9,6 @@
 import Foundation
 import DLog
 
-let latencyStaticThreshold = 10.0
-let latencyPercentThresholdRed = 1.80
-let latencyPercentThresholdOrange = 1.50
-let latencyPercentThresholdYellow = 1.20
-
 class MonitorIPv4: Monitor, Codable {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
@@ -182,13 +177,13 @@ class MonitorIPv4: Monitor, Codable {
             yesterdayLatency = tempLatency
         }
         if let currentLatency = latency?.lastFiveMinute?.value, let yesterdayLatency = yesterdayLatency {   // change to lastDay when we go production
-            if currentLatency > yesterdayLatency * latencyPercentThresholdRed + latencyStaticThreshold {
+            if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdRed + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Red
             }
-            if currentLatency > yesterdayLatency * latencyPercentThresholdOrange + latencyStaticThreshold {
+            if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdOrange + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Orange
             }
-            if currentLatency > yesterdayLatency * latencyPercentThresholdYellow + latencyStaticThreshold {
+            if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdYellow + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Yellow
             }
             return MonitorStatus.Green

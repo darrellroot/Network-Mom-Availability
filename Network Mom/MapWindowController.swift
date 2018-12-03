@@ -46,8 +46,6 @@ class MapWindowController: NSWindowController, Codable {
     var mapAvailabilityReportController: MapAvailabilityReportController!
     
     var pingSweepIteration = 0
-    var pingTimerDuration: Int = 4
-    var pingSweepDuration: Int = 20 //must be an integer multiple of pingTimerDuration
     var numberSweeps: Int
     var pingTimer: Timer!
 
@@ -65,8 +63,8 @@ class MapWindowController: NSWindowController, Codable {
         ipv6monitors = try container.decode([MonitorIPv6].self, forKey: .ipv6monitors)
         windowFrame = try? container.decode(NSRect.self, forKey: .frame)
         monitors = ipv4monitors as [Monitor] + ipv6monitors as [Monitor]
-        numberSweeps = pingSweepDuration / pingTimerDuration
-        guard pingSweepDuration % pingTimerDuration == 0 else {
+        numberSweeps = Defaults.pingSweepDuration / Defaults.pingTimerDuration
+        guard Defaults.pingSweepDuration % Defaults.pingTimerDuration == 0 else {
             fatalError("pingSweepDuration is not an integer multiple of pingTimerDuration")
         }
         super.init(window: nil)
@@ -236,8 +234,8 @@ class MapWindowController: NSWindowController, Codable {
     }
     
     required init?(coder: NSCoder) {
-        numberSweeps = pingSweepDuration / pingTimerDuration
-        guard pingSweepDuration % pingTimerDuration == 0 else {
+        numberSweeps = Defaults.pingSweepDuration / Defaults.pingTimerDuration
+        guard Defaults.pingSweepDuration % Defaults.pingTimerDuration == 0 else {
             fatalError("pingSweepDuration is not an integer multiple of pingTimerDuration")
         }
         availability = RRDGauge()
@@ -245,8 +243,8 @@ class MapWindowController: NSWindowController, Codable {
         super.init(coder: coder)
     }
     override init(window: NSWindow?) {
-        numberSweeps = pingSweepDuration / pingTimerDuration
-        guard pingSweepDuration % pingTimerDuration == 0 else {
+        numberSweeps = Defaults.pingSweepDuration / Defaults.pingTimerDuration
+        guard Defaults.pingSweepDuration % Defaults.pingTimerDuration == 0 else {
             fatalError("pingSweepDuration is not an integer multiple of pingTimerDuration")
         }
         name = "error"
@@ -313,7 +311,7 @@ class MapWindowController: NSWindowController, Codable {
                 monitor.viewDelegate = dragMonitorView
             }
         }
-        pingTimer = Timer.scheduledTimer(timeInterval: Double(pingTimerDuration), target: self, selector: #selector(executePings), userInfo: nil, repeats: true)
+        pingTimer = Timer.scheduledTimer(timeInterval: Double(Defaults.pingTimerDuration), target: self, selector: #selector(executePings), userInfo: nil, repeats: true)
         pingTimer.tolerance = 0.3
         RunLoop.current.add(pingTimer,forMode: .common)
 
