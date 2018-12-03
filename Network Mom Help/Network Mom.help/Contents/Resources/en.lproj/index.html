@@ -24,11 +24,20 @@ Network mom is a network and host monitoring application for IT professionals.  
 	<li>Automatically backup the configuration daily and before (gracefully) exiting.
 	<li>Manually backup the configuration when requested (recommended before upgrades).
 </ul>
+<h2>Network Mom License</h2>
+Network Mom is licensed for 30 days for free.  We encourage you to try Network Mom out and make sure it meeds your needs before spending any money.  Darrell Root LLC licenses Network Mom through Apple's MacOS App Store.  As of January 2019, we plan the following approximate license prices in the US:
+<ul>
+	<li>Free for 30 days
+	<li>$10 for each additional 30 days (subscription)
+	<li>$100 for 1 year
+	<li>$200 for permanent unlock
+</ul>
+Darrell Root LLC makes no guarantees that Network Mom will run on future versions of MacOS.  But we feel an ethical obligation to update Network Mom for at least 2 years to support our permanent unlock customers.
 <h2>Network Mom Task List</h2>
 Here are the steps to build a fully operational Network Mom monitoring system.
 <ol>
 	<li><a href="#system">Install and configure your monitoring system Macintosh.</a>
-	<li>Install Network Mom from the App Store
+	<li>Install Network Mom from the App Store.
 	<li><a href="#restart">If needed, configure and test Network Mom's ability to automatically restart after a reboot.</a>
 	<li><a href="#maps"><em>Maps -> New Maps</em> to create your maps (one map is preconfigured by default)</a>
 	<li><a href="#monitors"><em>Monitors -> Add IPv4/6 Monitor</em> to add targets to monitor</a>
@@ -201,7 +210,7 @@ We recommend:
 	<li>Subscribe your 2nd level manager to reports only.
 	<li>Consider adding your network operation center (if any) to alerts or reports.  Physically positioning Network Mom in your NOC and enabling audio alerts can be helpful for situational awareness and for major outages where email connectivity goes offline.
 </ol>
-<h3 id="#emailServer">Configure Email Server</h3>
+<h3 id="emailServer">Configure Email Server</h3>
 Once per each Network Mom installation you need to configure an email server, including username and password credentials (the "from" address when sending alerts).  We recommend setting up a separate (non-personal) email account for this purpose.  Use a different password than a personal account and record the passwords in your password manager.<p>
 Due to security incidents and spam, many email providers tightened security and require 2-factor authentication.  Network Mom does not support 2-factor authentication when sending email.  This may require you to "enable less secure apps" (Yahoo) or "create an application-specific password" (iCloud) in order to send email with a static password.  Google search those phrases for instructions.  Network Mom does use encrypted SMTP on port 587.
 <ol>

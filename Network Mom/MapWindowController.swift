@@ -46,8 +46,8 @@ class MapWindowController: NSWindowController, Codable {
     var mapAvailabilityReportController: MapAvailabilityReportController!
     
     var pingSweepIteration = 0
-    var pingTimerDuration: Int = 1
-    var pingSweepDuration: Int = 5 //must be an integer multiple of pingTimerDuration
+    var pingTimerDuration: Int = 4
+    var pingSweepDuration: Int = 20 //must be an integer multiple of pingTimerDuration
     var numberSweeps: Int
     var pingTimer: Timer!
 

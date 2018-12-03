@@ -19,6 +19,9 @@
 		2F5061AD21B3548600C19984 /* manage-email-notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061AB21B3548600C19984 /* manage-email-notifications.png */; };
 		2F5061B321B35E6700C19984 /* configure-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B121B35E6700C19984 /* configure-email-recipient.png */; };
 		2F5061B621B35E6D00C19984 /* delete-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B421B35E6D00C19984 /* delete-email-recipient.png */; };
+		2F5061B921B49B0600C19984 /* AboutNetworkMomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */; };
+		2F5061BA21B49B0600C19984 /* AboutNetworkMomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */; };
+		2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061BC21B4A48D00C19984 /* mom-picture.jpg */; };
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
@@ -376,6 +379,9 @@
 		2F5061AC21B3548600C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/manage-email-notifications.png"; sourceTree = "<group>"; };
 		2F5061B221B35E6700C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/configure-email-recipient.png"; sourceTree = "<group>"; };
 		2F5061B521B35E6D00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/delete-email-recipient.png"; sourceTree = "<group>"; };
+		2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNetworkMomController.swift; sourceTree = "<group>"; };
+		2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutNetworkMomController.xib; sourceTree = "<group>"; };
+		2F5061BC21B4A48D00C19984 /* mom-picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mom-picture.jpg"; sourceTree = "<group>"; };
 		2F904D3A219F76170040530B /* Network Mom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D51219F769D0040530B /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
@@ -712,11 +718,19 @@
 			path = "Network Mom Help";
 			sourceTree = "<group>";
 		};
+		2F5061BB21B4A3CE00C19984 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2F5061BC21B4A48D00C19984 /* mom-picture.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		2F904D31219F76170040530B = {
 			isa = PBXGroup;
 			children = (
-				2F50618121B23CF200C19984 /* Network Mom Help */,
 				2F904D3C219F76170040530B /* Network Mom */,
+				2F50618121B23CF200C19984 /* Network Mom Help */,
 				2F904D52219F769D0040530B /* LoggerAPI */,
 				2F904D77219F779A0040530B /* HeliumLoggerCustom */,
 				2F904DB3219F78AF0040530B /* Cryptor */,
@@ -748,6 +762,8 @@
 		2F904D3C219F76170040530B /* Network Mom */ = {
 			isa = PBXGroup;
 			children = (
+				2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */,
+				2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */,
 				2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */,
 				2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */,
 				2F904E32219F7A130040530B /* AddIPv4MonitorController.swift */,
@@ -756,11 +772,11 @@
 				2F904E30219F7A130040530B /* AddIPv6MonitorController.xib */,
 				2F904E5C219F7A450040530B /* AddMonitorDelegate.swift */,
 				2F904E31219F7A130040530B /* AppDelegate.swift */,
-				2FC0B3A221AFC06800C44DB5 /* Defaults.swift */,
 				2F904E36219F7A140040530B /* ChartsFormatter.swift */,
 				2F96034321A9F28E0037E026 /* CodableDataStructure.swift */,
 				2F904FBF21A206250040530B /* Constants.swift */,
 				2F904E51219F7A420040530B /* ControllerDelegate.swift */,
+				2FC0B3A221AFC06800C44DB5 /* Defaults.swift */,
 				2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */,
 				2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */,
 				2F904E40219F7A200040530B /* Design.txt */,
@@ -773,6 +789,7 @@
 				2F904E54219F7A430040530B /* HostAddressQuery.swift */,
 				2F904E59219F7A440040530B /* icmpechorequest.swift */,
 				2F904E61219F7A460040530B /* IcmpV6EchoRequest.swift */,
+				2F5061BB21B4A3CE00C19984 /* Images */,
 				2F904E44219F7A320040530B /* MainMenu.xib */,
 				2F904FD721A4B17D0040530B /* ManageEmailNotificationsController.swift */,
 				2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */,
@@ -782,13 +799,13 @@
 				2F904E47219F7A320040530B /* MapWindowController.xib */,
 				2F904E53219F7A420040530B /* MonitorEnumeration.swift */,
 				2F904E5D219F7A450040530B /* MonitorIPv4.swift */,
-				2FC0B3A021AFB51B00C44DB5 /* Notification.swift */,
 				2F904E52219F7A420040530B /* MonitorIPv6.swift */,
 				2F904E5B219F7A450040530B /* MonitorProtocol.swift */,
 				2F904E48219F7A330040530B /* MonitorWindowController.swift */,
 				2F904E42219F7A310040530B /* MonitorWindowController.xib */,
 				2F904E2B219F79FE0040530B /* Network Mom-Bridging-Header.h */,
 				2F904E73219F7A730040530B /* Network Mom.entitlements */,
+				2FC0B3A021AFB51B00C44DB5 /* Notification.swift */,
 				2F904E56219F7A430040530B /* RRDBuffer.swift */,
 				2F904E5A219F7A440040530B /* RRDBufferDouble.swift */,
 				2F904E5F219F7A450040530B /* RRDData.swift */,
@@ -1462,7 +1479,9 @@
 			files = (
 				2F5061A721B33CCF00C19984 /* Network Mom.help in Resources */,
 				2F904E2F219F79FF0040530B /* ShowLogController.xib in Resources */,
+				2F5061BA21B49B0600C19984 /* AboutNetworkMomController.xib in Resources */,
 				2F5061A521B33A6900C19984 /* new-map-menu.png in Resources */,
+				2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */,
 				2F904E4A219F7A330040530B /* MonitorWindowController.xib in Resources */,
 				2F5061AD21B3548600C19984 /* manage-email-notifications.png in Resources */,
 				2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */,
@@ -1573,6 +1592,7 @@
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,
 				2F904E70219F7A460040530B /* RRDData.swift in Sources */,
+				2F5061B921B49B0600C19984 /* AboutNetworkMomController.swift in Sources */,
 				2F904FC621A36D190040530B /* EmailAddress.swift in Sources */,
 				2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */,
 				2F904E66219F7A460040530B /* socket-extensions.swift in Sources */,

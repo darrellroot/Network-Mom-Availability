@@ -22,7 +22,7 @@
                             <menuItem title="About Network Mom" id="f2p-J0-WkT">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="eY8-p3-1mz"/>
+                                    <action selector="aboutNetworkMom:" target="Voe-Tx-rLC" id="kel-YX-l3W"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="D9k-t6-vT9"/>
