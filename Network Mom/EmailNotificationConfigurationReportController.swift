@@ -20,6 +20,7 @@ class EmailNotificationConfigurationReportController: NSWindowController {
     }
     
     private var emailData: [emailDataLine] = []
+    private var emailDataSorted: [emailDataLine] = []
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
@@ -55,21 +56,68 @@ class EmailNotificationConfigurationReportController: NSWindowController {
                 }
             }
             emailData += thisMapData
-            tableViewOutlet.delegate = self
-            tableViewOutlet.dataSource = self
-            tableViewOutlet.reloadData()
         }
+        emailDataSorted = emailData
+        sortData(by: .Email, ascending: true)
+        sortData(by: .Map, ascending: true)
+/*       case Map = "Map"
+        case Email = "Email"
+        case Name = "Name"
+        case Alerts = "Alerts"
+        case Reports = "Reports"*/
+
+        let descriptorMap = NSSortDescriptor(key: CellIdentifier.Map.rawValue, ascending: true)
+        let descriptorEmail = NSSortDescriptor(key: CellIdentifier.Email.rawValue, ascending: true)
+        let descriptorName = NSSortDescriptor(key: CellIdentifier.Name.rawValue, ascending: true)
+        let descriptorAlerts = NSSortDescriptor(key: CellIdentifier.Alerts.rawValue, ascending: true)
+        let descriptorReports = NSSortDescriptor(key: CellIdentifier.Reports.rawValue, ascending: true)
+        tableViewOutlet.tableColumns[0].sortDescriptorPrototype = descriptorMap
+        tableViewOutlet.tableColumns[1].sortDescriptorPrototype = descriptorEmail
+        tableViewOutlet.tableColumns[2].sortDescriptorPrototype = descriptorName
+        tableViewOutlet.tableColumns[3].sortDescriptorPrototype = descriptorAlerts
+        tableViewOutlet.tableColumns[4].sortDescriptorPrototype = descriptorReports
+
+        tableViewOutlet.delegate = self
+        tableViewOutlet.dataSource = self
+        tableViewOutlet.reloadData()
     }
 }
 
 extension EmailNotificationConfigurationReportController: NSTableViewDataSource, NSTableViewDelegate {
     
-    fileprivate enum CellIdentifiers {
-        static let Map = "Map"
-        static let Email = "Email"
-        static let Name = "Name"
-        static let Alerts = "Alerts"
-        static let Reports = "Reports"
+    fileprivate enum CellIdentifier: String {
+        case Map = "Map"
+        case Email = "Email"
+        case Name = "Name"
+        case Alerts = "Alerts"
+        case Reports = "Reports"
+    }
+    
+    fileprivate func sortData(by cellIdentifier: CellIdentifier, ascending: Bool) {
+        switch cellIdentifier {
+        case CellIdentifier.Map:
+            emailDataSorted = emailDataSorted.sorted(by: {$0.map < $1.map})
+        case CellIdentifier.Email:
+            emailDataSorted = emailDataSorted.sorted(by: {$0.email < $1.email})
+        case CellIdentifier.Name:
+            emailDataSorted = emailDataSorted.sorted(by: {$0.name < $1.name})
+        case CellIdentifier.Alerts:
+            emailDataSorted = emailDataSorted.sorted(by: {$0.alerts && !$1.alerts})
+        case CellIdentifier.Reports:
+            emailDataSorted = emailDataSorted.sorted(by: {$0.reports && !$1.reports})
+        }
+        if !ascending {
+            emailDataSorted = emailDataSorted.reversed()
+        }
+    }
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        print("tableview sort descriptors changed")
+        guard let sortDescriptor = tableView.sortDescriptors.first else { return }
+        let ascending = sortDescriptor.ascending
+        if let key = sortDescriptor.key,let order = CellIdentifier(rawValue: key) {
+            sortData(by: order, ascending: ascending)
+        }
+        tableViewOutlet.reloadData()
     }
     func numberOfRows(in tableView: NSTableView) -> Int {
         DLog.log(.userInterface,"tableview number of rows \(emailData.count)")
@@ -77,35 +125,35 @@ extension EmailNotificationConfigurationReportController: NSTableViewDataSource,
     }
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
-        var cellIdentifier: String = ""
+        var cellIdentifier: CellIdentifier = .Map
         
         if tableColumn == tableViewOutlet.tableColumns[0] {
-            cellIdentifier = CellIdentifiers.Map
-            text = emailData[row].map
+            cellIdentifier = CellIdentifier.Map
+            text = emailDataSorted[row].map
         }
         if tableColumn == tableViewOutlet.tableColumns[1] {
-            cellIdentifier = CellIdentifiers.Email
-            text = emailData[row].email
+            cellIdentifier = CellIdentifier.Email
+            text = emailDataSorted[row].email
         }
         if tableColumn == tableViewOutlet.tableColumns[2] {
-            cellIdentifier = CellIdentifiers.Name
-            text = emailData[row].name
+            cellIdentifier = CellIdentifier.Name
+            text = emailDataSorted[row].name
         }
         if tableColumn == tableViewOutlet.tableColumns[3] {
-            cellIdentifier = CellIdentifiers.Alerts
-            if emailData[row].alerts {
+            cellIdentifier = CellIdentifier.Alerts
+            if emailDataSorted[row].alerts {
                 text = "alerts"
             }
         }
         if tableColumn == tableViewOutlet.tableColumns[4] {
-            cellIdentifier = CellIdentifiers.Reports
-            if emailData[row].reports {
+            cellIdentifier = CellIdentifier.Reports
+            if emailDataSorted[row].reports {
                 text = "reports"
             }
         }
-        print("cell identifier \(cellIdentifier) text \(text)")
+        //print("cell identifier \(cellIdentifier) text \(text)")
         
-        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier.rawValue), owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text
             return cell
         }
