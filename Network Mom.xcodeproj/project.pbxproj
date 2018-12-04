@@ -27,6 +27,8 @@
 		2F5061C821B4CDEC00C19984 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061C721B4CDEB00C19984 /* license.html */; };
 		2F5061CA21B4E1DE00C19984 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061C921B4E1DE00C19984 /* privacy.html */; };
 		2F5061CC21B5E06B00C19984 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061CB21B5E06B00C19984 /* credits.html */; };
+		2F5061CF21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061CD21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift */; };
+		2F5061D021B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061CE21B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib */; };
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
@@ -392,6 +394,8 @@
 		2F5061C721B4CDEB00C19984 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
 		2F5061C921B4E1DE00C19984 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
 		2F5061CB21B5E06B00C19984 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
+		2F5061CD21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailNotificationConfigurationReportController.swift; sourceTree = "<group>"; };
+		2F5061CE21B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailNotificationConfigurationReportController.xib; sourceTree = "<group>"; };
 		2F904D3A219F76170040530B /* Network Mom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D51219F769D0040530B /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
@@ -782,7 +786,6 @@
 		2F904D3C219F76170040530B /* Network Mom */ = {
 			isa = PBXGroup;
 			children = (
-				2F5061C621B4CD6700C19984 /* HTML */,
 				2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */,
 				2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */,
 				2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */,
@@ -803,11 +806,14 @@
 				2F904E40219F7A200040530B /* Design.txt */,
 				2F904E46219F7A320040530B /* DragMonitorView.swift */,
 				2F904FC521A36D190040530B /* EmailAddress.swift */,
+				2F5061CD21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift */,
+				2F5061CE21B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib */,
 				2F904E34219F7A130040530B /* EmailServerController.swift */,
 				2F904E35219F7A140040530B /* EmailServerController.xib */,
 				2F904E5E219F7A450040530B /* FlipStackView.swift */,
 				2F904E58219F7A440040530B /* FlipView.swift */,
 				2F904E54219F7A430040530B /* HostAddressQuery.swift */,
+				2F5061C621B4CD6700C19984 /* HTML */,
 				2F904E59219F7A440040530B /* icmpechorequest.swift */,
 				2F904E61219F7A460040530B /* IcmpV6EchoRequest.swift */,
 				2F5061BB21B4A3CE00C19984 /* Images */,
@@ -1510,6 +1516,7 @@
 				2F5061AD21B3548600C19984 /* manage-email-notifications.png in Resources */,
 				2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */,
 				2F5061AA21B3486500C19984 /* monitors-with-latency.png in Resources */,
+				2F5061D021B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib in Resources */,
 				2F904E4F219F7A330040530B /* MapWindowController.xib in Resources */,
 				2F50619921B2401C00C19984 /* add-ipv4-monitor.png in Resources */,
 				2F5061B321B35E6700C19984 /* configure-email-recipient.png in Resources */,
@@ -1610,6 +1617,7 @@
 				2F904E3B219F7A140040530B /* AddIPv6MonitorController.swift in Sources */,
 				2F904FD921A4B17D0040530B /* ManageEmailNotificationsController.swift in Sources */,
 				2F904E71219F7A460040530B /* String+extensions.swift in Sources */,
+				2F5061CF21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift in Sources */,
 				2F904E62219F7A460040530B /* ControllerDelegate.swift in Sources */,
 				2F904E4E219F7A330040530B /* DragMonitorView.swift in Sources */,
 				2F904E63219F7A460040530B /* MonitorIPv6.swift in Sources */,

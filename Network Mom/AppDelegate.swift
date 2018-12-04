@@ -41,6 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var emailServerController: EmailServerController!
     var addEmailRecipientController: AddEmailRecipientController!
     var deleteEmailRecipientController: DeleteEmailRecipientController!
+    var emailNotificationConfigurationReportController: EmailNotificationConfigurationReportController!
     var manageEmailNotificationsController:
     ManageEmailNotificationsController!
     var showLogController: ShowLogController!
@@ -143,6 +144,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             fixMapIndex()
         }
+    }
+    
+    @IBAction func emailNotificationConfigurationReport(_ sender: NSMenuItem) {
+        emailNotificationConfigurationReportController = EmailNotificationConfigurationReportController()
+        emailNotificationConfigurationReportController.showWindow(self)
     }
     
     func loadEmailPassword() {
