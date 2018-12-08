@@ -9,7 +9,7 @@
 import Cocoa
 import DLog
 
-class DeleteEmailRecipientController: NSWindowController {
+class DeleteEmailRecipientController: NSWindowController, NSWindowDelegate {
 
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
@@ -25,6 +25,10 @@ class DeleteEmailRecipientController: NSWindowController {
         super.windowDidLoad()
         resultLabel.stringValue = ""
         updateEmailList()
+    }
+    func windowWillClose(_ notification: Notification) {
+        DLog.log(.userInterface,"Deleting email recipient controller")
+        appDelegate.deleteEmailRecipientControllers.remove(object: self)
     }
     
     func updateEmailList() {

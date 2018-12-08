@@ -10,7 +10,7 @@ import SwiftSMTP
 import DLog
 import Security
 
-class EmailServerController: NSWindowController {
+class EmailServerController: NSWindowController, NSWindowDelegate {
     
     var smtp: SMTP!
     
@@ -32,10 +32,15 @@ class EmailServerController: NSWindowController {
     
     let userDefaults = UserDefaults.standard
     
+    func windowWillClose(_ notification: Notification) {
+        appDelegate.configureEmailServerOutlet.isEnabled = true
+        appDelegate.emailServerController = nil
+    }
     override func windowDidLoad() {
         super.windowDidLoad()
         DLog.log(.userInterface,"EmailServerController window loaded")
             emailResultOutlet.stringValue = ""
+        appDelegate.configureEmailServerOutlet.isEnabled = false
         if let emailServerHostname = userDefaults.object(forKey: Constants.emailServerHostname) as? String {
             serverHostnameOutlet.stringValue = emailServerHostname
         }

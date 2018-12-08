@@ -43,7 +43,8 @@ class MapWindowController: NSWindowController, Codable {
     }
     var ipv4Monitor: AddIPv4MonitorController!
     var ipv6Monitor: AddIPv6MonitorController!
-    var mapAvailabilityReportController: MapAvailabilityReportController!
+    var mapAvailabilityReportControllers: [MapAvailabilityReportController] = []
+    //var mapAvailabilityReportController: MapAvailabilityReportController!
     
     var pingSweepIteration = 0
     var numberSweeps: Int
@@ -254,7 +255,8 @@ class MapWindowController: NSWindowController, Codable {
     }
     
     @IBAction func mapAvailabilityReport(_ sender: NSMenuItem) {
-        mapAvailabilityReportController = MapAvailabilityReportController()
+        let mapAvailabilityReportController = MapAvailabilityReportController()
+        mapAvailabilityReportControllers.append(mapAvailabilityReportController)
         mapAvailabilityReportController.delegate = self
         mapAvailabilityReportController.showWindow(self)
     }

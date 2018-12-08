@@ -10,7 +10,7 @@ import Cocoa
 import SwiftSMTP
 import DLog
 
-class AddEmailRecipientController: NSWindowController {
+class AddEmailRecipientController: NSWindowController, NSWindowDelegate {
 
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     
@@ -28,6 +28,11 @@ class AddEmailRecipientController: NSWindowController {
         emailResultOutlet.stringValue = ""
         emailNameOutlet.stringValue = ""
     }
+    func windowWillClose(_ notification: Notification) {
+        DLog.log(.userInterface,"addemailrecipientcontroller closing")
+        appDelegate.addEmailRecipientControllers.remove(object: self)
+    }
+    
     @IBAction func testEmailButton(_ sender: NSButton) {
         let name = emailNameOutlet.stringValue
         if name == "" {

@@ -7,8 +7,9 @@
 //
 
 import Cocoa
+import DLog
 
-class ManageEmailNotificationsController: NSWindowController {
+class ManageEmailNotificationsController: NSWindowController, NSWindowDelegate {
 
     @IBOutlet weak var mapSelectorOutlet: NSPopUpButton!
     @IBOutlet weak var emailSelectorOutlet: NSPopUpButton!
@@ -33,6 +34,11 @@ class ManageEmailNotificationsController: NSWindowController {
         emails = appDelegate.emails
         updateMenus()
         setRadioButtons()
+    }
+    
+    func windowWillClose(_ notification: Notification) {
+        DLog.log(.userInterface,"Closing manage email notifications controller window")
+        appDelegate.manageEmailNotificationsControllers.remove(object: self)
     }
     
     private func updateMenus() {

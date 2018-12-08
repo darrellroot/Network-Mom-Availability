@@ -33,18 +33,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     var emails: [EmailAddress] = []
 
+    @IBOutlet weak var configureEmailServerOutlet: NSMenuItem!
+    
     public var ping4Socket: CFSocket?
     public var ping6Socket: CFSocket?
     private var socket4Source: CFRunLoopSource?
     private var socket6Source: CFRunLoopSource?
     var aboutNetworkMomController: AboutNetworkMomController!
     var emailServerController: EmailServerController!
-    var addEmailRecipientController: AddEmailRecipientController!
-    var deleteEmailRecipientController: DeleteEmailRecipientController!
-    var emailNotificationConfigurationReportController: EmailNotificationConfigurationReportController!
-    var manageEmailNotificationsController:
-    ManageEmailNotificationsController!
-    var showLogController: ShowLogController!
+    var addEmailRecipientControllers: [AddEmailRecipientController] = []
+    var deleteEmailRecipientControllers: [DeleteEmailRecipientController] = []
+    var emailNotificationConfigurationReportControllers: [EmailNotificationConfigurationReportController] = []
+    var manageEmailNotificationsControllers: [ManageEmailNotificationsController] = []
+    var showLogControllers: [ShowLogController] = []
     var emailConfiguration: EmailConfiguration?
     let userDefaults = UserDefaults.standard
     var emailAlertTimer : Timer!
@@ -104,12 +105,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func configureEmailRecipient(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"Configure Email Recipient selected")
-        addEmailRecipientController = AddEmailRecipientController()
+        let addEmailRecipientController = AddEmailRecipientController()
+        addEmailRecipientControllers.append(addEmailRecipientController)
         addEmailRecipientController.showWindow(self)
     }
 
     @IBAction func deleteEmailRecipient(_ sender: NSMenuItem) {
-        deleteEmailRecipientController = DeleteEmailRecipientController()
+        let deleteEmailRecipientController = DeleteEmailRecipientController()
+        deleteEmailRecipientControllers.append(deleteEmailRecipientController)
         deleteEmailRecipientController.showWindow(self)
     }
     @IBAction func importFullConfiguration(_ sender: NSMenuItem) {
@@ -147,7 +150,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func emailNotificationConfigurationReport(_ sender: NSMenuItem) {
-        emailNotificationConfigurationReportController = EmailNotificationConfigurationReportController()
+        let emailNotificationConfigurationReportController = EmailNotificationConfigurationReportController()
+    emailNotificationConfigurationReportControllers.append(emailNotificationConfigurationReportController)
         emailNotificationConfigurationReportController.showWindow(self)
     }
     
@@ -265,7 +269,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func showLogMenu(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"show log menu")
-        showLogController = ShowLogController()
+        let showLogController = ShowLogController()
+        showLogControllers.append(showLogController)
         showLogController.showWindow(self)
     }
     @IBAction func restoreAllConfig(_ sender: Any) {
@@ -395,7 +400,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func manageEmailNotifications(_ sender: NSMenuItem) {
-        manageEmailNotificationsController = ManageEmailNotificationsController()
+        let manageEmailNotificationsController = ManageEmailNotificationsController()
+        manageEmailNotificationsControllers.append(manageEmailNotificationsController)
         manageEmailNotificationsController.showWindow(self)
     }
     

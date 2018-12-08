@@ -9,7 +9,7 @@
 import Cocoa
 import DLog
 
-class EmailNotificationConfigurationReportController: NSWindowController {
+class EmailNotificationConfigurationReportController: NSWindowController, NSWindowDelegate {
 
     private struct emailDataLine {
         let map: String
@@ -30,6 +30,10 @@ class EmailNotificationConfigurationReportController: NSWindowController {
         return NSNib.Name("EmailNotificationConfigurationReportController")
     }
 
+    func windowWillClose(_ notification: Notification) {
+        DLog.log(.userInterface, "EmailNotificationConfigurationReport window closing")
+        appDelegate.emailNotificationConfigurationReportControllers.remove(object: self)
+    }
     override func windowDidLoad() {
         super.windowDidLoad()
 

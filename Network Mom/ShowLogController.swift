@@ -10,7 +10,9 @@ import Cocoa
 import LoggerAPI
 import DLog
 
-class ShowLogController: NSWindowController {
+class ShowLogController: NSWindowController, NSWindowDelegate {
+
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
     @IBOutlet weak var logMenuOutlet: NSMenu!
 
@@ -28,7 +30,11 @@ class ShowLogController: NSWindowController {
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("ShowLogController")
     }
-
+    
+    func windowWillClose(_ notification: Notification) {
+        DLog.log(.userInterface, "Closing log controller")
+        appDelegate.showLogControllers.remove(object: self)
+    }
     
     @IBAction func selectLogButton(_ sender: NSPopUpButton) {
         DLog.log(.userInterface,"select log selected")

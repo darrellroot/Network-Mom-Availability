@@ -8,8 +8,9 @@
 
 import Cocoa
 import Charts
+import DLog
 
-class MapAvailabilityReportController: NSWindowController {
+class MapAvailabilityReportController: NSWindowController, NSWindowDelegate {
 
     weak var delegate: MapWindowController?
     
@@ -32,6 +33,11 @@ class MapAvailabilityReportController: NSWindowController {
         }
         makeAvailabilityChart(dataType: MonitorDataType.FiveMinute)
     }
+    func windowWillClose(_ notification: Notification) {
+        DLog.log(.userInterface,"Removing map availability report controller")
+        delegate?.mapAvailabilityReportControllers.remove(object: self)
+    }
+    
     @IBAction func mapNameAction(_ sender: NSTextField) {
         delegate?.name = mapNameOutlet.stringValue
         window?.title = mapNameOutlet.stringValue
