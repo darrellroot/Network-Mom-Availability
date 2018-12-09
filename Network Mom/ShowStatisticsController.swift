@@ -13,6 +13,7 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
+    var printOperation: NSPrintOperation!
     var items: [String] = []
     var numbers: [Int] = []
     
@@ -78,6 +79,17 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
     func numberOfRows(in tableView: NSTableView) -> Int {
         return items.count
     }
+    
+    //does not work
+    /*@IBAction func print(_ sender: Any) {
+        DLog.log(.userInterface,"Printing statistics window")
+        if let view = window?.contentView {
+            printOperation = NSPrintOperation(view: view)
+            printOperation.showsPrintPanel = false
+            //printOperation.showsProgressPanel = true
+            printOperation.run()
+        }
+    }*/
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text = ""

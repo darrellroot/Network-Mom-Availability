@@ -133,7 +133,7 @@
                             </menuItem>
                             <menuItem title="Print…" keyEquivalent="p" id="B5Z-PT-Qv1">
                                 <connections>
-                                    <action selector="print:" target="-1" id="tdE-gI-Gxp"/>
+                                    <action selector="print:" target="-1" id="CIB-59-TVJ"/>
                                 </connections>
                             </menuItem>
                         </items>
