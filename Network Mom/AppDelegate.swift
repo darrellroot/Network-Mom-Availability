@@ -46,6 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var emailNotificationConfigurationReportControllers: [EmailNotificationConfigurationReportController] = []
     var manageEmailNotificationsControllers: [ManageEmailNotificationsController] = []
     var showLogControllers: [ShowLogController] = []
+    var showStatisticsControllers: [ShowStatisticsController] = []
     var emailConfiguration: EmailConfiguration?
     let userDefaults = UserDefaults.standard
     var emailAlertTimer : Timer!
@@ -272,6 +273,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let showLogController = ShowLogController()
         showLogControllers.append(showLogController)
         showLogController.showWindow(self)
+    }
+    
+    @IBAction func showStatisticsMenu(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"show statistics menu")
+        let showStatisticsController = ShowStatisticsController()
+        showStatisticsControllers.append(showStatisticsController)
+        showStatisticsController.showWindow(self)
     }
     @IBAction func restoreAllConfig(_ sender: Any) {
         DLog.log(.dataIntegrity,"restoring all config")

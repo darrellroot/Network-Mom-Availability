@@ -706,6 +706,12 @@
                                     <action selector="emailNotificationConfigurationReport:" target="Voe-Tx-rLC" id="1YU-SI-QCe"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Show Statistics" id="F1M-Gc-o9I" userLabel="Show Statistics">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showStatisticsMenu:" target="Voe-Tx-rLC" id="4Cu-ba-zeS"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
