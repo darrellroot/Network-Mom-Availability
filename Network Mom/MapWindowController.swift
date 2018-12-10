@@ -43,6 +43,7 @@ class MapWindowController: NSWindowController, Codable {
     }
     var ipv4Monitor: AddIPv4MonitorController!
     var ipv6Monitor: AddIPv6MonitorController!
+    var importMonitorListControllers: [ImportMonitorListController] = []
     var mapAvailabilityReportControllers: [MapAvailabilityReportController] = []
     //var mapAvailabilityReportController: MapAvailabilityReportController!
     
@@ -146,7 +147,46 @@ class MapWindowController: NSWindowController, Codable {
             }
         }
     }
-    
+    @IBAction func exportMapMonitorListAsText(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"exportMapMonitorListAsText selected")
+        let savePanel = NSSavePanel()
+        savePanel.allowedFileTypes = ["txt"]
+        savePanel.begin { (result: NSApplication.ModalResponse) -> Void in
+            if result == NSApplication.ModalResponse.OK {
+                if let url = savePanel.url {
+                    DLog.log(.dataIntegrity,"saving to \(url.debugDescription)")
+                    self.exportMapMonitorListAsText(url: url)
+                }
+            } else {
+                DLog.log(.dataIntegrity,"File selection not successful")
+            }
+        }
+    }
+    func exportMapMonitorListAsText(url: URL) {
+        var exportText = ""
+        for monitor in monitors {
+            switch monitor.type {
+            case .MonitorIPv4:
+                if let monitor = monitor as? MonitorIPv4 {
+                    let hostname = monitor.hostname ?? ""
+                    let comment = monitor.comment ?? ""
+                    exportText += "\(monitor.ipv4string),\(hostname),\(comment)\n"
+                }
+            case .MonitorIPv6:
+                if let monitor = monitor as? MonitorIPv6 {
+                    let hostname = monitor.hostname ?? ""
+                    let comment = monitor.comment ?? ""
+                    exportText += "\(monitor.ipv6.debugDescription),\(hostname),\(comment)\n"
+                }
+            }
+        }
+        do {
+            try exportText.write(to: url, atomically: false, encoding: .utf8)
+        }
+        catch {
+            DLog.log(.dataIntegrity,"Export text failed")
+        }
+    }
     func documentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
@@ -226,6 +266,14 @@ class MapWindowController: NSWindowController, Codable {
                 pingSweepIteration = 0
             }
         }
+    }
+
+    @IBAction func importTextMonitorList(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"Import Text Monitor List selected")
+        let importMonitorListController = ImportMonitorListController()
+        importMonitorListControllers.append(importMonitorListController)
+        importMonitorListController.delegate = self
+        importMonitorListController.showWindow(self)
     }
 
     convenience init(name: String, mapIndex: Int) {

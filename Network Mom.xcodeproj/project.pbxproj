@@ -32,6 +32,8 @@
 		2F5061D221BC744100C19984 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061D121BC744000C19984 /* Array+extensions.swift */; };
 		2F5061D521BC876900C19984 /* ShowStatisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061D321BC876900C19984 /* ShowStatisticsController.swift */; };
 		2F5061D621BC876900C19984 /* ShowStatisticsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061D421BC876900C19984 /* ShowStatisticsController.xib */; };
+		2F5061D921BDE7EC00C19984 /* ImportMonitorListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */; };
+		2F5061DA21BDE7EC00C19984 /* ImportMonitorListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */; };
 		2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2F904D59219F769D0040530B /* LoggerAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F904D5F219F76D00040530B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F904D5E219F76D00040530B /* Logger.swift */; };
@@ -402,6 +404,8 @@
 		2F5061D121BC744000C19984 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		2F5061D321BC876900C19984 /* ShowStatisticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStatisticsController.swift; sourceTree = "<group>"; };
 		2F5061D421BC876900C19984 /* ShowStatisticsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowStatisticsController.xib; sourceTree = "<group>"; };
+		2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportMonitorListController.swift; sourceTree = "<group>"; };
+		2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImportMonitorListController.xib; sourceTree = "<group>"; };
 		2F904D3A219F76170040530B /* Network Mom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D51219F769D0040530B /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
@@ -825,6 +829,8 @@
 				2F904E61219F7A460040530B /* IcmpV6EchoRequest.swift */,
 				2F5061BB21B4A3CE00C19984 /* Images */,
 				2F904E44219F7A320040530B /* MainMenu.xib */,
+				2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */,
+				2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */,
 				2F904FD721A4B17D0040530B /* ManageEmailNotificationsController.swift */,
 				2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */,
 				2F904E41219F7A310040530B /* MapAvailabilityReportController.swift */,
@@ -1534,6 +1540,7 @@
 				2F904E3F219F7A140040530B /* AddIPv4MonitorController.xib in Resources */,
 				2F50619821B2401C00C19984 /* add-ipv4-monitor-menu.png in Resources */,
 				2F5061B621B35E6D00C19984 /* delete-email-recipient.png in Resources */,
+				2F5061DA21BDE7EC00C19984 /* ImportMonitorListController.xib in Resources */,
 				2F904E38219F7A140040530B /* AddIPv6MonitorController.xib in Resources */,
 				2F904E3D219F7A140040530B /* EmailServerController.xib in Resources */,
 				2F5061CA21B4E1DE00C19984 /* privacy.html in Resources */,
@@ -1608,6 +1615,7 @@
 				2F904E3A219F7A140040530B /* AddIPv4MonitorController.swift in Sources */,
 				2F904E6A219F7A460040530B /* icmpechorequest.swift in Sources */,
 				2F904E6F219F7A460040530B /* FlipStackView.swift in Sources */,
+				2F5061D921BDE7EC00C19984 /* ImportMonitorListController.swift in Sources */,
 				2F904FD121A3707B0040530B /* AddEmailRecipientController.swift in Sources */,
 				2F904E69219F7A460040530B /* FlipView.swift in Sources */,
 				2F904E6D219F7A460040530B /* AddMonitorDelegate.swift in Sources */,

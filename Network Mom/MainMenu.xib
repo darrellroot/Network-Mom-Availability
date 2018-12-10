@@ -91,16 +91,22 @@
                                     <action selector="newMap:" target="-1" id="MGB-0c-dVk"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Import Map" id="aqA-Sc-SS8">
+                            <menuItem title="Import Map and Data" id="aqA-Sc-SS8">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="importMap:" target="Voe-Tx-rLC" id="d3O-T3-udK"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Export Map" id="uaz-TH-jFd">
+                            <menuItem title="Export Map and Data" id="uaz-TH-jFd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="exportMap:" target="-1" id="Gq0-XC-6Ul"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Export Map Monitor List As Text" id="yYK-Ld-b1U">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="exportMapMonitorListAsText:" target="-1" id="zBr-Zt-k0y"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="cjw-8g-S4k"/>
@@ -642,6 +648,12 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="w3F-OF-UJQ"/>
+                            <menuItem title="Import Text Monitor List" id="Z5q-kU-TYf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="importTextMonitorList:" target="-1" id="mCo-ED-u0G"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Add IPv4 Monitors" id="Nwi-oM-jVM">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>

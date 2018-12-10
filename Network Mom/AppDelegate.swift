@@ -51,270 +51,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let userDefaults = UserDefaults.standard
     var emailAlertTimer : Timer!
     
-    func documentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    public func pendNotification(emailAddress: String, notification: EmailNotification) {
-        for email in emails {
-            if email.email == emailAddress {
-                email.pendingNotifications.append(notification)
-            }
-        }
-    }
-    func deleteMap(index: Int, name: String) {
-        DLog.log(.dataIntegrity,"delete map requested index \(index) name \(name)")
-        if index >= maps.count {
-            DLog.log(.dataIntegrity,"error map index out of range aborting delete")
-            return
-        }
-        if maps[index].name != name {
-            DLog.log(.dataIntegrity,"error map name mismatch aborting delete")
-            return
-        }
-        maps[index].close()
-        maps.remove(at: index)
-        fixMapIndex()
-    }
-    @IBAction func importMap(_ sender: NSMenuItem) {
-        let openPanel = NSOpenPanel()
-        openPanel.allowedFileTypes = ["mom1"]
-        openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
-            if result == NSApplication.ModalResponse.OK {
-                if let url = openPanel.url {
-                    DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
-                    self.importData(url: url)
-                    DispatchQueue.main.async { [unowned self] in
-                        self.makeMapNamesUnique()
-                    }
-                }
-            } else {
-                DLog.log(.dataIntegrity,"open selection not successful")
-            }
-        }
-    }
     @IBAction func aboutNetworkMom(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"About Network Mom Selected")
         let aboutNetworkMomController = AboutNetworkMomController()
         aboutNetworkMomController.showWindow(self)
     }
-    @IBAction func configureEmailServer(_ sender: NSMenuItem) {
-        DLog.log(.userInterface,"Configure Email Server selected")
-        emailServerController = EmailServerController()
-        emailServerController.showWindow(self)
-    }
-    
-    @IBAction func configureEmailRecipient(_ sender: NSMenuItem) {
-        DLog.log(.userInterface,"Configure Email Recipient selected")
-        let addEmailRecipientController = AddEmailRecipientController()
-        addEmailRecipientControllers.append(addEmailRecipientController)
-        addEmailRecipientController.showWindow(self)
-    }
-
-    @IBAction func deleteEmailRecipient(_ sender: NSMenuItem) {
-        let deleteEmailRecipientController = DeleteEmailRecipientController()
-        deleteEmailRecipientControllers.append(deleteEmailRecipientController)
-        deleteEmailRecipientController.showWindow(self)
-    }
-    @IBAction func importFullConfiguration(_ sender: NSMenuItem) {
-        let openPanel = NSOpenPanel()
-        openPanel.allowedFileTypes = ["mom2"]
-        openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
-            if result == NSApplication.ModalResponse.OK {
-                if let url = openPanel.url {
-                    DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
-                    self.restoreAllConfig(url)
-                    DispatchQueue.main.async { [unowned self] in
-                        self.makeMapNamesUnique()
-                    }
-                }
-            } else {
-                DLog.log(.dataIntegrity,"open selection not successful")
-            }
-        }
-    }
-    func importData(url: URL) {
-        if let data = try? Data(contentsOf: url) {
-            let decoder = PropertyListDecoder()
-            var importedMap: MapWindowController? = nil
-            do {
-                importedMap = try decoder.decode(MapWindowController.self, from: data)
-            } catch {
-                DLog.log(.dataIntegrity,"error decoding map")
-            }
-            if let importedMap = importedMap {
-                maps.append(importedMap)
-                importedMap.showWindow(self)
-            }
-            fixMapIndex()
-        }
-    }
-    
-    @IBAction func emailNotificationConfigurationReport(_ sender: NSMenuItem) {
-        let emailNotificationConfigurationReportController = EmailNotificationConfigurationReportController()
-    emailNotificationConfigurationReportControllers.append(emailNotificationConfigurationReportController)
-        emailNotificationConfigurationReportController.showWindow(self)
-    }
-    
-    func loadEmailPassword() {
-        if let emailServerHostname = userDefaults.string(forKey: Constants.emailServerHostname), let emailServerUsername = userDefaults.string(forKey: Constants.emailServerUsername) {
-            let query: [String: Any] = [
-                kSecClass as String: kSecClassInternetPassword,
-                kSecAttrServer as String: emailServerHostname,
-                kSecMatchLimit as String: kSecMatchLimitOne,
-                kSecReturnAttributes as String: true,
-                kSecReturnData as String: true,
-                kSecAttrProtocol as String: Constants.networkmom]
-            var item: CFTypeRef?
-            let status = SecItemCopyMatching(query as CFDictionary, &item)
-            guard status == errSecSuccess else {
-                DLog.log(.dataIntegrity,"Mail account keychain not found at startup, status \(status)")
-                DLog.log(.mail,"Mail account keychain not found at startup, status \(status)")
-                return
-            }
-            guard let existingItem = item as? [String : Any],
-                let passwordData = existingItem[kSecValueData as String] as? Data,
-                let keychainPassword = String(data: passwordData, encoding: String.Encoding.utf8),
-                let keychainEmail = existingItem[kSecAttrAccount as String] as? String
-                else {
-                    DLog.log(.dataIntegrity,"Unexpected mail account keychain info found at startup")
-                    DLog.log(.mail,"Unexpected mail account keychain info found at startup")
-                    return
-            }
-            if keychainEmail != emailServerUsername {
-                DLog.log(.dataIntegrity,"Mail account keychain info did not match userdefaults at startup")
-                DLog.log(.mail,"Mail account keychain info did not match userdefaults at startup")
-                return
-            }
-            emailConfiguration = EmailConfiguration(server: emailServerHostname, username: emailServerUsername, password: keychainPassword)
-            DLog.log(.dataIntegrity,"Mail account password successfully restored from keychain at startup")
-            DLog.log(.mail,"Mail account password successfully restored from keychain at startup")
-        }
-    }
-    
-    func fixMapIndex() {
-        DLog.log(.dataIntegrity,"fixing ids in each map")
-        for (index,map) in maps.enumerated() {
-            map.mapIndex = index
-        }
-    }
-    
-    @IBAction func networkMomCredits(_ sender: NSMenuItem) {
-        let staticHtmlController = StaticHtmlController()
-        staticHtmlController.resource = "credits"
-        staticHtmlController.showWindow(self)
-    }
-    @IBAction func networkMomLicenseAgreement(_ sender: NSMenuItem) {
-        let staticHtmlController = StaticHtmlController()
-        staticHtmlController.resource = "license"
-        staticHtmlController.showWindow(self)
-    }
-    
-    @IBAction func privacyPolicy(_ sender: NSMenuItem) {
-        let staticHtmlController = StaticHtmlController()
-        staticHtmlController.resource = "privacy"
-        staticHtmlController.showWindow(self)
-    }
-    
-    func showSaveAlert(url: URL) {
-        let alert = NSAlert()
-        alert.alertStyle = NSAlert.Style.critical
-        alert.messageText = "Exporting Configuration to \(url) Failed"
-        alert.informativeText = "Check your disk space and access permissions"
-        alert.addButton(withTitle: "OK")
-        alert.runModal()
-    }
-    @IBAction func exportFullConfiguration(_ sender: NSMenuItem) {
-        let savePanel = NSSavePanel()
-        savePanel.allowedFileTypes = ["mom2"]
-        savePanel.begin { (result: NSApplication.ModalResponse) -> Void in
-            if result == NSApplication.ModalResponse.OK {
-                if let url = savePanel.url {
-                    _ = self.exportFullConfig(url: url)
-                }
-            } else {
-                DLog.log(.dataIntegrity,"File selection not successful")
-            }
-        }
-    }
-    
-    func exportFullConfig(url: URL) -> Bool {
-        DLog.log(.dataIntegrity,"saving to \(url.debugDescription)")
-        var success = true
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .xml
-        do {
-            let codableDataStructure = CodableDataStructure()
-            //let data = try encoder.encode(self.maps)
-            let data = try encoder.encode(codableDataStructure)
-            try data.write(to: url, options: Data.WritingOptions.atomic)
-        } catch {
-            DLog.log(.dataIntegrity,"error writing data to \(url)")
-            self.showSaveAlert(url: url)
-            success = false
-        }
-        return success
-    }
-    func saveAllConfig(_ sender: Any) -> Bool {
-        // we also save 2 copies of our data.  The 2nd copy only gets saved if the first save is successful.
-        DLog.log(.dataIntegrity,"saving all config")
-        let dataUrl1 = documentsDirectory().appendingPathComponent("autosavedata1.mom2")
-        let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
-        let successfulFirstSave = exportFullConfig(url: dataUrl1)
-        var successfulSecondSave = false
-        if successfulFirstSave {
-            successfulSecondSave = exportFullConfig(url: dataUrl2)
-        }
-        return successfulSecondSave
-    }
-    
-    @IBAction func showLogMenu(_ sender: NSMenuItem) {
-        DLog.log(.userInterface,"show log menu")
-        let showLogController = ShowLogController()
-        showLogControllers.append(showLogController)
-        showLogController.showWindow(self)
-    }
-    
-    @IBAction func showStatisticsMenu(_ sender: NSMenuItem) {
-        DLog.log(.userInterface,"show statistics menu")
-        let showStatisticsController = ShowStatisticsController()
-        showStatisticsControllers.append(showStatisticsController)
-        showStatisticsController.showWindow(self)
-    }
-    @IBAction func restoreAllConfig(_ sender: Any) {
-        DLog.log(.dataIntegrity,"restoring all config")
-        loadEmailPassword()
-        let decoder = PropertyListDecoder()
-        let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
-        DLog.log(.dataIntegrity,"restoring data from \(dataUrl2)")
-        if let data = try? Data(contentsOf: dataUrl2) {
-            if let codableDataStructure = try? decoder.decode(CodableDataStructure.self, from: data) {
-                self.maps = codableDataStructure.maps
-                self.emails = codableDataStructure.emailAddresses
-                for map in maps {
-                    DLog.log(.dataIntegrity,"Loaded map name \(map.name)")
-                    map.showWindow(self)
-                }
-                DLog.log(.dataIntegrity,"data restore complete")
-            }
-/*            if let maps = try? decoder.decode([MapWindowController].self, from: data) {
-                self.maps = self.maps + maps
-            }
-            for map in maps {
-                DLog.log(.dataIntegrity,"map name \(map.name)")
-                map.showWindow(self)
-            }
- */
-            fixMapIndex()
-        }
-    }
-    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        //let newMap = MapWindowController(name: "Default", mapIndex: maps.count)
-        //maps.append(newMap)
-        //maps[0].showWindow(self)
-        //HeliumLogger.use()
-        //Log.warning("this is a log test")
         DLog.log(.userInterface,"DLog.log test")
         restoreAllConfig(self)
         
@@ -370,19 +112,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }, &context)
         socket4Source = CFSocketCreateRunLoopSource(nil, ping4Socket, 0)
         CFRunLoopAddSource(CFRunLoopGetMain(), socket4Source, .commonModes)
-
+        
         emailAlertTimer = Timer.scheduledTimer(timeInterval: Double(Defaults.emailTimerDuration), target: self, selector: #selector(sendAlertEmails), userInfo: nil, repeats: true)
         emailAlertTimer.tolerance = Defaults.emailTimerTolerance
         RunLoop.current.add(emailAlertTimer,forMode: .common)
     }
-    
-    @objc func sendAlertEmails() {
-        DLog.log(.mail,"Checking for email alerts to send")
-        for email in emails {
-            email.emailAlert()
-        }
-    }
-    
+
     func applicationWillTerminate(_ aNotification: Notification) {
         _ = saveAllConfig(self)
     }
@@ -406,19 +141,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return NSApplication.TerminateReply.terminateLater
         }
     }
-    
-    @IBAction func manageEmailNotifications(_ sender: NSMenuItem) {
-        let manageEmailNotificationsController = ManageEmailNotificationsController()
-        manageEmailNotificationsControllers.append(manageEmailNotificationsController)
-        manageEmailNotificationsController.showWindow(self)
+    @IBAction func configureEmailServer(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"Configure Email Server selected")
+        emailServerController = EmailServerController()
+        emailServerController.showWindow(self)
     }
     
-    @IBAction func newMap(_ sender: NSMenuItem) {
-        DLog.log(.userInterface,"New Map Selected")
-        let newName = createUniqueMapName()
-        let newmap = MapWindowController(name: newName, mapIndex: maps.count)
-        maps.append(newmap)
-        maps.last?.showWindow(self)
+    @IBAction func configureEmailRecipient(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"Configure Email Recipient selected")
+        let addEmailRecipientController = AddEmailRecipientController()
+        addEmailRecipientControllers.append(addEmailRecipientController)
+        addEmailRecipientController.showWindow(self)
     }
     func createUniqueMapName() -> String {
         var candidateName: String
@@ -428,6 +161,206 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             candidateName = "Map \(count)"
         } while !mapNameIsUnique(name: candidateName)
         return candidateName
+    }
+
+    @IBAction func deleteEmailRecipient(_ sender: NSMenuItem) {
+        let deleteEmailRecipientController = DeleteEmailRecipientController()
+        deleteEmailRecipientControllers.append(deleteEmailRecipientController)
+        deleteEmailRecipientController.showWindow(self)
+    }
+
+    func deleteMap(index: Int, name: String) {
+        DLog.log(.dataIntegrity,"delete map requested index \(index) name \(name)")
+        if index >= maps.count {
+            DLog.log(.dataIntegrity,"error map index out of range aborting delete")
+            return
+        }
+        if maps[index].name != name {
+            DLog.log(.dataIntegrity,"error map name mismatch aborting delete")
+            return
+        }
+        maps[index].close()
+        maps.remove(at: index)
+        fixMapIndex()
+    }
+    
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    @IBAction func emailNotificationConfigurationReport(_ sender: NSMenuItem) {
+        let emailNotificationConfigurationReportController = EmailNotificationConfigurationReportController()
+        emailNotificationConfigurationReportControllers.append(emailNotificationConfigurationReportController)
+        emailNotificationConfigurationReportController.showWindow(self)
+    }
+    
+    
+    @IBAction func exportFullConfiguration(_ sender: NSMenuItem) {
+        let savePanel = NSSavePanel()
+        savePanel.allowedFileTypes = ["mom2"]
+        savePanel.begin { (result: NSApplication.ModalResponse) -> Void in
+            if result == NSApplication.ModalResponse.OK {
+                if let url = savePanel.url {
+                    _ = self.exportFullConfig(url: url)
+                }
+            } else {
+                DLog.log(.dataIntegrity,"File selection not successful")
+            }
+        }
+    }
+    
+    func exportFullConfig(url: URL) -> Bool {
+        DLog.log(.dataIntegrity,"saving to \(url.debugDescription)")
+        var success = true
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        do {
+            let codableDataStructure = CodableDataStructure()
+            //let data = try encoder.encode(self.maps)
+            let data = try encoder.encode(codableDataStructure)
+            try data.write(to: url, options: Data.WritingOptions.atomic)
+        } catch {
+            DLog.log(.dataIntegrity,"error writing data to \(url)")
+            self.showSaveAlert(url: url)
+            success = false
+        }
+        return success
+    }
+    
+
+    func fixMapIndex() {
+        DLog.log(.dataIntegrity,"fixing ids in each map")
+        for (index,map) in maps.enumerated() {
+            map.mapIndex = index
+        }
+    }
+
+    @IBAction func importMap(_ sender: NSMenuItem) {
+        let openPanel = NSOpenPanel()
+        openPanel.allowedFileTypes = ["mom1"]
+        openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
+            if result == NSApplication.ModalResponse.OK {
+                if let url = openPanel.url {
+                    DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
+                    self.importData(url: url)
+                    DispatchQueue.main.async { [unowned self] in
+                        self.makeMapNamesUnique()
+                    }
+                }
+            } else {
+                DLog.log(.dataIntegrity,"open selection not successful")
+            }
+        }
+    }
+    @IBAction func importFullConfiguration(_ sender: NSMenuItem) {
+        let openPanel = NSOpenPanel()
+        openPanel.allowedFileTypes = ["mom2"]
+        openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
+            if result == NSApplication.ModalResponse.OK {
+                if let url = openPanel.url {
+                    DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
+                    self.restoreAllConfig(url)
+                    DispatchQueue.main.async { [unowned self] in
+                        self.makeMapNamesUnique()
+                    }
+                }
+            } else {
+                DLog.log(.dataIntegrity,"open selection not successful")
+            }
+        }
+    }
+    func importData(url: URL) {
+        if let data = try? Data(contentsOf: url) {
+            let decoder = PropertyListDecoder()
+            var importedMap: MapWindowController? = nil
+            do {
+                importedMap = try decoder.decode(MapWindowController.self, from: data)
+            } catch {
+                DLog.log(.dataIntegrity,"error decoding map")
+            }
+            if let importedMap = importedMap {
+                maps.append(importedMap)
+                importedMap.showWindow(self)
+            }
+            fixMapIndex()
+        }
+    }
+    
+    
+    func loadEmailPassword() {
+        if let emailServerHostname = userDefaults.string(forKey: Constants.emailServerHostname), let emailServerUsername = userDefaults.string(forKey: Constants.emailServerUsername) {
+            let query: [String: Any] = [
+                kSecClass as String: kSecClassInternetPassword,
+                kSecAttrServer as String: emailServerHostname,
+                kSecMatchLimit as String: kSecMatchLimitOne,
+                kSecReturnAttributes as String: true,
+                kSecReturnData as String: true,
+                kSecAttrProtocol as String: Constants.networkmom]
+            var item: CFTypeRef?
+            let status = SecItemCopyMatching(query as CFDictionary, &item)
+            guard status == errSecSuccess else {
+                DLog.log(.dataIntegrity,"Mail account keychain not found at startup, status \(status)")
+                DLog.log(.mail,"Mail account keychain not found at startup, status \(status)")
+                return
+            }
+            guard let existingItem = item as? [String : Any],
+                let passwordData = existingItem[kSecValueData as String] as? Data,
+                let keychainPassword = String(data: passwordData, encoding: String.Encoding.utf8),
+                let keychainEmail = existingItem[kSecAttrAccount as String] as? String
+                else {
+                    DLog.log(.dataIntegrity,"Unexpected mail account keychain info found at startup")
+                    DLog.log(.mail,"Unexpected mail account keychain info found at startup")
+                    return
+            }
+            if keychainEmail != emailServerUsername {
+                DLog.log(.dataIntegrity,"Mail account keychain info did not match userdefaults at startup")
+                DLog.log(.mail,"Mail account keychain info did not match userdefaults at startup")
+                return
+            }
+            emailConfiguration = EmailConfiguration(server: emailServerHostname, username: emailServerUsername, password: keychainPassword)
+            DLog.log(.dataIntegrity,"Mail account password successfully restored from keychain at startup")
+            DLog.log(.mail,"Mail account password successfully restored from keychain at startup")
+        }
+    }
+    
+    
+    @IBAction func networkMomCredits(_ sender: NSMenuItem) {
+        let staticHtmlController = StaticHtmlController()
+        staticHtmlController.resource = "credits"
+        staticHtmlController.showWindow(self)
+    }
+    @IBAction func networkMomLicenseAgreement(_ sender: NSMenuItem) {
+        let staticHtmlController = StaticHtmlController()
+        staticHtmlController.resource = "license"
+        staticHtmlController.showWindow(self)
+    }
+    @IBAction func newMap(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"New Map Selected")
+        let newName = createUniqueMapName()
+        let newmap = MapWindowController(name: newName, mapIndex: maps.count)
+        maps.append(newmap)
+        maps.last?.showWindow(self)
+    }
+
+    @IBAction func privacyPolicy(_ sender: NSMenuItem) {
+        let staticHtmlController = StaticHtmlController()
+        staticHtmlController.resource = "privacy"
+        staticHtmlController.showWindow(self)
+    }
+    
+    func showSaveAlert(url: URL) {
+        let alert = NSAlert()
+        alert.alertStyle = NSAlert.Style.critical
+        alert.messageText = "Exporting Configuration to \(url) Failed"
+        alert.informativeText = "Check your disk space and access permissions"
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
+    }
+    
+    @IBAction func manageEmailNotifications(_ sender: NSMenuItem) {
+        let manageEmailNotificationsController = ManageEmailNotificationsController()
+        manageEmailNotificationsControllers.append(manageEmailNotificationsController)
+        manageEmailNotificationsController.showWindow(self)
     }
     func mapNameIsUnique(name: String) -> Bool {
         for map in maps {
@@ -452,6 +385,73 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         } while changed
     }
+
+    public func pendNotification(emailAddress: String, notification: EmailNotification) {
+        for email in emails {
+            if email.email == emailAddress {
+                email.pendingNotifications.append(notification)
+            }
+        }
+    }
+
+    @IBAction func restoreAllConfig(_ sender: Any) {
+        DLog.log(.dataIntegrity,"restoring all config")
+        loadEmailPassword()
+        let decoder = PropertyListDecoder()
+        let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
+        DLog.log(.dataIntegrity,"restoring data from \(dataUrl2)")
+        if let data = try? Data(contentsOf: dataUrl2) {
+            if let codableDataStructure = try? decoder.decode(CodableDataStructure.self, from: data) {
+                self.maps = codableDataStructure.maps
+                self.emails = codableDataStructure.emailAddresses
+                for map in maps {
+                    DLog.log(.dataIntegrity,"Loaded map name \(map.name)")
+                    map.showWindow(self)
+                }
+                DLog.log(.dataIntegrity,"data restore complete")
+            }
+            fixMapIndex()
+        }
+    }
+
+    func saveAllConfig(_ sender: Any) -> Bool {
+        // we also save 2 copies of our data.  The 2nd copy only gets saved if the first save is successful.
+        DLog.log(.dataIntegrity,"saving all config")
+        let dataUrl1 = documentsDirectory().appendingPathComponent("autosavedata1.mom2")
+        let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
+        let successfulFirstSave = exportFullConfig(url: dataUrl1)
+        var successfulSecondSave = false
+        if successfulFirstSave {
+            successfulSecondSave = exportFullConfig(url: dataUrl2)
+        }
+        return successfulSecondSave
+    }
+    
+    @IBAction func showLogMenu(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"show log menu")
+        let showLogController = ShowLogController()
+        showLogControllers.append(showLogController)
+        showLogController.showWindow(self)
+    }
+    
+    @IBAction func showStatisticsMenu(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"show statistics menu")
+        let showStatisticsController = ShowStatisticsController()
+        showStatisticsControllers.append(showStatisticsController)
+        showStatisticsController.showWindow(self)
+    }
+    
+    
+
+    @objc func sendAlertEmails() {
+        DLog.log(.mail,"Checking for email alerts to send")
+        for email in emails {
+            email.emailAlert()
+        }
+    }
+    
+    
+    
 }
 extension AppDelegate: ReceivedPing4Delegate {
     func receivedPing4(ip: UInt32, sequence: UInt16, id: UInt16) {
