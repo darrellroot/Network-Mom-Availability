@@ -81,7 +81,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView identifier="Number" id="xu5-GG-nTc">
+                                                <tableCellView id="xu5-GG-nTc">
                                                     <rect key="frame" x="266" y="1" width="210" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
