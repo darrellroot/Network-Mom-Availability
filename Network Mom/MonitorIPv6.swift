@@ -23,6 +23,7 @@ class MonitorIPv6: Monitor, Codable {
         case latency
         case viewFrame
     }
+    var coreMonitorIPv6: CoreMonitorIPv6?
 
     var ipv6: IPv6Address
     
@@ -34,7 +35,7 @@ class MonitorIPv6: Monitor, Codable {
     //let ipv4: UInt32
     var lastIdReceived: UInt16 = 0
     var lastSequenceReceived: UInt16 = 0
-    var latencyEnabled = false
+    var latencyEnabled = true
     private var pingSentDate: Date?
     var status: MonitorStatus = .Blue {
         didSet {
@@ -65,6 +66,116 @@ class MonitorIPv6: Monitor, Codable {
         try container.encode(self.latency, forKey: .latency)
         try? container.encode(self.viewFrame, forKey: .viewFrame)
     }
+    
+    init?(coreData: CoreMonitorIPv6) {
+        self.coreMonitorIPv6 = coreData
+        guard let ipv6String = coreData.ipv6String else { return nil }
+        guard let ipv6 = IPv6Address(ipv6String) else { return nil }
+        self.ipv6 = ipv6
+        if let sockaddrin = sockaddr_in6(ipv6: ipv6, port: 0) {
+            self.sockaddrin = sockaddrin
+        } else {
+            return nil
+        }
+        self.latencyEnabled = coreData.latencyEnabled
+        self.hostname = coreData.hostname
+        self.comment = coreData.comment
+        self.viewFrame = NSRect(x: CGFloat(coreData.frameX), y: CGFloat(coreData.frameY), width: CGFloat(coreData.frameWidth), height: CGFloat(coreData.frameHeight))
+        do {
+            let fiveMinCoreData = coreData.availabilityFiveMinuteData ?? []
+            let fiveMinCoreTime = coreData.availabilityFiveMinuteTimestamp ?? []
+            let thirtyMinCoreData = coreData.availabilityThirtyMinuteData ?? []
+            let thirtyMinCoreTime = coreData.availabilityThirtyMinuteTimestamp ?? []
+            let twoHourCoreData = coreData.availabilityTwoHourData ?? []
+            let twoHourCoreTime = coreData.availabilityTwoHourTimestamp ?? []
+            let dayCoreData = coreData.availabilityDayData ?? []
+            let dayCoreTime = coreData.availabilityDayTimestamp ?? []
+            availability = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
+        }
+        if self.latencyEnabled {
+            let fiveMinCoreData = coreData.latencyFiveMinuteData ?? []
+            let fiveMinCoreTime = coreData.latencyFiveMinuteTimestamp ?? []
+            let thirtyMinCoreData = coreData.latencyThirtyMinuteData ?? []
+            let thirtyMinCoreTime = coreData.latencyThirtyMinuteTimestamp ?? []
+            let twoHourCoreData = coreData.latencyTwoHourData ?? []
+            let twoHourCoreTime = coreData.latencyTwoHourTimestamp ?? []
+            let dayCoreData = coreData.latencyDayData ?? []
+            let dayCoreTime = coreData.latencyDayTimestamp ?? []
+            latency = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
+        }
+    }
+
+    func writeCoreData() {
+        guard let coreData = coreMonitorIPv6 else {
+            DLog.log(.dataIntegrity,"Warning: no coreMonitorIPv6 core data structure in MonitorIPv6 \(ipv6.debugDescription)")
+            return
+        }
+        coreData.frameHeight = Float(viewFrame?.height ?? 200.0)
+        coreData.frameWidth = Float(viewFrame?.width ?? 200.0)
+        coreData.frameX = Float(viewFrame?.minX ?? 40.0)
+        coreData.frameY = Float(viewFrame?.minY ?? 40.0)
+        coreData.latencyEnabled = self.latencyEnabled
+        coreData.comment = self.comment
+        coreData.hostname = self.hostname
+        coreData.ipv6String = self.ipv6.debugDescription
+        
+        for dataType in MonitorDataType.allCases {
+            let data = availability.getData(dataType: dataType)
+            var timestamps: [Int] = []
+            var values: [Double] = []
+            for dataPoint in data {
+                if let value = dataPoint.value {
+                    timestamps.append(dataPoint.timestamp)
+                    values.append(value)
+                }
+            }
+            switch dataType {
+            case .FiveMinute:
+                coreData.availabilityFiveMinuteTimestamp = timestamps
+                coreData.availabilityFiveMinuteData = values
+            case .ThirtyMinute:
+                coreData.availabilityThirtyMinuteTimestamp = timestamps
+                coreData.availabilityThirtyMinuteData = values
+            case .TwoHour:
+                coreData.availabilityTwoHourTimestamp = timestamps
+                coreData.availabilityTwoHourData = values
+            case .OneDay:
+                coreData.availabilityDayTimestamp = timestamps
+                coreData.availabilityDayData = values
+            }
+            DLog.log(.dataIntegrity, "Monitor IPv6 \(ipv6.debugDescription) availability wrote dataType \(dataType) \(values.count) entries")
+        }
+        
+        if let latency = latency {
+            for dataType in MonitorDataType.allCases {
+                let data = latency.getData(dataType: dataType)
+                var timestamps: [Int] = []
+                var values: [Double] = []
+                for dataPoint in data {
+                    if let value = dataPoint.value {
+                        timestamps.append(dataPoint.timestamp)
+                        values.append(value)
+                    }
+                }
+                switch dataType {
+                case .FiveMinute:
+                    coreData.latencyFiveMinuteTimestamp = timestamps
+                    coreData.latencyFiveMinuteData = values
+                case .ThirtyMinute:
+                    coreData.latencyThirtyMinuteTimestamp = timestamps
+                    coreData.latencyThirtyMinuteData = values
+                case .TwoHour:
+                    coreData.latencyTwoHourTimestamp = timestamps
+                    coreData.latencyTwoHourData = values
+                case .OneDay:
+                    coreData.latencyDayTimestamp = timestamps
+                    coreData.latencyDayData = values
+                }
+                DLog.log(.dataIntegrity, "Monitor IPv6 \(ipv6.debugDescription) latency wrote dataType \(dataType) \(values.count) entries")
+            }
+        }
+    }
+
     required init(from decoder: Decoder) throws {
         // after decoder need to fix mapDelegate and viewDelegate
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -96,9 +207,10 @@ class MonitorIPv6: Monitor, Codable {
     }
     
 
-    init?(ipv6: IPv6Address, hostname: String?, latencyEnabled: Bool) {
+    init?(ipv6: IPv6Address, hostname: String?, latencyEnabled: Bool, comment: String?) {
         self.hostname = hostname
         self.latencyEnabled = latencyEnabled
+        self.comment = comment
         self.ipv6 = ipv6
         guard let tmpsockaddrin = sockaddr_in6(ipv6: ipv6, port: 0) else { return nil }
         self.sockaddrin = tmpsockaddrin
@@ -106,6 +218,8 @@ class MonitorIPv6: Monitor, Codable {
         if latencyEnabled {
             latency = RRDGauge()
         }
+        coreMonitorIPv6 = CoreMonitorIPv6(context: appDelegate.managedContext)
+        self.writeCoreData()
     }
     var label: String {
         var label = ""
@@ -121,6 +235,10 @@ class MonitorIPv6: Monitor, Codable {
 
     deinit {
         DLog.log(.dataIntegrity,"deallocating ipv6 monitor \(ipv6.debugDescription)")
+        if let coreMonitorIPv6 = self.coreMonitorIPv6 {
+            DLog.log(.dataIntegrity,"deleting ipv6 nsmanaged object self.ipv6.debugDescription")
+            coreMonitorIPv6.managedObjectContext?.delete(coreMonitorIPv6)
+        }
     }
 
     func sendPing(pingSocket: CFSocket?) {

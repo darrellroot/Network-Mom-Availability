@@ -73,7 +73,7 @@ class ImportMonitorListController: NSWindowController, NSWindowDelegate {
                     alreadyMonitored += line + "\n"
                     continue
                 }
-                if let newMonitor = MonitorIPv4(ipv4string: ipv4string, hostname: hostname, latencyEnabled: true) {
+                if let newMonitor = MonitorIPv4(ipv4string: ipv4string, hostname: hostname, latencyEnabled: true, comment: comment) {
                     newMonitor.comment = comment
                     delegate?.addIPv4Monitor(monitor: newMonitor)
                     added += line + "\n"
@@ -87,7 +87,7 @@ class ImportMonitorListController: NSWindowController, NSWindowDelegate {
                     alreadyMonitored += line + "\n"
                     continue
                 }
-                if let newMonitor = MonitorIPv6(ipv6: ipv6, hostname: hostname, latencyEnabled: true) {
+                if let newMonitor = MonitorIPv6(ipv6: ipv6, hostname: hostname, latencyEnabled: true, comment: comment) {
                     newMonitor.comment = comment
                     delegate.addIPv6Monitor(monitor: newMonitor)
                     added += line + "\n"

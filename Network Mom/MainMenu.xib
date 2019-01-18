@@ -91,6 +91,12 @@
                                     <action selector="newMap:" target="-1" id="MGB-0c-dVk"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Save" id="Ygk-9K-o9k" userLabel="Save">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="saveConfigMenu:" target="Voe-Tx-rLC" id="H8A-Hh-tpg"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Import Map and Data" id="aqA-Sc-SS8">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>

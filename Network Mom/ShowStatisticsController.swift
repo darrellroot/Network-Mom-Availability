@@ -51,6 +51,9 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
         items.append("Email Destinations")
         numbers.append(appDelegate.emails.count)
         
+        //items.append("Core Data Email Destinations")
+        //numbers.append(appDelegate.coreEmails.count)
+        
         items.append("Add Email Recipient Windows")
         numbers.append(appDelegate.addEmailRecipientControllers.count)
         

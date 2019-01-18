@@ -100,7 +100,7 @@ class AddEmailRecipientController: NSWindowController, NSWindowDelegate {
             }
         }
         // if we got here, we need to create a new email
-        let newEmail = EmailAddress(name: emailNameOutlet.stringValue, email: emailAddressOutlet.stringValue, pagerOnly: pagerOnly)
+        let newEmail = EmailAddress(name: emailNameOutlet.stringValue, email: emailAddressOutlet.stringValue, pagerOnly: pagerOnly, context: appDelegate.managedContext)
             appDelegate.emails.append(newEmail)
             emailResultOutlet.stringValue = "Created new email recipient"
     }

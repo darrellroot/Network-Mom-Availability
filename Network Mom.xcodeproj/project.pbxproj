@@ -262,6 +262,15 @@
 		2F96034421A9F28E0037E026 /* CodableDataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F96034321A9F28E0037E026 /* CodableDataStructure.swift */; };
 		2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */; };
 		2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */; };
+		2FA0296A21ED363900ABAB9A /* CoreMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */; };
+		2FA0296B21ED363900ABAB9A /* CoreMap+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */; };
+		2FA0296C21ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296421ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift */; };
+		2FA0296D21ED363900ABAB9A /* CoreEmailAddress+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296521ED363900ABAB9A /* CoreEmailAddress+CoreDataProperties.swift */; };
+		2FA0296E21ED363900ABAB9A /* CoreMonitorIPv4+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296621ED363900ABAB9A /* CoreMonitorIPv4+CoreDataClass.swift */; };
+		2FA0296F21ED363900ABAB9A /* CoreMonitorIPv4+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296721ED363900ABAB9A /* CoreMonitorIPv4+CoreDataProperties.swift */; };
+		2FA0297021ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296821ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift */; };
+		2FA0297121ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296921ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift */; };
+		2FA0297321F0209400ABAB9A /* UInt32+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */; };
 		2FA35D9021AA4CA500556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9121AA4CB800556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
@@ -269,6 +278,9 @@
 		2FA35D9421AA4CC900556A26 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0B3A021AFB51B00C44DB5 /* Notification.swift */; };
 		2FC0B3A321AFC06800C44DB5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0B3A221AFC06800C44DB5 /* Defaults.swift */; };
+		2FD136E821E54E7D00770B09 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136E621E54E7D00770B09 /* CoreDataModel.xcdatamodeld */; };
+		2FD136EE21E5560900770B09 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136ED21E5560900770B09 /* CoreDataStack.swift */; };
+		2FD136F021E949E400770B09 /* NetworkMomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136EF21E949E400770B09 /* NetworkMomError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -647,8 +659,20 @@
 		2F96034321A9F28E0037E026 /* CodableDataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableDataStructure.swift; sourceTree = "<group>"; };
 		2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEmailRecipientController.swift; sourceTree = "<group>"; };
 		2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteEmailRecipientController.xib; sourceTree = "<group>"; };
+		2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMap+CoreDataClass.swift"; path = "Network Mom/CoreMap+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMap+CoreDataProperties.swift"; path = "Network Mom/CoreMap+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2FA0296421ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreEmailAddress+CoreDataClass.swift"; path = "Network Mom/CoreEmailAddress+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2FA0296521ED363900ABAB9A /* CoreEmailAddress+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreEmailAddress+CoreDataProperties.swift"; path = "Network Mom/CoreEmailAddress+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2FA0296621ED363900ABAB9A /* CoreMonitorIPv4+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMonitorIPv4+CoreDataClass.swift"; path = "Network Mom/CoreMonitorIPv4+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2FA0296721ED363900ABAB9A /* CoreMonitorIPv4+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMonitorIPv4+CoreDataProperties.swift"; path = "Network Mom/CoreMonitorIPv4+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2FA0296821ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMonitorIPv6+CoreDataClass.swift"; path = "Network Mom/CoreMonitorIPv6+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2FA0296921ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMonitorIPv6+CoreDataProperties.swift"; path = "Network Mom/CoreMonitorIPv6+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt32+extensions.swift"; sourceTree = "<group>"; };
 		2FC0B3A021AFB51B00C44DB5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2FC0B3A221AFC06800C44DB5 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		2FD136ED21E5560900770B09 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		2FD136EF21E949E400770B09 /* NetworkMomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMomError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -763,6 +787,14 @@
 		2F904D31219F76170040530B = {
 			isa = PBXGroup;
 			children = (
+				2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */,
+				2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */,
+				2FA0296421ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift */,
+				2FA0296521ED363900ABAB9A /* CoreEmailAddress+CoreDataProperties.swift */,
+				2FA0296621ED363900ABAB9A /* CoreMonitorIPv4+CoreDataClass.swift */,
+				2FA0296721ED363900ABAB9A /* CoreMonitorIPv4+CoreDataProperties.swift */,
+				2FA0296821ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift */,
+				2FA0296921ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift */,
 				2F904D3C219F76170040530B /* Network Mom */,
 				2F50618121B23CF200C19984 /* Network Mom Help */,
 				2F904D52219F769D0040530B /* LoggerAPI */,
@@ -811,6 +843,8 @@
 				2F96034321A9F28E0037E026 /* CodableDataStructure.swift */,
 				2F904FBF21A206250040530B /* Constants.swift */,
 				2F904E51219F7A420040530B /* ControllerDelegate.swift */,
+				2FD136E621E54E7D00770B09 /* CoreDataModel.xcdatamodeld */,
+				2FD136ED21E5560900770B09 /* CoreDataStack.swift */,
 				2FC0B3A221AFC06800C44DB5 /* Defaults.swift */,
 				2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */,
 				2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */,
@@ -843,6 +877,7 @@
 				2F904E5B219F7A450040530B /* MonitorProtocol.swift */,
 				2F904E48219F7A330040530B /* MonitorWindowController.swift */,
 				2F904E42219F7A310040530B /* MonitorWindowController.xib */,
+				2FD136EF21E949E400770B09 /* NetworkMomError.swift */,
 				2F904E2B219F79FE0040530B /* Network Mom-Bridging-Header.h */,
 				2F904E73219F7A730040530B /* Network Mom.entitlements */,
 				2FC0B3A021AFB51B00C44DB5 /* Notification.swift */,
@@ -858,6 +893,7 @@
 				2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */,
 				2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */,
 				2F904E60219F7A460040530B /* String+extensions.swift */,
+				2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */,
 				2F904FC321A3687C0040530B /* Types.swift */,
 			);
 			path = "Network Mom";
@@ -1613,13 +1649,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F904E3A219F7A140040530B /* AddIPv4MonitorController.swift in Sources */,
+				2FA0297121ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift in Sources */,
+				2FA0297321F0209400ABAB9A /* UInt32+extensions.swift in Sources */,
+				2FD136EE21E5560900770B09 /* CoreDataStack.swift in Sources */,
 				2F904E6A219F7A460040530B /* icmpechorequest.swift in Sources */,
 				2F904E6F219F7A460040530B /* FlipStackView.swift in Sources */,
 				2F5061D921BDE7EC00C19984 /* ImportMonitorListController.swift in Sources */,
 				2F904FD121A3707B0040530B /* AddEmailRecipientController.swift in Sources */,
 				2F904E69219F7A460040530B /* FlipView.swift in Sources */,
+				2FA0296B21ED363900ABAB9A /* CoreMap+CoreDataProperties.swift in Sources */,
 				2F904E6D219F7A460040530B /* AddMonitorDelegate.swift in Sources */,
 				2F904E65219F7A460040530B /* HostAddressQuery.swift in Sources */,
+				2FA0296C21ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift in Sources */,
 				2F904E6C219F7A460040530B /* MonitorProtocol.swift in Sources */,
 				2F904E72219F7A460040530B /* IcmpV6EchoRequest.swift in Sources */,
 				2FC0B3A321AFC06800C44DB5 /* Defaults.swift in Sources */,
@@ -1627,16 +1668,22 @@
 				2F904E49219F7A330040530B /* MapAvailabilityReportController.swift in Sources */,
 				2F904FBA219FC1DF0040530B /* RRDBuffer.swift in Sources */,
 				2F904E50219F7A330040530B /* MonitorWindowController.swift in Sources */,
+				2FA0296D21ED363900ABAB9A /* CoreEmailAddress+CoreDataProperties.swift in Sources */,
 				2F904FC021A206250040530B /* Constants.swift in Sources */,
 				2F904E39219F7A140040530B /* AppDelegate.swift in Sources */,
 				2F904E2E219F79FF0040530B /* ShowLogController.swift in Sources */,
+				2FA0296F21ED363900ABAB9A /* CoreMonitorIPv4+CoreDataProperties.swift in Sources */,
+				2FA0296A21ED363900ABAB9A /* CoreMap+CoreDataClass.swift in Sources */,
+				2FD136F021E949E400770B09 /* NetworkMomError.swift in Sources */,
 				2F904E68219F7A460040530B /* RRDGauge.swift in Sources */,
 				2F904E3C219F7A140040530B /* EmailServerController.swift in Sources */,
 				2F5061D221BC744100C19984 /* Array+extensions.swift in Sources */,
 				2F904E3B219F7A140040530B /* AddIPv6MonitorController.swift in Sources */,
 				2F904FD921A4B17D0040530B /* ManageEmailNotificationsController.swift in Sources */,
 				2F904E71219F7A460040530B /* String+extensions.swift in Sources */,
+				2FA0296E21ED363900ABAB9A /* CoreMonitorIPv4+CoreDataClass.swift in Sources */,
 				2F5061D521BC876900C19984 /* ShowStatisticsController.swift in Sources */,
+				2FD136E821E54E7D00770B09 /* CoreDataModel.xcdatamodeld in Sources */,
 				2F5061CF21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift in Sources */,
 				2F904E62219F7A460040530B /* ControllerDelegate.swift in Sources */,
 				2F904E4E219F7A330040530B /* DragMonitorView.swift in Sources */,
@@ -1651,6 +1698,7 @@
 				2F5061B921B49B0600C19984 /* AboutNetworkMomController.swift in Sources */,
 				2F904FC621A36D190040530B /* EmailAddress.swift in Sources */,
 				2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */,
+				2FA0297021ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift in Sources */,
 				2F904E66219F7A460040530B /* socket-extensions.swift in Sources */,
 				2F904E64219F7A460040530B /* MonitorEnumeration.swift in Sources */,
 				2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */,
@@ -2161,7 +2209,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "darrellroot.com.Network-Mom";
+				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.availability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Network Mom/Network Mom-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2184,7 +2232,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "darrellroot.com.Network-Mom";
+				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.availability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Network Mom/Network Mom-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -2700,6 +2748,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2FD136E621E54E7D00770B09 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2F904D32219F76170040530B /* Project object */;
 }

@@ -16,6 +16,7 @@ import AppKit
 import LoggerAPI
 import DLog
 import Security
+import CoreData
 
 @NSApplicationMain
 
@@ -32,6 +33,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     var emails: [EmailAddress] = []
+    //var coreEmails: [CoreEmailAddress] = []
+    lazy var managedContext: NSManagedObjectContext! = coreDataStack.managedContext
+    lazy var coreDataStack = CoreDataStack(modelName: "CoreDataModel")
+//    var persistentContainer = NSPersistentContainer(name: "CoreDataModel")
 
     @IBOutlet weak var configureEmailServerOutlet: NSMenuItem!
     
@@ -193,7 +198,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         emailNotificationConfigurationReportControllers.append(emailNotificationConfigurationReportController)
         emailNotificationConfigurationReportController.showWindow(self)
     }
-    
     
     @IBAction func exportFullConfiguration(_ sender: NSMenuItem) {
         let savePanel = NSSavePanel()
@@ -397,13 +401,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func restoreAllConfig(_ sender: Any) {
         DLog.log(.dataIntegrity,"restoring all config")
         loadEmailPassword()
-        let decoder = PropertyListDecoder()
+        
+        //attempting to load emails from core data
+        DLog.log(.dataIntegrity,"Attempting to read email list from Core Data")
+        let request = NSFetchRequest<CoreEmailAddress>(entityName: "CoreEmailAddress")
+        let sortDescriptor = NSSortDescriptor(key: "email",ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        do {
+            let coreEmails = try managedContext.fetch(request)
+            
+            DLog.log(.dataIntegrity,"read \(coreEmails.count) email addresses from core data")
+            for coreEmail in coreEmails {
+                DLog.log(.dataIntegrity,"importing email \(String(describing: coreEmail.email))")
+                let emailAddress = EmailAddress(coreEmailAddress: coreEmail, context: managedContext)
+                emails.append(emailAddress)
+                
+            }
+        } catch {
+            DLog.log(.dataIntegrity,"Failed to read email addresses from Core data error: \(error)")
+        }
+        //self.emails = codableDataStructure.emailAddresses
+
+        let mapRequest = NSFetchRequest<CoreMap>(entityName: "CoreMap")
+        do {
+            let coreMaps = try managedContext.fetch(mapRequest)
+            DLog.log(.dataIntegrity,"read \(coreMaps.count) maps from core data")
+            for (index,coreMap) in coreMaps.enumerated() {
+                DLog.log(.dataIntegrity,"importing map \(coreMap.name)")
+                let newMap = MapWindowController(mapIndex: index, coreMap: coreMap)
+                maps.append(newMap)
+            }
+        } catch {
+            DLog.log(.dataIntegrity,"Failed to read maps from Core data error: \(error)")
+        }
+        
+/*        let decoder = PropertyListDecoder()
         let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
         DLog.log(.dataIntegrity,"restoring data from \(dataUrl2)")
         if let data = try? Data(contentsOf: dataUrl2) {
             if let codableDataStructure = try? decoder.decode(CodableDataStructure.self, from: data) {
                 self.maps = codableDataStructure.maps
-                self.emails = codableDataStructure.emailAddresses
                 for map in maps {
                     DLog.log(.dataIntegrity,"Loaded map name \(map.name)")
                     map.showWindow(self)
@@ -411,20 +448,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 DLog.log(.dataIntegrity,"data restore complete")
             }
             fixMapIndex()
-        }
+        }*/
+        fixMapIndex()
     }
 
+    @IBAction func saveConfigMenu(_ sender: Any) {
+        let _ : Bool = saveAllConfig(sender)
+    }
     func saveAllConfig(_ sender: Any) -> Bool {
         // we also save 2 copies of our data.  The 2nd copy only gets saved if the first save is successful.
+        coreDataStack.saveContext()
         DLog.log(.dataIntegrity,"saving all config")
-        let dataUrl1 = documentsDirectory().appendingPathComponent("autosavedata1.mom2")
+/*        let dataUrl1 = documentsDirectory().appendingPathComponent("autosavedata1.mom2")
         let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
         let successfulFirstSave = exportFullConfig(url: dataUrl1)
         var successfulSecondSave = false
         if successfulFirstSave {
             successfulSecondSave = exportFullConfig(url: dataUrl2)
         }
-        return successfulSecondSave
+        return successfulSecondSave*/
+        let startSaveTime = Date()
+        for map in maps {
+            map.writeCoreData()
+        }
+        do {
+            try managedContext?.save()
+        } catch {
+            DLog.log(.dataIntegrity,"saveAllConfig failed error \(error)")
+            return false
+        }
+        let timeElapsed = Date().timeIntervalSince(startSaveTime)
+        DLog.log(.dataIntegrity,"Core Data Saved in \(timeElapsed) seconds")
+        return true
     }
     
     @IBAction func showLogMenu(_ sender: NSMenuItem) {

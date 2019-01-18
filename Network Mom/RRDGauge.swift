@@ -1,5 +1,5 @@
 //
-//  RRDAvailability.swift
+//  RRDGauge.swift
 //  Network Mom
 //
 //  Created by Darrell Root on 11/5/18.
@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DLog
 
 struct RRDGauge: Codable {
     static let maxData = 600
@@ -34,7 +35,48 @@ struct RRDGauge: Codable {
     }
 
     var currentTime: Int!  // all mutating public functions must update currentTime when called
-    
+
+    init(fiveMinData: [Double], fiveMinTime: [Int],thirtyMinData: [Double], thirtyMinTime: [Int],twoHourData: [Double],twoHourTime: [Int], dayData: [Double],dayTime: [Int]) {
+       if fiveMinData.count == fiveMinTime.count {
+            for (index,data) in fiveMinData.enumerated() {
+                let newData = RRDData(timestamp: fiveMinTime[index], value: data)
+                self.fiveMinuteData.insert(newData)
+            }
+        } else {
+        DLog.log(.dataIntegrity,"Reading data count mismatch fiveMinData.count \(String(describing: fiveMinData.count)) fiveMinTime.count \(String(describing: fiveMinTime.count))")
+        }
+        if thirtyMinData.count == thirtyMinTime.count {
+            for (index,data) in thirtyMinData.enumerated() {
+                let newData = RRDData(timestamp: thirtyMinTime[index], value: data)
+                self.thirtyMinuteData.insert(newData)
+            }
+        } else {
+            DLog.log(.dataIntegrity,"Reading data count mismatch thirtyMinData.count \(String(describing: thirtyMinData.count)) thirtyMinTime.count \(String(describing: thirtyMinTime.count))")
+        }
+        if twoHourData.count == twoHourTime.count {
+            for (index,data) in twoHourData.enumerated() {
+                let newData = RRDData(timestamp: twoHourTime[index], value: data)
+                self.twoHourData.insert(newData)
+            }
+        } else {
+            DLog.log(.dataIntegrity,"Reading data count mismatch twoHourData.count \(String(describing: twoHourData.count)) twoHourTime.count \(String(describing: twoHourTime.count))")
+        }
+        if dayData.count == dayTime.count {
+            for (index,data) in dayData.enumerated() {
+                let newData = RRDData(timestamp: dayTime[index], value: data)
+                self.dayData.insert(newData)
+            }
+        } else {
+            DLog.log(.dataIntegrity,"Reading data count mismatch dayData.count \(String(describing: dayData.count)) dayTime.count \(String(describing: dayTime.count))")
+        }
+        currentTime = Int(Date().timeIntervalSinceReferenceDate)
+        for dataType in MonitorDataType.allCases {
+            currentNumerator[dataType] = 0
+            currentDenominator[dataType] = 0
+            currentStartTimestamp[dataType] = currentTime / dataType.rawValue * dataType.rawValue
+        }
+    }
+
     init() {
         currentTime = Int(Date().timeIntervalSinceReferenceDate)
         for dataType in MonitorDataType.allCases {

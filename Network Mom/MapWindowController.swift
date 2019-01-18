@@ -12,6 +12,8 @@ import DLog
 
 class MapWindowController: NSWindowController, Codable {
 
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
+
     enum CodingKeys: String, CodingKey {
         case availability
         case ipv4monitors
@@ -22,6 +24,8 @@ class MapWindowController: NSWindowController, Codable {
         case emailReports
     }
 
+    var coreMap: CoreMap?
+    
     var windowFrame: NSRect? // used during decoding
     var availability: RRDGauge
     var mapIndex: Int! // index in AppDelegate maps array
@@ -51,8 +55,6 @@ class MapWindowController: NSWindowController, Codable {
     var numberSweeps: Int
     var pingTimer: Timer!
 
-    let appDelegate = NSApplication.shared.delegate as! AppDelegate
-
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         availability = try container.decode(RRDGauge.self, forKey: .availability)
@@ -69,7 +71,10 @@ class MapWindowController: NSWindowController, Codable {
         guard Defaults.pingSweepDuration % Defaults.pingTimerDuration == 0 else {
             fatalError("pingSweepDuration is not an integer multiple of pingTimerDuration")
         }
+        coreMap = CoreMap(context: appDelegate.managedContext)
+        
         super.init(window: nil)
+        writeCoreData()
         for monitor in ipv4monitors {
             monitor.mapDelegate = self
         }
@@ -214,11 +219,19 @@ class MapWindowController: NSWindowController, Codable {
             }
             if modalResponse == NSApplication.ModalResponse.alertSecondButtonReturn {
                 DLog.log(.userInterface,"second button confirms delete")
+                self.pingTimer.invalidate()
+                self.pingTimer = nil
                 self.appDelegate.deleteMap(index: self.mapIndex, name: self.name)
             }
         })
     }
     
+    deinit {
+        DLog.log(.dataIntegrity,"Deinit MapWindowController \(self.name)")
+        if let coreMap = self.coreMap {
+            coreMap.managedObjectContext?.delete(coreMap)
+        }
+    }
     private func deleteSelectedMonitor() -> Bool {
         DLog.log(.dataIntegrity,"entered deleteSelectedMonitor")
         for (viewIndex,monitorView) in monitorViews.enumerated() {
@@ -280,8 +293,64 @@ class MapWindowController: NSWindowController, Codable {
         self.init(window: nil)
         self.name = name
         self.mapIndex = mapIndex
+        self.coreMap = CoreMap(context: appDelegate.managedContext)
+        writeCoreData()
     }
     
+    convenience init(mapIndex: Int, coreMap: CoreMap) {
+        self.init(window: nil)
+        self.mapIndex = mapIndex
+        self.coreMap = coreMap
+        readCoreData(coreData: coreMap)
+    }
+    
+    func readCoreData(coreData: CoreMap) {
+        self.name = coreData.name ?? "unknown map name"
+        self.emailAlerts = coreData.emailAlerts ?? []
+        self.emailReports = coreData.emailReports ?? []
+        let frame = NSRect(x: Double(coreData.frameX), y: Double(coreData.frameY), width: Double(coreData.frameWidth), height: Double(coreData.frameHeight))
+        self.windowFrame = frame
+        
+        let fiveMinCoreData = coreData.availabilityFiveMinuteData ?? []
+        let fiveMinCoreTime = coreData.availabilityFiveMinuteTimestamp ?? []
+        let thirtyMinCoreData = coreData.availabilityThirtyMinuteData ?? []
+        let thirtyMinCoreTime = coreData.availabilityThirtyMinuteTimestamp ?? []
+        let twoHourCoreData = coreData.availabilityTwoHourData ?? []
+        let twoHourCoreTime = coreData.availabilityTwoHourTimestamp ?? []
+        let dayCoreData = coreData.availabilityDayData ?? []
+        let dayCoreTime = coreData.availabilityDayTimestamp ?? []
+        availability = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
+        
+        for coreMonitorIPv4 in coreData.ipv4monitors ?? [] {
+            if let ipv4Monitor = MonitorIPv4(coreData: coreMonitorIPv4) {
+                ipv4Monitor.mapDelegate = self
+                self.monitors.append(ipv4Monitor as Monitor)
+            }
+        }
+        for coreMonitorIPv6 in coreData.ipv6monitors ?? [] {
+            if let ipv6Monitor = MonitorIPv6(coreData: coreMonitorIPv6) {
+                ipv6Monitor.mapDelegate = self
+                self.monitors.append(ipv6Monitor as Monitor)
+            }
+        }
+        for monitor in monitors {
+            if monitor.viewDelegate == nil {
+                // this means we just imported the map via codable
+                var newFrame: NSRect
+                if let viewFrame = monitor.viewFrame {
+                    newFrame = viewFrame
+                } else {
+                    newFrame = NSRect(x: 50, y: 50, width: 50, height: 30)
+                }
+                let dragMonitorView = DragMonitorView(frame: newFrame, monitor: monitor)
+                dragMonitorView.controllerDelegate = self
+                monitorViews.append(dragMonitorView)
+                mainView?.addSubview(dragMonitorView)
+                monitor.viewDelegate = dragMonitorView
+            }
+        }
+    }
+
     required init?(coder: NSCoder) {
         numberSweeps = Defaults.pingSweepDuration / Defaults.pingTimerDuration
         guard Defaults.pingSweepDuration % Defaults.pingTimerDuration == 0 else {
@@ -335,6 +404,57 @@ class MapWindowController: NSWindowController, Codable {
             }
         }
     }
+    
+    func writeCoreData() {
+        if coreMap == nil {
+            DLog.log(.dataIntegrity,"Initializing coreMap core data structure in MapWindowController \(name)")
+            self.coreMap = CoreMap(context: appDelegate.managedContext)
+        }
+        if let coreData = self.coreMap {
+            coreData.emailAlerts = emailAlerts
+            coreData.emailReports = emailReports
+            coreData.frameHeight = Float(windowFrame?.height ?? 200.0)
+            coreData.frameWidth = Float(windowFrame?.width ?? 200.0)
+            coreData.frameX = Float(windowFrame?.minX ?? 40.0)
+            coreData.frameY = Float(windowFrame?.minY ?? 40.0)
+            coreData.name = name
+            
+            
+            for dataType in MonitorDataType.allCases {
+                let data = availability.getData(dataType: dataType)
+                var timestamps: [Int] = []
+                var values: [Double] = []
+                for dataPoint in data {
+                    if let value = dataPoint.value {
+                        timestamps.append(dataPoint.timestamp)
+                        values.append(value)
+                    }
+                }
+                switch dataType {
+                case .FiveMinute:
+                    coreData.availabilityFiveMinuteTimestamp = timestamps
+                    coreData.availabilityFiveMinuteData = values
+                case .ThirtyMinute:
+                    coreData.availabilityThirtyMinuteTimestamp = timestamps
+                    coreData.availabilityThirtyMinuteData = values
+                case .TwoHour:
+                    coreData.availabilityTwoHourTimestamp = timestamps
+                    coreData.availabilityTwoHourData = values
+                case .OneDay:
+                    coreData.availabilityDayTimestamp = timestamps
+                    coreData.availabilityDayData = values
+                }
+                DLog.log(.dataIntegrity, "Map IPv6 \(name) availability wrote dataType \(dataType) \(values.count) entries")
+            }
+
+            
+            for monitor in monitors {
+                monitor.writeCoreData()
+            }
+        } else {
+            DLog.log(.dataIntegrity,"Error: failed to initialize core data structure in MapWindowController \(name)")
+        }
+    }
     override func windowDidLoad() {
         super.windowDidLoad()
         if let windowFrame = windowFrame {
@@ -345,7 +465,7 @@ class MapWindowController: NSWindowController, Codable {
         let name2 = name
         name = name2 // trigger didset
         
-        for monitor in monitors {
+        /*for monitor in monitors {
             if monitor.viewDelegate == nil {
                 // this means we just imported the map via codable
                 var newFrame: NSRect
@@ -360,7 +480,7 @@ class MapWindowController: NSWindowController, Codable {
                 mainView?.addSubview(dragMonitorView)
                 monitor.viewDelegate = dragMonitorView
             }
-        }
+        }*/
         pingTimer = Timer.scheduledTimer(timeInterval: Double(Defaults.pingTimerDuration), target: self, selector: #selector(executePings), userInfo: nil, repeats: true)
         pingTimer.tolerance = 0.3
         RunLoop.current.add(pingTimer,forMode: .common)
@@ -398,6 +518,7 @@ extension MapWindowController: AddMonitorDelegate {
     func addIPv4Monitor(monitor: MonitorIPv4) {
         monitors.append(monitor as Monitor)
         monitor.mapDelegate = self
+        monitor.coreMonitorIPv4?.coreMap = self.coreMap
         let dragMonitorView = DragMonitorView(frame: NSRect(x: 50, y: 50, width: 50, height: 30), monitor: monitor)
         dragMonitorView.controllerDelegate = self
         monitorViews.append(dragMonitorView)
@@ -406,6 +527,7 @@ extension MapWindowController: AddMonitorDelegate {
     func addIPv6Monitor(monitor: MonitorIPv6) {
         monitors.append(monitor as Monitor)
         monitor.mapDelegate = self
+        monitor.coreMonitorIPv6?.coreMap = self.coreMap
         let dragMonitorView = DragMonitorView(frame: NSRect(x: 50, y: 50, width: 50, height: 30), monitor: monitor)
         dragMonitorView.controllerDelegate = self
         monitorViews.append(dragMonitorView)
@@ -441,10 +563,3 @@ extension MapWindowController: NSWindowDelegate {
         }
     }
 }
-/*
-extension MapWindowController: NSOpenSavePanelDelegate {
-    func panel(_ sender: Any, validate: URL) {
-        print("url to validate \(validate)")
-    }
-}
- */

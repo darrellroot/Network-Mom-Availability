@@ -79,9 +79,8 @@ class AddIPv6MonitorController: NSWindowController {
         }
         if let validatedIP = validatedIP {
             DLog.log(.userInterface,"adding new monitor \(validatedIP.debugDescription) with latency \(latencyEnabled)")
-            if let newMonitor = MonitorIPv6(ipv6: validatedIP, hostname: validatedHostname, latencyEnabled: latencyEnabled) {
+            if let newMonitor = MonitorIPv6(ipv6: validatedIP, hostname: validatedHostname, latencyEnabled: latencyEnabled, comment: comment) {
                 newMonitor.comment = comment
-                DLog.log(.userInterface,"set new monitor comment \(String(describing: comment))")
                 delegate?.addIPv6Monitor(monitor: newMonitor)
             }
         }

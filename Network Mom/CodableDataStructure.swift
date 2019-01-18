@@ -14,20 +14,20 @@ import AppKit
 class CodableDataStructure: Codable {
     enum CodingKeys: String, CodingKey {
         case maps
-        case emailAddresses
+        //case emailAddresses
     }
     var maps: [MapWindowController]
-    var emailAddresses: [EmailAddress] = []
+    //var emailAddresses: [EmailAddress] = []
     init() {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         maps = appDelegate.maps
-        emailAddresses = appDelegate.emails
+        //emailAddresses = appDelegate.emails
     }
     required init(from decoder: Decoder) throws {
         //let appDelegate = NSApplication.shared.delegate as! AppDelegate
         let container = try decoder.container(keyedBy: CodingKeys.self)
         maps = (try? container.decode([MapWindowController].self, forKey: .maps)) ?? []
-        emailAddresses = (try? container.decode([EmailAddress].self, forKey: .emailAddresses)) ?? []
+        //emailAddresses = (try? container.decode([EmailAddress].self, forKey: .emailAddresses)) ?? []
         //appDelegate.maps = maps
         //appDelegate.emails = emailAddresses
     }

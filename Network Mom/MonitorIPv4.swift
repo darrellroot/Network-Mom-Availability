@@ -24,6 +24,7 @@ class MonitorIPv4: Monitor, Codable {
         case viewFrame
         case saveTest
     }
+    var coreMonitorIPv4: CoreMonitorIPv4?
     var ipv4string: String
     var sockaddrin: sockaddr_in
     var lastPingID: UInt16 = 0      //last ping id sent
@@ -32,7 +33,7 @@ class MonitorIPv4: Monitor, Codable {
     let ipv4: UInt32
     var lastIdReceived: UInt16 = 0
     var lastSequenceReceived: UInt16 = 0
-    var latencyEnabled = false
+    var latencyEnabled = true
     private var pingSentDate: Date?
     var status: MonitorStatus = .Blue {
         didSet {
@@ -66,6 +67,109 @@ class MonitorIPv4: Monitor, Codable {
         try? container.encode(self.viewFrame, forKey: .viewFrame)
         //try container.encode(self.saveTest, forKey: .saveTest)
     }
+    init?(coreData: CoreMonitorIPv4) {
+        self.coreMonitorIPv4 = coreData
+        self.ipv4 = UInt32(coreData.ipv4)
+        self.ipv4string = UInt32(coreData.ipv4).ipv4string
+        guard let tmpsockaddrin = sockaddr_in(ipv4string: UInt32(coreData.ipv4).ipv4string, port: 0) else { return nil }
+        self.sockaddrin = tmpsockaddrin
+        self.latencyEnabled = coreData.latencyEnabled
+        self.hostname = coreData.hostname
+        self.comment = coreData.comment
+        self.viewFrame = NSRect(x: CGFloat(coreData.frameX), y: CGFloat(coreData.frameY), width: CGFloat(coreData.frameWidth), height: CGFloat(coreData.frameHeight))
+        do {
+            let fiveMinCoreData = coreData.availabilityFiveMinuteData ?? []
+            let fiveMinCoreTime = coreData.availabilityFiveMinuteTimestamp ?? []
+            let thirtyMinCoreData = coreData.availabilityThirtyMinuteData ?? []
+            let thirtyMinCoreTime = coreData.availabilityThirtyMinuteTimestamp ?? []
+            let twoHourCoreData = coreData.availabilityTwoHourData ?? []
+            let twoHourCoreTime = coreData.availabilityTwoHourTimestamp ?? []
+            let dayCoreData = coreData.availabilityDayData ?? []
+            let dayCoreTime = coreData.availabilityDayTimestamp ?? []
+            availability = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
+        }
+        if self.latencyEnabled {
+            let fiveMinCoreData = coreData.latencyFiveMinuteData ?? []
+            let fiveMinCoreTime = coreData.latencyFiveMinuteTimestamp ?? []
+            let thirtyMinCoreData = coreData.latencyThirtyMinuteData ?? []
+            let thirtyMinCoreTime = coreData.latencyThirtyMinuteTimestamp ?? []
+            let twoHourCoreData = coreData.latencyTwoHourData ?? []
+            let twoHourCoreTime = coreData.latencyTwoHourTimestamp ?? []
+            let dayCoreData = coreData.latencyDayData ?? []
+            let dayCoreTime = coreData.latencyDayTimestamp ?? []
+            latency = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
+        }
+    }
+    func writeCoreData() {
+        guard let coreData = coreMonitorIPv4 else {
+            DLog.log(.dataIntegrity,"Warning: no coreMonitorIPv4 core data structure in MonitorIPv4 \(ipv4string)")
+            return
+        }
+        coreData.frameHeight = Float(viewFrame?.height ?? 200.0)
+        coreData.frameWidth = Float(viewFrame?.width ?? 200.0)
+        coreData.frameX = Float(viewFrame?.minX ?? 40.0)
+        coreData.frameY = Float(viewFrame?.minY ?? 40.0)
+        coreData.latencyEnabled = self.latencyEnabled
+        coreData.comment = self.comment
+        coreData.hostname = self.hostname
+        coreData.ipv4 = Int64(self.ipv4)
+        
+        for dataType in MonitorDataType.allCases {
+            let data = availability.getData(dataType: dataType)
+            var timestamps: [Int] = []
+            var values: [Double] = []
+            for dataPoint in data {
+                if let value = dataPoint.value {
+                    timestamps.append(dataPoint.timestamp)
+                    values.append(value)
+                }
+            }
+            switch dataType {
+            case .FiveMinute:
+                coreData.availabilityFiveMinuteTimestamp = timestamps
+                coreData.availabilityFiveMinuteData = values
+            case .ThirtyMinute:
+                coreData.availabilityThirtyMinuteTimestamp = timestamps
+                coreData.availabilityThirtyMinuteData = values
+            case .TwoHour:
+                coreData.availabilityTwoHourTimestamp = timestamps
+                coreData.availabilityTwoHourData = values
+            case .OneDay:
+                coreData.availabilityDayTimestamp = timestamps
+                coreData.availabilityDayData = values
+            }
+            DLog.log(.dataIntegrity, "Monitor IPv4 \(ipv4string) availability wrote dataType \(dataType) \(values.count) entries")
+        }
+        
+        if let latency = latency {
+            for dataType in MonitorDataType.allCases {
+                let data = latency.getData(dataType: dataType)
+                var timestamps: [Int] = []
+                var values: [Double] = []
+                for dataPoint in data {
+                    if let value = dataPoint.value {
+                        timestamps.append(dataPoint.timestamp)
+                        values.append(value)
+                    }
+                }
+                switch dataType {
+                case .FiveMinute:
+                    coreData.latencyFiveMinuteTimestamp = timestamps
+                    coreData.latencyFiveMinuteData = values
+                case .ThirtyMinute:
+                    coreData.latencyThirtyMinuteTimestamp = timestamps
+                    coreData.latencyThirtyMinuteData = values
+                case .TwoHour:
+                    coreData.latencyTwoHourTimestamp = timestamps
+                    coreData.latencyTwoHourData = values
+                case .OneDay:
+                    coreData.latencyDayTimestamp = timestamps
+                    coreData.latencyDayData = values
+                }
+                DLog.log(.dataIntegrity, "Monitor IPv4 \(ipv4string) latency wrote dataType \(dataType) \(values.count) entries")
+            }
+        }
+    }
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         ipv4string = try container.decode(String.self, forKey: .ipv4string)
@@ -89,6 +193,8 @@ class MonitorIPv4: Monitor, Codable {
                 debugDescription: "ipv4 string not formatted correctly"
             )
         }
+        coreMonitorIPv4 = CoreMonitorIPv4(context: appDelegate.managedContext)
+        self.writeCoreData()
     }
     var label: String {
         var label = ""
@@ -103,9 +209,10 @@ class MonitorIPv4: Monitor, Codable {
     }
 
 
-    init?(ipv4string: String, hostname: String?, latencyEnabled: Bool) {
+    init?(ipv4string: String, hostname: String?, latencyEnabled: Bool, comment: String?) {
         self.hostname = hostname
         self.latencyEnabled = latencyEnabled
+        self.comment = comment
         let tmpstring = ipv4string.ipv4address
         if tmpstring == nil { return nil }  // initialization failed
         self.ipv4string = tmpstring!
@@ -120,10 +227,16 @@ class MonitorIPv4: Monitor, Codable {
         if latencyEnabled {
             latency = RRDGauge()
         }
+        coreMonitorIPv4 = CoreMonitorIPv4(context: appDelegate.managedContext)
+        self.writeCoreData()
     }
     
     deinit {
         DLog.log(.dataIntegrity,"deallocating ipv4 monitor \(ipv4string)")
+        if let coreMonitorIPv4 = self.coreMonitorIPv4 {
+            DLog.log(.dataIntegrity,"deleting ipv4 nsmanaged object self.ipv4string")
+            coreMonitorIPv4.managedObjectContext?.delete(coreMonitorIPv4)
+        }
     }
     func sendPing(pingSocket: CFSocket?) {
         sendPing(pingSocket: pingSocket, id: 400)

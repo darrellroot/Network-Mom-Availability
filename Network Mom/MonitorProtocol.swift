@@ -20,4 +20,5 @@ protocol Monitor: AnyObject, Codable {
     var latency: RRDGauge? { get }
     func latencyStatus() -> MonitorStatus?
     var viewFrame: NSRect? { get set }
+    func writeCoreData()
 }

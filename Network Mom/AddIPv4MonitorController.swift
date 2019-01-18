@@ -75,9 +75,8 @@ class AddIPv4MonitorController: NSWindowController {
         default: latencyEnabled = false
         }
         if let validatedIP = validatedIP {
-            if let newMonitor = MonitorIPv4(ipv4string: validatedIP, hostname: validatedHostname, latencyEnabled: latencyEnabled) {
-                newMonitor.comment = comment
-                
+            DLog.log(.userInterface,"adding new monitor \(validatedIP.debugDescription) with latency \(latencyEnabled)")
+            if let newMonitor = MonitorIPv4(ipv4string: validatedIP, hostname: validatedHostname, latencyEnabled: latencyEnabled, comment: comment) {
                 delegate?.addIPv4Monitor(monitor: newMonitor)
             }
         }
