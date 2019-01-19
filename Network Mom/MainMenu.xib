@@ -11,7 +11,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Network_Mom" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Network_Mom_Availability" customModuleProvider="target">
             <connections>
                 <outlet property="configureEmailServerOutlet" destination="hOo-6G-Lcp" id="Bo6-ik-vjp"/>
             </connections>
@@ -19,11 +19,11 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="g2v-LF-zmc">
             <items>
-                <menuItem title="Network Mom" id="5RD-uF-wMI">
+                <menuItem title="Network Mom Availability" id="5RD-uF-wMI">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Network Mom" systemMenu="apple" id="YSr-hd-kgt">
+                    <menu key="submenu" title="Network Mom Availability" systemMenu="apple" id="YSr-hd-kgt">
                         <items>
-                            <menuItem title="About Network Mom" id="f2p-J0-WkT">
+                            <menuItem title="About Network Mom Availability" id="f2p-J0-WkT">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="aboutNetworkMom:" target="Voe-Tx-rLC" id="kel-YX-l3W"/>
@@ -95,12 +95,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="saveConfigMenu:" target="Voe-Tx-rLC" id="H8A-Hh-tpg"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Import Map and Data" id="aqA-Sc-SS8">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="importMap:" target="Voe-Tx-rLC" id="d3O-T3-udK"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Export Map and Data" id="uaz-TH-jFd">

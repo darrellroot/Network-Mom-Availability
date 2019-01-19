@@ -44,7 +44,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     public var ping6Socket: CFSocket?
     private var socket4Source: CFRunLoopSource?
     private var socket6Source: CFRunLoopSource?
-    var aboutNetworkMomController: AboutNetworkMomController!
     var emailServerController: EmailServerController!
     var addEmailRecipientControllers: [AddEmailRecipientController] = []
     var deleteEmailRecipientControllers: [DeleteEmailRecipientController] = []
@@ -57,10 +56,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var emailAlertTimer : Timer!
     
     @IBAction func aboutNetworkMom(_ sender: NSMenuItem) {
-        DLog.log(.userInterface,"About Network Mom Selected")
-        let aboutNetworkMomController = AboutNetworkMomController()
-        aboutNetworkMomController.showWindow(self)
+        let staticHtmlController = StaticHtmlController()
+        staticHtmlController.resource = "about"
+        staticHtmlController.showWindow(self)
     }
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         DLog.log(.userInterface,"DLog.log test")
         restoreAllConfig(self)
@@ -239,7 +239,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    @IBAction func importMap(_ sender: NSMenuItem) {
+    /*@IBAction func importMap(_ sender: NSMenuItem) {
         let openPanel = NSOpenPanel()
         openPanel.allowedFileTypes = ["mom1"]
         openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
@@ -255,7 +255,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 DLog.log(.dataIntegrity,"open selection not successful")
             }
         }
-    }
+    }*/
     @IBAction func importFullConfiguration(_ sender: NSMenuItem) {
         let openPanel = NSOpenPanel()
         openPanel.allowedFileTypes = ["mom2"]
@@ -273,7 +273,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-    func importData(url: URL) {
+    /*func importData(url: URL) {
         if let data = try? Data(contentsOf: url) {
             let decoder = PropertyListDecoder()
             var importedMap: MapWindowController? = nil
@@ -288,7 +288,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             fixMapIndex()
         }
-    }
+    }*/
     
     
     func loadEmailPassword() {

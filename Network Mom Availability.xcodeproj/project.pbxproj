@@ -19,8 +19,6 @@
 		2F5061AD21B3548600C19984 /* manage-email-notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061AB21B3548600C19984 /* manage-email-notifications.png */; };
 		2F5061B321B35E6700C19984 /* configure-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B121B35E6700C19984 /* configure-email-recipient.png */; };
 		2F5061B621B35E6D00C19984 /* delete-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B421B35E6D00C19984 /* delete-email-recipient.png */; };
-		2F5061B921B49B0600C19984 /* AboutNetworkMomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */; };
-		2F5061BA21B49B0600C19984 /* AboutNetworkMomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */; };
 		2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061BC21B4A48D00C19984 /* mom-picture.jpg */; };
 		2F5061C421B4CC3600C19984 /* StaticHtmlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */; };
 		2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */; };
@@ -271,6 +269,10 @@
 		2FA0297021ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296821ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift */; };
 		2FA0297121ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296921ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift */; };
 		2FA0297321F0209400ABAB9A /* UInt32+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */; };
+		2FA0297421F26C8000ABAB9A /* DLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904FAD219FC1C60040530B /* DLog.framework */; };
+		2FA0297521F26C8700ABAB9A /* DLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904FAD219FC1C60040530B /* DLog.framework */; };
+		2FA0297621F26C8F00ABAB9A /* DLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904FAD219FC1C60040530B /* DLog.framework */; };
+		2FA0297821F2A3DD00ABAB9A /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297721F2A3DD00ABAB9A /* about.html */; };
 		2FA35D9021AA4CA500556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9121AA4CB800556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
@@ -403,8 +405,6 @@
 		2F5061AC21B3548600C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/manage-email-notifications.png"; sourceTree = "<group>"; };
 		2F5061B221B35E6700C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/configure-email-recipient.png"; sourceTree = "<group>"; };
 		2F5061B521B35E6D00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/delete-email-recipient.png"; sourceTree = "<group>"; };
-		2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutNetworkMomController.swift; sourceTree = "<group>"; };
-		2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutNetworkMomController.xib; sourceTree = "<group>"; };
 		2F5061BC21B4A48D00C19984 /* mom-picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mom-picture.jpg"; sourceTree = "<group>"; };
 		2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticHtmlController.swift; sourceTree = "<group>"; };
 		2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticHtmlController.xib; sourceTree = "<group>"; };
@@ -418,7 +418,7 @@
 		2F5061D421BC876900C19984 /* ShowStatisticsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowStatisticsController.xib; sourceTree = "<group>"; };
 		2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportMonitorListController.swift; sourceTree = "<group>"; };
 		2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImportMonitorListController.xib; sourceTree = "<group>"; };
-		2F904D3A219F76170040530B /* Network Mom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F904D3A219F76170040530B /* Network Mom Availability.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Network Mom Availability.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D51219F769D0040530B /* LoggerAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoggerAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F904D53219F769D0040530B /* LoggerAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerAPI.h; sourceTree = "<group>"; };
 		2F904D54219F769D0040530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -668,6 +668,7 @@
 		2FA0296821ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMonitorIPv6+CoreDataClass.swift"; path = "Network Mom/CoreMonitorIPv6+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2FA0296921ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMonitorIPv6+CoreDataProperties.swift"; path = "Network Mom/CoreMonitorIPv6+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt32+extensions.swift"; sourceTree = "<group>"; };
+		2FA0297721F2A3DD00ABAB9A /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		2FC0B3A021AFB51B00C44DB5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2FC0B3A221AFC06800C44DB5 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -701,6 +702,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA0297421F26C8000ABAB9A /* DLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +710,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA0297521F26C8700ABAB9A /* DLog.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +726,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA0297621F26C8F00ABAB9A /* DLog.framework in Frameworks */,
 				2FA35D9421AA4CC900556A26 /* LoggerAPI.framework in Frameworks */,
 				2FA35D9321AA4CC300556A26 /* Cryptor.framework in Frameworks */,
 				2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */,
@@ -777,6 +781,7 @@
 		2F5061C621B4CD6700C19984 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
+				2FA0297721F2A3DD00ABAB9A /* about.html */,
 				2F5061C721B4CDEB00C19984 /* license.html */,
 				2F5061C921B4E1DE00C19984 /* privacy.html */,
 				2F5061CB21B5E06B00C19984 /* credits.html */,
@@ -813,7 +818,7 @@
 		2F904D3B219F76170040530B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2F904D3A219F76170040530B /* Network Mom.app */,
+				2F904D3A219F76170040530B /* Network Mom Availability.app */,
 				2F904D51219F769D0040530B /* LoggerAPI.framework */,
 				2F904DB2219F78AF0040530B /* Cryptor.framework */,
 				2F904DD9219F78E70040530B /* Socket.framework */,
@@ -828,8 +833,6 @@
 		2F904D3C219F76170040530B /* Network Mom */ = {
 			isa = PBXGroup;
 			children = (
-				2F5061B721B49B0600C19984 /* AboutNetworkMomController.swift */,
-				2F5061B821B49B0600C19984 /* AboutNetworkMomController.xib */,
 				2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */,
 				2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */,
 				2F904E32219F7A130040530B /* AddIPv4MonitorController.swift */,
@@ -1323,9 +1326,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2F904D39219F76170040530B /* Network Mom */ = {
+		2F904D39219F76170040530B /* Network Mom Availability */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2F904D48219F76180040530B /* Build configuration list for PBXNativeTarget "Network Mom" */;
+			buildConfigurationList = 2F904D48219F76180040530B /* Build configuration list for PBXNativeTarget "Network Mom Availability" */;
 			buildPhases = (
 				2F904D36219F76170040530B /* Sources */,
 				2F904D37219F76170040530B /* Frameworks */,
@@ -1343,9 +1346,9 @@
 				2F904E83219F7C750040530B /* PBXTargetDependency */,
 				2F904FB3219FC1C60040530B /* PBXTargetDependency */,
 			);
-			name = "Network Mom";
+			name = "Network Mom Availability";
 			productName = "Network Mom";
-			productReference = 2F904D3A219F76170040530B /* Network Mom.app */;
+			productReference = 2F904D3A219F76170040530B /* Network Mom Availability.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2F904D50219F769D0040530B /* LoggerAPI */ = {
@@ -1527,7 +1530,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2F904D35219F76170040530B /* Build configuration list for PBXProject "Network Mom" */;
+			buildConfigurationList = 2F904D35219F76170040530B /* Build configuration list for PBXProject "Network Mom Availability" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1540,7 +1543,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2F904D39219F76170040530B /* Network Mom */,
+				2F904D39219F76170040530B /* Network Mom Availability */,
 				2F904DD8219F78E70040530B /* Socket */,
 				2F904D50219F769D0040530B /* LoggerAPI */,
 				2F904DB1219F78AF0040530B /* Cryptor */,
@@ -1560,7 +1563,6 @@
 				2F5061A721B33CCF00C19984 /* Network Mom.help in Resources */,
 				2F904E2F219F79FF0040530B /* ShowLogController.xib in Resources */,
 				2F5061D621BC876900C19984 /* ShowStatisticsController.xib in Resources */,
-				2F5061BA21B49B0600C19984 /* AboutNetworkMomController.xib in Resources */,
 				2F5061CC21B5E06B00C19984 /* credits.html in Resources */,
 				2F5061A521B33A6900C19984 /* new-map-menu.png in Resources */,
 				2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */,
@@ -1587,6 +1589,7 @@
 				2F50619C21B2417900C19984 /* monitor-detail.png in Resources */,
 				2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */,
 				2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */,
+				2FA0297821F2A3DD00ABAB9A /* about.html in Resources */,
 				2F5061A221B26E9D00C19984 /* configure-email-server-menu.png in Resources */,
 				2F904E4B219F7A330040530B /* MapAvailabilityReportController.xib in Resources */,
 			);
@@ -1695,7 +1698,6 @@
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,
 				2F904E70219F7A460040530B /* RRDData.swift in Sources */,
-				2F5061B921B49B0600C19984 /* AboutNetworkMomController.swift in Sources */,
 				2F904FC621A36D190040530B /* EmailAddress.swift in Sources */,
 				2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */,
 				2FA0297021ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift in Sources */,
@@ -2666,7 +2668,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2F904D35219F76170040530B /* Build configuration list for PBXProject "Network Mom" */ = {
+		2F904D35219F76170040530B /* Build configuration list for PBXProject "Network Mom Availability" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F904D46219F76180040530B /* Debug */,
@@ -2675,7 +2677,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2F904D48219F76180040530B /* Build configuration list for PBXNativeTarget "Network Mom" */ = {
+		2F904D48219F76180040530B /* Build configuration list for PBXNativeTarget "Network Mom Availability" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F904D49219F76180040530B /* Debug */,
