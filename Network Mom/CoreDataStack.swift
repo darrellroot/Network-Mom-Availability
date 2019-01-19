@@ -30,7 +30,7 @@ class CoreDataStack {
         DLog.log(.dataIntegrity,"Core Data default directory \(NSPersistentContainer.defaultDirectoryURL())")
         return container
     }()
-    func saveContext() {
+    func saveContext() -> Bool {
 /*        guard managedContext.hasChanges else {
             DLog.log(.dataIntegrity,"No core data changes")
             return
@@ -39,21 +39,8 @@ class CoreDataStack {
             try managedContext.save()
         } catch let error as NSError {
             DLog.log(.dataIntegrity,"Unresolved Core Data Error \(error), \(error.userInfo)")
+            return false
         }
+        return true
     }
-/*    func deleteAllEmailAddress() {
-        DLog.log(.dataIntegrity,"deleteAllCoreData")
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CoreEmailAddress")
-        do {
-            let results = try managedContext.fetch(fetchRequest)
-            for managedObject in results
-            {
-                if let managedObject = managedObject as? NSManagedObject {
-                    managedContext.delete(managedObject)
-                }
-            }
-        } catch let error as NSError {
-            DLog.log(.dataIntegrity,"Delete all data error \(error) \(error.userInfo)")
-        }
-    }*/
 }

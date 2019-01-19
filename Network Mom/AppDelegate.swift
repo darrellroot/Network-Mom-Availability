@@ -199,7 +199,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         emailNotificationConfigurationReportController.showWindow(self)
     }
     
-    @IBAction func exportFullConfiguration(_ sender: NSMenuItem) {
+    /*@IBAction func exportFullConfiguration(_ sender: NSMenuItem) {
         let savePanel = NSSavePanel()
         savePanel.allowedFileTypes = ["mom2"]
         savePanel.begin { (result: NSApplication.ModalResponse) -> Void in
@@ -229,7 +229,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             success = false
         }
         return success
-    }
+    }*/
     
 
     func fixMapIndex() {
@@ -256,7 +256,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }*/
-    @IBAction func importFullConfiguration(_ sender: NSMenuItem) {
+    /*@IBAction func importFullConfiguration(_ sender: NSMenuItem) {
         let openPanel = NSOpenPanel()
         openPanel.allowedFileTypes = ["mom2"]
         openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
@@ -272,7 +272,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 DLog.log(.dataIntegrity,"open selection not successful")
             }
         }
-    }
+    }*/
     /*func importData(url: URL) {
         if let data = try? Data(contentsOf: url) {
             let decoder = PropertyListDecoder()
@@ -420,35 +420,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } catch {
             DLog.log(.dataIntegrity,"Failed to read email addresses from Core data error: \(error)")
         }
-        //self.emails = codableDataStructure.emailAddresses
 
         let mapRequest = NSFetchRequest<CoreMap>(entityName: "CoreMap")
         do {
             let coreMaps = try managedContext.fetch(mapRequest)
             DLog.log(.dataIntegrity,"read \(coreMaps.count) maps from core data")
             for (index,coreMap) in coreMaps.enumerated() {
-                DLog.log(.dataIntegrity,"importing map \(coreMap.name)")
+                DLog.log(.dataIntegrity,"importing map \(String(describing: coreMap.name))")
                 let newMap = MapWindowController(mapIndex: index, coreMap: coreMap)
                 maps.append(newMap)
             }
         } catch {
             DLog.log(.dataIntegrity,"Failed to read maps from Core data error: \(error)")
         }
-        
-/*        let decoder = PropertyListDecoder()
-        let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
-        DLog.log(.dataIntegrity,"restoring data from \(dataUrl2)")
-        if let data = try? Data(contentsOf: dataUrl2) {
-            if let codableDataStructure = try? decoder.decode(CodableDataStructure.self, from: data) {
-                self.maps = codableDataStructure.maps
-                for map in maps {
-                    DLog.log(.dataIntegrity,"Loaded map name \(map.name)")
-                    map.showWindow(self)
-                }
-                DLog.log(.dataIntegrity,"data restore complete")
-            }
-            fixMapIndex()
-        }*/
         fixMapIndex()
     }
 
@@ -456,29 +440,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let _ : Bool = saveAllConfig(sender)
     }
     func saveAllConfig(_ sender: Any) -> Bool {
-        // we also save 2 copies of our data.  The 2nd copy only gets saved if the first save is successful.
-        coreDataStack.saveContext()
         DLog.log(.dataIntegrity,"saving all config")
-/*        let dataUrl1 = documentsDirectory().appendingPathComponent("autosavedata1.mom2")
-        let dataUrl2 = documentsDirectory().appendingPathComponent("autosavedata2.mom2")
-        let successfulFirstSave = exportFullConfig(url: dataUrl1)
-        var successfulSecondSave = false
-        if successfulFirstSave {
-            successfulSecondSave = exportFullConfig(url: dataUrl2)
-        }
-        return successfulSecondSave*/
         let startSaveTime = Date()
         for map in maps {
             map.writeCoreData()
         }
-        do {
-            try managedContext?.save()
-        } catch {
-            DLog.log(.dataIntegrity,"saveAllConfig failed error \(error)")
-            return false
-        }
+        let success = coreDataStack.saveContext()
         let timeElapsed = Date().timeIntervalSince(startSaveTime)
-        DLog.log(.dataIntegrity,"Core Data Saved in \(timeElapsed) seconds")
+        if success {
+            DLog.log(.dataIntegrity,"Core Data Saved in \(timeElapsed) seconds")
+        } else {
+            DLog.log(.dataIntegrity,"ALERT: Core Data save failed in \(timeElapsed) seconds")
+        }
         return true
     }
     
@@ -528,9 +501,9 @@ protocol ReceivedPing6Delegate: class {
     func receivedPing6(ipv6: IPv6Address, sequence: UInt16, id: UInt16)
 }
 
-struct FileVersion: Codable {
+/*struct FileVersion: Codable {
     enum CodingKeys: String, CodingKey {
         case version
     }
     var version: Int
-}
+}*/

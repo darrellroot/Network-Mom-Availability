@@ -11,7 +11,7 @@ import SwiftSMTP
 import DLog
 import CoreData
 
-class EmailAddress: Equatable, Hashable, Codable {
+class EmailAddress: Equatable, Hashable {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
@@ -54,18 +54,6 @@ class EmailAddress: Equatable, Hashable, Codable {
     
     var coreEmailAddress: CoreEmailAddress?
     
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case email
-        case pagerOnly
-    }
-/*    func makeCore(context: NSManagedObjectContext) -> CoreEmailAddress {
-        let coreEmail = CoreEmailAddress(context: context)
-        coreEmail.email = self.email
-        coreEmail.name = self.name
-        coreEmail.pagerOnly = self.pagerOnly
-        return coreEmail
-    }*/
     var code: Int {
         // A deterministic 4-digit code to validate that the user can receive
         // emails to this address
@@ -78,14 +66,8 @@ class EmailAddress: Equatable, Hashable, Codable {
             coreEmailAddress.managedObjectContext?.delete(coreEmailAddress)
         }
     }
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.name, forKey: .name)
-        try container.encode(self.email, forKey: .email)
-        try container.encode(self.pagerOnly, forKey: .pagerOnly)
-    }
     
-    required init(from decoder: Decoder) throws {
+    /*required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         guard let context = appDelegate.managedContext else {
             DLog.log(.dataIntegrity, "Unable to decode Email Address, no managed core data context")
@@ -96,7 +78,7 @@ class EmailAddress: Equatable, Hashable, Codable {
         coreEmailAddress?.email = try container.decode(String.self, forKey: .email)
         coreEmailAddress?.pagerOnly = try container.decode(Bool.self, forKey: .pagerOnly)
         
-    }
+    }*/
     public init(name: String, email: String, pagerOnly: Bool, context: NSManagedObjectContext) {
         coreEmailAddress = CoreEmailAddress(context: context)
         coreEmailAddress?.name = name

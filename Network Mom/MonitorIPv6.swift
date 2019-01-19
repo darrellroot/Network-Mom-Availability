@@ -10,11 +10,11 @@ import Foundation
 import Network
 import DLog
 
-class MonitorIPv6: Monitor, Codable {
+class MonitorIPv6: Monitor {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-    enum CodingKeys: String, CodingKey {
+    /*enum CodingKeys: String, CodingKey {
         case ipv6
         case latencyEnabled
         case hostname
@@ -22,7 +22,7 @@ class MonitorIPv6: Monitor, Codable {
         case availability
         case latency
         case viewFrame
-    }
+    }*/
     var coreMonitorIPv6: CoreMonitorIPv6?
 
     var ipv6: IPv6Address
@@ -56,7 +56,7 @@ class MonitorIPv6: Monitor, Codable {
     weak var viewDelegate: DragMonitorView?
     weak var mapDelegate: MapWindowController?
 
-    func encode(to encoder: Encoder) throws {
+    /*func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.ipv6.debugDescription, forKey: .ipv6)
         try container.encode(self.latencyEnabled, forKey: .latencyEnabled)
@@ -65,7 +65,7 @@ class MonitorIPv6: Monitor, Codable {
         try container.encode(self.availability, forKey: .availability)
         try container.encode(self.latency, forKey: .latency)
         try? container.encode(self.viewFrame, forKey: .viewFrame)
-    }
+    }*/
     
     init?(coreData: CoreMonitorIPv6) {
         self.coreMonitorIPv6 = coreData
@@ -176,7 +176,7 @@ class MonitorIPv6: Monitor, Codable {
         }
     }
 
-    required init(from decoder: Decoder) throws {
+    /*required init(from decoder: Decoder) throws {
         // after decoder need to fix mapDelegate and viewDelegate
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let ipv6string = try container.decode(String.self, forKey: .ipv6)
@@ -204,7 +204,7 @@ class MonitorIPv6: Monitor, Codable {
                 debugDescription: "ipv6 string not formatted correctly"
             )
         }
-    }
+    }*/
     
 
     init?(ipv6: IPv6Address, hostname: String?, latencyEnabled: Bool, comment: String?) {

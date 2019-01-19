@@ -97,12 +97,6 @@
                                     <action selector="saveConfigMenu:" target="Voe-Tx-rLC" id="H8A-Hh-tpg"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Export Map and Data" id="uaz-TH-jFd">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="exportMap:" target="-1" id="Gq0-XC-6Ul"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Export Map Monitor List As Text" id="yYK-Ld-b1U">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -114,20 +108,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="deleteMap:" target="-1" id="QEi-UR-hlv"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="mYh-BK-JaG"/>
-                            <menuItem title="Export Full Configuration" id="c9E-xr-nHe">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="exportFullConfiguration:" target="Voe-Tx-rLC" id="NsU-YO-wkk"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="PXc-QT-sEJ"/>
-                            <menuItem title="Import Full Configuration" id="X2g-dE-uoA">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="importFullConfiguration:" target="Voe-Tx-rLC" id="gBc-gU-lRB"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="udZ-jw-vG2"/>

@@ -9,7 +9,7 @@
 // plutil -convert xml1 Preferences/com.apple.finder.plist
 // see https://www.bignerdranch.com/blog/property-list-seralization/
 
-import AppKit
+/*import AppKit
 
 class CodableDataStructure: Codable {
     enum CodingKeys: String, CodingKey {
@@ -31,4 +31,4 @@ class CodableDataStructure: Codable {
         //appDelegate.maps = maps
         //appDelegate.emails = emailAddresses
     }
-}
+}*/

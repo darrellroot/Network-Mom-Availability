@@ -10,11 +10,11 @@ import Cocoa
 import Network
 import DLog
 
-class MapWindowController: NSWindowController, Codable {
+class MapWindowController: NSWindowController {
 
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-    enum CodingKeys: String, CodingKey {
+/*    enum CodingKeys: String, CodingKey {
         case availability
         case ipv4monitors
         case ipv6monitors
@@ -22,7 +22,7 @@ class MapWindowController: NSWindowController, Codable {
         case frame
         case emailAlerts
         case emailReports
-    }
+    }*/
 
     var coreMap: CoreMap?
     
@@ -55,7 +55,7 @@ class MapWindowController: NSWindowController, Codable {
     var numberSweeps: Int
     var pingTimer: Timer!
 
-    required init(from decoder: Decoder) throws {
+/*    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         availability = try container.decode(RRDGauge.self, forKey: .availability)
         name = try container.decode(String.self, forKey: .name)
@@ -84,8 +84,8 @@ class MapWindowController: NSWindowController, Codable {
         ipv4monitors = []  // temp variables just used during decoding
         ipv6monitors = []
         //monitors = try container.decode([Monitor].self, forKey: .monitors)
-    }
-    func encode(to encoder: Encoder) throws {
+    }*/
+    /*func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.availability, forKey: .availability)
         try container.encode(self.name, forKey: .name)
@@ -107,7 +107,7 @@ class MapWindowController: NSWindowController, Codable {
         if let frame = window?.frame {
             try container.encode(frame, forKey: .frame)
         }
-    }
+    }*/
     
     @IBAction func AddIPv4MonitorMenuItem(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"addIPv4monitor clicked")
@@ -137,7 +137,7 @@ class MapWindowController: NSWindowController, Codable {
         alert.runModal()
     }
 
-    @IBAction func exportMap(_ sender: NSMenuItem) {
+    /*@IBAction func exportMap(_ sender: NSMenuItem) {
         DLog.log(.dataIntegrity,"attempting to export map")
         let savePanel = NSSavePanel()
         savePanel.allowedFileTypes = ["mom1"]
@@ -151,7 +151,7 @@ class MapWindowController: NSWindowController, Codable {
                 DLog.log(.dataIntegrity,"File selection not successful")
             }
         }
-    }
+    }*/
     @IBAction func exportMapMonitorListAsText(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"exportMapMonitorListAsText selected")
         let savePanel = NSSavePanel()
@@ -196,7 +196,7 @@ class MapWindowController: NSWindowController, Codable {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-    func exportMap(url: URL) {
+    /*func exportMap(url: URL) {
         let encoder = PropertyListEncoder()
         do {
             let data = try encoder.encode(self)
@@ -205,7 +205,7 @@ class MapWindowController: NSWindowController, Codable {
             DLog.log(.dataIntegrity,"error encoding map")
             showSaveAlert(url: url)
         }
-    }
+    }*/
     @IBAction func deleteMap(_ sender: NSMenuItem) {
         let alert = NSAlert()
         alert.alertStyle = NSAlert.Style.critical
@@ -335,7 +335,6 @@ class MapWindowController: NSWindowController, Codable {
         }
         for monitor in monitors {
             if monitor.viewDelegate == nil {
-                // this means we just imported the map via codable
                 var newFrame: NSRect
                 if let viewFrame = monitor.viewFrame {
                     newFrame = viewFrame

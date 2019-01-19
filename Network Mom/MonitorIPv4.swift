@@ -9,11 +9,11 @@
 import Foundation
 import DLog
 
-class MonitorIPv4: Monitor, Codable {
+class MonitorIPv4: Monitor {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-    enum CodingKeys: String, CodingKey {
+/*    enum CodingKeys: String, CodingKey {
         case ipv4string
         case ipv4
         case latencyEnabled
@@ -23,7 +23,7 @@ class MonitorIPv4: Monitor, Codable {
         case latency
         case viewFrame
         case saveTest
-    }
+    }*/
     var coreMonitorIPv4: CoreMonitorIPv4?
     var ipv4string: String
     var sockaddrin: sockaddr_in
@@ -55,7 +55,7 @@ class MonitorIPv4: Monitor, Codable {
     weak var viewDelegate: DragMonitorView?
     weak var mapDelegate: MapWindowController?
 
-    func encode(to encoder: Encoder) throws {
+    /*func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.ipv4string, forKey: .ipv4string)
         try container.encode(self.ipv4, forKey: .ipv4)
@@ -66,7 +66,7 @@ class MonitorIPv4: Monitor, Codable {
         try container.encode(self.latency, forKey: .latency)
         try? container.encode(self.viewFrame, forKey: .viewFrame)
         //try container.encode(self.saveTest, forKey: .saveTest)
-    }
+    }*/
     init?(coreData: CoreMonitorIPv4) {
         self.coreMonitorIPv4 = coreData
         self.ipv4 = UInt32(coreData.ipv4)
@@ -170,7 +170,7 @@ class MonitorIPv4: Monitor, Codable {
             }
         }
     }
-    required init(from decoder: Decoder) throws {
+    /*required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         ipv4string = try container.decode(String.self, forKey: .ipv4string)
         ipv4 = try container.decode(UInt32.self, forKey: .ipv4)
@@ -195,7 +195,7 @@ class MonitorIPv4: Monitor, Codable {
         }
         coreMonitorIPv4 = CoreMonitorIPv4(context: appDelegate.managedContext)
         self.writeCoreData()
-    }
+    }*/
     var label: String {
         var label = ""
         if let hostname = hostname {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Monitor: AnyObject, Codable {
+protocol Monitor: AnyObject {
     var type: MonitorEnumeration { get }
     var label: String { get }
     var status: MonitorStatus { get }
