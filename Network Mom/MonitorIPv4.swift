@@ -13,17 +13,6 @@ class MonitorIPv4: Monitor {
     
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-/*    enum CodingKeys: String, CodingKey {
-        case ipv4string
-        case ipv4
-        case latencyEnabled
-        case hostname
-        case comment
-        case availability
-        case latency
-        case viewFrame
-        case saveTest
-    }*/
     var coreMonitorIPv4: CoreMonitorIPv4?
     var ipv4string: String
     var sockaddrin: sockaddr_in
@@ -33,7 +22,6 @@ class MonitorIPv4: Monitor {
     let ipv4: UInt32
     var lastIdReceived: UInt16 = 0
     var lastSequenceReceived: UInt16 = 0
-    var latencyEnabled = true
     private var pingSentDate: Date?
     var status: MonitorStatus = .Blue {
         didSet {
@@ -48,32 +36,19 @@ class MonitorIPv4: Monitor {
         }
     }
     var availability: RRDGauge
-    var latency: RRDGauge?
+    var latency: RRDGauge
     var viewFrame: NSRect?
     var saveTest: Bool?
     
     weak var viewDelegate: DragMonitorView?
     weak var mapDelegate: MapWindowController?
 
-    /*func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.ipv4string, forKey: .ipv4string)
-        try container.encode(self.ipv4, forKey: .ipv4)
-        try container.encode(self.latencyEnabled, forKey: .latencyEnabled)
-        try container.encode(self.hostname, forKey: .hostname)
-        try container.encode(self.comment, forKey: .comment)
-        try container.encode(self.availability, forKey: .availability)
-        try container.encode(self.latency, forKey: .latency)
-        try? container.encode(self.viewFrame, forKey: .viewFrame)
-        //try container.encode(self.saveTest, forKey: .saveTest)
-    }*/
     init?(coreData: CoreMonitorIPv4) {
         self.coreMonitorIPv4 = coreData
         self.ipv4 = UInt32(coreData.ipv4)
         self.ipv4string = UInt32(coreData.ipv4).ipv4string
         guard let tmpsockaddrin = sockaddr_in(ipv4string: UInt32(coreData.ipv4).ipv4string, port: 0) else { return nil }
         self.sockaddrin = tmpsockaddrin
-        self.latencyEnabled = coreData.latencyEnabled
         self.hostname = coreData.hostname
         self.comment = coreData.comment
         self.viewFrame = NSRect(x: CGFloat(coreData.frameX), y: CGFloat(coreData.frameY), width: CGFloat(coreData.frameWidth), height: CGFloat(coreData.frameHeight))
@@ -88,7 +63,7 @@ class MonitorIPv4: Monitor {
             let dayCoreTime = coreData.availabilityDayTimestamp ?? []
             availability = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
         }
-        if self.latencyEnabled {
+        do {
             let fiveMinCoreData = coreData.latencyFiveMinuteData ?? []
             let fiveMinCoreTime = coreData.latencyFiveMinuteTimestamp ?? []
             let thirtyMinCoreData = coreData.latencyThirtyMinuteData ?? []
@@ -109,7 +84,6 @@ class MonitorIPv4: Monitor {
         coreData.frameWidth = Float(viewFrame?.width ?? 200.0)
         coreData.frameX = Float(viewFrame?.minX ?? 40.0)
         coreData.frameY = Float(viewFrame?.minY ?? 40.0)
-        coreData.latencyEnabled = self.latencyEnabled
         coreData.comment = self.comment
         coreData.hostname = self.hostname
         coreData.ipv4 = Int64(self.ipv4)
@@ -141,61 +115,33 @@ class MonitorIPv4: Monitor {
             DLog.log(.dataIntegrity, "Monitor IPv4 \(ipv4string) availability wrote dataType \(dataType) \(values.count) entries")
         }
         
-        if let latency = latency {
-            for dataType in MonitorDataType.allCases {
-                let data = latency.getData(dataType: dataType)
-                var timestamps: [Int] = []
-                var values: [Double] = []
-                for dataPoint in data {
-                    if let value = dataPoint.value {
-                        timestamps.append(dataPoint.timestamp)
-                        values.append(value)
-                    }
+        for dataType in MonitorDataType.allCases {
+            let data = latency.getData(dataType: dataType)
+            var timestamps: [Int] = []
+            var values: [Double] = []
+            for dataPoint in data {
+                if let value = dataPoint.value {
+                    timestamps.append(dataPoint.timestamp)
+                    values.append(value)
                 }
-                switch dataType {
-                case .FiveMinute:
-                    coreData.latencyFiveMinuteTimestamp = timestamps
-                    coreData.latencyFiveMinuteData = values
-                case .ThirtyMinute:
-                    coreData.latencyThirtyMinuteTimestamp = timestamps
-                    coreData.latencyThirtyMinuteData = values
-                case .TwoHour:
-                    coreData.latencyTwoHourTimestamp = timestamps
-                    coreData.latencyTwoHourData = values
-                case .OneDay:
-                    coreData.latencyDayTimestamp = timestamps
-                    coreData.latencyDayData = values
-                }
-                DLog.log(.dataIntegrity, "Monitor IPv4 \(ipv4string) latency wrote dataType \(dataType) \(values.count) entries")
             }
+            switch dataType {
+            case .FiveMinute:
+                coreData.latencyFiveMinuteTimestamp = timestamps
+                coreData.latencyFiveMinuteData = values
+            case .ThirtyMinute:
+                coreData.latencyThirtyMinuteTimestamp = timestamps
+                coreData.latencyThirtyMinuteData = values
+            case .TwoHour:
+                coreData.latencyTwoHourTimestamp = timestamps
+                coreData.latencyTwoHourData = values
+            case .OneDay:
+                coreData.latencyDayTimestamp = timestamps
+                coreData.latencyDayData = values
+            }
+            DLog.log(.dataIntegrity, "Monitor IPv4 \(ipv4string) latency wrote dataType \(dataType) \(values.count) entries")
         }
     }
-    /*required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        ipv4string = try container.decode(String.self, forKey: .ipv4string)
-        ipv4 = try container.decode(UInt32.self, forKey: .ipv4)
-        latencyEnabled = try container.decode(Bool.self, forKey: .latencyEnabled)
-        hostname = try container.decode(String?.self, forKey: .hostname)
-        comment = try container.decode(String?.self, forKey: .comment)
-        availability = try container.decode(RRDGauge.self, forKey: .availability)
-        latency = try container.decode(RRDGauge?.self, forKey: .latency)
-        viewFrame = try container.decode(NSRect?.self, forKey: .viewFrame)
-        if let saveTest = try? container.decode(Bool?.self, forKey: .saveTest) {
-            self.saveTest = saveTest
-        }
-        
-        if let sockaddrin = sockaddr_in(ipv4string: ipv4string, port: 0) {
-            self.sockaddrin = sockaddrin
-        } else {
-            throw DecodingError.dataCorruptedError(
-                forKey: CodingKeys.ipv4string,
-                in: container,
-                debugDescription: "ipv4 string not formatted correctly"
-            )
-        }
-        coreMonitorIPv4 = CoreMonitorIPv4(context: appDelegate.managedContext)
-        self.writeCoreData()
-    }*/
     var label: String {
         var label = ""
         if let hostname = hostname {
@@ -209,9 +155,8 @@ class MonitorIPv4: Monitor {
     }
 
 
-    init?(ipv4string: String, hostname: String?, latencyEnabled: Bool, comment: String?) {
+    init?(ipv4string: String, hostname: String?, comment: String?) {
         self.hostname = hostname
-        self.latencyEnabled = latencyEnabled
         self.comment = comment
         let tmpstring = ipv4string.ipv4address
         if tmpstring == nil { return nil }  // initialization failed
@@ -224,9 +169,7 @@ class MonitorIPv4: Monitor {
             return nil
         }
         availability = RRDGauge()
-        if latencyEnabled {
-            latency = RRDGauge()
-        }
+        latency = RRDGauge()
         coreMonitorIPv4 = CoreMonitorIPv4(context: appDelegate.managedContext)
         self.writeCoreData()
     }
@@ -275,25 +218,22 @@ class MonitorIPv4: Monitor {
         guard pingSocket != nil else { DLog.log(.monitor,"sendPing failed: socket nil"); return}
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
-        if latencyEnabled { pingSentDate = Date() }
+        pingSentDate = Date()
         DLog.log(.monitor,"sent ping to \(ipv4string)")
     }
     
     public func latencyStatus() -> MonitorStatus? {
-        if !latencyEnabled {
-            return nil
-        }
         //if device is not responding to pings, latency display should be red
         if status == .Red {
             return MonitorStatus.Red
         }
         var yesterdayLatency: Double? = nil
-        if let tempLatency = latency?.lastDay?.value {
+        if let tempLatency = latency.lastDay?.value {
             yesterdayLatency = tempLatency
-        } else if let tempLatency = latency?.lastThirtyMinute?.value {
+        } else if let tempLatency = latency.lastThirtyMinute?.value {
             yesterdayLatency = tempLatency
         }
-        if let currentLatency = latency?.lastFiveMinute?.value, let yesterdayLatency = yesterdayLatency {   // change to lastDay when we go production
+        if let currentLatency = latency.lastFiveMinute?.value, let yesterdayLatency = yesterdayLatency {   // change to lastDay when we go production
             if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdRed + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Red
             }
@@ -314,9 +254,9 @@ class MonitorIPv4: Monitor {
             DLog.log(.monitor,"icmp return mismatch received \(ip) seq \(sequence) id \(id)")
             return
         }
-        if latencyEnabled, let pingSentDate = pingSentDate {
+        if let pingSentDate = pingSentDate {
             let interval = Date().timeIntervalSince(pingSentDate) * 1000
-            latency?.update(newData: interval)
+            latency.update(newData: interval)
             DLog.log(.monitor,"ping interval \(interval)msec")
         }
         lastSequenceReceived = sequence

@@ -32,7 +32,6 @@ class AddIPv6MonitorController: NSWindowController {
             }
         }
     }
-    var latencyEnabled: Bool = false
     var possibleHostname: String?
     var validatedHostname: String? {
         didSet {
@@ -48,8 +47,6 @@ class AddIPv6MonitorController: NSWindowController {
     var cfResolutionInProgress: Bool = false
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     
-    @IBOutlet weak var latencyButtonOutlet: NSPopUpButton!
-
     var addressQueries: [HostAddressQuery] = []
     
     @IBOutlet weak var ipv6InputField: NSTextField!
@@ -66,20 +63,11 @@ class AddIPv6MonitorController: NSWindowController {
         //self.close()
     }
     
-    @IBAction func latencyButton(_ sender: NSPopUpButton) {
-    }
-    
     @IBAction func addButtonPressed(_ sender: NSButton) {
         cancelHostResolution()
-        switch latencyButtonOutlet.indexOfSelectedItem {
-        case 0: latencyEnabled = false
-        case 1: latencyEnabled = true
-        // should not get to default case
-        default: latencyEnabled = false
-        }
         if let validatedIP = validatedIP {
-            DLog.log(.userInterface,"adding new monitor \(validatedIP.debugDescription) with latency \(latencyEnabled)")
-            if let newMonitor = MonitorIPv6(ipv6: validatedIP, hostname: validatedHostname, latencyEnabled: latencyEnabled, comment: comment) {
+            DLog.log(.userInterface,"adding new monitor \(validatedIP.debugDescription)")
+            if let newMonitor = MonitorIPv6(ipv6: validatedIP, hostname: validatedHostname, comment: comment) {
                 newMonitor.comment = comment
                 delegate?.addIPv6Monitor(monitor: newMonitor)
             }

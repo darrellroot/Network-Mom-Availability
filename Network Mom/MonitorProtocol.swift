@@ -16,8 +16,7 @@ protocol Monitor: AnyObject {
     var comment: String? { get set }
     var viewDelegate: DragMonitorView? { get set }
     var availability: RRDGauge { get }
-    var latencyEnabled: Bool { get }
-    var latency: RRDGauge? { get }
+    var latency: RRDGauge { get }
     func latencyStatus() -> MonitorStatus?
     var viewFrame: NSRect? { get set }
     func writeCoreData()

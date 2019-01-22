@@ -5,12 +5,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AddIPv4MonitorController" customModule="Network_Mom" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="AddIPv4MonitorController" customModule="Network_Mom_Availability" customModuleProvider="target">
             <connections>
                 <outlet property="addMonitorButtonOutlet" destination="iqO-xk-Bcs" id="V2d-VA-Sli"/>
                 <outlet property="ipv4InputField" destination="2Hw-1k-WP6" id="Ra7-NU-wKc"/>
                 <outlet property="ipv4ValidatedField" destination="wbC-ks-gzP" id="dHJ-V1-bSI"/>
-                <outlet property="latencyButtonOutlet" destination="p3K-v8-6XL" id="gJx-wp-VHZ"/>
                 <outlet property="validatedHostnameField" destination="izS-bU-ch7" id="mAj-5H-ecZ"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
@@ -121,39 +120,12 @@ Gw
                             <real value="3.4028234663852886e+38"/>
                         </customSpacing>
                     </stackView>
-                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p3K-v8-6XL">
-                        <rect key="frame" x="288" y="75" width="188" height="25"/>
-                        <popUpButtonCell key="cell" type="push" title="Latency Disabled" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Q8I-mB-G3i" id="LlK-rc-jCJ">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="G86-B2-qgL">
-                                <items>
-                                    <menuItem title="Latency Disabled" state="on" id="Q8I-mB-G3i"/>
-                                    <menuItem title="Latency Enabled" id="8Uj-Wf-Ypm"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="latencyButton:" target="-2" id="j0g-K1-vcb"/>
-                        </connections>
-                    </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xJp-Vj-m9L">
-                        <rect key="frame" x="18" y="63" width="266" height="51"/>
-                        <textFieldCell key="cell" selectable="YES" alignment="justified" title="Latency monitoring is only recommended for a small number of monitors with latencies of at least 20msec" id="VwO-YA-tcg">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="z2i-x5-5Vy" firstAttribute="trailing" secondItem="ATz-dK-2tB" secondAttribute="trailing" id="1FI-L7-ksY"/>
                     <constraint firstItem="izS-bU-ch7" firstAttribute="leading" secondItem="wbC-ks-gzP" secondAttribute="leading" id="5aW-UV-N8G"/>
                     <constraint firstItem="ATz-dK-2tB" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="7gz-gK-san"/>
-                    <constraint firstItem="p3K-v8-6XL" firstAttribute="leading" secondItem="izS-bU-ch7" secondAttribute="leading" id="AN4-oh-S4b"/>
                     <constraint firstItem="2Hw-1k-WP6" firstAttribute="leading" secondItem="ATz-dK-2tB" secondAttribute="trailing" constant="8" symbolic="YES" id="F6o-HD-Z7c"/>
-                    <constraint firstAttribute="trailing" secondItem="p3K-v8-6XL" secondAttribute="trailing" constant="20" symbolic="YES" id="Gac-3P-Vef"/>
-                    <constraint firstItem="p3K-v8-6XL" firstAttribute="leading" secondItem="xJp-Vj-m9L" secondAttribute="trailing" constant="8" symbolic="YES" id="J8n-N2-YV5"/>
                     <constraint firstItem="ATz-dK-2tB" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="JOA-Jw-CXp"/>
                     <constraint firstItem="wbC-ks-gzP" firstAttribute="leading" secondItem="2Hw-1k-WP6" secondAttribute="leading" id="L9U-Nu-veM"/>
                     <constraint firstItem="wbC-ks-gzP" firstAttribute="leading" secondItem="TKb-la-rZu" secondAttribute="trailing" constant="8" symbolic="YES" id="LqO-1N-Y0b"/>
@@ -162,13 +134,9 @@ Gw
                     <constraint firstItem="izS-bU-ch7" firstAttribute="leading" secondItem="hoj-FN-pLf" secondAttribute="trailing" constant="8" symbolic="YES" id="YsS-dG-x8f"/>
                     <constraint firstItem="izS-bU-ch7" firstAttribute="centerY" secondItem="hoj-FN-pLf" secondAttribute="centerY" id="ZDv-SA-Wn8"/>
                     <constraint firstItem="izS-bU-ch7" firstAttribute="top" secondItem="wbC-ks-gzP" secondAttribute="bottom" constant="10" symbolic="YES" id="Zb6-pr-pjc"/>
-                    <constraint firstItem="p3K-v8-6XL" firstAttribute="trailing" secondItem="izS-bU-ch7" secondAttribute="trailing" id="aS9-g1-R86"/>
-                    <constraint firstItem="p3K-v8-6XL" firstAttribute="centerY" secondItem="xJp-Vj-m9L" secondAttribute="centerY" id="cqw-Tz-10L"/>
                     <constraint firstAttribute="trailing" secondItem="2Hw-1k-WP6" secondAttribute="trailing" constant="20" symbolic="YES" id="jPw-Ed-3zN"/>
-                    <constraint firstItem="xJp-Vj-m9L" firstAttribute="top" secondItem="hoj-FN-pLf" secondAttribute="bottom" constant="8" symbolic="YES" id="lDA-pm-Hra"/>
                     <constraint firstItem="z2i-x5-5Vy" firstAttribute="top" secondItem="ATz-dK-2tB" secondAttribute="bottom" constant="4" id="ntG-Mu-Z3m"/>
                     <constraint firstItem="izS-bU-ch7" firstAttribute="trailing" secondItem="wbC-ks-gzP" secondAttribute="trailing" id="qOA-jC-F4j"/>
-                    <constraint firstItem="xJp-Vj-m9L" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="tot-YI-YBu"/>
                     <constraint firstItem="QsJ-ey-O2T" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="vYS-Og-aDs"/>
                     <constraint firstItem="wbC-ks-gzP" firstAttribute="trailing" secondItem="2Hw-1k-WP6" secondAttribute="trailing" id="wL1-bi-duM"/>
                     <constraint firstItem="wbC-ks-gzP" firstAttribute="centerY" secondItem="TKb-la-rZu" secondAttribute="centerY" id="xPY-lt-G2L"/>

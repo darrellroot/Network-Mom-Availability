@@ -34,7 +34,6 @@ extension CoreMonitorIPv6 {
     @NSManaged public var ipv6String: String?
     @NSManaged public var latencyDayData: [Double]?
     @NSManaged public var latencyDayTimestamp: [Int]?
-    @NSManaged public var latencyEnabled: Bool
     @NSManaged public var latencyFiveMinuteData: [Double]?
     @NSManaged public var latencyFiveMinuteTimestamp: [Int]?
     @NSManaged public var latencyThirtyMinuteData: [Double]?

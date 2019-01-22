@@ -31,7 +31,6 @@ class AddIPv4MonitorController: NSWindowController {
             }
         }
     }
-    var latencyEnabled: Bool = false
     var possibleHostname: String?
     var validatedHostname: String? {
         didSet {
@@ -46,8 +45,6 @@ class AddIPv4MonitorController: NSWindowController {
     var cfhost: CFHost?
     var cfResolutionInProgress: Bool = false
     var addressQueries: [HostAddressQuery] = []
-
-    @IBOutlet weak var latencyButtonOutlet: NSPopUpButton!
     
     @IBOutlet weak var ipv4InputField: NSTextField!
     
@@ -63,20 +60,11 @@ class AddIPv4MonitorController: NSWindowController {
         //self.close()
     }
     
-    @IBAction func latencyButton(_ sender: NSPopUpButton) {
-    }
-    
     @IBAction func addButtonPressed(_ sender: NSButton) {
         cancelHostResolution()
-        switch latencyButtonOutlet.indexOfSelectedItem {
-        case 0: latencyEnabled = false
-        case 1: latencyEnabled = true
-        // should not get to default case
-        default: latencyEnabled = false
-        }
         if let validatedIP = validatedIP {
-            DLog.log(.userInterface,"adding new monitor \(validatedIP.debugDescription) with latency \(latencyEnabled)")
-            if let newMonitor = MonitorIPv4(ipv4string: validatedIP, hostname: validatedHostname, latencyEnabled: latencyEnabled, comment: comment) {
+            DLog.log(.userInterface,"adding new monitor \(validatedIP.debugDescription)")
+            if let newMonitor = MonitorIPv4(ipv4string: validatedIP, hostname: validatedHostname, comment: comment) {
                 delegate?.addIPv4Monitor(monitor: newMonitor)
             }
         }

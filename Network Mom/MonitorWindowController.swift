@@ -60,12 +60,8 @@ class MonitorWindowController: NSWindowController {
             typeLabel.stringValue = monitor.type.rawValue
             makeAvailabilityChart(dataType: MonitorDataType.FiveMinute)
             
-            if monitor.latencyEnabled {
-                availabilityChart.isHidden = false
-                makeLatencyChart(dataType: MonitorDataType.FiveMinute)
-            } else {
-                availabilityChart.isHidden = true
-            }
+            availabilityChart.isHidden = false
+            makeLatencyChart(dataType: MonitorDataType.FiveMinute)
         } else {
             commentLabel.stringValue = ""
             statusLabel.stringValue = ""
@@ -76,23 +72,14 @@ class MonitorWindowController: NSWindowController {
     func updateFrames() {
         DLog.log(.userInterface,"in update frames")
         let standardHeight: CGFloat = 321.0
-        if monitor?.latencyEnabled ?? false {
-            DLog.log(.userInterface,"detected latency enable")
-            availabilityChart.isHidden = false
-            
-            let heightConstraint = NSLayoutConstraint(item: availabilityChart, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: standardHeight)
-            availabilityChart.addConstraint(heightConstraint)
-            availabilityChart.updateConstraints()
-        } else {
-            availabilityChart.isHidden = true
-            let heightConstraint = NSLayoutConstraint(item: stackView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: standardHeight * 2)
-            stackView.addConstraint(heightConstraint)
-            availabilityChart.updateConstraints()
-        }
+        DLog.log(.userInterface,"detected latency enable")
+        availabilityChart.isHidden = false
         
+        let heightConstraint = NSLayoutConstraint(item: availabilityChart, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: standardHeight)
+        availabilityChart.addConstraint(heightConstraint)
+        availabilityChart.updateConstraints()
         stackView.needsLayout = true
         stackView.needsDisplay = true
-        
     }
     
     @IBAction func selectDataButton(_ sender: NSPopUpButton) {
@@ -105,20 +92,18 @@ class MonitorWindowController: NSWindowController {
         case 4: makeAvailabilityChart(dataType: nil)
         default: fatalError("should not get here")
         }
-        if monitor?.latencyEnabled ?? false {
-            switch choice {
-            case 0: makeLatencyChart(dataType: MonitorDataType.FiveMinute)
-            case 1: makeLatencyChart(dataType: MonitorDataType.ThirtyMinute)
-            case 2: makeLatencyChart(dataType: MonitorDataType.TwoHour)
-            case 3: makeLatencyChart(dataType: MonitorDataType.OneDay)
-            case 4: makeLatencyChart(dataType: nil)
-            default: fatalError("should not get here")
-            }
+        switch choice {
+        case 0: makeLatencyChart(dataType: MonitorDataType.FiveMinute)
+        case 1: makeLatencyChart(dataType: MonitorDataType.ThirtyMinute)
+        case 2: makeLatencyChart(dataType: MonitorDataType.TwoHour)
+        case 3: makeLatencyChart(dataType: MonitorDataType.OneDay)
+        case 4: makeLatencyChart(dataType: nil)
+        default: fatalError("should not get here")
         }
     }
     private func makeLatencyChart(dataType: MonitorDataType?) {
         var chartDataEntry: [ChartDataEntry] = []
-        if let dataType = dataType, let rrdDataSet = monitor?.latency?.getData(dataType: dataType) {
+        if let dataType = dataType, let rrdDataSet = monitor?.latency.getData(dataType: dataType) {
             for rrdData in rrdDataSet {
                 if let latency = rrdData.value {
                     let time = Double(rrdData.timestamp)

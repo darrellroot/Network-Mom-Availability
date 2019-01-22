@@ -1,5 +1,5 @@
 //
-//  DragMonitorView2.swift
+//  DragMonitorView.swift
 //  Network Mom
 //
 //  Created by Darrell Root on 11/9/18.
@@ -35,13 +35,11 @@ class DragMonitorView: NSView {
         self.init(frame: frame)
         self.monitor = monitor
         self.monitor?.viewDelegate = self
-        if monitor.latencyEnabled {
-            let bottomBox = NSBox()
-            boxes.append(bottomBox)  // boxes[1]
-            boxes[1].wantsLayer = true
-            boxes[1].boxType = .primary
-            addSubview(boxes[1])
-        }
+        let bottomBox = NSBox()
+        boxes.append(bottomBox)  // boxes[1]
+        boxes[1].wantsLayer = true
+        boxes[1].boxType = .primary
+        addSubview(boxes[1])
         monitor.viewFrame = frame
     }
     override var isFlipped: Bool {
@@ -88,23 +86,21 @@ class DragMonitorView: NSView {
         } else {
             boxes[0].title = "No title error 2"
         }
-        if monitor?.latencyEnabled ?? false {
-            guard boxes.count > 1 else { return }  //no latency box to put data
-            let yesterdayLatency = monitor?.latency?.lastDay?.value
-            let titlePart1: String
-            let titlePart2: String
-            if yesterdayLatency != nil {
-                titlePart2 = String(format: "YDay Latency: %.2fms", yesterdayLatency!)
-            } else {
-                titlePart2 = "Yesterday Latency: TBD"
-            }
-            if let currentLatency = monitor?.latency?.lastFiveMinute?.value, boxes.count > 1 {
-                titlePart1 = String(format: "Latency: %.2fms",currentLatency)
-            } else {
-                titlePart1 = "Current Latency TBD"
-            }
-            boxes[1].title = titlePart1 + "\n" + titlePart2
+        guard boxes.count > 1 else { return }  //no latency box to put data
+        let yesterdayLatency = monitor?.latency.lastDay?.value
+        let titlePart1: String
+        let titlePart2: String
+        if yesterdayLatency != nil {
+            titlePart2 = String(format: "YDay Latency: %.2fms", yesterdayLatency!)
+        } else {
+            titlePart2 = "Yesterday Latency: TBD"
         }
+        if let currentLatency = monitor?.latency.lastFiveMinute?.value, boxes.count > 1 {
+            titlePart1 = String(format: "Latency: %.2fms",currentLatency)
+        } else {
+            titlePart1 = "Current Latency TBD"
+        }
+        boxes[1].title = titlePart1 + "\n" + titlePart2
     }
     
     public func updateFrame() {
