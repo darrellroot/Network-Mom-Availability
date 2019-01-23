@@ -275,6 +275,8 @@
 		2FA0297821F2A3DD00ABAB9A /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297721F2A3DD00ABAB9A /* about.html */; };
 		2FA0297B21F7C88600ABAB9A /* AddIPv4MonitorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0297921F7C88600ABAB9A /* AddIPv4MonitorsController.swift */; };
 		2FA0297C21F7C88600ABAB9A /* AddIPv4MonitorsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297A21F7C88600ABAB9A /* AddIPv4MonitorsController.xib */; };
+		2FA0297E21F923FD00ABAB9A /* AddIPv6MonitorsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */; };
+		2FA0298021F9241100ABAB9A /* AddIPv6MonitorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0297F21F9241100ABAB9A /* AddIPv6MonitorsController.swift */; };
 		2FA35D9021AA4CA500556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9121AA4CB800556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
@@ -673,6 +675,8 @@
 		2FA0297721F2A3DD00ABAB9A /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		2FA0297921F7C88600ABAB9A /* AddIPv4MonitorsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIPv4MonitorsController.swift; sourceTree = "<group>"; };
 		2FA0297A21F7C88600ABAB9A /* AddIPv4MonitorsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddIPv4MonitorsController.xib; sourceTree = "<group>"; };
+		2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddIPv6MonitorsController.xib; sourceTree = "<group>"; };
+		2FA0297F21F9241100ABAB9A /* AddIPv6MonitorsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIPv6MonitorsController.swift; sourceTree = "<group>"; };
 		2FC0B3A021AFB51B00C44DB5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2FC0B3A221AFC06800C44DB5 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -843,6 +847,8 @@
 				2F904E37219F7A140040530B /* AddIPv4MonitorController.xib */,
 				2FA0297921F7C88600ABAB9A /* AddIPv4MonitorsController.swift */,
 				2FA0297A21F7C88600ABAB9A /* AddIPv4MonitorsController.xib */,
+				2FA0297F21F9241100ABAB9A /* AddIPv6MonitorsController.swift */,
+				2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */,
 				2F904E33219F7A130040530B /* AddIPv6MonitorController.swift */,
 				2F904E30219F7A130040530B /* AddIPv6MonitorController.xib */,
 				2F904E5C219F7A450040530B /* AddMonitorDelegate.swift */,
@@ -1569,6 +1575,7 @@
 				2F5061A721B33CCF00C19984 /* Network Mom.help in Resources */,
 				2F904E2F219F79FF0040530B /* ShowLogController.xib in Resources */,
 				2F5061D621BC876900C19984 /* ShowStatisticsController.xib in Resources */,
+				2FA0297E21F923FD00ABAB9A /* AddIPv6MonitorsController.xib in Resources */,
 				2F5061CC21B5E06B00C19984 /* credits.html in Resources */,
 				2F5061A521B33A6900C19984 /* new-map-menu.png in Resources */,
 				2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */,
@@ -1711,6 +1718,7 @@
 				2FA0297021ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift in Sources */,
 				2F904E66219F7A460040530B /* socket-extensions.swift in Sources */,
 				2F904E64219F7A460040530B /* MonitorEnumeration.swift in Sources */,
+				2FA0298021F9241100ABAB9A /* AddIPv6MonitorsController.swift in Sources */,
 				2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

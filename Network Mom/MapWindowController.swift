@@ -41,7 +41,8 @@ class MapWindowController: NSWindowController {
     var mapAvailabilityReportControllers: [MapAvailabilityReportController] = []
     //var mapAvailabilityReportController: MapAvailabilityReportController!
     var addIPv4MonitorsControllers: [AddIPv4MonitorsController] = []
-    
+    var addIPv6MonitorsControllers: [AddIPv6MonitorsController] = []
+
     var pingSweepIteration = 0
     var numberSweeps: Int
     var pingTimer: Timer!
@@ -59,10 +60,10 @@ class MapWindowController: NSWindowController {
     
     @IBAction func AddIPv4MonitorsMenuItem(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"addIPv4monitors clicked")
-        let addIpv4MonitorsController = AddIPv4MonitorsController()
-        addIpv4MonitorsController.delegate = self
-        addIpv4MonitorsController.showWindow(self)
-        addIPv4MonitorsControllers.append(addIpv4MonitorsController)
+        let addIPv4MonitorsController = AddIPv4MonitorsController()
+        addIPv4MonitorsController.delegate = self
+        addIPv4MonitorsController.showWindow(self)
+        addIPv4MonitorsControllers.append(addIPv4MonitorsController)
     }
     
     
@@ -75,6 +76,14 @@ class MapWindowController: NSWindowController {
         } )
     }
     
+    @IBAction func AddIPv6MonitorsMenuItem(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"addIPv6monitors clicked")
+        let addIPv6MonitorsController = AddIPv6MonitorsController()
+        addIPv6MonitorsController.delegate = self
+        addIPv6MonitorsController.showWindow(self)
+        addIPv6MonitorsControllers.append(addIPv6MonitorsController)
+    }
+
     func showSaveAlert(url: URL) {
         let alert = NSAlert()
         alert.alertStyle = NSAlert.Style.critical

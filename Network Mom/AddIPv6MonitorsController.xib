@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AddIPv6MonitorsController" customModule="Network_Mom_Availability" customModuleProvider="target">
+            <connections>
+                <outlet property="textView" destination="mz1-i4-ka1" id="7QT-Tt-fNg"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="Lg2-7k-OTQ">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" wantsLayer="YES" id="fM3-ax-y2a">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mel-11-I8u">
+                        <rect key="frame" x="0.0" y="61" width="480" height="209"/>
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="YI3-J9-4m8">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="209"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="mz1-i4-ka1">
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="209"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="480" height="209"/>
+                                    <size key="maxSize" width="480" height="10000000"/>
+                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                </textView>
+                            </subviews>
+                        </clipView>
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="2FZ-IT-lWj">
+                            <rect key="frame" x="464" y="0.0" width="16" height="209"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y4N-pR-nWH">
+                        <rect key="frame" x="14" y="13" width="80" height="32"/>
+                        <buttonCell key="cell" type="push" title="Import" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xXa-Mh-LSn">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="importButton:" target="-2" id="skN-NR-bi2"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="y4N-pR-nWH" secondAttribute="bottom" constant="20" symbolic="YES" id="2kD-fT-T8z"/>
+                    <constraint firstItem="y4N-pR-nWH" firstAttribute="top" secondItem="Mel-11-I8u" secondAttribute="bottom" constant="20" symbolic="YES" id="3k7-es-EHb"/>
+                    <constraint firstItem="Mel-11-I8u" firstAttribute="leading" secondItem="fM3-ax-y2a" secondAttribute="leading" id="Gj8-IB-Pot"/>
+                    <constraint firstItem="y4N-pR-nWH" firstAttribute="leading" secondItem="fM3-ax-y2a" secondAttribute="leading" constant="20" symbolic="YES" id="Kkl-9e-6F2"/>
+                    <constraint firstItem="Mel-11-I8u" firstAttribute="top" secondItem="fM3-ax-y2a" secondAttribute="top" id="SxZ-O4-0on"/>
+                    <constraint firstAttribute="trailing" secondItem="Mel-11-I8u" secondAttribute="trailing" id="hjO-Qo-xvr"/>
+                </constraints>
+            </view>
+        </window>
+    </objects>
+</document>

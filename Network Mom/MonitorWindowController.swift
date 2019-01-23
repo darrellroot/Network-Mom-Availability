@@ -89,7 +89,6 @@ class MonitorWindowController: NSWindowController {
         case 1: makeAvailabilityChart(dataType: MonitorDataType.ThirtyMinute)
         case 2: makeAvailabilityChart(dataType: MonitorDataType.TwoHour)
         case 3: makeAvailabilityChart(dataType: MonitorDataType.OneDay)
-        case 4: makeAvailabilityChart(dataType: nil)
         default: fatalError("should not get here")
         }
         switch choice {
@@ -97,7 +96,6 @@ class MonitorWindowController: NSWindowController {
         case 1: makeLatencyChart(dataType: MonitorDataType.ThirtyMinute)
         case 2: makeLatencyChart(dataType: MonitorDataType.TwoHour)
         case 3: makeLatencyChart(dataType: MonitorDataType.OneDay)
-        case 4: makeLatencyChart(dataType: nil)
         default: fatalError("should not get here")
         }
     }
@@ -112,6 +110,7 @@ class MonitorWindowController: NSWindowController {
                 }
             }
         } else { // dataType is nil so need test data
+            // not currently used
             chartDataEntry.append(ChartDataEntry(x: 563227200, y: 21.0))
             chartDataEntry.append(ChartDataEntry(x: 563227500, y: 31.0))
             chartDataEntry.append(ChartDataEntry(x: 563227800, y: 16.2))

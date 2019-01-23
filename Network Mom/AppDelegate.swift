@@ -199,37 +199,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         emailNotificationConfigurationReportController.showWindow(self)
     }
     
-    /*@IBAction func exportFullConfiguration(_ sender: NSMenuItem) {
-        let savePanel = NSSavePanel()
-        savePanel.allowedFileTypes = ["mom2"]
-        savePanel.begin { (result: NSApplication.ModalResponse) -> Void in
-            if result == NSApplication.ModalResponse.OK {
-                if let url = savePanel.url {
-                    _ = self.exportFullConfig(url: url)
-                }
-            } else {
-                DLog.log(.dataIntegrity,"File selection not successful")
-            }
-        }
-    }
-    
-    func exportFullConfig(url: URL) -> Bool {
-        DLog.log(.dataIntegrity,"saving to \(url.debugDescription)")
-        var success = true
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .xml
-        do {
-            let codableDataStructure = CodableDataStructure()
-            //let data = try encoder.encode(self.maps)
-            let data = try encoder.encode(codableDataStructure)
-            try data.write(to: url, options: Data.WritingOptions.atomic)
-        } catch {
-            DLog.log(.dataIntegrity,"error writing data to \(url)")
-            self.showSaveAlert(url: url)
-            success = false
-        }
-        return success
-    }*/
     
 
     func fixMapIndex() {
@@ -239,58 +208,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    /*@IBAction func importMap(_ sender: NSMenuItem) {
-        let openPanel = NSOpenPanel()
-        openPanel.allowedFileTypes = ["mom1"]
-        openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
-            if result == NSApplication.ModalResponse.OK {
-                if let url = openPanel.url {
-                    DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
-                    self.importData(url: url)
-                    DispatchQueue.main.async { [unowned self] in
-                        self.makeMapNamesUnique()
-                    }
-                }
-            } else {
-                DLog.log(.dataIntegrity,"open selection not successful")
-            }
-        }
-    }*/
-    /*@IBAction func importFullConfiguration(_ sender: NSMenuItem) {
-        let openPanel = NSOpenPanel()
-        openPanel.allowedFileTypes = ["mom2"]
-        openPanel.begin { ( result: NSApplication.ModalResponse) -> Void in
-            if result == NSApplication.ModalResponse.OK {
-                if let url = openPanel.url {
-                    DLog.log(.dataIntegrity,"opening from \(url.debugDescription)")
-                    self.restoreAllConfig(url)
-                    DispatchQueue.main.async { [unowned self] in
-                        self.makeMapNamesUnique()
-                    }
-                }
-            } else {
-                DLog.log(.dataIntegrity,"open selection not successful")
-            }
-        }
-    }*/
-    /*func importData(url: URL) {
-        if let data = try? Data(contentsOf: url) {
-            let decoder = PropertyListDecoder()
-            var importedMap: MapWindowController? = nil
-            do {
-                importedMap = try decoder.decode(MapWindowController.self, from: data)
-            } catch {
-                DLog.log(.dataIntegrity,"error decoding map")
-            }
-            if let importedMap = importedMap {
-                maps.append(importedMap)
-                importedMap.showWindow(self)
-            }
-            fixMapIndex()
-        }
-    }*/
-    
-    
     func loadEmailPassword() {
         if let emailServerHostname = userDefaults.string(forKey: Constants.emailServerHostname), let emailServerUsername = userDefaults.string(forKey: Constants.emailServerUsername) {
             let query: [String: Any] = [
@@ -501,9 +418,3 @@ protocol ReceivedPing6Delegate: class {
     func receivedPing6(ipv6: IPv6Address, sequence: UInt16, id: UInt16)
 }
 
-/*struct FileVersion: Codable {
-    enum CodingKeys: String, CodingKey {
-        case version
-    }
-    var version: Int
-}*/

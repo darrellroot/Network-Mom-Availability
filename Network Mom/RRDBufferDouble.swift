@@ -37,21 +37,7 @@ public struct RRDBufferDouble: Codable {
     
     public func getData() -> [RRDData] {
         let data1 = Array(array[writeIndex..<array.count]).compactMap({ $0 })
-        let data2 = Array(array[0..<recentWriteIndex]).compactMap({ $0 })
+        let data2 = Array(array[0...recentWriteIndex]).compactMap({ $0 })
         return data1 + data2
     }
 }
-
-/*extension RRDBuffer: Sequence {
-    public func makeIterator() -> AnyIterator<T> {
-        var index = readIndex
-        return AnyIterator {
-            guard index < self.writeIndex else { return nil }
-            defer {
-                index += 1
-            }
-            return self.array[wrapped: index]
-        }
-    }
-}*/
-

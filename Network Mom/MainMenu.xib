@@ -628,20 +628,23 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="w3F-OF-UJQ"/>
-                            <menuItem title="Import Text Monitor List" id="Z5q-kU-TYf">
+                            <menuItem title="Add Monitors by IPv4/IPv6 Addresses" id="Z5q-kU-TYf">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="importTextMonitorList:" target="-1" id="mCo-ED-u0G"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Add IPv4 Monitors" id="Nwi-oM-jVM">
+                            <menuItem title="Add IPv4 Monitors by Hostnames" id="Nwi-oM-jVM">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="AddIPv4MonitorsMenuItem:" target="-1" id="5Sf-Io-RtL"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Add IPv6 Monitors" id="g0Y-K0-wi0">
+                            <menuItem title="Add IPv6 Monitors by Hostnames" id="g0Y-K0-wi0">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="AddIPv6MonitorsMenuItem:" target="-1" id="3a2-fd-oC0"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="3Ld-nN-6EZ"/>
                             <menuItem title="Delete Selected Monitors" id="6uJ-N8-x59" userLabel="Delete Selected Monitors">

@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="MonitorWindowController" customModule="Network_Mom" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="MonitorWindowController" customModule="Network_Mom_Availability" customModuleProvider="target">
             <connections>
                 <outlet property="availabilityChart" destination="8Vm-Gk-tOg" id="Aqx-WX-B5j"/>
                 <outlet property="commentLabel" destination="RZg-m5-dbn" id="yEE-UN-IAE"/>
@@ -24,12 +24,12 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="963"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO" customClass="FlipView" customModule="Network_Mom" customModuleProvider="target">
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO" customClass="FlipView" customModule="Network_Mom_Availability" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="963"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="klq-9u-P9V" customClass="FlipStackView" customModule="Network_Mom" customModuleProvider="target">
+                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="klq-9u-P9V" customClass="FlipStackView" customModule="Network_Mom_Availability" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="963"/>
                         <subviews>
                             <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SqQ-EG-2op">
@@ -77,16 +77,15 @@
                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3G-Sw-LIc">
                                         <rect key="frame" x="18" y="122" width="160" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="push" title="Graph Hourly Data" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="kRL-2I-hwi" id="dA1-BL-ywe">
+                                        <popUpButtonCell key="cell" type="push" title="Graph Five Minute Data" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="kRL-2I-hwi" id="dA1-BL-ywe">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="cOC-kO-uNl">
                                                 <items>
-                                                    <menuItem title="Graph Hourly Data" state="on" id="kRL-2I-hwi"/>
-                                                    <menuItem title="Graph Daily Data" id="AN1-7c-9Lc"/>
-                                                    <menuItem title="Graph Weekly Data" id="X6a-U7-biC"/>
-                                                    <menuItem title="Graph Monthly Data" id="SwT-xr-n83"/>
-                                                    <menuItem title="Graph Test Data" id="kpw-E9-2tE"/>
+                                                    <menuItem title="Graph Five Minute Data" state="on" id="kRL-2I-hwi" userLabel="Graph Five Minute Data"/>
+                                                    <menuItem title="Graph Thirty Minute Data" id="AN1-7c-9Lc"/>
+                                                    <menuItem title="Graph Two Hour Data" id="X6a-U7-biC"/>
+                                                    <menuItem title="Graph Daily Data" id="SwT-xr-n83"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
