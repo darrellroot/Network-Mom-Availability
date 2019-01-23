@@ -14,19 +14,9 @@ class MapWindowController: NSWindowController {
 
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
 
-/*    enum CodingKeys: String, CodingKey {
-        case availability
-        case ipv4monitors
-        case ipv6monitors
-        case name
-        case frame
-        case emailAlerts
-        case emailReports
-    }*/
-
     var coreMap: CoreMap?
     
-    var windowFrame: NSRect? // used during decoding
+    //var windowFrame: NSRect? // used during decoding
     var availability: RRDGauge
     var mapIndex: Int! // index in AppDelegate maps array
     let minBorder: CGFloat = 20.0  // minimum margin when shrinking window
@@ -50,64 +40,12 @@ class MapWindowController: NSWindowController {
     var importMonitorListControllers: [ImportMonitorListController] = []
     var mapAvailabilityReportControllers: [MapAvailabilityReportController] = []
     //var mapAvailabilityReportController: MapAvailabilityReportController!
+    var addIPv4MonitorsControllers: [AddIPv4MonitorsController] = []
     
     var pingSweepIteration = 0
     var numberSweeps: Int
     var pingTimer: Timer!
 
-/*    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        availability = try container.decode(RRDGauge.self, forKey: .availability)
-        name = try container.decode(String.self, forKey: .name)
-        let emailAlertsOptional = try? container.decode([String].self, forKey: .emailAlerts)
-        emailAlerts = emailAlertsOptional ?? []
-        let emailReportsOptional = try? container.decode([String].self, forKey: .emailReports)
-        emailReports = emailReportsOptional ?? []
-        ipv4monitors = try container.decode([MonitorIPv4].self, forKey: .ipv4monitors)
-        ipv6monitors = try container.decode([MonitorIPv6].self, forKey: .ipv6monitors)
-        windowFrame = try? container.decode(NSRect.self, forKey: .frame)
-        monitors = ipv4monitors as [Monitor] + ipv6monitors as [Monitor]
-        numberSweeps = Defaults.pingSweepDuration / Defaults.pingTimerDuration
-        guard Defaults.pingSweepDuration % Defaults.pingTimerDuration == 0 else {
-            fatalError("pingSweepDuration is not an integer multiple of pingTimerDuration")
-        }
-        coreMap = CoreMap(context: appDelegate.managedContext)
-        
-        super.init(window: nil)
-        writeCoreData()
-        for monitor in ipv4monitors {
-            monitor.mapDelegate = self
-        }
-        for monitor in ipv6monitors {
-            monitor.mapDelegate = self
-        }
-        ipv4monitors = []  // temp variables just used during decoding
-        ipv6monitors = []
-        //monitors = try container.decode([Monitor].self, forKey: .monitors)
-    }*/
-    /*func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.availability, forKey: .availability)
-        try container.encode(self.name, forKey: .name)
-//        try container.encode(self.monitors, forKey: .monitors)
-        try container.encode(self.emailAlerts, forKey: .emailAlerts)
-        try container.encode(self.emailReports, forKey: .emailReports)
-        for monitor in monitors {
-            if let monitor = monitor as? MonitorIPv4 {
-                ipv4monitors.append(monitor)
-            }
-            if let monitor = monitor as? MonitorIPv6 {
-                ipv6monitors.append(monitor)
-            }
-        }
-        try container.encode(ipv4monitors, forKey: .ipv4monitors)
-        try container.encode(ipv6monitors, forKey: .ipv6monitors)
-        ipv4monitors = []
-        ipv6monitors = []
-        if let frame = window?.frame {
-            try container.encode(frame, forKey: .frame)
-        }
-    }*/
     
     @IBAction func AddIPv4MonitorMenuItem(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"addIPv4monitor clicked")
@@ -118,6 +56,15 @@ class MapWindowController: NSWindowController {
             response in
         } )
     }
+    
+    @IBAction func AddIPv4MonitorsMenuItem(_ sender: NSMenuItem) {
+        DLog.log(.userInterface,"addIPv4monitors clicked")
+        let addIpv4MonitorsController = AddIPv4MonitorsController()
+        addIpv4MonitorsController.delegate = self
+        addIpv4MonitorsController.showWindow(self)
+        addIPv4MonitorsControllers.append(addIpv4MonitorsController)
+    }
+    
     
     @IBAction func AddIPv6MonitorMenuItem(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"addIPv6monitor clicked")
@@ -309,7 +256,7 @@ class MapWindowController: NSWindowController {
         self.emailAlerts = coreData.emailAlerts ?? []
         self.emailReports = coreData.emailReports ?? []
         let frame = NSRect(x: Double(coreData.frameX), y: Double(coreData.frameY), width: Double(coreData.frameWidth), height: Double(coreData.frameHeight))
-        self.windowFrame = frame
+        self.window?.setFrame(frame, display: true)
         
         let fiveMinCoreData = coreData.availabilityFiveMinuteData ?? []
         let fiveMinCoreTime = coreData.availabilityFiveMinuteTimestamp ?? []
@@ -348,6 +295,7 @@ class MapWindowController: NSWindowController {
                 monitor.viewDelegate = dragMonitorView
             }
         }
+        resizeWindow()
     }
 
     required init?(coder: NSCoder) {
@@ -405,6 +353,7 @@ class MapWindowController: NSWindowController {
     }
     
     func writeCoreData() {
+        DLog.log(.dataIntegrity,"Map \(name) writing core data")
         if coreMap == nil {
             DLog.log(.dataIntegrity,"Initializing coreMap core data structure in MapWindowController \(name)")
             self.coreMap = CoreMap(context: appDelegate.managedContext)
@@ -412,10 +361,10 @@ class MapWindowController: NSWindowController {
         if let coreData = self.coreMap {
             coreData.emailAlerts = emailAlerts
             coreData.emailReports = emailReports
-            coreData.frameHeight = Float(windowFrame?.height ?? 200.0)
-            coreData.frameWidth = Float(windowFrame?.width ?? 200.0)
-            coreData.frameX = Float(windowFrame?.minX ?? 40.0)
-            coreData.frameY = Float(windowFrame?.minY ?? 40.0)
+            coreData.frameHeight = Float(window?.frame.height ?? 200.0)
+            coreData.frameWidth = Float(window?.frame.width ?? 200.0)
+            coreData.frameX = Float(window?.frame.minX ?? 40.0)
+            coreData.frameY = Float(window?.frame.minY ?? 40.0)
             coreData.name = name
             
             
@@ -456,30 +405,14 @@ class MapWindowController: NSWindowController {
     }
     override func windowDidLoad() {
         super.windowDidLoad()
-        if let windowFrame = windowFrame {
+        /*if let windowFrame = windowFrame {
             DLog.log(.userInterface,"window frame \(windowFrame)")
             window?.setFrame(windowFrame,display: true)
-        }
-        resizeWindow()
+        }*/
+        //resizeWindow()
         let name2 = name
         name = name2 // trigger didset
         
-        /*for monitor in monitors {
-            if monitor.viewDelegate == nil {
-                // this means we just imported the map via codable
-                var newFrame: NSRect
-                if let viewFrame = monitor.viewFrame {
-                    newFrame = viewFrame
-                } else {
-                    newFrame = NSRect(x: 50, y: 50, width: 50, height: 30)
-                }
-                let dragMonitorView = DragMonitorView(frame: newFrame, monitor: monitor)
-                dragMonitorView.controllerDelegate = self
-                monitorViews.append(dragMonitorView)
-                mainView?.addSubview(dragMonitorView)
-                monitor.viewDelegate = dragMonitorView
-            }
-        }*/
         pingTimer = Timer.scheduledTimer(timeInterval: Double(Defaults.pingTimerDuration), target: self, selector: #selector(executePings), userInfo: nil, repeats: true)
         pingTimer.tolerance = 0.3
         RunLoop.current.add(pingTimer,forMode: .common)

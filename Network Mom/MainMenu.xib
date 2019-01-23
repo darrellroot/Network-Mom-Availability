@@ -636,6 +636,9 @@
                             </menuItem>
                             <menuItem title="Add IPv4 Monitors" id="Nwi-oM-jVM">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="AddIPv4MonitorsMenuItem:" target="-1" id="5Sf-Io-RtL"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Add IPv6 Monitors" id="g0Y-K0-wi0">
                                 <modifierMask key="keyEquivalentModifierMask"/>
