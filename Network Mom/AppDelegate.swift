@@ -193,6 +193,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
+    
+    @IBAction func emailDailyReports(_ sender: NSMenuItem) {
+        emailDailyReports()
+    }
+    func emailDailyReports() {
+        for map in maps {
+            map.emailDailyReports()
+        }
+    }
     @IBAction func emailNotificationConfigurationReport(_ sender: NSMenuItem) {
         let emailNotificationConfigurationReportController = EmailNotificationConfigurationReportController()
         emailNotificationConfigurationReportControllers.append(emailNotificationConfigurationReportController)

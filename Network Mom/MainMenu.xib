@@ -646,6 +646,13 @@
                                     <action selector="AddIPv6MonitorsMenuItem:" target="-1" id="3a2-fd-oC0"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="DHV-K4-3EY"/>
+                            <menuItem title="Arrange Monitors" id="JF9-QN-gKh">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="arrangeMonitors:" target="-1" id="CUa-uj-sPG"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="3Ld-nN-6EZ"/>
                             <menuItem title="Delete Selected Monitors" id="6uJ-N8-x59" userLabel="Delete Selected Monitors">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -698,6 +705,12 @@
                                     <action selector="mapAvailabilityReport:" target="-1" id="OXo-o9-JIY"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Map Availability Report 2" id="atQ-Ww-jZe">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="mapAvailabilityReport2:" target="-1" id="Cth-tf-Bzy"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Email Notification Configuration Report" id="IHU-8a-am8">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -708,6 +721,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showStatisticsMenu:" target="Voe-Tx-rLC" id="4Cu-ba-zeS"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Email Daily Reports" id="ciU-Pr-1GW">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="emailDailyReports:" target="Voe-Tx-rLC" id="1xd-OO-pA1"/>
                                 </connections>
                             </menuItem>
                         </items>

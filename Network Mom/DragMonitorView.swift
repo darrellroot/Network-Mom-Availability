@@ -126,6 +126,7 @@ class DragMonitorView: NSView {
         let oldframe = self.frame
         self.frame = NSRect(x: oldframe.minX, y: oldframe.minY, width: maxWidth, height: totalHeight)
         self.needsDisplay = true
+        monitor?.viewFrame = frame
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -142,6 +143,13 @@ class DragMonitorView: NSView {
     }
 }
 extension DragMonitorView {
+    /*override func mouseDown(with event: NSEvent) {
+        self.nextResponder?.mouseDown(with: event)
+        if let superview = self.superview {
+            self.removeFromSuperview()
+            superview.addSubview(self, positioned: .above, relativeTo: nil)
+        }
+    }*/
     override func mouseUp(with event: NSEvent) {
         if event.clickCount == 1 {
             if let controllerDelegate = controllerDelegate {
@@ -151,6 +159,10 @@ extension DragMonitorView {
                 }
             }
             selected = !selected
+            if let superview = self.superview {
+                self.removeFromSuperview()
+                superview.addSubview(self, positioned: .above, relativeTo: nil)
+            }
         }
         if event.clickCount == 2 {
             DLog.log(.userInterface,"doubleclick")
@@ -167,7 +179,12 @@ extension DragMonitorView {
     
     override func mouseDragged(with event: NSEvent) {
         let newX = frame.minX + event.deltaX
-        let newY = frame.minY - event.deltaY
+        let newY: CGFloat
+        if window?.contentView?.isFlipped ?? false {
+            newY = frame.minY + event.deltaY
+        } else {
+            newY = frame.minY - event.deltaY
+        }
         frame = NSRect(origin: CGPoint(x: newX, y: newY),size: frame.size)
         //debugPrint("dragged x \(event.deltaX) \(event.deltaY)")
     }

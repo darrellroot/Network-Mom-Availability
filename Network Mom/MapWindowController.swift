@@ -9,6 +9,7 @@
 import Cocoa
 import Network
 import DLog
+import SwiftSMTP
 
 class MapWindowController: NSWindowController {
 
@@ -39,7 +40,10 @@ class MapWindowController: NSWindowController {
     var ipv6Monitor: AddIPv6MonitorController!
     var importMonitorListControllers: [ImportMonitorListController] = []
     var mapAvailabilityReportControllers: [MapAvailabilityReportController] = []
-    //var mapAvailabilityReportController: MapAvailabilityReportController!
+
+    // temporary during development 1/25/19
+    var mapAvailabilityReportControllers2: [MapAvailabilityReportController2] = []
+
     var addIPv4MonitorsControllers: [AddIPv4MonitorsController] = []
     var addIPv6MonitorsControllers: [AddIPv6MonitorsController] = []
 
@@ -47,6 +51,9 @@ class MapWindowController: NSWindowController {
     var numberSweeps: Int
     var pingTimer: Timer!
 
+    var lastMonitorAddTime = Date()
+    var nextMonitorAddX = 40.0
+    var nextMonitorAddY = 40.0
     
     @IBAction func AddIPv4MonitorMenuItem(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"addIPv4monitor clicked")
@@ -84,6 +91,28 @@ class MapWindowController: NSWindowController {
         addIPv6MonitorsControllers.append(addIPv6MonitorsController)
     }
 
+    @IBAction func arrangeMonitors(_ sender: NSMenuItem) {
+        let columns = monitors.count.squareRoot()
+        DLog.log(.userInterface,"arrangeMonitors: monitors.count:\(monitors.count) columns: \(columns)")
+        var lastXposition = minBorder
+        var lastYposition = minBorder
+        var currentColumn = 1
+        for monitorView in monitorViews.sorted(by: { ($0.monitor?.hostname ?? "") < ($1.monitor?.hostname ?? "") }) {
+            monitorView.frame = NSRect(x: lastXposition, y: lastYposition, width: monitorView.frame.width, height: monitorView.frame.height)
+            monitorView.updateFrame()
+            if currentColumn >= columns {
+                // start next row
+                lastXposition = minBorder
+                lastYposition = lastYposition + monitorView.frame.height + minBorder
+                currentColumn = 1
+            } else {
+                lastXposition = lastXposition + minBorder + monitorView.frame.width
+                currentColumn = currentColumn + 1
+            }
+        }
+        resizeWindow()
+    }
+    
     func showSaveAlert(url: URL) {
         let alert = NSAlert()
         alert.alertStyle = NSAlert.Style.critical
@@ -93,21 +122,6 @@ class MapWindowController: NSWindowController {
         alert.runModal()
     }
 
-    /*@IBAction func exportMap(_ sender: NSMenuItem) {
-        DLog.log(.dataIntegrity,"attempting to export map")
-        let savePanel = NSSavePanel()
-        savePanel.allowedFileTypes = ["mom1"]
-        savePanel.begin { (result: NSApplication.ModalResponse) -> Void in
-            if result == NSApplication.ModalResponse.OK {
-                if let url = savePanel.url {
-                    DLog.log(.dataIntegrity,"saving to \(url.debugDescription)")
-                    self.exportMap(url: url)
-                }
-            } else {
-                DLog.log(.dataIntegrity,"File selection not successful")
-            }
-        }
-    }*/
     @IBAction func exportMapMonitorListAsText(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"exportMapMonitorListAsText selected")
         let savePanel = NSSavePanel()
@@ -217,6 +231,74 @@ class MapWindowController: NSWindowController {
         } while didADelete == true
     }
 
+    func emailDailyReports() {
+        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("report.pdf")
+        let fileShortString = "Documents/report.pdf"
+        //let filename = "report.pdf"
+        //let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        //let directoryURL = FileManager.default.documentDirectory
+        //let filename = directoryURL.absoluteString + "/dailyreport.pdf"
+        //let fileURL = directoryURL.appendingPathComponent("dailyreport.pdf")
+        DLog.log(.dataIntegrity,"daily report url \(fileURL)")
+        let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save, NSPrintInfo.AttributeKey.jobSavingURL: fileURL]
+        //let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save]
+        let printInfo = NSPrintInfo(dictionary: printOpts)
+
+        //var pdfData = NSMutableData()
+
+        DLog.log(.userInterface,"map \(name) emailing daily reports")
+        let availabilityReport = AvailabilityReport()
+        let availabilityReportView = availabilityReport.makeView()
+        availabilityReportView.translatesAutoresizingMaskIntoConstraints = false
+        let view = NSView(frame: NSRect(x: 0, y: 0, width: 570, height: 500))
+        view.addSubview(availabilityReportView)
+        let textFields = [
+            "availabilityReportView": availabilityReportView,
+            ]
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[availabilityReportView]|", options: [], metrics: nil, views: textFields))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[availabilityReportView]|", options: [], metrics: nil, views: textFields))
+        let printOperation = NSPrintOperation.pdfOperation(with: view, inside: view.frame, toPath: fileShortString, printInfo: printInfo)
+        //let printOperation = NSPrintOperation.pdfOperation(with: view, inside: view.frame, to: pdfData as! NSMutableData)
+        printOperation.showsPrintPanel = false
+        printOperation.showsProgressPanel = false
+        printOperation.run()
+
+        let emails = appDelegate.emails
+        var emailHash: [String: EmailAddress] = [:]
+        for email in emails {
+            emailHash[email.email] = email
+        }
+        guard let emailConfiguration = appDelegate.emailConfiguration else {
+            DLog.log(.dataIntegrity,"No Email Configuration, unable to email daily reports")
+            return
+        }
+        let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
+        for recipient in emailReports {
+            if let emailRecipient = emailHash[recipient] {
+                let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
+                let recipient = Mail.User(name: emailRecipient.name, email: emailRecipient.email)
+                let message = "test email message"
+                //let attachment = Attachment(filePath: fileURL.absoluteString)
+                let attachment = Attachment(filePath: "/Users/droot/Library/Containers/net.networkmom.availability/Data/Documents/report.pdf", mime: "application/pdf", name: "report.pdf", inline: false, additionalHeaders: [:], relatedAttachments: [])
+                //let attachment = Attachment(filePath: fileURL.relativeString)
+                let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [attachment], additionalHeaders: [:])
+                //let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [], additionalHeaders: [:])
+
+                smtp.send(mail) { (error) in
+                    if let error = error {
+                        DLog.log(.mail,"email error \(error)")
+                        if let error = error as? SMTPError {
+                            DLog.log(.mail,error.description)
+                        } else {
+                            DLog.log(.mail,error.localizedDescription)
+                        }
+                    } else {
+                        DLog.log(.mail,"alert mail sent successfully")
+                    }
+                }
+            }
+        }
+    }
     @objc func executePings() {
         if monitors.count == 0 {
             return
@@ -333,6 +415,13 @@ class MapWindowController: NSWindowController {
         mapAvailabilityReportController.delegate = self
         mapAvailabilityReportController.showWindow(self)
     }
+    @IBAction func mapAvailabilityReport2(_ sender: NSMenuItem) {
+        let mapAvailabilityReportController2 = MapAvailabilityReportController2()
+        mapAvailabilityReportControllers2.append(mapAvailabilityReportController2)
+        mapAvailabilityReportController2.delegate = self
+        mapAvailabilityReportController2.showWindow(self)
+    }
+
     override func mouseUp(with event: NSEvent) {
         if event.clickCount == 1 {
             deselectAll()
@@ -455,21 +544,33 @@ extension MapWindowController: AddMonitorDelegate {
         return false
     }
 
-    
+    func updateNextPosition() {
+        let currentTime = Date()
+        if currentTime.timeIntervalSince(lastMonitorAddTime) > 2.0 {
+            nextMonitorAddX = Double(2 * minBorder)
+            nextMonitorAddY = Double(2 * minBorder)
+        } else {
+            nextMonitorAddX = nextMonitorAddX + Double(minBorder)
+            nextMonitorAddY = nextMonitorAddY + Double(minBorder)
+        }
+        lastMonitorAddTime = currentTime
+    }
     func addIPv4Monitor(monitor: MonitorIPv4) {
+        updateNextPosition()
         monitors.append(monitor as Monitor)
         monitor.mapDelegate = self
         monitor.coreMonitorIPv4?.coreMap = self.coreMap
-        let dragMonitorView = DragMonitorView(frame: NSRect(x: 50, y: 50, width: 50, height: 30), monitor: monitor)
+        let dragMonitorView = DragMonitorView(frame: NSRect(x: nextMonitorAddX, y: nextMonitorAddY, width: 50, height: 30), monitor: monitor)
         dragMonitorView.controllerDelegate = self
         monitorViews.append(dragMonitorView)
         mainView?.addSubview(dragMonitorView)
     }
     func addIPv6Monitor(monitor: MonitorIPv6) {
+        updateNextPosition()
         monitors.append(monitor as Monitor)
         monitor.mapDelegate = self
         monitor.coreMonitorIPv6?.coreMap = self.coreMap
-        let dragMonitorView = DragMonitorView(frame: NSRect(x: 50, y: 50, width: 50, height: 30), monitor: monitor)
+        let dragMonitorView = DragMonitorView(frame: NSRect(x: nextMonitorAddX, y: nextMonitorAddY, width: 50, height: 30), monitor: monitor)
         dragMonitorView.controllerDelegate = self
         monitorViews.append(dragMonitorView)
         mainView?.addSubview(dragMonitorView)

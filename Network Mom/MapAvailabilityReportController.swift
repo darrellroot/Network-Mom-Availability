@@ -18,6 +18,9 @@ class MapAvailabilityReportController: NSWindowController, NSWindowDelegate {
     @IBOutlet weak var selectDataOutlet: NSPopUpButton!
     @IBOutlet weak var lineChart: LineChartView!
     
+    var availabilityReport: AvailabilityReport?
+    var availabilityReportView: NSView?
+
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("MapAvailabilityReportController")
     }
@@ -32,6 +35,15 @@ class MapAvailabilityReportController: NSWindowController, NSWindowDelegate {
             mapNameOutlet.stringValue = mapName
         }
         makeAvailabilityChart(dataType: MonitorDataType.FiveMinute)
+        
+        availabilityReport = AvailabilityReport()
+        
+        if let availabilityReport = availabilityReport {
+            availabilityReportView = availabilityReport.makeView()
+        
+        window?.contentView?.addSubview(availabilityReportView!)
+            print("added availability report view")
+        }
     }
     func windowWillClose(_ notification: Notification) {
         DLog.log(.userInterface,"Removing map availability report controller")

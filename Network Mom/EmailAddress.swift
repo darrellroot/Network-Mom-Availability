@@ -67,18 +67,6 @@ class EmailAddress: Equatable, Hashable {
         }
     }
     
-    /*required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        guard let context = appDelegate.managedContext else {
-            DLog.log(.dataIntegrity, "Unable to decode Email Address, no managed core data context")
-            throw NetworkMomError.noCoreDataContext
-        }
-        coreEmailAddress = CoreEmailAddress(context: context)
-        coreEmailAddress?.name = try container.decode(String.self, forKey: .name)
-        coreEmailAddress?.email = try container.decode(String.self, forKey: .email)
-        coreEmailAddress?.pagerOnly = try container.decode(Bool.self, forKey: .pagerOnly)
-        
-    }*/
     public init(name: String, email: String, pagerOnly: Bool, context: NSManagedObjectContext) {
         coreEmailAddress = CoreEmailAddress(context: context)
         coreEmailAddress?.name = name

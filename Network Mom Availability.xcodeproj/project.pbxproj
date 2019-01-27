@@ -277,6 +277,11 @@
 		2FA0297C21F7C88600ABAB9A /* AddIPv4MonitorsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297A21F7C88600ABAB9A /* AddIPv4MonitorsController.xib */; };
 		2FA0297E21F923FD00ABAB9A /* AddIPv6MonitorsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */; };
 		2FA0298021F9241100ABAB9A /* AddIPv6MonitorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0297F21F9241100ABAB9A /* AddIPv6MonitorsController.swift */; };
+		2FA0298221F93FEB00ABAB9A /* Integer+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */; };
+		2FA0298421F947A200ABAB9A /* FlipScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0298321F947A200ABAB9A /* FlipScrollView.swift */; };
+		2FA0298821FBAE7C00ABAB9A /* AvailabilityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0298721FBAE7C00ABAB9A /* AvailabilityReport.swift */; };
+		2FA0298B21FBB62C00ABAB9A /* MapAvailabilityReportController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0298921FBB62C00ABAB9A /* MapAvailabilityReportController2.swift */; };
+		2FA0298C21FBB62C00ABAB9A /* MapAvailabilityReportController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0298A21FBB62C00ABAB9A /* MapAvailabilityReportController2.xib */; };
 		2FA35D9021AA4CA500556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9121AA4CB800556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
@@ -677,6 +682,11 @@
 		2FA0297A21F7C88600ABAB9A /* AddIPv4MonitorsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddIPv4MonitorsController.xib; sourceTree = "<group>"; };
 		2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddIPv6MonitorsController.xib; sourceTree = "<group>"; };
 		2FA0297F21F9241100ABAB9A /* AddIPv6MonitorsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddIPv6MonitorsController.swift; sourceTree = "<group>"; };
+		2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Integer+extensions.swift"; sourceTree = "<group>"; };
+		2FA0298321F947A200ABAB9A /* FlipScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipScrollView.swift; sourceTree = "<group>"; };
+		2FA0298721FBAE7C00ABAB9A /* AvailabilityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityReport.swift; sourceTree = "<group>"; };
+		2FA0298921FBB62C00ABAB9A /* MapAvailabilityReportController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAvailabilityReportController2.swift; sourceTree = "<group>"; };
+		2FA0298A21FBB62C00ABAB9A /* MapAvailabilityReportController2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapAvailabilityReportController2.xib; sourceTree = "<group>"; };
 		2FC0B3A021AFB51B00C44DB5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2FC0B3A221AFC06800C44DB5 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -854,6 +864,7 @@
 				2F904E5C219F7A450040530B /* AddMonitorDelegate.swift */,
 				2F904E31219F7A130040530B /* AppDelegate.swift */,
 				2F5061D121BC744000C19984 /* Array+extensions.swift */,
+				2FA0298721FBAE7C00ABAB9A /* AvailabilityReport.swift */,
 				2F904E36219F7A140040530B /* ChartsFormatter.swift */,
 				2F96034321A9F28E0037E026 /* CodableDataStructure.swift */,
 				2F904FBF21A206250040530B /* Constants.swift */,
@@ -872,6 +883,7 @@
 				2F904E35219F7A140040530B /* EmailServerController.xib */,
 				2F904E5E219F7A450040530B /* FlipStackView.swift */,
 				2F904E58219F7A440040530B /* FlipView.swift */,
+				2FA0298321F947A200ABAB9A /* FlipScrollView.swift */,
 				2F904E54219F7A430040530B /* HostAddressQuery.swift */,
 				2F5061C621B4CD6700C19984 /* HTML */,
 				2F904E59219F7A440040530B /* icmpechorequest.swift */,
@@ -884,6 +896,8 @@
 				2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */,
 				2F904E41219F7A310040530B /* MapAvailabilityReportController.swift */,
 				2F904E43219F7A320040530B /* MapAvailabilityReportController.xib */,
+				2FA0298921FBB62C00ABAB9A /* MapAvailabilityReportController2.swift */,
+				2FA0298A21FBB62C00ABAB9A /* MapAvailabilityReportController2.xib */,
 				2F904E45219F7A320040530B /* MapWindowController.swift */,
 				2F904E47219F7A320040530B /* MapWindowController.xib */,
 				2F904E53219F7A420040530B /* MonitorEnumeration.swift */,
@@ -910,6 +924,7 @@
 				2F904E60219F7A460040530B /* String+extensions.swift */,
 				2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */,
 				2F904FC321A3687C0040530B /* Types.swift */,
+				2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */,
 			);
 			path = "Network Mom";
 			sourceTree = "<group>";
@@ -1582,6 +1597,7 @@
 				2F904E4A219F7A330040530B /* MonitorWindowController.xib in Resources */,
 				2F5061AD21B3548600C19984 /* manage-email-notifications.png in Resources */,
 				2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */,
+				2FA0298C21FBB62C00ABAB9A /* MapAvailabilityReportController2.xib in Resources */,
 				2F5061AA21B3486500C19984 /* monitors-with-latency.png in Resources */,
 				2F5061D021B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib in Resources */,
 				2F904E4F219F7A330040530B /* MapWindowController.xib in Resources */,
@@ -1674,6 +1690,7 @@
 				2F5061D921BDE7EC00C19984 /* ImportMonitorListController.swift in Sources */,
 				2F904FD121A3707B0040530B /* AddEmailRecipientController.swift in Sources */,
 				2F904E69219F7A460040530B /* FlipView.swift in Sources */,
+				2FA0298B21FBB62C00ABAB9A /* MapAvailabilityReportController2.swift in Sources */,
 				2FA0296B21ED363900ABAB9A /* CoreMap+CoreDataProperties.swift in Sources */,
 				2F904E6D219F7A460040530B /* AddMonitorDelegate.swift in Sources */,
 				2F904E65219F7A460040530B /* HostAddressQuery.swift in Sources */,
@@ -1685,6 +1702,7 @@
 				2F904E49219F7A330040530B /* MapAvailabilityReportController.swift in Sources */,
 				2F904FBA219FC1DF0040530B /* RRDBuffer.swift in Sources */,
 				2F904E50219F7A330040530B /* MonitorWindowController.swift in Sources */,
+				2FA0298421F947A200ABAB9A /* FlipScrollView.swift in Sources */,
 				2FA0296D21ED363900ABAB9A /* CoreEmailAddress+CoreDataProperties.swift in Sources */,
 				2F904FC021A206250040530B /* Constants.swift in Sources */,
 				2F904E39219F7A140040530B /* AppDelegate.swift in Sources */,
@@ -1717,6 +1735,8 @@
 				2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */,
 				2FA0297021ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift in Sources */,
 				2F904E66219F7A460040530B /* socket-extensions.swift in Sources */,
+				2FA0298221F93FEB00ABAB9A /* Integer+extensions.swift in Sources */,
+				2FA0298821FBAE7C00ABAB9A /* AvailabilityReport.swift in Sources */,
 				2F904E64219F7A460040530B /* MonitorEnumeration.swift in Sources */,
 				2FA0298021F9241100ABAB9A /* AddIPv6MonitorsController.swift in Sources */,
 				2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */,
