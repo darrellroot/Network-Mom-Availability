@@ -62,24 +62,20 @@ class MonitorIPv6: Monitor {
         do {
             let fiveMinCoreData = coreData.availabilityFiveMinuteData ?? []
             let fiveMinCoreTime = coreData.availabilityFiveMinuteTimestamp ?? []
-            let thirtyMinCoreData = coreData.availabilityThirtyMinuteData ?? []
-            let thirtyMinCoreTime = coreData.availabilityThirtyMinuteTimestamp ?? []
-            let twoHourCoreData = coreData.availabilityTwoHourData ?? []
-            let twoHourCoreTime = coreData.availabilityTwoHourTimestamp ?? []
+            let oneHourCoreData = coreData.availabilityOneHourData ?? []
+            let oneHourCoreTime = coreData.availabilityOneHourTimestamp ?? []
             let dayCoreData = coreData.availabilityDayData ?? []
             let dayCoreTime = coreData.availabilityDayTimestamp ?? []
-            availability = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
+            availability = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, oneHourData: oneHourCoreData, oneHourTime: oneHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
         }
         do {
             let fiveMinCoreData = coreData.latencyFiveMinuteData ?? []
             let fiveMinCoreTime = coreData.latencyFiveMinuteTimestamp ?? []
-            let thirtyMinCoreData = coreData.latencyThirtyMinuteData ?? []
-            let thirtyMinCoreTime = coreData.latencyThirtyMinuteTimestamp ?? []
-            let twoHourCoreData = coreData.latencyTwoHourData ?? []
-            let twoHourCoreTime = coreData.latencyTwoHourTimestamp ?? []
+            let oneHourCoreData = coreData.latencyOneHourData ?? []
+            let oneHourCoreTime = coreData.latencyOneHourTimestamp ?? []
             let dayCoreData = coreData.latencyDayData ?? []
             let dayCoreTime = coreData.latencyDayTimestamp ?? []
-            latency = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
+            latency = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, oneHourData: oneHourCoreData, oneHourTime: oneHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
         }
     }
 
@@ -110,12 +106,9 @@ class MonitorIPv6: Monitor {
             case .FiveMinute:
                 coreData.availabilityFiveMinuteTimestamp = timestamps
                 coreData.availabilityFiveMinuteData = values
-            case .ThirtyMinute:
-                coreData.availabilityThirtyMinuteTimestamp = timestamps
-                coreData.availabilityThirtyMinuteData = values
-            case .TwoHour:
-                coreData.availabilityTwoHourTimestamp = timestamps
-                coreData.availabilityTwoHourData = values
+            case .OneHour:
+                coreData.availabilityOneHourTimestamp = timestamps
+                coreData.availabilityOneHourData = values
             case .OneDay:
                 coreData.availabilityDayTimestamp = timestamps
                 coreData.availabilityDayData = values
@@ -137,12 +130,9 @@ class MonitorIPv6: Monitor {
             case .FiveMinute:
                 coreData.latencyFiveMinuteTimestamp = timestamps
                 coreData.latencyFiveMinuteData = values
-            case .ThirtyMinute:
-                coreData.latencyThirtyMinuteTimestamp = timestamps
-                coreData.latencyThirtyMinuteData = values
-            case .TwoHour:
-                coreData.latencyTwoHourTimestamp = timestamps
-                coreData.latencyTwoHourData = values
+            case .OneHour:
+                coreData.latencyOneHourTimestamp = timestamps
+                coreData.latencyOneHourData = values
             case .OneDay:
                 coreData.latencyDayTimestamp = timestamps
                 coreData.latencyDayData = values
@@ -225,7 +215,7 @@ class MonitorIPv6: Monitor {
         DLog.log(.monitor,"sent ping to \(ipv6.debugDescription)")
     }
     public func latencyStatus() -> MonitorStatus? {
-        if let currentLatency = latency.lastFiveMinute?.value, let yesterdayLatency = latency.lastThirtyMinute?.value {   // change to lastDay when we go production
+        if let currentLatency = latency.lastFiveMinute?.value, let yesterdayLatency = latency.lastDay?.value {
             if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdRed + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Red
             }

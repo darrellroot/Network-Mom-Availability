@@ -130,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let alert = NSAlert()
         alert.alertStyle = NSAlert.Style.critical
         alert.messageText = "Do you really want to quit Network Mom?"
-        alert.informativeText = "Shutting down Network Mom will stop all monitoring, alerts, and data collection"
+        alert.informativeText = "Shutting down Network Mom will stop all monitoring, alerts, and data collection.  Data will be automatically saved."
         alert.addButton(withTitle: "Cancel Exit")
         alert.addButton(withTitle: "Confirm Exit")
         let response = alert.runModal()

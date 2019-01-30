@@ -1,8 +1,8 @@
 //
 //  CoreMap+CoreDataProperties.swift
-//  Network Mom
+//  Network Mom Availability
 //
-//  Created by Darrell Root on 1/14/19.
+//  Created by Darrell Root on 1/27/19.
 //  Copyright © 2019 Darrell Root LLC. All rights reserved.
 //
 //
@@ -21,10 +21,8 @@ extension CoreMap {
     @NSManaged public var availabilityDayTimestamp: [Int]?
     @NSManaged public var availabilityFiveMinuteData: [Double]?
     @NSManaged public var availabilityFiveMinuteTimestamp: [Int]?
-    @NSManaged public var availabilityThirtyMinuteData: [Double]?
-    @NSManaged public var availabilityThirtyMinuteTimestamp: [Int]?
-    @NSManaged public var availabilityTwoHourData: [Double]?
-    @NSManaged public var availabilityTwoHourTimestamp: [Int]?
+    @NSManaged public var availabilityOneHourData: [Double]?
+    @NSManaged public var availabilityOneHourTimestamp: [Int]?
     @NSManaged public var emailAlerts: [String]?
     @NSManaged public var emailReports: [String]?
     @NSManaged public var frameHeight: Float
@@ -34,6 +32,9 @@ extension CoreMap {
     @NSManaged public var name: String?
     @NSManaged public var ipv4monitors: Set<CoreMonitorIPv4>?
     @NSManaged public var ipv6monitors: Set<CoreMonitorIPv6>?
+    //when rebuilding core data headers, you may need to specify the type like this:
+    //@NSManaged public var ipv4monitors: Set<CoreMonitorIPv4>?
+    //@NSManaged public var ipv6monitors: Set<CoreMonitorIPv6>?
 
 }
 
@@ -47,10 +48,10 @@ extension CoreMap {
     @NSManaged public func removeFromIpv4monitors(_ value: CoreMonitorIPv4)
 
     @objc(addIpv4monitors:)
-    @NSManaged public func addToIpv4monitors(_ values: Set<CoreMonitorIPv4>)
+    @NSManaged public func addToIpv4monitors(_ values: NSSet)
 
     @objc(removeIpv4monitors:)
-    @NSManaged public func removeFromIpv4monitors(_ values: Set<CoreMonitorIPv4>)
+    @NSManaged public func removeFromIpv4monitors(_ values: NSSet)
 
 }
 
@@ -64,9 +65,9 @@ extension CoreMap {
     @NSManaged public func removeFromIpv6monitors(_ value: CoreMonitorIPv6)
 
     @objc(addIpv6monitors:)
-    @NSManaged public func addToIpv6monitors(_ values: Set<CoreMonitorIPv6>)
+    @NSManaged public func addToIpv6monitors(_ values: NSSet)
 
     @objc(removeIpv6monitors:)
-    @NSManaged public func removeFromIpv6monitors(_ values: Set<CoreMonitorIPv6>)
+    @NSManaged public func removeFromIpv6monitors(_ values: NSSet)
 
 }

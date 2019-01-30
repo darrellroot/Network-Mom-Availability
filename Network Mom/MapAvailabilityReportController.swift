@@ -36,7 +36,7 @@ class MapAvailabilityReportController: NSWindowController, NSWindowDelegate {
         }
         makeAvailabilityChart(dataType: MonitorDataType.FiveMinute)
         
-        availabilityReport = AvailabilityReport()
+        availabilityReport = AvailabilityReport(reportType: .daily, map: delegate)
         
         if let availabilityReport = availabilityReport {
             availabilityReportView = availabilityReport.makeView()
@@ -59,10 +59,9 @@ class MapAvailabilityReportController: NSWindowController, NSWindowDelegate {
         let choice = sender.indexOfSelectedItem
         switch choice {
         case 0: makeAvailabilityChart(dataType: MonitorDataType.FiveMinute)
-        case 1: makeAvailabilityChart(dataType: MonitorDataType.ThirtyMinute)
-        case 2: makeAvailabilityChart(dataType: MonitorDataType.TwoHour)
-        case 3: makeAvailabilityChart(dataType: MonitorDataType.OneDay)
-        case 4: makeAvailabilityChart(dataType: nil)
+        case 1: makeAvailabilityChart(dataType: MonitorDataType.OneHour)
+        case 2: makeAvailabilityChart(dataType: MonitorDataType.OneDay)
+        case 3: makeAvailabilityChart(dataType: nil)
         default: fatalError("should not get here")
         }
     }

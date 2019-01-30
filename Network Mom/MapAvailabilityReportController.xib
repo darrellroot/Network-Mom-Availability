@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="MapAvailabilityReportController" customModule="Network_Mom" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="MapAvailabilityReportController" customModule="Network_Mom_Availability" customModuleProvider="target">
             <connections>
                 <outlet property="lineChart" destination="EYe-LM-WiW" id="z3l-kk-ltR"/>
                 <outlet property="mapNameOutlet" destination="lMU-UN-TxJ" id="17Y-W8-lA9"/>
@@ -53,16 +53,15 @@
                         </connections>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dem-ty-Q6u">
-                        <rect key="frame" x="18" y="326" width="160" height="25"/>
-                        <popUpButtonCell key="cell" type="push" title="Graph Hourly Data" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="bdL-Tr-FgS" id="ssY-oC-cHw">
+                        <rect key="frame" x="18" y="326" width="180" height="25"/>
+                        <popUpButtonCell key="cell" type="push" title="Graph Five Minute Data" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="bdL-Tr-FgS" id="ssY-oC-cHw">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="rR7-5F-xRd">
                                 <items>
-                                    <menuItem title="Graph Hourly Data" state="on" id="bdL-Tr-FgS"/>
-                                    <menuItem title="Graph Daily Data" id="wDG-NS-32b"/>
-                                    <menuItem title="Graph Weekly Data" id="u5N-Vh-0tp"/>
-                                    <menuItem title="Graph Monthly Data" id="hI4-Mn-9Qg"/>
+                                    <menuItem title="Graph Five Minute Data" state="on" id="bdL-Tr-FgS"/>
+                                    <menuItem title="Graph Hourly Data" id="wDG-NS-32b" userLabel="Graph Hourly Data"/>
+                                    <menuItem title="Graph Daily Data" id="u5N-Vh-0tp"/>
                                     <menuItem title="Graph Test Data" id="MuK-9g-1Nj"/>
                                 </items>
                             </menu>

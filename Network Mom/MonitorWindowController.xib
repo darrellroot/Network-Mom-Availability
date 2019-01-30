@@ -83,8 +83,7 @@
                                             <menu key="menu" id="cOC-kO-uNl">
                                                 <items>
                                                     <menuItem title="Graph Five Minute Data" state="on" id="kRL-2I-hwi" userLabel="Graph Five Minute Data"/>
-                                                    <menuItem title="Graph Thirty Minute Data" id="AN1-7c-9Lc"/>
-                                                    <menuItem title="Graph Two Hour Data" id="X6a-U7-biC"/>
+                                                    <menuItem title="Graph Hourly Data" id="AN1-7c-9Lc"/>
                                                     <menuItem title="Graph Daily Data" id="SwT-xr-n83"/>
                                                 </items>
                                             </menu>

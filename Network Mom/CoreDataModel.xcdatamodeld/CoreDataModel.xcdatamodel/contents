@@ -10,10 +10,8 @@
         <attribute name="availabilityDayTimestamp" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <attribute name="availabilityFiveMinuteData" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
         <attribute name="availabilityFiveMinuteTimestamp" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="availabilityThirtyMinuteData" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="availabilityThirtyMinuteTimestamp" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="availabilityTwoHourData" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="availabilityTwoHourTimestamp" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
+        <attribute name="availabilityOneHourData" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
+        <attribute name="availabilityOneHourTimestamp" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <attribute name="emailAlerts" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="emailReports" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="frameHeight" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -29,10 +27,8 @@
         <attribute name="availabilityDayTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <attribute name="availabilityFiveMinuteData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
         <attribute name="availabilityFiveMinuteTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="availabilityThirtyMinuteData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="availabilityThirtyMinuteTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="availabilityTwoHourData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="availabilityTwoHourTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
+        <attribute name="availabilityOneHourData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
+        <attribute name="availabilityOneHourTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="frameHeight" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="frameWidth" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -44,10 +40,8 @@
         <attribute name="latencyDayTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <attribute name="latencyFiveMinuteData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
         <attribute name="latencyFiveMinuteTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="latencyThirtyMinuteData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="latencyThirtyMinuteTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="latencyTwoHourData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="latencyTwoHourTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
+        <attribute name="latencyOneHourData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
+        <attribute name="latencyOneHourTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <relationship name="coreMap" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreMap" inverseName="ipv4monitors" inverseEntity="CoreMap" syncable="YES"/>
     </entity>
     <entity name="CoreMonitorIPv6" representedClassName="CoreMonitorIPv6" syncable="YES">
@@ -55,10 +49,8 @@
         <attribute name="availabilityDayTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <attribute name="availabilityFiveMinuteData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
         <attribute name="availabilityFiveMinuteTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="availabilityThirtyMinuteData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="availabilityThirtyMinuteTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="availabilityTwoHourData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="availabilityTwoHourTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
+        <attribute name="availabilityOneHourData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
+        <attribute name="availabilityOneHourTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="frameHeight" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="frameWidth" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -70,16 +62,14 @@
         <attribute name="latencyDayTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <attribute name="latencyFiveMinuteData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
         <attribute name="latencyFiveMinuteTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="latencyThirtyMinuteData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="latencyThirtyMinuteTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
-        <attribute name="latencyTwoHourData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
-        <attribute name="latencyTwoHourTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
+        <attribute name="latencyOneHourData" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
+        <attribute name="latencyOneHourTimestamp" optional="YES" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
         <relationship name="coreMap" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreMap" inverseName="ipv6monitors" inverseEntity="CoreMap" syncable="YES"/>
     </entity>
     <elements>
         <element name="CoreEmailAddress" positionX="-290.80859375" positionY="-241.64453125" width="128" height="90"/>
-        <element name="CoreMap" positionX="-91.37890625" positionY="-123.35546875" width="128" height="298"/>
-        <element name="CoreMonitorIPv4" positionX="-292.640625" positionY="-99.046875" width="128" height="403"/>
-        <element name="CoreMonitorIPv6" positionX="99.71875" positionY="-99.55078125" width="128" height="403"/>
+        <element name="CoreMap" positionX="-91.37890625" positionY="-123.35546875" width="128" height="268"/>
+        <element name="CoreMonitorIPv4" positionX="-292.640625" positionY="-99.046875" width="128" height="343"/>
+        <element name="CoreMonitorIPv6" positionX="99.71875" positionY="-99.55078125" width="128" height="343"/>
     </elements>
 </model>

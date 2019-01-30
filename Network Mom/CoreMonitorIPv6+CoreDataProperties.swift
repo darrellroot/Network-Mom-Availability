@@ -1,8 +1,8 @@
 //
 //  CoreMonitorIPv6+CoreDataProperties.swift
-//  Network Mom
+//  Network Mom Availability
 //
-//  Created by Darrell Root on 1/15/19.
+//  Created by Darrell Root on 1/27/19.
 //  Copyright © 2019 Darrell Root LLC. All rights reserved.
 //
 //
@@ -21,10 +21,8 @@ extension CoreMonitorIPv6 {
     @NSManaged public var availabilityDayTimestamp: [Int]?
     @NSManaged public var availabilityFiveMinuteData: [Double]?
     @NSManaged public var availabilityFiveMinuteTimestamp: [Int]?
-    @NSManaged public var availabilityThirtyMinuteData: [Double]?
-    @NSManaged public var availabilityThirtyMinuteTimestamp: [Int]?
-    @NSManaged public var availabilityTwoHourData: [Double]?
-    @NSManaged public var availabilityTwoHourTimestamp: [Int]?
+    @NSManaged public var availabilityOneHourData: [Double]?
+    @NSManaged public var availabilityOneHourTimestamp: [Int]?
     @NSManaged public var comment: String?
     @NSManaged public var frameHeight: Float
     @NSManaged public var frameWidth: Float
@@ -36,10 +34,8 @@ extension CoreMonitorIPv6 {
     @NSManaged public var latencyDayTimestamp: [Int]?
     @NSManaged public var latencyFiveMinuteData: [Double]?
     @NSManaged public var latencyFiveMinuteTimestamp: [Int]?
-    @NSManaged public var latencyThirtyMinuteData: [Double]?
-    @NSManaged public var latencyThirtyMinuteTimestamp: [Int]?
-    @NSManaged public var latencyTwoHourData: [Double]?
-    @NSManaged public var latencyTwoHourTimestamp: [Int]?
+    @NSManaged public var latencyOneHourData: [Double]?
+    @NSManaged public var latencyOneHourTimestamp: [Int]?
     @NSManaged public var coreMap: CoreMap?
 
 }

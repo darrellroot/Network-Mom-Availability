@@ -231,6 +231,7 @@ class MapWindowController: NSWindowController {
         } while didADelete == true
     }
 
+
     func emailDailyReports() {
         let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("report.pdf")
         let fileShortString = "Documents/report.pdf"
@@ -244,12 +245,13 @@ class MapWindowController: NSWindowController {
         //let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save]
         let printInfo = NSPrintInfo(dictionary: printOpts)
 
-        //var pdfData = NSMutableData()
+        var pdfData = NSMutableData()
 
         DLog.log(.userInterface,"map \(name) emailing daily reports")
-        let availabilityReport = AvailabilityReport()
+        let availabilityReport = AvailabilityReport(reportType: .daily, map: self)
         let availabilityReportView = availabilityReport.makeView()
         availabilityReportView.translatesAutoresizingMaskIntoConstraints = false
+        let html = availabilityReport.makeHTML()
         let view = NSView(frame: NSRect(x: 0, y: 0, width: 570, height: 500))
         view.addSubview(availabilityReportView)
         let textFields = [
@@ -257,8 +259,8 @@ class MapWindowController: NSWindowController {
             ]
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[availabilityReportView]|", options: [], metrics: nil, views: textFields))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[availabilityReportView]|", options: [], metrics: nil, views: textFields))
-        let printOperation = NSPrintOperation.pdfOperation(with: view, inside: view.frame, toPath: fileShortString, printInfo: printInfo)
-        //let printOperation = NSPrintOperation.pdfOperation(with: view, inside: view.frame, to: pdfData as! NSMutableData)
+        //let printOperation = NSPrintOperation.pdfOperation(with: view, inside: view.frame, toPath: fileShortString, printInfo: printInfo)
+        let printOperation = NSPrintOperation.pdfOperation(with: view, inside: view.frame, to: pdfData )
         printOperation.showsPrintPanel = false
         printOperation.showsProgressPanel = false
         printOperation.run()
@@ -277,11 +279,14 @@ class MapWindowController: NSWindowController {
             if let emailRecipient = emailHash[recipient] {
                 let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
                 let recipient = Mail.User(name: emailRecipient.name, email: emailRecipient.email)
-                let message = "test email message"
+                let message = ""
                 //let attachment = Attachment(filePath: fileURL.absoluteString)
-                let attachment = Attachment(filePath: "/Users/droot/Library/Containers/net.networkmom.availability/Data/Documents/report.pdf", mime: "application/pdf", name: "report.pdf", inline: false, additionalHeaders: [:], relatedAttachments: [])
+                //let attachment = Attachment(filePath: "/Users/droot/Library/Containers/net.networkmom.availability/Data/Documents/report.pdf", mime: "application/pdf", name: "report.pdf", inline: false, additionalHeaders: [:], relatedAttachments: [])
+                //let attachment = Attachment(data: pdfData as Data, mime: "application/pdf", name: "report.pdf")
+                let attachment = Attachment(data: pdfData as Data, mime: "application/pdf", name: "report.pdf", inline: true, additionalHeaders: [:], relatedAttachments: [])
+                let htmlAttachment = Attachment(htmlContent: html)
                 //let attachment = Attachment(filePath: fileURL.relativeString)
-                let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [attachment], additionalHeaders: [:])
+                let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [htmlAttachment,attachment], additionalHeaders: [:])
                 //let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [], additionalHeaders: [:])
 
                 smtp.send(mail) { (error) in
@@ -318,6 +323,7 @@ class MapWindowController: NSWindowController {
             }
         }
     }
+    
 
     @IBAction func importTextMonitorList(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"Import Text Monitor List selected")
@@ -351,13 +357,11 @@ class MapWindowController: NSWindowController {
         
         let fiveMinCoreData = coreData.availabilityFiveMinuteData ?? []
         let fiveMinCoreTime = coreData.availabilityFiveMinuteTimestamp ?? []
-        let thirtyMinCoreData = coreData.availabilityThirtyMinuteData ?? []
-        let thirtyMinCoreTime = coreData.availabilityThirtyMinuteTimestamp ?? []
-        let twoHourCoreData = coreData.availabilityTwoHourData ?? []
-        let twoHourCoreTime = coreData.availabilityTwoHourTimestamp ?? []
+        let oneHourCoreData = coreData.availabilityOneHourData ?? []
+        let oneHourCoreTime = coreData.availabilityOneHourTimestamp ?? []
         let dayCoreData = coreData.availabilityDayData ?? []
         let dayCoreTime = coreData.availabilityDayTimestamp ?? []
-        availability = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, thirtyMinData: thirtyMinCoreData, thirtyMinTime: thirtyMinCoreTime, twoHourData: twoHourCoreData, twoHourTime: twoHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
+        availability = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, oneHourData: oneHourCoreData, oneHourTime: oneHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
         
         for coreMonitorIPv4 in coreData.ipv4monitors ?? [] {
             if let ipv4Monitor = MonitorIPv4(coreData: coreMonitorIPv4) {
@@ -480,12 +484,9 @@ class MapWindowController: NSWindowController {
                 case .FiveMinute:
                     coreData.availabilityFiveMinuteTimestamp = timestamps
                     coreData.availabilityFiveMinuteData = values
-                case .ThirtyMinute:
-                    coreData.availabilityThirtyMinuteTimestamp = timestamps
-                    coreData.availabilityThirtyMinuteData = values
-                case .TwoHour:
-                    coreData.availabilityTwoHourTimestamp = timestamps
-                    coreData.availabilityTwoHourData = values
+                case .OneHour:
+                    coreData.availabilityOneHourTimestamp = timestamps
+                    coreData.availabilityOneHourData = values
                 case .OneDay:
                     coreData.availabilityDayTimestamp = timestamps
                     coreData.availabilityDayData = values

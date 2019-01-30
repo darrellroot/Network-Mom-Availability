@@ -19,7 +19,8 @@ public struct RRDBufferDouble: Codable {
             }
         }
     }
-    private var recentWriteIndex = 0
+    private var recentWriteIndex: Int?  // nil until 1 write has occurred
+    private var priorWriteIndex: Int?  // nil until 2 writes have occurred
     
     public init(count: Int) {
         array = [RRDData?](repeating: nil, count: count)
@@ -27,17 +28,32 @@ public struct RRDBufferDouble: Codable {
     
     public mutating func insert(_ element: RRDData) {
         array[writeIndex] = element
+        priorWriteIndex = recentWriteIndex
         recentWriteIndex = writeIndex
         writeIndex += 1
     }
     public func readRecent() -> RRDData? {
-        if writeIndex == 0 && recentWriteIndex == 0 { return nil }
-        return array[recentWriteIndex]
+        if let recentWriteIndex = recentWriteIndex {
+            return array[recentWriteIndex]
+        } else {
+            return nil
+        }
+    }
+    public func readPrior() -> RRDData? {
+        if let priorWriteIndex = priorWriteIndex {
+            return array[priorWriteIndex]
+        } else {
+            return nil
+        }
     }
     
     public func getData() -> [RRDData] {
         let data1 = Array(array[writeIndex..<array.count]).compactMap({ $0 })
-        let data2 = Array(array[0...recentWriteIndex]).compactMap({ $0 })
-        return data1 + data2
+        if let recentWriteIndex = recentWriteIndex {
+            let data2 = Array(array[0...recentWriteIndex]).compactMap({ $0 })
+            return data1 + data2
+        } else {
+            return data1
+        }
     }
 }

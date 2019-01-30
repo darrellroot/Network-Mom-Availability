@@ -16,8 +16,7 @@ enum MonitorEnumeration: String, Codable {
 
 enum MonitorDataType: Int, CaseIterable, Codable {
     case FiveMinute = 300
-    case ThirtyMinute = 1800
-    case TwoHour = 7200
+    case OneHour = 3600
     case OneDay = 86400
 }
 

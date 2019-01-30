@@ -86,16 +86,14 @@ class MonitorWindowController: NSWindowController {
         let choice = sender.indexOfSelectedItem
         switch choice {
         case 0: makeAvailabilityChart(dataType: MonitorDataType.FiveMinute)
-        case 1: makeAvailabilityChart(dataType: MonitorDataType.ThirtyMinute)
-        case 2: makeAvailabilityChart(dataType: MonitorDataType.TwoHour)
-        case 3: makeAvailabilityChart(dataType: MonitorDataType.OneDay)
+        case 1: makeAvailabilityChart(dataType: MonitorDataType.OneHour)
+        case 2: makeAvailabilityChart(dataType: MonitorDataType.OneDay)
         default: fatalError("should not get here")
         }
         switch choice {
         case 0: makeLatencyChart(dataType: MonitorDataType.FiveMinute)
-        case 1: makeLatencyChart(dataType: MonitorDataType.ThirtyMinute)
-        case 2: makeLatencyChart(dataType: MonitorDataType.TwoHour)
-        case 3: makeLatencyChart(dataType: MonitorDataType.OneDay)
+        case 1: makeLatencyChart(dataType: MonitorDataType.OneHour)
+        case 2: makeLatencyChart(dataType: MonitorDataType.OneDay)
         default: fatalError("should not get here")
         }
     }

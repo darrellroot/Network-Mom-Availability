@@ -282,6 +282,7 @@
 		2FA0298821FBAE7C00ABAB9A /* AvailabilityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0298721FBAE7C00ABAB9A /* AvailabilityReport.swift */; };
 		2FA0298B21FBB62C00ABAB9A /* MapAvailabilityReportController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0298921FBB62C00ABAB9A /* MapAvailabilityReportController2.swift */; };
 		2FA0298C21FBB62C00ABAB9A /* MapAvailabilityReportController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0298A21FBB62C00ABAB9A /* MapAvailabilityReportController2.xib */; };
+		2FA02AF5220001CF00ABAB9A /* Double+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA02AF4220001CF00ABAB9A /* Double+extensions.swift */; };
 		2FA35D9021AA4CA500556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9121AA4CB800556A26 /* Socket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DD9219F78E70040530B /* Socket.framework */; };
 		2FA35D9221AA4CBD00556A26 /* SSLService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904DF0219F79200040530B /* SSLService.framework */; };
@@ -687,6 +688,7 @@
 		2FA0298721FBAE7C00ABAB9A /* AvailabilityReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityReport.swift; sourceTree = "<group>"; };
 		2FA0298921FBB62C00ABAB9A /* MapAvailabilityReportController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAvailabilityReportController2.swift; sourceTree = "<group>"; };
 		2FA0298A21FBB62C00ABAB9A /* MapAvailabilityReportController2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapAvailabilityReportController2.xib; sourceTree = "<group>"; };
+		2FA02AF4220001CF00ABAB9A /* Double+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+extensions.swift"; sourceTree = "<group>"; };
 		2FC0B3A021AFB51B00C44DB5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2FC0B3A221AFC06800C44DB5 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -924,6 +926,7 @@
 				2F904E60219F7A460040530B /* String+extensions.swift */,
 				2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */,
 				2F904FC321A3687C0040530B /* Types.swift */,
+				2FA02AF4220001CF00ABAB9A /* Double+extensions.swift */,
 				2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */,
 			);
 			path = "Network Mom";
@@ -1729,6 +1732,7 @@
 				2F5061C421B4CC3600C19984 /* StaticHtmlController.swift in Sources */,
 				2F904E6E219F7A460040530B /* MonitorIPv4.swift in Sources */,
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
+				2FA02AF5220001CF00ABAB9A /* Double+extensions.swift in Sources */,
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,
 				2F904E70219F7A460040530B /* RRDData.swift in Sources */,
 				2F904FC621A36D190040530B /* EmailAddress.swift in Sources */,
