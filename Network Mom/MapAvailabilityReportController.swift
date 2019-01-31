@@ -1,115 +1,65 @@
 //
 //  MapAvailabilityReportController.swift
-//  Network Mom
+//  Network Mom Availability
 //
-//  Created by Darrell Root on 11/12/18.
-//  Copyright © 2018 Root Incorporated. All rights reserved.
+//  Created by Darrell Root on 1/25/19.
+//  Copyright © 2019 Darrell Root LLC. All rights reserved.
 //
 
 import Cocoa
-import Charts
 import DLog
+import WebKit
 
-class MapAvailabilityReportController: NSWindowController, NSWindowDelegate {
+class MapAvailabilityReportController: NSWindowController {
 
     weak var delegate: MapWindowController?
+    var pdfData = NSMutableData()
+    var reportType: ReportType = .daily // daily by default
     
-    @IBOutlet weak var mapNameOutlet: NSTextField!
-    @IBOutlet weak var selectDataOutlet: NSPopUpButton!
-    @IBOutlet weak var lineChart: LineChartView!
+    @IBOutlet weak var webView: WKWebView!
     
-    var availabilityReport: AvailabilityReport?
-    var availabilityReportView: NSView?
-
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("MapAvailabilityReportController")
     }
-    let chartsFormatterBlank = ChartsFormatterBlank()
-    let chartsFormatterPercent = ChartsFormatterPercent()
-    let chartsFormatterDateShort = ChartsFormatterDateShort()
-    let chartsFormatterDateOnly = ChartsFormatterDateOnly()
 
     override func windowDidLoad() {
         super.windowDidLoad()
-        if let mapName = delegate?.name {
-            mapNameOutlet.stringValue = mapName
-        }
-        makeAvailabilityChart(dataType: MonitorDataType.FiveMinute)
-        
-        availabilityReport = AvailabilityReport(reportType: .daily, map: delegate)
-        
-        if let availabilityReport = availabilityReport {
-            availabilityReportView = availabilityReport.makeView()
-        
-        window?.contentView?.addSubview(availabilityReportView!)
-            print("added availability report view")
-        }
+        let availabilityReport = AvailabilityReport(reportType: reportType, map: delegate)
+        let html = availabilityReport.makeHTML()
+        webView.loadHTMLString(html, baseURL: nil)
+        window?.title = "\(delegate?.name ?? "unknown") \(reportType.rawValue) availability report"
     }
     func windowWillClose(_ notification: Notification) {
         DLog.log(.userInterface,"Removing map availability report controller")
         delegate?.mapAvailabilityReportControllers.remove(object: self)
     }
-    
-    @IBAction func mapNameAction(_ sender: NSTextField) {
-        delegate?.name = mapNameOutlet.stringValue
-        window?.title = mapNameOutlet.stringValue
-    }
-    
-    @IBAction func selectDataButton(_ sender: NSPopUpButton) {
-        let choice = sender.indexOfSelectedItem
-        switch choice {
-        case 0: makeAvailabilityChart(dataType: MonitorDataType.FiveMinute)
-        case 1: makeAvailabilityChart(dataType: MonitorDataType.OneHour)
-        case 2: makeAvailabilityChart(dataType: MonitorDataType.OneDay)
-        case 3: makeAvailabilityChart(dataType: nil)
-        default: fatalError("should not get here")
-        }
-    }
-    private func makeAvailabilityChart(dataType: MonitorDataType?) {
-        var chartDataEntry: [ChartDataEntry] = []
-        if let dataType = dataType, let rrdDataSet = delegate?.availability.getData(dataType: dataType) {
-            for rrdData in rrdDataSet {
-                if let availability = rrdData.value {
-                    let time = Double(rrdData.timestamp)
-                    let value = ChartDataEntry(x: time, y: availability)
-                    chartDataEntry.append(value)
-                    //debugPrint("chart data point x \(time) y \(availability)")
-                }
-            }
-        } else { // dataType is nil so need test data
-            chartDataEntry.append(ChartDataEntry(x: 563227200, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563227500, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563227800, y: 0.2))
-            chartDataEntry.append(ChartDataEntry(x: 563228100, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563228400, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563228700, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563229000, y: 0.2))
-            chartDataEntry.append(ChartDataEntry(x: 563229300, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563229600, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563229900, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563230200, y: 0.3))
-            chartDataEntry.append(ChartDataEntry(x: 563230500, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563230800, y: 0.0))
-            chartDataEntry.append(ChartDataEntry(x: 563231100, y: 0.0))
-        }
-        
-        let line1 = LineChartDataSet(values: chartDataEntry, label: "Availability")
-        line1.valueFormatter = chartsFormatterBlank
-        line1.colors = [NSColor.systemBlue]
-        let data = LineChartData()
-        data.addDataSet(line1)
-        
-        lineChart.rightAxis.axisMinimum = 0.0
-        lineChart.rightAxis.axisMaximum = 1.0
-        lineChart.leftAxis.axisMinimum = 0.0
-        lineChart.leftAxis.axisMaximum = 1.0
-        lineChart.xAxis.valueFormatter = chartsFormatterDateShort
-        lineChart.leftAxis.valueFormatter = chartsFormatterPercent
-        lineChart.rightAxis.valueFormatter = chartsFormatterPercent
-        lineChart.xAxis.granularity = 3600.0
-        lineChart.xAxis.labelRotationAngle = -90
-        lineChart.data = data
-        //lineChart.chartDescription?.text = "5-minute availability data"
-    }
+    /*@IBAction func printReport(_ sender: NSMenuItem) {
+        DLog.log(.userInterface, "mapavailabilityreportcontroller print")
+        let availabilityReport = AvailabilityReport(reportType: .daily, map: delegate)
+        let availabilityReportView = availabilityReport.makeView()
+        availabilityReportView.translatesAutoresizingMaskIntoConstraints = false
+        let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save, NSPrintInfo.AttributeKey.jobSavingURL: directoryURL]
+        let printInfo = NSPrintInfo(dictionary: printOpts)
+        printInfo.horizontalPagination = NSPrintInfo.PaginationMode.automatic
+        printInfo.verticalPagination = NSPrintInfo.PaginationMode.automatic
+        printInfo.topMargin = 20.0
+        printInfo.leftMargin = 20.0
+        printInfo.rightMargin = 20.0
+        printInfo.bottomMargin = 20.0
 
+        let view = NSView(frame: NSRect(x: 0, y: 0, width: 570, height: 740))
+        view.addSubview(availabilityReportView)
+        let textFields = [
+            "availabilityReportView2": availabilityReportView,
+            ]
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[availabilityReportView2]|", options: [], metrics: nil, views: textFields))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[availabilityReportView2]|", options: [], metrics: nil, views: textFields))
+        let printOperation = NSPrintOperation.pdfOperation(with: view, inside: view.frame, to: pdfData)
+        //let printOperation = NSPrintOperation(view: view, printInfo: printInfo)
+        printOperation.showsPrintPanel = false
+        printOperation.showsProgressPanel = false
+        printOperation.run()
+        print("dfjlkdj")
+    }*/
 }
