@@ -212,7 +212,7 @@ class MonitorIPv4: Monitor {
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
         pingSentDate = Date()
-        DLog.log(.monitor,"sent ping to \(ipv4string)")
+        DLog.log(.monitor,"sent ping to \(ipv4string) socketError \(socketError)")
     }
     
     public func latencyStatus() -> MonitorStatus? {

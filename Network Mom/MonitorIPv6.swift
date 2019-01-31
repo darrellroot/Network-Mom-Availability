@@ -212,7 +212,7 @@ class MonitorIPv6: Monitor {
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr_in6>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
         pingSentDate = Date()
-        DLog.log(.monitor,"sent ping to \(ipv6.debugDescription)")
+        DLog.log(.monitor,"sent ping to \(ipv6.debugDescription) socket error \(socketError)")
     }
     public func latencyStatus() -> MonitorStatus? {
         if let currentLatency = latency.lastFiveMinute?.value, let yesterdayLatency = latency.lastDay?.value {

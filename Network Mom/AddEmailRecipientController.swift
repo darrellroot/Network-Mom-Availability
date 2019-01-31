@@ -49,7 +49,17 @@ class AddEmailRecipientController: NSWindowController, NSWindowDelegate {
         if let emailConfiguration = appDelegate.emailConfiguration {
             let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
             let recipient = Mail.User(name: name, email: address)
-            let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom validation code is \(code)", text: "Enter this code in Network Mom to enable email alerts and reports.")
+            let text = """
+Your Network Mom validation code is \(code)
+
+Network Mom Availability is a MacOS application which monitors network devices to measure their availability and latency.
+
+\(sender.name ?? "") \(sender.email) would like to add you to automated alerts and/or reports from a Network Mom monitoring station.
+
+If you agree, send the code above back to \(sender.email).
+"""
+            let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom validation code is \(code)", text: text)
+            //let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom validation code is \(code)", text: "Enter this code in Network Mom to enable email alerts and reports.")
             let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
             smtp.send(mail) { (error) in
                 if let error = error {

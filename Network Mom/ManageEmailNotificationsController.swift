@@ -102,7 +102,6 @@ class ManageEmailNotificationsController: NSWindowController, NSWindowDelegate {
         let emailIndex = emailSelectorOutlet.indexOfSelectedItem
         guard emailIndex < emails.count else { return }
         let email = emails[emailIndex]
-        var reports = false
         let reportIndex = map.emailReports.firstIndex(of: email.email)
         let alertIndex = map.emailAlerts.firstIndex(of: email.email)
         

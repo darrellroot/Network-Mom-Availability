@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="EmailServerController" customModule="Network_Mom" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="EmailServerController" customModule="Network_Mom_Availability" customModuleProvider="target">
             <connections>
                 <outlet property="emailResultOutlet" destination="0vk-zr-yp1" id="n4c-8u-xOI"/>
                 <outlet property="senderEmailPasswordOutlet" destination="gvg-VL-T7n" id="7xe-ES-QLL"/>
@@ -20,129 +20,210 @@
         <window title="Email Server Configuration" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="450"/>
+            <rect key="contentRect" x="196" y="240" width="540" height="400"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="450"/>
+                <rect key="frame" x="0.0" y="0.0" width="540" height="340"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GlW-VI-fHb">
-                        <rect key="frame" x="74" y="326" width="145" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sender Email Password" id="4Kq-k3-leY">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V95-8r-9Ep">
-                        <rect key="frame" x="244" y="364" width="184" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ofd-Lv-Lb6">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-VL-T7n" customClass="NSSecureTextField">
-                        <rect key="frame" x="244" y="321" width="184" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="LwD-P5-B1d">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z8F-r6-3sA">
-                        <rect key="frame" x="244" y="270" width="184" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="B1I-oW-xMA">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Trc-Cu-LBH">
-                        <rect key="frame" x="35" y="275" width="188" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Test destination email address" id="qZR-XS-cTu">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GG6-80-AzX">
-                        <rect key="frame" x="84" y="219" width="137" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Send Test Email" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ivr-br-Q0f">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="sendTestEmail:" target="-1" id="lqQ-Or-hAB"/>
-                        </connections>
-                    </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vk-zr-yp1">
-                        <rect key="frame" x="244" y="142" width="186" height="113"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" id="1JH-l3-lmu">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kcc-Xa-BBW">
-                        <rect key="frame" x="44" y="13" width="393" height="121"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" selectable="YES" id="q3Z-sb-B4l">
-                            <font key="font" metaFont="system"/>
-                            <string key="title">By default, network mom will send email using SMTP on port 587, encrypted with TLS.  We recommend using a dediciated (non-personal) email account with a unique password.  You probably need to set "allow less secure applications" or "set an application-specific password" with your email provider.  See help for more detailed information.</string>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e9g-wI-fD5">
-                        <rect key="frame" x="78" y="367" width="149" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sender Email Username" id="mrc-ag-ezF">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-rT-KPl">
-                        <rect key="frame" x="251" y="408" width="184" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="IQN-8d-qdv">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <action selector="hostnamePressed:" target="-2" id="ukf-kI-k2G"/>
-                        </connections>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQB-pz-vOw">
-                        <rect key="frame" x="66" y="411" width="145" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Email Server Hostname" id="fkY-hN-2AL">
-                            <font key="font" usesAppearanceFont="YES"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz8-6d-4Bw">
-                        <rect key="frame" x="26" y="174" width="205" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Clear Email Server Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q0u-42-hDy">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="clearEmailServerSettings:" target="-2" id="OYz-72-lQA"/>
-                        </connections>
-                    </button>
+                    <stackView distribution="fillEqually" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xA5-Oh-7LA">
+                        <rect key="frame" x="20" y="20" width="500" height="300"/>
+                        <subviews>
+                            <gridView xPlacement="fill" yPlacement="fill" rowAlignment="none" rowSpacing="10" columnSpacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zCZ-bF-b5Q">
+                                <rect key="frame" x="0.0" y="93" width="500" height="207"/>
+                                <rows>
+                                    <gridRow id="4kK-z6-6Nc"/>
+                                    <gridRow id="wgB-1v-NtL"/>
+                                    <gridRow id="dFR-P7-Wee"/>
+                                    <gridRow id="E1P-zb-pad"/>
+                                    <gridRow id="ya2-JY-n6C"/>
+                                </rows>
+                                <columns>
+                                    <gridColumn id="U1h-0t-ott"/>
+                                    <gridColumn id="8Bq-k4-hRH"/>
+                                </columns>
+                                <gridCells>
+                                    <gridCell row="4kK-z6-6Nc" column="U1h-0t-ott" id="AM4-Tj-Jgj">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQB-pz-vOw">
+                                            <rect key="frame" x="-2" y="185" width="197" height="22"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Email SMTP Server Hostname" id="fkY-hN-2AL">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="4kK-z6-6Nc" column="8Bq-k4-hRH" id="6xD-52-m1c">
+                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-rT-KPl">
+                                            <rect key="frame" x="203" y="185" width="297" height="22"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="IQN-8d-qdv">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <action selector="hostnamePressed:" target="-2" id="ukf-kI-k2G"/>
+                                            </connections>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="wgB-1v-NtL" column="U1h-0t-ott" id="TSW-rO-3de">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e9g-wI-fD5">
+                                            <rect key="frame" x="-2" y="153" width="197" height="22"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Sender Email Username" id="mrc-ag-ezF">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="wgB-1v-NtL" column="8Bq-k4-hRH" id="nNx-P4-o06">
+                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V95-8r-9Ep">
+                                            <rect key="frame" x="203" y="153" width="297" height="22"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ofd-Lv-Lb6">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="dFR-P7-Wee" column="U1h-0t-ott" id="pMg-Q0-PwY">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c6y-fQ-sDo">
+                                            <rect key="frame" x="-2" y="121" width="197" height="22"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Sender Email Password" id="BQe-kN-e8V">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="dFR-P7-Wee" column="8Bq-k4-hRH" id="Iba-mj-PEE">
+                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-VL-T7n" customClass="NSSecureTextField">
+                                            <rect key="frame" x="203" y="121" width="297" height="22"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="LwD-P5-B1d">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="E1P-zb-pad" column="U1h-0t-ott" id="9Py-Hg-SlQ">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Trc-Cu-LBH">
+                                            <rect key="frame" x="-2" y="89" width="197" height="22"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Test destination email address" id="qZR-XS-cTu">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="E1P-zb-pad" column="8Bq-k4-hRH" id="jom-pm-mKo">
+                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z8F-r6-3sA">
+                                            <rect key="frame" x="203" y="89" width="297" height="22"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="B1I-oW-xMA">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="ya2-JY-n6C" column="U1h-0t-ott" id="acl-fq-jWR">
+                                        <stackView key="contentView" distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFb-i7-P89">
+                                            <rect key="frame" x="0.0" y="0.0" width="193" height="79"/>
+                                            <subviews>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hz8-6d-4Bw">
+                                                    <rect key="frame" x="-6" y="51" width="205" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Clear Email Server Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q0u-42-hDy">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="clearEmailServerSettings:" target="-2" id="OYz-72-lQA"/>
+                                                    </connections>
+                                                </button>
+                                                <button horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="GG6-80-AzX">
+                                                    <rect key="frame" x="-6" y="22" width="205" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Send Small Test Email" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ivr-br-Q0f">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="sendTestEmail:" target="-1" id="lqQ-Or-hAB"/>
+                                                    </connections>
+                                                </button>
+                                                <button horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="9Cm-JJ-Oi0">
+                                                    <rect key="frame" x="-6" y="-7" width="205" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Send Large Test Email" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZHo-yk-AoC">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="sendTestEmail:" target="-2" id="HnK-Ns-J3p"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Hz8-6d-4Bw" secondAttribute="trailing" id="3ND-BI-RK3"/>
+                                                <constraint firstItem="GG6-80-AzX" firstAttribute="leading" secondItem="cFb-i7-P89" secondAttribute="leading" id="9sH-X9-h9r"/>
+                                                <constraint firstAttribute="trailing" secondItem="GG6-80-AzX" secondAttribute="trailing" id="JOK-2w-Pwb"/>
+                                                <constraint firstItem="9Cm-JJ-Oi0" firstAttribute="leading" secondItem="cFb-i7-P89" secondAttribute="leading" id="WpG-6o-Odn"/>
+                                                <constraint firstItem="Hz8-6d-4Bw" firstAttribute="leading" secondItem="cFb-i7-P89" secondAttribute="leading" id="uKK-Eg-XAT"/>
+                                                <constraint firstAttribute="trailing" secondItem="9Cm-JJ-Oi0" secondAttribute="trailing" id="vnr-LS-OJv"/>
+                                            </constraints>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
+                                    </gridCell>
+                                    <gridCell row="ya2-JY-n6C" column="8Bq-k4-hRH" id="Dlk-u4-rIA">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0vk-zr-yp1">
+                                            <rect key="frame" x="203" y="0.0" width="297" height="79"/>
+                                            <textFieldCell key="cell" borderStyle="border" id="1JH-l3-lmu">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                </gridCells>
+                            </gridView>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kcc-Xa-BBW">
+                                <rect key="frame" x="-2" y="0.0" width="504" height="85"/>
+                                <textFieldCell key="cell" selectable="YES" id="q3Z-sb-B4l">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Network mom will send email using SMTP on port 587, encrypted with TLS.  We recommend using a dediciated (non-personal) email account with a unique password.  You may need to set "allow less secure applications" or "set an application-specific password" with your email provider.  See help for more detailed information.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zCZ-bF-b5Q" secondAttribute="trailing" id="W53-NK-DOQ"/>
+                            <constraint firstItem="zCZ-bF-b5Q" firstAttribute="leading" secondItem="xA5-Oh-7LA" secondAttribute="leading" id="qER-xl-d7x"/>
+                            <constraint firstItem="zCZ-bF-b5Q" firstAttribute="top" secondItem="xA5-Oh-7LA" secondAttribute="top" id="rRL-cu-64x"/>
+                        </constraints>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="xA5-Oh-7LA" secondAttribute="bottom" constant="20" symbolic="YES" id="QZw-vn-ohe"/>
+                    <constraint firstItem="xA5-Oh-7LA" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="Whw-rX-3No"/>
+                    <constraint firstItem="xA5-Oh-7LA" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="gAq-2B-9Dd"/>
+                    <constraint firstAttribute="trailing" secondItem="xA5-Oh-7LA" secondAttribute="trailing" constant="20" symbolic="YES" id="p7Q-MQ-Dbe"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>

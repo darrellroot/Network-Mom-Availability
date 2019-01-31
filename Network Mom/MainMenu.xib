@@ -55,7 +55,7 @@
                                 <menu key="submenu" title="Services" systemMenu="services" id="yax-LN-JBl"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="72b-sJ-Di0"/>
-                            <menuItem title="Hide Network Mom" keyEquivalent="h" id="hi3-mg-cMb">
+                            <menuItem title="Hide Network Mom Availability" keyEquivalent="h" id="hi3-mg-cMb">
                                 <connections>
                                     <action selector="hide:" target="-1" id="8II-7l-fAX"/>
                                 </connections>
@@ -73,7 +73,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="gRb-hi-ZgA"/>
-                            <menuItem title="Quit Network Mom" keyEquivalent="q" id="Vhf-dm-Nlp">
+                            <menuItem title="Quit Network Mom Availability" keyEquivalent="q" id="Vhf-dm-Nlp">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="AVD-UH-tLf"/>
                                 </connections>
@@ -108,18 +108,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="deleteMap:" target="-1" id="QEi-UR-hlv"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="udZ-jw-vG2"/>
-                            <menuItem title="Page Setup…" keyEquivalent="P" id="5hF-bl-qjP">
-                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                <connections>
-                                    <action selector="runPageLayout:" target="-1" id="BXC-gF-VTl"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Print…" keyEquivalent="p" id="B5Z-PT-Qv1">
-                                <connections>
-                                    <action selector="print:" target="-1" id="CIB-59-TVJ"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -699,13 +687,13 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Reports" id="kpw-Ht-8gs">
                         <items>
-                            <menuItem title="Map Availability Report" id="Yog-9E-ouI">
+                            <menuItem title="Map Availability Report" tag="1" id="Yog-9E-ouI" userLabel="Daily Map Availability Report">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="mapAvailabilityReport:" target="-1" id="OXo-o9-JIY"/>
+                                    <action selector="mapAvailabilityReport2:" target="-1" id="H88-Of-62b"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Map Availability Report 2" id="atQ-Ww-jZe">
+                            <menuItem title="Map Availability Report 2" tag="2" id="atQ-Ww-jZe" userLabel="Weekly Map Availability Report">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="mapAvailabilityReport2:" target="-1" id="Cth-tf-Bzy"/>

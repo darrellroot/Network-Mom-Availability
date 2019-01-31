@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ManageEmailNotificationsController" customModule="Network_Mom" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="ManageEmailNotificationsController" customModule="Network_Mom_Availability" customModuleProvider="target">
             <connections>
                 <outlet property="emailSelectorOutlet" destination="v0X-8I-8Xe" id="wS4-Qo-KRJ"/>
                 <outlet property="mapSelectorOutlet" destination="r2T-2w-MrH" id="5Ry-3e-7md"/>
@@ -24,105 +24,140 @@
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="164"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2T-2w-MrH">
-                        <rect key="frame" x="47" y="185" width="155" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="V4h-ka-ayr">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="YSi-Sz-v5S"/>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="mapSelectorButton:" target="-2" id="GHS-TY-Aep"/>
-                        </connections>
-                    </popUpButton>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0X-8I-8Xe">
-                        <rect key="frame" x="38" y="73" width="182" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="IBW-Cd-4EO">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="pjr-nl-nUY"/>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="emailSelectorButton:" target="-2" id="skT-lZ-PiC"/>
-                        </connections>
-                    </popUpButton>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bUV-xh-0qS">
-                        <rect key="frame" x="93" y="224" width="70" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Map Name" id="Xov-Wz-FMP">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0M6-eH-g1z">
-                        <rect key="frame" x="334" y="179" width="55" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="radio" title="None" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mBK-8C-GGM">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="notificationRadioButtonChanged:" target="-2" id="3P2-GS-HHc"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qFv-5J-DcR">
-                        <rect key="frame" x="334" y="139" width="89" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="radio" title="Alerts Only" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hoP-hB-o0k">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="notificationRadioButtonChanged:" target="-2" id="5i5-12-KDO"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxb-4e-B7m">
-                        <rect key="frame" x="334" y="101" width="101" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="radio" title="Reports Only" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="soy-eK-eeu">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="notificationRadioButtonChanged:" target="-2" id="8LQ-ui-Muo"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q76-Mx-BI2">
-                        <rect key="frame" x="334" y="56" width="135" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="radio" title="Alerts and Reports" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mIw-8h-eBd">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="notificationRadioButtonChanged:" target="-2" id="rpd-43-YJH"/>
-                        </connections>
-                    </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-JP-lCC">
-                        <rect key="frame" x="333" y="216" width="121" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Notification Setting" id="uxz-Y3-fLO">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xx5-D5-yCu">
-                        <rect key="frame" x="73" y="115" width="90" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Email Address" id="VpR-ai-Wi0">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
+                    <gridView horizontalHuggingPriority="750" verticalHuggingPriority="750" xPlacement="leading" yPlacement="center" rowAlignment="none" rowSpacing="8" columnSpacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XBD-5C-vht">
+                        <rect key="frame" x="20" y="20" width="440" height="124"/>
+                        <rows>
+                            <gridRow id="8G3-Gb-P9e"/>
+                            <gridRow id="zw2-NG-QtM"/>
+                            <gridRow id="AMj-xY-fBu"/>
+                            <gridRow id="jF1-rd-XTO"/>
+                            <gridRow id="6xh-6R-K14"/>
+                        </rows>
+                        <columns>
+                            <gridColumn id="pGn-1d-Onp"/>
+                            <gridColumn id="Xqe-OO-UHy"/>
+                        </columns>
+                        <gridCells>
+                            <gridCell row="8G3-Gb-P9e" column="pGn-1d-Onp" id="J9t-7A-z3y">
+                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bUV-xh-0qS">
+                                    <rect key="frame" x="-2" y="107" width="204" height="17"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Map Name" id="Xov-Wz-FMP">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </gridCell>
+                            <gridCell row="8G3-Gb-P9e" column="Xqe-OO-UHy" id="r1J-fa-xqH">
+                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-JP-lCC">
+                                    <rect key="frame" x="218" y="107" width="224" height="17"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Notification Setting" id="uxz-Y3-fLO">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </gridCell>
+                            <gridCell row="zw2-NG-QtM" column="pGn-1d-Onp" id="sWx-sh-zkc">
+                                <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r2T-2w-MrH">
+                                    <rect key="frame" x="-2" y="75" width="205" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="WWZ-Lg-cw1"/>
+                                    </constraints>
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="V4h-ka-ayr">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="YSi-Sz-v5S"/>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="mapSelectorButton:" target="-2" id="GHS-TY-Aep"/>
+                                    </connections>
+                                </popUpButton>
+                            </gridCell>
+                            <gridCell row="zw2-NG-QtM" column="Xqe-OO-UHy" id="ULN-jb-rqX">
+                                <button key="contentView" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="0M6-eH-g1z">
+                                    <rect key="frame" x="219" y="80" width="223" height="18"/>
+                                    <buttonCell key="cell" type="radio" title="None" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mBK-8C-GGM">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="notificationRadioButtonChanged:" target="-2" id="3P2-GS-HHc"/>
+                                    </connections>
+                                </button>
+                            </gridCell>
+                            <gridCell row="AMj-xY-fBu" column="pGn-1d-Onp" id="P5x-uz-1cQ"/>
+                            <gridCell row="AMj-xY-fBu" column="Xqe-OO-UHy" id="yMr-zs-V2m">
+                                <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qFv-5J-DcR">
+                                    <rect key="frame" x="219" y="53" width="223" height="18"/>
+                                    <buttonCell key="cell" type="radio" title="Alerts Only" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hoP-hB-o0k">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="notificationRadioButtonChanged:" target="-2" id="5i5-12-KDO"/>
+                                    </connections>
+                                </button>
+                            </gridCell>
+                            <gridCell row="jF1-rd-XTO" column="pGn-1d-Onp" id="Yz3-H0-e44">
+                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xx5-D5-yCu">
+                                    <rect key="frame" x="-2" y="29" width="204" height="17"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Email Address" id="VpR-ai-Wi0">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                            </gridCell>
+                            <gridCell row="jF1-rd-XTO" column="Xqe-OO-UHy" id="Efv-uR-kVC">
+                                <button key="contentView" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="jxb-4e-B7m">
+                                    <rect key="frame" x="219" y="29" width="223" height="18"/>
+                                    <buttonCell key="cell" type="radio" title="Reports Only" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="soy-eK-eeu">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="notificationRadioButtonChanged:" target="-2" id="8LQ-ui-Muo"/>
+                                    </connections>
+                                </button>
+                            </gridCell>
+                            <gridCell row="6xh-6R-K14" column="pGn-1d-Onp" id="8rx-uZ-fvS">
+                                <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v0X-8I-8Xe">
+                                    <rect key="frame" x="-2" y="-3" width="205" height="25"/>
+                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="IBW-Cd-4EO">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="menu"/>
+                                        <menu key="menu" id="pjr-nl-nUY"/>
+                                    </popUpButtonCell>
+                                    <connections>
+                                        <action selector="emailSelectorButton:" target="-2" id="skT-lZ-PiC"/>
+                                    </connections>
+                                </popUpButton>
+                            </gridCell>
+                            <gridCell row="6xh-6R-K14" column="Xqe-OO-UHy" id="Lgp-01-1r4">
+                                <button key="contentView" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Q76-Mx-BI2">
+                                    <rect key="frame" x="219" y="2" width="223" height="18"/>
+                                    <buttonCell key="cell" type="radio" title="Alerts and Reports" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="mIw-8h-eBd">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="notificationRadioButtonChanged:" target="-2" id="rpd-43-YJH"/>
+                                    </connections>
+                                </button>
+                            </gridCell>
+                        </gridCells>
+                    </gridView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="XBD-5C-vht" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="64M-ec-cnP"/>
+                    <constraint firstAttribute="trailing" secondItem="XBD-5C-vht" secondAttribute="trailing" constant="20" symbolic="YES" id="PfZ-xI-J9B"/>
+                    <constraint firstItem="XBD-5C-vht" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="eeg-Yq-59v"/>
+                    <constraint firstAttribute="bottom" secondItem="XBD-5C-vht" secondAttribute="bottom" constant="20" symbolic="YES" id="p9G-XI-SyZ"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>

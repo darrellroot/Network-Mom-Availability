@@ -74,6 +74,12 @@ class EmailServerController: NSWindowController, NSWindowDelegate {
         DLog.log(.userInterface,"hostname pressed")
     }
     @IBAction func sendTestEmail(_ sender: NSButton) {
+        let largeEmail: Bool
+        if sender.tag == 2 {
+            largeEmail = true
+        } else {
+            largeEmail = false
+        }
         DLog.log(.mail,"in sendEmail function")
         self.emailResultOutlet.stringValue = ""
         let hostname = serverHostnameOutlet.stringValue
@@ -81,9 +87,14 @@ class EmailServerController: NSWindowController, NSWindowDelegate {
         let senderPassword = senderEmailPasswordOutlet.stringValue
         let destinationEmail = testDestinationEmailOutlet.stringValue
         let sender = Mail.User(name: "Network Mom", email: senderEmail)
-        let droot = Mail.User(name: "Darrell Root", email: "darrellroot@mac.com")
         let destination = Mail.User(name: "Network Mom User", email: destinationEmail)
-        let mail = Mail(from: sender, to: [droot], subject: "Test email from Network Mom", text: "If you got this, your email server configuration is working.")
+        let mail: Mail
+        if largeEmail, let filePath = Bundle.main.path(forResource: "sampleGraph", ofType: "pdf") {
+            let attachment = Attachment(filePath: filePath)
+            mail = Mail(from: sender, to: [destination], cc: [], bcc: [], subject: "Large test email from Network Mom Availability", text: "If you receive this, your email server configuration is working.", attachments: [attachment], additionalHeaders: [:])
+        } else {
+            mail = Mail(from: sender, to: [destination], subject: "Small test email from Network Mom Availability", text: "If you receive this, your email server configuration is working.")
+        }
         smtp = SMTP(hostname: hostname, email: senderEmail, password: senderPassword, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
         smtp.send(mail) { (error) in
             if let error = error {

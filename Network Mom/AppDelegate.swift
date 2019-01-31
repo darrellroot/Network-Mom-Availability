@@ -54,6 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var emailConfiguration: EmailConfiguration?
     let userDefaults = UserDefaults.standard
     var emailAlertTimer : Timer!
+    var emailReportTimer : Timer!
     
     @IBAction func aboutNetworkMom(_ sender: NSMenuItem) {
         let staticHtmlController = StaticHtmlController()
@@ -121,6 +122,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         emailAlertTimer = Timer.scheduledTimer(timeInterval: Double(Defaults.emailTimerDuration), target: self, selector: #selector(sendAlertEmails), userInfo: nil, repeats: true)
         emailAlertTimer.tolerance = Defaults.emailTimerTolerance
         RunLoop.current.add(emailAlertTimer,forMode: .common)
+        
+        let calendar = Calendar(identifier: .iso8601)
+        let components = DateComponents(calendar: calendar, timeZone: TimeZone.current, era: nil, year: nil, month: nil, day: nil, hour: 8, minute: 8, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
+        if let dateToFire = calendar.nextDate(after: Date(), matching: components, matchingPolicy: .nextTime) {
+            emailReportTimer = Timer(fireAt: dateToFire, interval: 86400, target: self, selector: #selector(emailReports), userInfo: nil, repeats: true)
+            RunLoop.current.add(emailReportTimer,forMode: .common)
+            DLog.log(.dataIntegrity,"Daily report timer scheduled for \(dateToFire.description)")
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -195,11 +204,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func emailDailyReports(_ sender: NSMenuItem) {
-        emailDailyReports()
+        emailReports()
     }
-    func emailDailyReports() {
+    @objc func emailReports() {
         for map in maps {
-            map.emailDailyReports()
+            map.emailReport(reportType: .daily)
+        }
+        let weekday = Calendar.current.component(.weekday, from: Date())
+        if weekday == 1 {    //I think 1 is Monday
+            for map in maps {
+                map.emailReport(reportType: .weekly)
+            }
         }
     }
     @IBAction func emailNotificationConfigurationReport(_ sender: NSMenuItem) {
@@ -207,8 +222,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         emailNotificationConfigurationReportControllers.append(emailNotificationConfigurationReportController)
         emailNotificationConfigurationReportController.showWindow(self)
     }
-    
-    
 
     func fixMapIndex() {
         DLog.log(.dataIntegrity,"fixing ids in each map")

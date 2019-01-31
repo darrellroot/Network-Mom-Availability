@@ -160,50 +160,51 @@ table, th, td {
         }
         html += "</table></n>"
         
-        // Start Latency Increase report
-        var monitorTodayLatency: [String:Double] = [:]
-        var monitorYesterdayLatency: [String:Double] = [:]
-        var monitorLatencyIncrease: [String:Double] = [:]
-        var priorDate: String?
-        var todayDate: String?
-        for monitor in map.monitors {
-            if let todayTimestamp = monitor.latency.lastDay?.timestamp ,let todayLatency = monitor.latency.lastDay?.value, let yesterdayTimestamp = monitor.latency.priorDay?.timestamp, let yesterdayLatency = monitor.latency.priorDay?.value {
-                monitorTodayLatency[monitor.label] = todayLatency
-                monitorYesterdayLatency[monitor.label] = yesterdayLatency
-                monitorLatencyIncrease[monitor.label] = todayLatency / yesterdayLatency
-                if priorDate == nil {
-                    priorDate = dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: TimeInterval(yesterdayTimestamp)))
-                }
-                if todayDate == nil {
-                    todayDate = dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: TimeInterval(todayTimestamp)))
+        if reportType == .daily {
+            // Start Latency Increase report
+            var monitorTodayLatency: [String:Double] = [:]
+            var monitorYesterdayLatency: [String:Double] = [:]
+            var monitorLatencyIncrease: [String:Double] = [:]
+            var priorDate: String?
+            var todayDate: String?
+            for monitor in map.monitors {
+                if let todayTimestamp = monitor.latency.lastDay?.timestamp ,let todayLatency = monitor.latency.lastDay?.value, let yesterdayTimestamp = monitor.latency.priorDay?.timestamp, let yesterdayLatency = monitor.latency.priorDay?.value {
+                    monitorTodayLatency[monitor.label] = todayLatency
+                    monitorYesterdayLatency[monitor.label] = yesterdayLatency
+                    monitorLatencyIncrease[monitor.label] = todayLatency / yesterdayLatency
+                    if priorDate == nil {
+                        priorDate = dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: TimeInterval(yesterdayTimestamp)))
+                    }
+                    if todayDate == nil {
+                        todayDate = dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: TimeInterval(todayTimestamp)))
+                    }
                 }
             }
-        }
-        if monitorLatencyIncrease.count > 0 {
-            html += "<h2>Five monitors with largest recent percentage latency increase</h2>\n"
-            var count = 0
-            for (monitorKey,_) in monitorLatencyIncrease.sorted( by: {$0.value > $1.value}){
-                if count == 0 {
-                    if let priorDate = priorDate {
-                        html += "<h3>Prior period start \(priorDate)</h3>\n"
+            if monitorLatencyIncrease.count > 0 {
+                html += "<h2>Five monitors with largest recent percentage latency increase</h2>\n"
+                var count = 0
+                for (monitorKey,_) in monitorLatencyIncrease.sorted( by: {$0.value > $1.value}){
+                    if count == 0 {
+                        if let priorDate = priorDate {
+                            html += "<h3>Prior period start \(priorDate)</h3>\n"
+                        }
+                        if let todayDate = todayDate {
+                            html += "<h3>Current period start \(todayDate)</h3>\n"
+                        }
+                        html += "<table><tr><th>Monitor</th><th>Prior Period Latency (msec)</th><th>Current Period Latency (msec)</th><th>Increase Factor</th></tr>\n"
                     }
-                    if let todayDate = todayDate {
-                        html += "<h3>Current period start \(todayDate)</h3>\n"
+                    if count < 5, let monitorYesterdayLatency = monitorYesterdayLatency[monitorKey], let monitorTodayLatency = monitorTodayLatency[monitorKey], let monitorLatencyIncrease = monitorLatencyIncrease[monitorKey] {
+                        html += "<tr><td>\(monitorKey)</td><td>\(monitorYesterdayLatency.twoPlaces)</td><td>\(monitorTodayLatency.twoPlaces)</td><td>\((monitorLatencyIncrease).threePlaces)</tr>\n"
                     }
-                    html += "<table><tr><th>Monitor</th><th>Prior Period Latency (msec)</th><th>Current Period Latency (msec)</th><th>Increase Factor</th></tr>\n"
+                    count += 1
                 }
-                if count < 5, let monitorYesterdayLatency = monitorYesterdayLatency[monitorKey], let monitorTodayLatency = monitorTodayLatency[monitorKey], let monitorLatencyIncrease = monitorLatencyIncrease[monitorKey] {
-                    html += "<tr><td>\(monitorKey)</td><td>\(monitorYesterdayLatency.twoPlaces)</td><td>\(monitorTodayLatency.twoPlaces))</td><td>\((monitorLatencyIncrease-1.0).threePlaces)</tr>\n"
-                }
-                count += 1
+                html += "</table></n>"
+            } else {
+                html += "<h2>Monitor Latency Increase Data Not Available</h2>\n"
             }
-            html += "</table></n>"
-        } else {
-            html += "<h2>Monitor Latency Increase Data Not Available</h2>\n"
+            // End Latency Increase Report
         }
-        // End Latency Increase Report
         
-        html += "<h2>Map \(map.name) Availablity Graph</h2>"
         html += "</body>\n"
         return html
     }
@@ -236,7 +237,7 @@ table, th, td {
         return lineChart
     }
     func makeView() -> NSView {
-        let view = NSView(frame: NSRect(x: 0, y: 100, width: 200, height: 200))
+        let view = NSView(frame: NSRect(x: 0, y: 0, width: 500, height: 300))
         let lineChart = makeChart()
         let textFields = [
             "lineChart": lineChart,

@@ -232,23 +232,32 @@ class MapWindowController: NSWindowController {
     }
 
 
-    func emailDailyReports() {
-        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("report.pdf")
-        let fileShortString = "Documents/report.pdf"
+    func emailReport(reportType: ReportType) {
+        //let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("report.pdf")
+        //let fileShortString = "Documents/report.pdf"
         //let filename = "report.pdf"
         //let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         //let directoryURL = FileManager.default.documentDirectory
         //let filename = directoryURL.absoluteString + "/dailyreport.pdf"
         //let fileURL = directoryURL.appendingPathComponent("dailyreport.pdf")
-        DLog.log(.dataIntegrity,"daily report url \(fileURL)")
-        let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save, NSPrintInfo.AttributeKey.jobSavingURL: fileURL]
+        //DLog.log(.dataIntegrity,"daily report url \(fileURL)")
+        //let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save, NSPrintInfo.AttributeKey.jobSavingURL: fileURL]
         //let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save]
-        let printInfo = NSPrintInfo(dictionary: printOpts)
+        //let printInfo = NSPrintInfo(dictionary: printOpts)
 
-        var pdfData = NSMutableData()
+        guard let emailConfiguration = appDelegate.emailConfiguration else {
+            DLog.log(.dataIntegrity,"No Email Configuration, unable to email map availability reports")
+            return
+        }
+        guard emailReports.count > 0 else {
+            DLog.log(.dataIntegrity,"No Email report recipients, skipping map availability reports")
+            return
+        }
 
-        DLog.log(.userInterface,"map \(name) emailing daily reports")
-        let availabilityReport = AvailabilityReport(reportType: .daily, map: self)
+        let pdfData = NSMutableData()
+
+        DLog.log(.userInterface,"map \(name) emailing \(reportType.rawValue) reports")
+        let availabilityReport = AvailabilityReport(reportType: reportType, map: self)
         let availabilityReportView = availabilityReport.makeView()
         availabilityReportView.translatesAutoresizingMaskIntoConstraints = false
         let html = availabilityReport.makeHTML()
@@ -270,10 +279,6 @@ class MapWindowController: NSWindowController {
         for email in emails {
             emailHash[email.email] = email
         }
-        guard let emailConfiguration = appDelegate.emailConfiguration else {
-            DLog.log(.dataIntegrity,"No Email Configuration, unable to email daily reports")
-            return
-        }
         let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
         for recipient in emailReports {
             if let emailRecipient = emailHash[recipient] {
@@ -286,7 +291,7 @@ class MapWindowController: NSWindowController {
                 let attachment = Attachment(data: pdfData as Data, mime: "application/pdf", name: "report.pdf", inline: true, additionalHeaders: [:], relatedAttachments: [])
                 let htmlAttachment = Attachment(htmlContent: html)
                 //let attachment = Attachment(filePath: fileURL.relativeString)
-                let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [htmlAttachment,attachment], additionalHeaders: [:])
+                let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "Network Mom Availability \(reportType.rawValue) report for map \(name)", text: message, attachments: [htmlAttachment,attachment], additionalHeaders: [:])
                 //let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [], additionalHeaders: [:])
 
                 smtp.send(mail) { (error) in
@@ -423,6 +428,10 @@ class MapWindowController: NSWindowController {
         let mapAvailabilityReportController2 = MapAvailabilityReportController2()
         mapAvailabilityReportControllers2.append(mapAvailabilityReportController2)
         mapAvailabilityReportController2.delegate = self
+        if sender.tag == 2 {
+            mapAvailabilityReportController2.reportType = .weekly
+        }
+
         mapAvailabilityReportController2.showWindow(self)
     }
 
