@@ -37,7 +37,7 @@ class AvailabilityReport {
     let timeZone: String
     var data: [RRDData]?
     var windowAvailability: [Int:Double] = [:]
-
+    var overallAvailability: Double?
 
     init(reportType: ReportType, map: MapWindowController?) {
         self.map = map
@@ -66,14 +66,22 @@ class AvailabilityReport {
         case .weekly:
             data = map?.availability.getData(dataType: .OneDay)
         }
+        var availabilityNumerator = 0.0
+        var availabilityDenominator = 0
         if let allAvailability = data {
             for dataPoint in allAvailability {
                 if dataPoint.timestamp >= startTime && dataPoint.timestamp < endTime, let value = dataPoint.value {
                     windowAvailability[dataPoint.timestamp] = value
+                    availabilityNumerator += value
+                    availabilityDenominator += 1
                 }
             }
         }
-
+        if availabilityDenominator > 0 {
+            overallAvailability = availabilityNumerator / Double(availabilityDenominator)
+        } else {
+            overallAvailability = nil
+        }
     }
     
     func makeHTML() -> String {
@@ -95,8 +103,8 @@ table, th, td {
 <body>
 <h1>Network Mom Availability \(reportType.rawValue.capitalizingFirstLetter()) Report</h1>
 <h2>Map: \(map?.name ?? "unknown")</h2>
-<h2>Start Date: \(startDateFormatted) \(timeZone)</h1>
-<h2>End Date: \(endDateFormatted) \(timeZone)</h1>
+<h3>Start Date: \(startDateFormatted) \(timeZone)</h3>
+<h3>End Date: \(endDateFormatted) \(timeZone)</h3>
 """
         guard windowAvailability.count > 0, let map = map else {
             html += """
@@ -107,7 +115,15 @@ table, th, td {
         }
         
         // Start availablity table
-        html += "<table><tr><th>Time</th><th>Availablity</th></tr>"
+        if let overallAvailability = overallAvailability {
+            html += "<h3>Overall Availability \(overallAvailability.percentThree)%</h3>\n"
+        }
+        switch reportType {
+        case .daily:
+            html += "<table><tr><th>Start Of Hour</th><th>Availability</th></tr>"
+        case .weekly:
+            html += "<table><tr><th>Start Of Day</th><th>Availability</th></tr>"
+        }
         for (timestamp,availabilityPoint) in windowAvailability.sorted(by: { $0.key < $1.key }) {
             let timeDescription = dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: TimeInterval(timestamp)))
             
@@ -205,6 +221,7 @@ table, th, td {
             // End Latency Increase Report
         }
         
+        html += "<p>\n"
         html += "</body>\n"
         return html
     }

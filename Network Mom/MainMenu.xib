@@ -655,7 +655,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Notifications" autoenablesItems="NO" id="z9h-bs-PKo">
                         <items>
-                            <menuItem title="Configure Email Server" id="hOo-6G-Lcp">
+                            <menuItem title="Configure Email Server and Sender" id="hOo-6G-Lcp">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="configureEmailServer:" target="Voe-Tx-rLC" id="XQI-uP-TzL"/>
@@ -687,16 +687,16 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Reports" id="kpw-Ht-8gs">
                         <items>
-                            <menuItem title="Map Availability Report" tag="1" id="Yog-9E-ouI" userLabel="Daily Map Availability Report">
+                            <menuItem title="Daily Map Availability Report" tag="1" id="Yog-9E-ouI" userLabel="Daily Map Availability Report">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="mapAvailabilityReport2:" target="-1" id="H88-Of-62b"/>
+                                    <action selector="mapAvailabilityReport:" target="-1" id="NTa-Oc-dyz"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Map Availability Report 2" tag="2" id="atQ-Ww-jZe" userLabel="Weekly Map Availability Report">
+                            <menuItem title="Weekly Map Availability Report" tag="2" id="atQ-Ww-jZe" userLabel="Weekly Map Availability Report">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="mapAvailabilityReport2:" target="-1" id="Cth-tf-Bzy"/>
+                                    <action selector="mapAvailabilityReport:" target="-1" id="Be7-E3-tvb"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Email Notification Configuration Report" id="IHU-8a-am8">

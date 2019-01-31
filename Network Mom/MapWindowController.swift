@@ -41,9 +41,6 @@ class MapWindowController: NSWindowController {
     var importMonitorListControllers: [ImportMonitorListController] = []
     var mapAvailabilityReportControllers: [MapAvailabilityReportController] = []
 
-    // temporary during development 1/25/19
-    var mapAvailabilityReportControllers2: [MapAvailabilityReportController2] = []
-
     var addIPv4MonitorsControllers: [AddIPv4MonitorsController] = []
     var addIPv6MonitorsControllers: [AddIPv6MonitorsController] = []
 
@@ -422,17 +419,11 @@ class MapWindowController: NSWindowController {
         let mapAvailabilityReportController = MapAvailabilityReportController()
         mapAvailabilityReportControllers.append(mapAvailabilityReportController)
         mapAvailabilityReportController.delegate = self
-        mapAvailabilityReportController.showWindow(self)
-    }
-    @IBAction func mapAvailabilityReport2(_ sender: NSMenuItem) {
-        let mapAvailabilityReportController2 = MapAvailabilityReportController2()
-        mapAvailabilityReportControllers2.append(mapAvailabilityReportController2)
-        mapAvailabilityReportController2.delegate = self
         if sender.tag == 2 {
-            mapAvailabilityReportController2.reportType = .weekly
+            mapAvailabilityReportController.reportType = .weekly
         }
 
-        mapAvailabilityReportController2.showWindow(self)
+        mapAvailabilityReportController.showWindow(self)
     }
 
     override func mouseUp(with event: NSEvent) {
