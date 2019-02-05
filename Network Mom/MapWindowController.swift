@@ -199,6 +199,11 @@ class MapWindowController: NSWindowController {
             coreMap.managedObjectContext?.delete(coreMap)
         }
     }
+    public func deleteEmail(addressToDelete: String) {
+        emailAlerts.remove(object: addressToDelete)
+        emailReports.remove(object: addressToDelete)
+    }
+    
     private func deleteSelectedMonitor() -> Bool {
         DLog.log(.dataIntegrity,"entered deleteSelectedMonitor")
         for (viewIndex,monitorView) in monitorViews.enumerated() {

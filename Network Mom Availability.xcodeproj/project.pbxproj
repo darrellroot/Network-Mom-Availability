@@ -7,18 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F50619621B2401C00C19984 /* delete-selected-monitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50618E21B2401C00C19984 /* delete-selected-monitor.png */; };
-		2F50619821B2401C00C19984 /* add-ipv4-monitor-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619221B2401C00C19984 /* add-ipv4-monitor-menu.png */; };
-		2F50619921B2401C00C19984 /* add-ipv4-monitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619421B2401C00C19984 /* add-ipv4-monitor.png */; };
-		2F50619C21B2417900C19984 /* monitor-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619A21B2417900C19984 /* monitor-detail.png */; };
-		2F5061A121B26E9D00C19984 /* configure-email-server.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619D21B26E9C00C19984 /* configure-email-server.png */; };
-		2F5061A221B26E9D00C19984 /* configure-email-server-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F50619F21B26E9C00C19984 /* configure-email-server-menu.png */; };
-		2F5061A521B33A6900C19984 /* new-map-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061A321B33A6900C19984 /* new-map-menu.png */; };
-		2F5061A721B33CCF00C19984 /* Network Mom.help in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061A621B33CCF00C19984 /* Network Mom.help */; };
-		2F5061AA21B3486500C19984 /* monitors-with-latency.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061A821B3486500C19984 /* monitors-with-latency.png */; };
-		2F5061AD21B3548600C19984 /* manage-email-notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061AB21B3548600C19984 /* manage-email-notifications.png */; };
-		2F5061B321B35E6700C19984 /* configure-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B121B35E6700C19984 /* configure-email-recipient.png */; };
-		2F5061B621B35E6D00C19984 /* delete-email-recipient.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061B421B35E6D00C19984 /* delete-email-recipient.png */; };
+		2F5061A721B33CCF00C19984 /* Network Mom Availability.help in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061A621B33CCF00C19984 /* Network Mom Availability.help */; };
 		2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061BC21B4A48D00C19984 /* mom-picture.jpg */; };
 		2F5061C421B4CC3600C19984 /* StaticHtmlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */; };
 		2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */; };
@@ -289,6 +278,13 @@
 		2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0B3A021AFB51B00C44DB5 /* Notification.swift */; };
 		2FC0B3A321AFC06800C44DB5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0B3A221AFC06800C44DB5 /* Defaults.swift */; };
 		2FC771CF2202789F00CAE008 /* sampleGraph.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771CE2202789F00CAE008 /* sampleGraph.pdf */; };
+		2FC771D22203845A00CAE008 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC771D02203845A00CAE008 /* PreferencesController.swift */; };
+		2FC771D32203845A00CAE008 /* PreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771D12203845A00CAE008 /* PreferencesController.xib */; };
+		2FC771D8220393F400CAE008 /* school-pa-alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771D7220393F400CAE008 /* school-pa-alert.wav */; };
+		2FC771DA2203B05300CAE008 /* aircraftalarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771D92203B05300CAE008 /* aircraftalarm.wav */; };
+		2FC771DC2203B26000CAE008 /* doorbell-alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771DB2203B26000CAE008 /* doorbell-alert.wav */; };
+		2FC771DE2203B38D00CAE008 /* warning-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771DD2203B38D00CAE008 /* warning-sound.wav */; };
+		2FC771E02203B44600CAE008 /* warning-signal-SF.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771DF2203B44600CAE008 /* warning-signal-SF.wav */; };
 		2FD136E821E54E7D00770B09 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136E621E54E7D00770B09 /* CoreDataModel.xcdatamodeld */; };
 		2FD136EE21E5560900770B09 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136ED21E5560900770B09 /* CoreDataStack.swift */; };
 		2FD136F021E949E400770B09 /* NetworkMomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136EF21E949E400770B09 /* NetworkMomError.swift */; };
@@ -402,18 +398,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2F50618F21B2401C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/delete-selected-monitor.png"; sourceTree = "<group>"; };
-		2F50619321B2401C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/add-ipv4-monitor-menu.png"; sourceTree = "<group>"; };
-		2F50619521B2401C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/add-ipv4-monitor.png"; sourceTree = "<group>"; };
-		2F50619B21B2417900C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/monitor-detail.png"; sourceTree = "<group>"; };
-		2F50619E21B26E9C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/configure-email-server.png"; sourceTree = "<group>"; };
-		2F5061A021B26E9C00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/configure-email-server-menu.png"; sourceTree = "<group>"; };
-		2F5061A421B33A6900C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/new-map-menu.png"; sourceTree = "<group>"; };
-		2F5061A621B33CCF00C19984 /* Network Mom.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Network Mom.help"; sourceTree = "<group>"; };
-		2F5061A921B3486500C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/monitors-with-latency.png"; sourceTree = "<group>"; };
-		2F5061AC21B3548600C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/manage-email-notifications.png"; sourceTree = "<group>"; };
-		2F5061B221B35E6700C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/configure-email-recipient.png"; sourceTree = "<group>"; };
-		2F5061B521B35E6D00C19984 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "Network Mom.help/Contents/Resources/en.lproj/delete-email-recipient.png"; sourceTree = "<group>"; };
+		2F5061A621B33CCF00C19984 /* Network Mom Availability.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Network Mom Availability.help"; sourceTree = "<group>"; };
 		2F5061BC21B4A48D00C19984 /* mom-picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mom-picture.jpg"; sourceTree = "<group>"; };
 		2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticHtmlController.swift; sourceTree = "<group>"; };
 		2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticHtmlController.xib; sourceTree = "<group>"; };
@@ -689,6 +674,13 @@
 		2FC0B3A021AFB51B00C44DB5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2FC0B3A221AFC06800C44DB5 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		2FC771CE2202789F00CAE008 /* sampleGraph.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sampleGraph.pdf; sourceTree = "<group>"; };
+		2FC771D02203845A00CAE008 /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
+		2FC771D12203845A00CAE008 /* PreferencesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesController.xib; sourceTree = "<group>"; };
+		2FC771D7220393F400CAE008 /* school-pa-alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "school-pa-alert.wav"; sourceTree = "<group>"; };
+		2FC771D92203B05300CAE008 /* aircraftalarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = aircraftalarm.wav; sourceTree = "<group>"; };
+		2FC771DB2203B26000CAE008 /* doorbell-alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "doorbell-alert.wav"; sourceTree = "<group>"; };
+		2FC771DD2203B38D00CAE008 /* warning-sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "warning-sound.wav"; sourceTree = "<group>"; };
+		2FC771DF2203B44600CAE008 /* warning-signal-SF.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "warning-signal-SF.wav"; sourceTree = "<group>"; };
 		2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2FD136ED21E5560900770B09 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		2FD136EF21E949E400770B09 /* NetworkMomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMomError.swift; sourceTree = "<group>"; };
@@ -769,23 +761,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F50618121B23CF200C19984 /* Network Mom Help */ = {
+		2F50618121B23CF200C19984 /* Network Mom Availability Help */ = {
 			isa = PBXGroup;
 			children = (
-				2F50619221B2401C00C19984 /* add-ipv4-monitor-menu.png */,
-				2F50619421B2401C00C19984 /* add-ipv4-monitor.png */,
-				2F50619F21B26E9C00C19984 /* configure-email-server-menu.png */,
-				2F5061B121B35E6700C19984 /* configure-email-recipient.png */,
-				2F50619D21B26E9C00C19984 /* configure-email-server.png */,
-				2F5061B421B35E6D00C19984 /* delete-email-recipient.png */,
-				2F50618E21B2401C00C19984 /* delete-selected-monitor.png */,
-				2F5061AB21B3548600C19984 /* manage-email-notifications.png */,
-				2F50619A21B2417900C19984 /* monitor-detail.png */,
-				2F5061A821B3486500C19984 /* monitors-with-latency.png */,
-				2F5061A621B33CCF00C19984 /* Network Mom.help */,
-				2F5061A321B33A6900C19984 /* new-map-menu.png */,
+				2F5061A621B33CCF00C19984 /* Network Mom Availability.help */,
 			);
-			path = "Network Mom Help";
+			path = "Network Mom Availability Help";
 			sourceTree = "<group>";
 		};
 		2F5061BB21B4A3CE00C19984 /* Images */ = {
@@ -820,7 +801,7 @@
 				2FA0296821ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift */,
 				2FA0296921ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift */,
 				2F904D3C219F76170040530B /* Network Mom */,
-				2F50618121B23CF200C19984 /* Network Mom Help */,
+				2F50618121B23CF200C19984 /* Network Mom Availability Help */,
 				2F904D52219F769D0040530B /* LoggerAPI */,
 				2F904D77219F779A0040530B /* HeliumLoggerCustom */,
 				2F904DB3219F78AF0040530B /* Cryptor */,
@@ -858,11 +839,12 @@
 				2F904E37219F7A140040530B /* AddIPv4MonitorController.xib */,
 				2FA0297921F7C88600ABAB9A /* AddIPv4MonitorsController.swift */,
 				2FA0297A21F7C88600ABAB9A /* AddIPv4MonitorsController.xib */,
-				2FA0297F21F9241100ABAB9A /* AddIPv6MonitorsController.swift */,
-				2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */,
 				2F904E33219F7A130040530B /* AddIPv6MonitorController.swift */,
 				2F904E30219F7A130040530B /* AddIPv6MonitorController.xib */,
+				2FA0297F21F9241100ABAB9A /* AddIPv6MonitorsController.swift */,
+				2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */,
 				2F904E5C219F7A450040530B /* AddMonitorDelegate.swift */,
+				2FC771D4220390A900CAE008 /* AlertSounds */,
 				2F904E31219F7A130040530B /* AppDelegate.swift */,
 				2F5061D121BC744000C19984 /* Array+extensions.swift */,
 				2FA0298721FBAE7C00ABAB9A /* AvailabilityReport.swift */,
@@ -876,23 +858,25 @@
 				2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */,
 				2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */,
 				2F904E40219F7A200040530B /* Design.txt */,
+				2FA02AF4220001CF00ABAB9A /* Double+extensions.swift */,
 				2F904E46219F7A320040530B /* DragMonitorView.swift */,
 				2F904FC521A36D190040530B /* EmailAddress.swift */,
 				2F5061CD21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift */,
 				2F5061CE21B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib */,
 				2F904E34219F7A130040530B /* EmailServerController.swift */,
 				2F904E35219F7A140040530B /* EmailServerController.xib */,
+				2FA0298321F947A200ABAB9A /* FlipScrollView.swift */,
 				2F904E5E219F7A450040530B /* FlipStackView.swift */,
 				2F904E58219F7A440040530B /* FlipView.swift */,
-				2FA0298321F947A200ABAB9A /* FlipScrollView.swift */,
 				2F904E54219F7A430040530B /* HostAddressQuery.swift */,
 				2F5061C621B4CD6700C19984 /* HTML */,
 				2F904E59219F7A440040530B /* icmpechorequest.swift */,
 				2F904E61219F7A460040530B /* IcmpV6EchoRequest.swift */,
 				2F5061BB21B4A3CE00C19984 /* Images */,
-				2F904E44219F7A320040530B /* MainMenu.xib */,
 				2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */,
 				2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */,
+				2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */,
+				2F904E44219F7A320040530B /* MainMenu.xib */,
 				2F904FD721A4B17D0040530B /* ManageEmailNotificationsController.swift */,
 				2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */,
 				2FA0298921FBB62C00ABAB9A /* MapAvailabilityReportController.swift */,
@@ -905,10 +889,12 @@
 				2F904E5B219F7A450040530B /* MonitorProtocol.swift */,
 				2F904E48219F7A330040530B /* MonitorWindowController.swift */,
 				2F904E42219F7A310040530B /* MonitorWindowController.xib */,
-				2FD136EF21E949E400770B09 /* NetworkMomError.swift */,
 				2F904E2B219F79FE0040530B /* Network Mom-Bridging-Header.h */,
 				2F904E73219F7A730040530B /* Network Mom.entitlements */,
+				2FD136EF21E949E400770B09 /* NetworkMomError.swift */,
 				2FC0B3A021AFB51B00C44DB5 /* Notification.swift */,
+				2FC771D02203845A00CAE008 /* PreferencesController.swift */,
+				2FC771D12203845A00CAE008 /* PreferencesController.xib */,
 				2F904E56219F7A430040530B /* RRDBuffer.swift */,
 				2F904E5A219F7A440040530B /* RRDBufferDouble.swift */,
 				2F904E5F219F7A450040530B /* RRDData.swift */,
@@ -921,10 +907,8 @@
 				2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */,
 				2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */,
 				2F904E60219F7A460040530B /* String+extensions.swift */,
-				2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */,
 				2F904FC321A3687C0040530B /* Types.swift */,
-				2FA02AF4220001CF00ABAB9A /* Double+extensions.swift */,
-				2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */,
+				2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */,
 			);
 			path = "Network Mom";
 			sourceTree = "<group>";
@@ -1297,6 +1281,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2FC771D4220390A900CAE008 /* AlertSounds */ = {
+			isa = PBXGroup;
+			children = (
+				2FC771D92203B05300CAE008 /* aircraftalarm.wav */,
+				2FC771DF2203B44600CAE008 /* warning-signal-SF.wav */,
+				2FC771DB2203B26000CAE008 /* doorbell-alert.wav */,
+				2FC771D7220393F400CAE008 /* school-pa-alert.wav */,
+				2FC771DD2203B38D00CAE008 /* warning-sound.wav */,
+			);
+			path = AlertSounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1587,41 +1583,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F5061A721B33CCF00C19984 /* Network Mom.help in Resources */,
+				2F5061A721B33CCF00C19984 /* Network Mom Availability.help in Resources */,
 				2F904E2F219F79FF0040530B /* ShowLogController.xib in Resources */,
 				2F5061D621BC876900C19984 /* ShowStatisticsController.xib in Resources */,
 				2FA0297E21F923FD00ABAB9A /* AddIPv6MonitorsController.xib in Resources */,
 				2F5061CC21B5E06B00C19984 /* credits.html in Resources */,
-				2F5061A521B33A6900C19984 /* new-map-menu.png in Resources */,
 				2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */,
 				2F904E4A219F7A330040530B /* MonitorWindowController.xib in Resources */,
-				2F5061AD21B3548600C19984 /* manage-email-notifications.png in Resources */,
 				2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */,
 				2FA0298C21FBB62C00ABAB9A /* MapAvailabilityReportController.xib in Resources */,
-				2F5061AA21B3486500C19984 /* monitors-with-latency.png in Resources */,
+				2FC771DC2203B26000CAE008 /* doorbell-alert.wav in Resources */,
 				2F5061D021B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib in Resources */,
 				2F904E4F219F7A330040530B /* MapWindowController.xib in Resources */,
-				2F50619921B2401C00C19984 /* add-ipv4-monitor.png in Resources */,
 				2FC771CF2202789F00CAE008 /* sampleGraph.pdf in Resources */,
-				2F5061B321B35E6700C19984 /* configure-email-recipient.png in Resources */,
-				2F50619621B2401C00C19984 /* delete-selected-monitor.png in Resources */,
+				2FC771DE2203B38D00CAE008 /* warning-sound.wav in Resources */,
 				2FA0297C21F7C88600ABAB9A /* AddIPv4MonitorsController.xib in Resources */,
 				2F904E3F219F7A140040530B /* AddIPv4MonitorController.xib in Resources */,
-				2F50619821B2401C00C19984 /* add-ipv4-monitor-menu.png in Resources */,
-				2F5061B621B35E6D00C19984 /* delete-email-recipient.png in Resources */,
+				2FC771E02203B44600CAE008 /* warning-signal-SF.wav in Resources */,
+				2FC771D8220393F400CAE008 /* school-pa-alert.wav in Resources */,
+				2FC771D32203845A00CAE008 /* PreferencesController.xib in Resources */,
 				2F5061DA21BDE7EC00C19984 /* ImportMonitorListController.xib in Resources */,
 				2F904E38219F7A140040530B /* AddIPv6MonitorController.xib in Resources */,
 				2F904E3D219F7A140040530B /* EmailServerController.xib in Resources */,
 				2F5061CA21B4E1DE00C19984 /* privacy.html in Resources */,
 				2F904E4C219F7A330040530B /* MainMenu.xib in Resources */,
-				2F5061A121B26E9D00C19984 /* configure-email-server.png in Resources */,
 				2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */,
 				2F5061C821B4CDEC00C19984 /* license.html in Resources */,
-				2F50619C21B2417900C19984 /* monitor-detail.png in Resources */,
+				2FC771DA2203B05300CAE008 /* aircraftalarm.wav in Resources */,
 				2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */,
 				2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */,
 				2FA0297821F2A3DD00ABAB9A /* about.html in Resources */,
-				2F5061A221B26E9D00C19984 /* configure-email-server-menu.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1713,6 +1704,7 @@
 				2F904E3C219F7A140040530B /* EmailServerController.swift in Sources */,
 				2FA0297B21F7C88600ABAB9A /* AddIPv4MonitorsController.swift in Sources */,
 				2F5061D221BC744100C19984 /* Array+extensions.swift in Sources */,
+				2FC771D22203845A00CAE008 /* PreferencesController.swift in Sources */,
 				2F904E3B219F7A140040530B /* AddIPv6MonitorController.swift in Sources */,
 				2F904FD921A4B17D0040530B /* ManageEmailNotificationsController.swift in Sources */,
 				2F904E71219F7A460040530B /* String+extensions.swift in Sources */,
@@ -2024,97 +2016,6 @@
 			targetProxy = 2FA35D8E21AA4C9700556A26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		2F50618E21B2401C00C19984 /* delete-selected-monitor.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F50618F21B2401C00C19984 /* en */,
-			);
-			name = "delete-selected-monitor.png";
-			sourceTree = "<group>";
-		};
-		2F50619221B2401C00C19984 /* add-ipv4-monitor-menu.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F50619321B2401C00C19984 /* en */,
-			);
-			name = "add-ipv4-monitor-menu.png";
-			sourceTree = "<group>";
-		};
-		2F50619421B2401C00C19984 /* add-ipv4-monitor.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F50619521B2401C00C19984 /* en */,
-			);
-			name = "add-ipv4-monitor.png";
-			sourceTree = "<group>";
-		};
-		2F50619A21B2417900C19984 /* monitor-detail.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F50619B21B2417900C19984 /* en */,
-			);
-			name = "monitor-detail.png";
-			sourceTree = "<group>";
-		};
-		2F50619D21B26E9C00C19984 /* configure-email-server.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F50619E21B26E9C00C19984 /* en */,
-			);
-			name = "configure-email-server.png";
-			sourceTree = "<group>";
-		};
-		2F50619F21B26E9C00C19984 /* configure-email-server-menu.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F5061A021B26E9C00C19984 /* en */,
-			);
-			name = "configure-email-server-menu.png";
-			sourceTree = "<group>";
-		};
-		2F5061A321B33A6900C19984 /* new-map-menu.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F5061A421B33A6900C19984 /* en */,
-			);
-			name = "new-map-menu.png";
-			sourceTree = "<group>";
-		};
-		2F5061A821B3486500C19984 /* monitors-with-latency.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F5061A921B3486500C19984 /* en */,
-			);
-			name = "monitors-with-latency.png";
-			sourceTree = "<group>";
-		};
-		2F5061AB21B3548600C19984 /* manage-email-notifications.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F5061AC21B3548600C19984 /* en */,
-			);
-			name = "manage-email-notifications.png";
-			sourceTree = "<group>";
-		};
-		2F5061B121B35E6700C19984 /* configure-email-recipient.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F5061B221B35E6700C19984 /* en */,
-			);
-			name = "configure-email-recipient.png";
-			sourceTree = "<group>";
-		};
-		2F5061B421B35E6D00C19984 /* delete-email-recipient.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F5061B521B35E6D00C19984 /* en */,
-			);
-			name = "delete-email-recipient.png";
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2F904D46219F76180040530B /* Debug */ = {

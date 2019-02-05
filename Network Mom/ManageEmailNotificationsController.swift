@@ -26,12 +26,12 @@ class ManageEmailNotificationsController: NSWindowController, NSWindowDelegate {
     
     // setup local copies so we dont need to monitor changes elsewhere
     var maps : [MapWindowController] = []
-    var emails : [EmailAddress] = []
+    //var emails : [EmailAddress] = []
 
     override func windowDidLoad() {
         super.windowDidLoad()
         maps = appDelegate.maps
-        emails = appDelegate.emails
+        //emails = appDelegate.emails
         updateMenus()
         setRadioButtons()
     }
@@ -47,7 +47,7 @@ class ManageEmailNotificationsController: NSWindowController, NSWindowDelegate {
             mapSelectorOutlet.addItem(withTitle: map.name)
         }
         emailSelectorOutlet.removeAllItems()
-        for email in emails {
+        for email in appDelegate.emails {
             emailSelectorOutlet.addItem(withTitle: "\(email.email) \(email.name)")
         }
     }
@@ -66,8 +66,8 @@ class ManageEmailNotificationsController: NSWindowController, NSWindowDelegate {
         let map = maps[mapIndex]
         let emailIndex = emailSelectorOutlet.indexOfSelectedItem
         guard emailIndex >= 0 else { return }
-        guard emailIndex < emails.count else { return }
-        let email = emails[emailIndex]
+        guard emailIndex < appDelegate.emails.count else { return }
+        let email = appDelegate.emails[emailIndex]
         if email.pagerOnly {
             radioReportOutlet.isEnabled = false
             radioAlertReportOutlet.isEnabled = false
@@ -100,8 +100,8 @@ class ManageEmailNotificationsController: NSWindowController, NSWindowDelegate {
         guard mapIndex < maps.count else { return }
         let map = maps[mapIndex]
         let emailIndex = emailSelectorOutlet.indexOfSelectedItem
-        guard emailIndex < emails.count else { return }
-        let email = emails[emailIndex]
+        guard emailIndex < appDelegate.emails.count else { return }
+        let email = appDelegate.emails[emailIndex]
         let reportIndex = map.emailReports.firstIndex(of: email.email)
         let alertIndex = map.emailAlerts.firstIndex(of: email.email)
         

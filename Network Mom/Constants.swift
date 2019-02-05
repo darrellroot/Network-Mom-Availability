@@ -12,7 +12,12 @@ struct Constants {
     // UserDefault key constants
     static let emailServerHostname = "emailServerHostname"
     static let emailServerUsername = "emailServerUsername"
+    static let audioAlertFrequency = "audioAlertFrequency"
+    static let audioName = "audioName"
     // End UserDefault key constants
+    
+    //
+    static let systemBeep = "System Beep"
     
     // Used for keychain search
     static let networkmom = "Network Mom"

@@ -86,6 +86,16 @@ class AddIPv4MonitorController: NSWindowController {
         window!.sheetParent!.endSheet(window!, returnCode: response)
     }
     
+    /* Does not work, apples help system is broken for anchors
+    @IBAction func showHelp(_ sender: NSButton) {
+        let helpBookName = Bundle.main.object(forInfoDictionaryKey: "CFBundleHelpBookName") as? NSHelpManager.BookName
+        print("helpbookname \(helpBookName)")
+        //NSHelpManager.shared.openHelpAnchor("AddingMonitor", inBook: helpBookName)
+        //NSHelpManager.shared.openHelpAnchor("Page17.html", inBook: nil)
+        NSHelpManager.shared.find("AddingMonitor", inBook: "net.networkmom.NetworkMomAvailability.help")
+        //NSHelpManager.shared.openHelpAnchor("AddingMonitor", inBook: NSHelpManager.BookName("net.networkmom.NetworkMomAvailability.help"))
+    }*/
+    
     override func windowDidLoad() {
         super.windowDidLoad()
         ipv4ValidatedField.stringValue = "Not Validated"

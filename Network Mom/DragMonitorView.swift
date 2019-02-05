@@ -82,7 +82,6 @@ class DragMonitorView: NSView {
         //debugPrint("updateLabel")
         if let title = monitor?.label {
             boxes[0].title = title
-            DLog.log(.userInterface,"drawing title \(title)")
         } else {
             boxes[0].title = "No title error 2"
         }

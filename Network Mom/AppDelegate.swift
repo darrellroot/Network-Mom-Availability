@@ -49,12 +49,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var deleteEmailRecipientControllers: [DeleteEmailRecipientController] = []
     var emailNotificationConfigurationReportControllers: [EmailNotificationConfigurationReportController] = []
     var manageEmailNotificationsControllers: [ManageEmailNotificationsController] = []
+    var preferencesController: PreferencesController?
     var showLogControllers: [ShowLogController] = []
     var showStatisticsControllers: [ShowStatisticsController] = []
     var emailConfiguration: EmailConfiguration?
     let userDefaults = UserDefaults.standard
     var emailAlertTimer : Timer!
     var emailReportTimer : Timer!
+    var currentSound: NSSound?
+    var lastAudioAlert: Date?
+    var audioAlertFrequency: Int {
+        get {
+            return userDefaults.integer(forKey: Constants.audioAlertFrequency)
+        }
+        set {
+            userDefaults.set(newValue, forKey: Constants.audioAlertFrequency)
+        }
+    }
+    var audioName: String {
+        get {
+            return userDefaults.string(forKey: Constants.audioName) ?? Constants.systemBeep
+        }
+        set {
+            userDefaults.set(newValue, forKey: Constants.audioName)
+        }
+
+    }
+    
     
     @IBAction func aboutNetworkMom(_ sender: NSMenuItem) {
         let staticHtmlController = StaticHtmlController()
@@ -66,6 +87,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DLog.log(.userInterface,"DLog.log test")
         restoreAllConfig(self)
         
+        if audioName != Constants.systemBeep {
+            if let audioURL = Bundle.main.url(forResource: audioName, withExtension: "") {
+                DLog.log(.dataIntegrity,"Restored audio file \(audioName)")
+                currentSound = NSSound(contentsOf: audioURL, byReference: false)
+            } else {
+                DLog.log(.dataIntegrity,"Unable to restore audio file \(audioName)")
+            }
+        }
         if maps.count == 0 {
             // initial launch
             let newMap = MapWindowController(name: "Map 0", mapIndex: maps.count)
@@ -155,6 +184,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return NSApplication.TerminateReply.terminateLater
         }
     }
+    private func audioAlertPlay() {
+        if let currentSound = currentSound {
+            currentSound.play()
+        } else {
+            NSSound.beep()
+        }
+    }
+    public func audioAlert(override: Bool = false) {
+        DLog.log(.userInterface, "audioAlert requested")
+        // override = true means we generate an audio alert regardless of preferences, used for testing
+        if override {
+            audioAlertPlay()
+            return
+        }
+        if audioAlertFrequency == Int.max {
+            return
+        }
+        let currentDate = Date()
+        if let lastAudioAlert = lastAudioAlert {
+            if currentDate.timeIntervalSince(lastAudioAlert) < Double(audioAlertFrequency) {
+                DLog.log(.userInterface, "supressing audio alert due to short duration")
+                return
+            }
+        }
+        lastAudioAlert = currentDate
+        DLog.log(.userInterface, "generating audio alert")
+        audioAlertPlay()
+    }
+    public func setAudioSound(newSound: NSSound?, newTitle: String?) {
+        self.currentSound = newSound  //could be nil which means use system beep
+        if let newTitle = newTitle {
+            self.audioName = newTitle
+        } else {
+            self.audioName = Constants.systemBeep
+        }
+    }
+    
     @IBAction func configureEmailServer(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"Configure Email Server selected")
         emailServerController = EmailServerController()
@@ -181,6 +247,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let deleteEmailRecipientController = DeleteEmailRecipientController()
         deleteEmailRecipientControllers.append(deleteEmailRecipientController)
         deleteEmailRecipientController.showWindow(self)
+    }
+    
+    public func deleteEmail(addressToDelete: String) {
+        for (index,email) in emails.enumerated().reversed() {
+            if email.email == addressToDelete {
+                DLog.log(.dataIntegrity, "deleting email \(email.email) at emails index \(index)" )
+                emails.remove(at: index)
+            }
+        }
+        for map in maps {
+            map.deleteEmail(addressToDelete: addressToDelete)
+        }
     }
 
     func deleteMap(index: Int, name: String) {
@@ -336,7 +414,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
-
+    @IBAction func preferencesMenuItem(_ sender: NSMenuItem) {
+        if preferencesController == nil {
+            preferencesController = PreferencesController()
+        }
+        preferencesController?.showWindow(self)
+    }
+    
     @IBAction func restoreAllConfig(_ sender: Any) {
         DLog.log(.dataIntegrity,"restoring all config")
         loadEmailPassword()

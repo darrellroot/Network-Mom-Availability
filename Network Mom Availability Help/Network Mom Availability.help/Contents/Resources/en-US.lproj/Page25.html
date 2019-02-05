@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <script src="../js/topicpage.js" type="text/javascript"></script>
+        <title>Latency monitor states and thresholds</title>
+        <meta name="robots" content="index" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+    </head>
+    <body>
+        <a name="LatencyStates"></a>
+        <p class="Left Heading1">
+            <span class="Heading1">Latency monitor states and thresholds</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Every availability monitor includes a latency monitor.  The latency monitor has its own colored small rectangle inside the larger availability rectangle.  The color of the latency rectangle is based on a comparison of:</span>
+        </p>
+        <ul class="listDecimalRP">
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">The latency of ICMP to that target during the most recently completed 5-minute interval (ignoring the interval currently in progress).</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">“Yesterday’s average latency” to that target.  “yesterday” is based on midnight UTC time.  If “yesterday’s latency” is not yet available, the “prior 60 minute latency” may be used.</span>
+                </p>
+            </li>
+        </ul>
+        <p class="Left Normal">
+            <span class="Normal">The color of the latency rectangle is calculated as follows:</span>
+        </p>
+        <ul class="listDisc">
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Green: Current latency &lt; Yesterday latency * 1.2 + 10msec</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Yellow: Current latency &lt; Yesterday latency * 1.5  + 10msec</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Orange: Current latency &lt; Yesterday latency * 1.8 + 10msec</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Red: Current latency &gt;= Yesterday latency * 1.8 + 10msec</span>
+                </p>
+            </li>
+        </ul>
+        <p class="Left">
+            <img style="margin: 0.0px 0.0px 0.0px 0.0px;" height="95.0" src="../images/latency-yellow.png" width="244.0" />
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Latency measurements are highly susceptible to load on the monitoring host as well as time-of-day fluctuations due to routine network usage.&nbsp;&nbsp;</span>
+            <span class="Normal bold">Latency changes never result in email or audible alerts</span>
+            <span class="Normal">.</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Double-clicking on a monitor will bring up graphs of the historic availability (top) and latency (bottom).  This can be useful for troubleshooting performance problems.</span>
+        </p>
+        <p class="Left">
+            <img style="margin: 0.0px 0.0px 0.0px 0.0px;" height="685.0" src="../images/graphs-daily.png" width="480.0" />
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">The daily email report for a map includes a list of the five monitors with the largest recent percentage latency increase.  This can be helpful for WAN engineers to detect when traffic rerouted to a suboptimal path.  These comparisons are always based on “UTC days”.</span>
+        </p>
+        <p class="Left">
+            <img style="margin: 0.0px 0.0px 0.0px 0.0px;" height="316.0" src="../images/latency-daily-report.png" width="522.0" />
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">https://networkmom.net     feedback@networkmom.net     Copyright 2019 Network Mom LLC</span>
+        </p>
+    </body>
+</html>

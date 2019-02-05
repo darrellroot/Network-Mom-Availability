@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <script src="../js/topicpage.js" type="text/javascript"></script>
+        <title>When email alerts are generated</title>
+        <meta name="robots" content="index" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+    </head>
+    <body>
+        <a name="EmailAlerts"></a>
+        <p class="Left Heading1">
+            <span class="Heading1">When email alerts are generated</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Network Mom Availability wants to alert support personnel as soon as possible when outages happen.  But paging support personnel too frequently can cause alarms to be ignored and drive network engineers insane.  Network Mom Availability strives to strike a balance.</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">When a monitor transitions from status Green to status Red, an alert notification is queued.  This requires 3 failed pings over a 90-second interval.</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">When a monitor transitions from status Red to status Green, a (good) alert notification is queued.  This requires 3 successful pings over a 90-second interval.</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Every 5 minutes, all alert notifications for each email destination are bundled into one email and sent. This may mean that an outage does not result in an alert email for 2-7 minutes.</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Email alerts are&nbsp;</span>
+            <span class="Normal bold">not</span>
+            <span class="Normal">&nbsp;generated for transitioning from the Blue state.  This means new devices can be added to monitoring without fear of paging network engineers.  But it also means that alerts may not be generated after a power outage which reboots your monitoring host.</span>
+        </p>
+        <p class="Left">
+            <img style="margin: 0.0px 0.0px 0.0px 0.0px;" height="176.0" src="../images/alert-sample.png" width="518.0" />
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">https://networkmom.net     feedback@networkmom.net     Copyright 2019 Network Mom LLC</span>
+        </p>
+    </body>
+</html>

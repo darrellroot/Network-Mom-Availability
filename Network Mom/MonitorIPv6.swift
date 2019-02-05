@@ -256,6 +256,7 @@ class MonitorIPv6: Monitor {
             if lastAlertStatus == .Red {
                 if let map = mapDelegate {
                     DLog.log(.mail, "Adding email alert for \(ipv6.debugDescription)")
+                    appDelegate.audioAlert()
                     let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv6.debugDescription, comment: comment, type: self.type, newStatus: .Green)
                     for emailAddress in map.emailAlerts {
                         appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)

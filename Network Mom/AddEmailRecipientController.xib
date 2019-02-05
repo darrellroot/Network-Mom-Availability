@@ -27,7 +27,7 @@
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="5" translatesAutoresizingMaskIntoConstraints="NO" id="nZ3-KQ-9p2">
                         <rect key="frame" x="18" y="20" width="444" height="89"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="validationStatusLabel" id="b4b-gj-8S1">
+                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="permissionStatusLabel" id="b4b-gj-8S1">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -49,7 +49,7 @@
                         <gridCells>
                             <gridCell row="eBr-2b-uwd" column="iI4-oN-WK5" id="7Zo-QX-6b7">
                                 <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TtZ-iI-Pb1">
-                                    <rect key="frame" x="-2" y="111" width="235" height="17"/>
+                                    <rect key="frame" x="-2" y="111" width="243" height="17"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Email recipient name" id="hgP-1f-Qub">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -59,7 +59,7 @@
                             </gridCell>
                             <gridCell row="eBr-2b-uwd" column="wTx-Kc-sSP" id="whI-i3-Jzt">
                                 <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oyU-j1-AS4">
-                                    <rect key="frame" x="237" y="111" width="203" height="22"/>
+                                    <rect key="frame" x="245" y="111" width="195" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="hju-5s-NNu">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -69,7 +69,7 @@
                             </gridCell>
                             <gridCell row="ihq-GK-Igf" column="iI4-oN-WK5" id="Rtf-Hh-tqr">
                                 <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bUD-lD-UhT">
-                                    <rect key="frame" x="-2" y="83" width="235" height="17"/>
+                                    <rect key="frame" x="-2" y="83" width="243" height="17"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Email address" id="FnV-fR-ynz">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -79,7 +79,7 @@
                             </gridCell>
                             <gridCell row="ihq-GK-Igf" column="wTx-Kc-sSP" id="DMM-wc-xNh">
                                 <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RCV-sC-onG">
-                                    <rect key="frame" x="237" y="83" width="203" height="22"/>
+                                    <rect key="frame" x="245" y="83" width="195" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="jMI-yN-IFe">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -89,7 +89,7 @@
                             </gridCell>
                             <gridCell row="957-qY-SyB" column="iI4-oN-WK5" id="6kE-2v-cRO">
                                 <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z9K-Hc-P86">
-                                    <rect key="frame" x="-2" y="56" width="235" height="17"/>
+                                    <rect key="frame" x="-2" y="56" width="243" height="17"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Email type" id="Cft-Hc-NHC">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -99,7 +99,7 @@
                             </gridCell>
                             <gridCell row="957-qY-SyB" column="wTx-Kc-sSP" id="CzS-8v-zRb">
                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-IX-Zgz">
-                                    <rect key="frame" x="235" y="53" width="208" height="25"/>
+                                    <rect key="frame" x="243" y="53" width="200" height="25"/>
                                     <popUpButtonCell key="cell" type="push" title="Pager (small alerts only)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="AWa-dT-4Ap" id="ANn-6q-C9J">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
@@ -114,8 +114,8 @@
                             </gridCell>
                             <gridCell row="ZcK-19-X0U" column="iI4-oN-WK5" id="Bu8-ba-i8H">
                                 <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XRo-Ob-O4R">
-                                    <rect key="frame" x="-0.5" y="27" width="232" height="23"/>
-                                    <buttonCell key="cell" type="roundTextured" title="Send test email with validation code" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pm7-iF-0RK">
+                                    <rect key="frame" x="-0.5" y="27" width="240" height="23"/>
+                                    <buttonCell key="cell" type="roundTextured" title="Send test email with permission code" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pm7-iF-0RK">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
@@ -127,8 +127,8 @@
                             <gridCell row="ZcK-19-X0U" column="wTx-Kc-sSP" id="Bq4-01-Js1"/>
                             <gridCell row="tQy-n5-L8X" column="iI4-oN-WK5" id="w8u-MR-WsU">
                                 <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HqW-Me-he9">
-                                    <rect key="frame" x="-2" y="0.0" width="235" height="17"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Enter 4-digit validation code" id="MWK-wZ-PzO">
+                                    <rect key="frame" x="-2" y="0.0" width="243" height="17"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Enter 4-digit permission code" id="MWK-wZ-PzO">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -137,14 +137,14 @@
                             </gridCell>
                             <gridCell row="tQy-n5-L8X" column="wTx-Kc-sSP" id="B0s-5C-qEZ">
                                 <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cO0-C1-puH">
-                                    <rect key="frame" x="237" y="0.0" width="203" height="22"/>
+                                    <rect key="frame" x="245" y="0.0" width="195" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="fed-TW-bnE">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <action selector="validationCodeEntered:" target="-2" id="vaV-tO-Uup"/>
+                                        <action selector="permissionCodeEntered:" target="-2" id="5Je-9p-7ra"/>
                                     </connections>
                                 </textField>
                             </gridCell>

@@ -7,6 +7,7 @@
  */
 
 import Foundation
+import DLog
 
 /// This class uses CFHost to query a DNS name for its addresses.  To do this:
 ///
@@ -31,6 +32,7 @@ final class HostAddressQuery {
     init(name: String) {
         self.name = name
         self.host = CFHostCreateWithName(nil, name as NSString).takeRetainedValue()
+        DLog.log(.dns,"Starting DNS resolution of \(name)")
     }
     
     /// The DNS name to query.
@@ -65,7 +67,7 @@ final class HostAddressQuery {
                 obj.stop(streamError: nil, notify: true)
             }
         }, &context)
-        assert(success)
+        //assert(success)
         CFHostScheduleWithRunLoop(self.host, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue)
         
         var streamError = CFStreamError()
@@ -119,9 +121,11 @@ final class HostAddressQuery {
         
         if notify {
             if let error = error {
+                DLog.log(.dns,"DNS resolution of \(name) failed error \(error)")
                 self.delegate?.didComplete(error: error, hostAddressQuery: self)
             } else {
                 let addresses = CFHostGetAddressing(self.host, nil)!.takeUnretainedValue() as NSArray as! [Data]
+                DLog.log(.dns,"DNS resolution of \(name) successful")
                 self.delegate?.didComplete(addresses: addresses, hostAddressQuery: self)
             }
         }

@@ -194,6 +194,7 @@ class MonitorIPv4: Monitor {
                     if let map = mapDelegate {
                         DLog.log(.mail, "Adding email alert for \(ipv4string)")
                         let notification = EmailNotification(map: map.name, hostname: hostname, ip: ipv4string, comment: comment, type: self.type, newStatus: .Red)
+                        appDelegate.audioAlert()
                         for emailAddress in map.emailAlerts {
                             appDelegate.pendNotification(emailAddress: emailAddress, notification: notification)
                         }

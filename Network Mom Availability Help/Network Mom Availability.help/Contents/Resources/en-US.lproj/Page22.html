@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <script src="../js/topicpage.js" type="text/javascript"></script>
+        <title>Availability monitor states</title>
+        <meta name="robots" content="index" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+    </head>
+    <body>
+        <a name="AvailabilityStates"></a>
+        <p class="Left Heading1">
+            <span class="Heading1">Availability monitor states</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Network Mom Availability “tests” each monitor (with an IPv4 ping or an IPv6 ping) every 30 seconds.  Availability monitors have the following states:</span>
+        </p>
+        <ul class="listDisc">
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Blue: Never online.  This monitor has not responded to a ping since the last Network Mom Availability restart or since the monitor was added to monitoring.  It is possible this monitor is misconfigured, or that the target host blocks ICMP pings.</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Green: Online.  This monitor passed recent tests and is responsive to ping.  Green is good!  That’s on the CCNA exam ;-)</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Yellow: This monitor failed a test recently.</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Orange: This monitor failed two tests recently.</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Red: This monitor failed the three most recent tests.</span>
+                </p>
+            </li>
+        </ul>
+        <p class="Left Normal">
+            <span class="Normal">Each time a ping is successful, the monitor transitions between states as follows:</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Red -&gt; Orange -&gt; Yellow -&gt; Green</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">For newly created monitors, or after a restart, the initial transition is as follows:</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Blue -&gt; Orange -&gt; Yellow -&gt; Green</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">When a target fails to respond to a ping within 30 seconds, the monitor transitions states as follows:</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Green -&gt; Yellow -&gt; Orange -&gt; Red</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">https://networkmom.net     feedback@networkmom.net     Copyright 2019 Network Mom LLC</span>
+        </p>
+    </body>
+</html>

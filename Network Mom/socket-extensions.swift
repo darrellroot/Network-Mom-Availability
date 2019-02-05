@@ -100,7 +100,7 @@ extension sockaddr_in6 {
         self.sin6_port = port
         self.sin6_flowinfo = 0
         let retval = inet_pton(AF_INET6, ipv6.debugDescription, &(self.sin6_addr))
-        DLog.log(.dataIntegrity,"inet_pton \(ipv6.debugDescription)")
+        //DLog.log(.dataIntegrity,"inet_pton \(ipv6.debugDescription)")
         self.printout()
         if retval != 1 {
             DLog.log(.dataIntegrity,"inet_pton failed")

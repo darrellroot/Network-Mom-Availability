@@ -50,7 +50,7 @@ class AddEmailRecipientController: NSWindowController, NSWindowDelegate {
             let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
             let recipient = Mail.User(name: name, email: address)
             let text = """
-Your Network Mom validation code is \(code)
+Your Network Mom permission code is \(code)
 
 Network Mom Availability is a MacOS application which monitors network devices to measure their availability and latency.
 
@@ -58,8 +58,7 @@ Network Mom Availability is a MacOS application which monitors network devices t
 
 If you agree, send the code above back to \(sender.email).
 """
-            let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom validation code is \(code)", text: text)
-            //let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom validation code is \(code)", text: "Enter this code in Network Mom to enable email alerts and reports.")
+            let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom permission code is \(code)", text: text)
             let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
             smtp.send(mail) { (error) in
                 if let error = error {
@@ -72,14 +71,14 @@ If you agree, send the code above back to \(sender.email).
                 } else {
                     DLog.log(.mail,"mail sent successfully")
                     DispatchQueue.main.async { [unowned self] in
-                        self.emailResultOutlet.stringValue = "Validation Code Emailed Successfully"
+                        self.emailResultOutlet.stringValue = "Permission Code Emailed Successfully"
                     }
                 }
             }
         }
     }
     
-    @IBAction func validationCodeEntered(_ sender: NSTextField) {
+    @IBAction func permissionCodeEntered(_ sender: NSTextField) {
         let code1 = abs(emailAddressOutlet.stringValue.djb2hash % 10000)
         let code2 = sender.intValue
         guard code1 == code2 else {

@@ -29,6 +29,12 @@
                                     <action selector="aboutNetworkMom:" target="Voe-Tx-rLC" id="kel-YX-l3W"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Preferences" id="Xms-Rm-81o">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="preferencesMenuItem:" target="Voe-Tx-rLC" id="7uo-mH-bbA"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="License Agreement" id="sas-0w-iIj">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -724,7 +730,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="Hsp-8g-cGm">
                         <items>
-                            <menuItem title="Network Mom Help" keyEquivalent="?" id="svo-AQ-4Qa">
+                            <menuItem title="Network Mom Availability Help" keyEquivalent="?" id="svo-AQ-4Qa">
                                 <connections>
                                     <action selector="showHelp:" target="-1" id="I5a-3I-F6y"/>
                                 </connections>

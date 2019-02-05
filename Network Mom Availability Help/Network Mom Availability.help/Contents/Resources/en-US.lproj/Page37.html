@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <script src="../js/topicpage.js" type="text/javascript"></script>
+        <title>Daily and Weekly Reports</title>
+        <meta name="robots" content="index" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+    </head>
+    <body>
+        <a name="Reports"></a>
+        <p class="Left Heading1">
+            <span class="Heading1">Daily and Weekly Reports</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Daily reports are emailed automatically once per day.  One email per map per report recipient.</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Weekly reports are emailed each Monday, immediately after emailing the daily reports.  In addition to the report, this includes a text export of the devices monitored.</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">Monthly reports are emailed at the beginning of each month.</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">It is also possible to use the&nbsp;</span>
+            <span class="Normal bold">Reports -&gt; Daily/Weekly/Monthly Map Availability Report</span>
+            <span class="Normal">&nbsp;menu item to generate a current report to the screen.  This report can be copy/pasted into an email, but does not include the availability graph (known issue).</span>
+        </p>
+        <p class="Left Normal">
+            <span class="Normal">The daily report includes the following sections:</span>
+        </p>
+        <ul class="listDecimalRP">
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Header: This shows the map name, and start and end of the time period for the report.</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Availability: This includes an “overall availability” score for the map for the entire period, followed by a chart of the availability per hour or per day (depending on whether the report is daily, weekly, or monthly).</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Bottom-5 availability: This shows the 5 monitors with the worst availability.&nbsp;&nbsp;</span>
+                    <span class="Normal bold">Fix these and your availability will improve!</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Top-5 availability: This shows the 5 monitors with the best availability.  If your best availabilities are significantly below 100%, it is possible you have a global problem or a problem near your monitoring station.</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Monitors which have never responded: These “BLUE STATUS” devices are not included in your availability calculations.  It is possible these monitors are misconfigured (wrong IP address?), or they may not respond to pings at all.  These are worth cleaning up.</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">5 monitors with largest recent average latency increase: If you are monitoring a WAN, you want to keep an eye on latency increases.  Your ISP may have rerouted your circuits to a suboptimal path (</span>
+                    <span class="Normal bold">worth fixing</span>
+                    <span class="Normal">).  Normal fluctuations can cause wide discrepancies in this arithmetic average of the latency.  LAN devices with small (absolute) latency may appear to suffer large percentage increases which have no operational impact (1msec to 2msec,&nbsp;</span>
+                    <span class="Normal bold">not worth fixing</span>
+                    <span class="Normal">).  The latency report is useful but needs human judgement.</span>
+                </p>
+            </li>
+            <li class="Normal">
+                <p class="Left Normal">
+                    <span class="Normal">Availability graph: This graph repeats the data in the availability chart (#2) visually.  It is only included in email reports, not menu-triggered reports (known issue).</span>
+                </p>
+            </li>
+        </ul>
+        <p class="Left Custom">
+            <span class="Custom">Network Mom Availability Daily Report</span>
+        </p>
+        <p class="Left Custom0">
+            <span class="Custom0">Map: Home and Internet map</span>
+        </p>
+        <p class="Left Custom1">
+            <span class="Custom1">Start Date: Jan 31, 2019 at 5:00:00 PM America/Los_Angeles</span>
+        </p>
+        <p class="Left Custom1">
+            <span class="Custom1">End Date: Feb 1, 2019 at 5:00:00 PM America/Los_Angeles</span>
+        </p>
+        <p class="Left Custom1">
+            <span class="Custom1">Overall Availability 91.471%</span>
+        </p>
+        <table>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Start Of Hour</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Availability</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Jan 31, 2019 at 5:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">94.883</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Jan 31, 2019 at 6:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">93.092</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Jan 31, 2019 at 8:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">96.129</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Jan 31, 2019 at 9:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">96.503</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Jan 31, 2019 at 10:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">98.739</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Jan 31, 2019 at 11:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">100.000</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 12:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">100.000</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 1:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">93.103</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 2:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">91.935</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 3:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">92.308</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 4:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">81.481</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 5:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">75.000</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 6:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">92.308</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 7:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">73.684</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 8:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">79.310</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 9:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">81.818</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 10:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">92.385</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 11:00:00 AM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">92.509</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 12:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">93.445</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 1:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">94.556</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 2:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">97.017</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 3:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">97.019</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 184.85px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Feb 1, 2019 at 4:00:00 PM</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 78.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">96.605</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p class="Left Custom0">
+            <span class="Custom0">Five monitors with worst availability during this interval</span>
+        </p>
+        <table>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 347.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Monitor</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Availablity</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 347.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">192.168.0.25</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">22.607</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 347.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">192.168.0.16</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">58.615</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 347.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.foxnews.com 2001:559:19:609b::1324</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">98.846</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 347.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.wsj.com 2600:9000:202d:2e00:3:4b0:de80:93a1</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">98.846</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 347.8px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.cnn.com 2a04:4e42:2d::323</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">98.846</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p class="Left Custom0">
+            <span class="Custom0">Five monitors with best availability during this interval</span>
+        </p>
+        <table>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 329.15px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Monitor</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Availablity</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 329.15px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.wsj.com 13.35.125.122</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">100.000</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 329.15px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.wsj.com 13.35.125.34</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">100.000</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 329.15px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.wsj.com 13.35.125.101</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">100.000</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 329.15px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.wsj.com 13.35.125.40</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">100.000</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 329.15px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.hostname.com 54.221.207.100 My Apple TV</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 74.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">99.820</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p class="Left Custom0">
+            <span class="Custom0">Monitors which have not resonded since last Network Mom reboot</span>
+        </p>
+        <p class="Left Custom1">
+            <span class="Custom1">These are not included in availability data calculations</span>
+        </p>
+        <table>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 316.7px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Monitor</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 83.05px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Status</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 316.7px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.networkmom.net 74.119.239.234</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 83.05px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Never online</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 316.7px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">2620::33</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 83.05px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Never online</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 316.7px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.nodomain.com 2601::4802:0:1cf5:0:b441:0</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 83.05px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Never online</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 316.7px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">2620::90d9:73ff:0:fe9a</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 83.05px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Never online</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p class="Left Custom0">
+            <span class="Custom0">Five monitors with largest recent percentage latency increase</span>
+        </p>
+        <p class="Left Custom1">
+            <span class="Custom1">Prior period start Jan 30, 2019 at 4:00:00 PM</span>
+        </p>
+        <p class="Left Custom1">
+            <span class="Custom1">Current period start Jan 31, 2019 at 4:00:00 PM</span>
+        </p>
+        <table>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 252.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Monitor</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 113.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Prior Period Latency (msec)</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 125.0px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Current Period Latency (msec)</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 62.2px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">Increase Factor</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 252.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">192.168.0.25</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 113.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">24.04</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 125.0px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">46.42</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 62.2px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">1.931</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 252.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.wsj.com 2600:9000:202d:3e00:3:4b0:de80:93a1</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 113.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">27.48</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 125.0px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">44.24</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 62.2px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">1.610</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 252.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.wsj.com 2600:9000:202d:1a00:3:4b0:de80:93a1</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 113.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">27.85</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 125.0px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">42.66</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 62.2px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">1.532</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 252.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">www.google.com 2607:f8b0:4005:805::2004</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 113.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">30.27</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 125.0px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">44.54</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 62.2px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">1.471</span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 252.4px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">192.168.0.16</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 113.35px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">27.70</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 125.0px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">40.36</span>
+                    </p>
+                </td>
+                <td style="border-style:solid; border-color:#000000; border-width:1.000000px; vertical-align:middle;background-color:transparent;min-width: 62.2px;" rowspan="1" colspan="1">
+                    <p class="Left last Custom2">
+                        <span class="Custom2">1.457</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p class="Left">
+            <br />
+        </p>
+        <ul class="listDecimalRP">
+            <li class="Normal">
+                <p class="Left">
+                    <img style="margin: 0.0px 0.0px 0.0px 0.0px;" height="500.0" src="../images/report.pdf" width="570.0" />
+                </p>
+            </li>
+        </ul>
+        <p class="Left Normal">
+            <span class="Normal">https://networkmom.net     feedback@networkmom.net     Copyright 2019 Network Mom LLC</span>
+        </p>
+    </body>
+</html>
