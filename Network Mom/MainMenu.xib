@@ -35,6 +35,12 @@
                                     <action selector="preferencesMenuItem:" target="Voe-Tx-rLC" id="7uo-mH-bbA"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="License Purchase or Status" keyEquivalent="L" id="GTO-8Q-7p9">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="licensePurchase:" target="Voe-Tx-rLC" id="CBT-0T-Vp0"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="License Agreement" id="sas-0w-iIj">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>

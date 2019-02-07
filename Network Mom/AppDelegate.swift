@@ -17,6 +17,7 @@ import LoggerAPI
 import DLog
 import Security
 import CoreData
+import StoreKit
 
 @NSApplicationMain
 
@@ -40,6 +41,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var configureEmailServerOutlet: NSMenuItem!
     
+    let license = License()
+    
     public var ping4Socket: CFSocket?
     public var ping6Socket: CFSocket?
     private var socket4Source: CFRunLoopSource?
@@ -56,6 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let userDefaults = UserDefaults.standard
     var emailAlertTimer : Timer!
     var emailReportTimer : Timer!
+    var licensePurchaseController : LicensePurchaseController?
     var currentSound: NSSound?
     var lastAudioAlert: Date?
     var audioAlertFrequency: Int {
@@ -86,6 +90,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         DLog.log(.userInterface,"DLog.log test")
         restoreAllConfig(self)
+        
+        SKPaymentQueue.default().add(license)
         
         if audioName != Constants.systemBeep {
             if let audioURL = Bundle.main.url(forResource: audioName, withExtension: "") {
@@ -354,6 +360,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let staticHtmlController = StaticHtmlController()
         staticHtmlController.resource = "license"
         staticHtmlController.showWindow(self)
+    }
+    
+    @IBAction func licensePurchase(_ sender: NSMenuItem) {
+        if licensePurchaseController == nil {
+            licensePurchaseController = LicensePurchaseController()
+            licensePurchaseController?.license = license
+        }
+        licensePurchaseController?.showWindow(self)
     }
     @IBAction func newMap(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"New Map Selected")

@@ -288,6 +288,14 @@
 		2FD136E821E54E7D00770B09 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136E621E54E7D00770B09 /* CoreDataModel.xcdatamodeld */; };
 		2FD136EE21E5560900770B09 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136ED21E5560900770B09 /* CoreDataStack.swift */; };
 		2FD136F021E949E400770B09 /* NetworkMomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD136EF21E949E400770B09 /* NetworkMomError.swift */; };
+		2FE41D0F2209572C00AA7173 /* FileIcon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 2FE41D0E2209572C00AA7173 /* FileIcon.iconset */; };
+		2FE41D11220957BF00AA7173 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FE41D10220957BF00AA7173 /* Images.xcassets */; };
+		2FE41D132209595300AA7173 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE41D122209595300AA7173 /* StoreKit.framework */; };
+		2FE41D1A220A668D00AA7173 /* LicensePurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE41D18220A668D00AA7173 /* LicensePurchaseController.swift */; };
+		2FE41D1B220A668D00AA7173 /* LicensePurchaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FE41D19220A668D00AA7173 /* LicensePurchaseController.xib */; };
+		2FE41D1D220A680700AA7173 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE41D1C220A680700AA7173 /* License.swift */; };
+		2FF8D752220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8D751220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift */; };
+		2FF8D756220B9FCA0095B451 /* pkcs7_union_accessors.c in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8D755220B9FCA0095B451 /* pkcs7_union_accessors.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -684,6 +692,15 @@
 		2FD136E721E54E7D00770B09 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2FD136ED21E5560900770B09 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		2FD136EF21E949E400770B09 /* NetworkMomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMomError.swift; sourceTree = "<group>"; };
+		2FE41D0E2209572C00AA7173 /* FileIcon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = FileIcon.iconset; sourceTree = "<group>"; };
+		2FE41D10220957BF00AA7173 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Network Mom Availability/Images.xcassets"; sourceTree = "<group>"; };
+		2FE41D122209595300AA7173 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2FE41D18220A668D00AA7173 /* LicensePurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensePurchaseController.swift; sourceTree = "<group>"; };
+		2FE41D19220A668D00AA7173 /* LicensePurchaseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LicensePurchaseController.xib; sourceTree = "<group>"; };
+		2FE41D1C220A680700AA7173 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
+		2FF8D751220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLocalReceiptValidator.swift; sourceTree = "<group>"; };
+		2FF8D754220B9FCA0095B451 /* pkcs7_union_accessors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pkcs7_union_accessors.h; sourceTree = "<group>"; };
+		2FF8D755220B9FCA0095B451 /* pkcs7_union_accessors.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pkcs7_union_accessors.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -694,6 +711,7 @@
 				2F904FB4219FC1C60040530B /* DLog.framework in Frameworks */,
 				2F904DB9219F78AF0040530B /* Cryptor.framework in Frameworks */,
 				2F904DE0219F78E70040530B /* Socket.framework in Frameworks */,
+				2FE41D132209595300AA7173 /* StoreKit.framework in Frameworks */,
 				2F904E0C219F79520040530B /* SwiftSMTP.framework in Frameworks */,
 				2F904E84219F7C750040530B /* Charts.framework in Frameworks */,
 				2F904D58219F769D0040530B /* LoggerAPI.framework in Frameworks */,
@@ -792,6 +810,7 @@
 		2F904D31219F76170040530B = {
 			isa = PBXGroup;
 			children = (
+				2FE41D10220957BF00AA7173 /* Images.xcassets */,
 				2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */,
 				2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */,
 				2FA0296421ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift */,
@@ -833,6 +852,7 @@
 		2F904D3C219F76170040530B /* Network Mom */ = {
 			isa = PBXGroup;
 			children = (
+				2FE41D0E2209572C00AA7173 /* FileIcon.iconset */,
 				2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */,
 				2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */,
 				2F904E32219F7A130040530B /* AddIPv4MonitorController.swift */,
@@ -876,6 +896,10 @@
 				2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */,
 				2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */,
 				2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */,
+				2FE41D18220A668D00AA7173 /* LicensePurchaseController.swift */,
+				2FE41D19220A668D00AA7173 /* LicensePurchaseController.xib */,
+				2FE41D1C220A680700AA7173 /* License.swift */,
+				2FF8D753220B9F980095B451 /* SwiftyLocalReceiptValidator */,
 				2F904E44219F7A320040530B /* MainMenu.xib */,
 				2F904FD721A4B17D0040530B /* ManageEmailNotificationsController.swift */,
 				2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */,
@@ -1277,6 +1301,7 @@
 		2FA35D8C21AA4C6900556A26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FE41D122209595300AA7173 /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1291,6 +1316,16 @@
 				2FC771DD2203B38D00CAE008 /* warning-sound.wav */,
 			);
 			path = AlertSounds;
+			sourceTree = "<group>";
+		};
+		2FF8D753220B9F980095B451 /* SwiftyLocalReceiptValidator */ = {
+			isa = PBXGroup;
+			children = (
+				2FF8D751220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift */,
+				2FF8D754220B9FCA0095B451 /* pkcs7_union_accessors.h */,
+				2FF8D755220B9FCA0095B451 /* pkcs7_union_accessors.c */,
+			);
+			path = SwiftyLocalReceiptValidator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1519,6 +1554,9 @@
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
 								enabled = 1;
 							};
@@ -1594,10 +1632,12 @@
 				2FA0298C21FBB62C00ABAB9A /* MapAvailabilityReportController.xib in Resources */,
 				2FC771DC2203B26000CAE008 /* doorbell-alert.wav in Resources */,
 				2F5061D021B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib in Resources */,
+				2FE41D1B220A668D00AA7173 /* LicensePurchaseController.xib in Resources */,
 				2F904E4F219F7A330040530B /* MapWindowController.xib in Resources */,
 				2FC771CF2202789F00CAE008 /* sampleGraph.pdf in Resources */,
 				2FC771DE2203B38D00CAE008 /* warning-sound.wav in Resources */,
 				2FA0297C21F7C88600ABAB9A /* AddIPv4MonitorsController.xib in Resources */,
+				2FE41D11220957BF00AA7173 /* Images.xcassets in Resources */,
 				2F904E3F219F7A140040530B /* AddIPv4MonitorController.xib in Resources */,
 				2FC771E02203B44600CAE008 /* warning-signal-SF.wav in Resources */,
 				2FC771D8220393F400CAE008 /* school-pa-alert.wav in Resources */,
@@ -1610,6 +1650,7 @@
 				2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */,
 				2F5061C821B4CDEC00C19984 /* license.html in Resources */,
 				2FC771DA2203B05300CAE008 /* aircraftalarm.wav in Resources */,
+				2FE41D0F2209572C00AA7173 /* FileIcon.iconset in Resources */,
 				2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */,
 				2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */,
 				2FA0297821F2A3DD00ABAB9A /* about.html in Resources */,
@@ -1695,12 +1736,14 @@
 				2FA0298421F947A200ABAB9A /* FlipScrollView.swift in Sources */,
 				2FA0296D21ED363900ABAB9A /* CoreEmailAddress+CoreDataProperties.swift in Sources */,
 				2F904FC021A206250040530B /* Constants.swift in Sources */,
+				2FE41D1D220A680700AA7173 /* License.swift in Sources */,
 				2F904E39219F7A140040530B /* AppDelegate.swift in Sources */,
 				2F904E2E219F79FF0040530B /* ShowLogController.swift in Sources */,
 				2FA0296F21ED363900ABAB9A /* CoreMonitorIPv4+CoreDataProperties.swift in Sources */,
 				2FA0296A21ED363900ABAB9A /* CoreMap+CoreDataClass.swift in Sources */,
 				2FD136F021E949E400770B09 /* NetworkMomError.swift in Sources */,
 				2F904E68219F7A460040530B /* RRDGauge.swift in Sources */,
+				2FE41D1A220A668D00AA7173 /* LicensePurchaseController.swift in Sources */,
 				2F904E3C219F7A140040530B /* EmailServerController.swift in Sources */,
 				2FA0297B21F7C88600ABAB9A /* AddIPv4MonitorsController.swift in Sources */,
 				2F5061D221BC744100C19984 /* Array+extensions.swift in Sources */,
@@ -1720,6 +1763,7 @@
 				2F5061C421B4CC3600C19984 /* StaticHtmlController.swift in Sources */,
 				2F904E6E219F7A460040530B /* MonitorIPv4.swift in Sources */,
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
+				2FF8D752220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift in Sources */,
 				2FA02AF5220001CF00ABAB9A /* Double+extensions.swift in Sources */,
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,
 				2F904E70219F7A460040530B /* RRDData.swift in Sources */,
@@ -1730,6 +1774,7 @@
 				2FA0298221F93FEB00ABAB9A /* Integer+extensions.swift in Sources */,
 				2FA0298821FBAE7C00ABAB9A /* AvailabilityReport.swift in Sources */,
 				2F904E64219F7A460040530B /* MonitorEnumeration.swift in Sources */,
+				2FF8D756220B9FCA0095B451 /* pkcs7_union_accessors.c in Sources */,
 				2FA0298021F9241100ABAB9A /* AddIPv6MonitorsController.swift in Sources */,
 				2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */,
 			);
@@ -2143,13 +2188,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/include";
 				INFOPLIST_FILE = "Network Mom/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/lib";
+				"OTHER_LDFLAGS[arch=*]" = "-lcrypto";
 				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.availability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_INCLUDE_PATHS[arch=*]" = "$(SRCROOT)/$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Network Mom/Network Mom-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -2166,13 +2215,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/include";
 				INFOPLIST_FILE = "Network Mom/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/lib";
+				"OTHER_LDFLAGS[arch=*]" = "-lcrypto";
 				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.availability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_INCLUDE_PATHS[arch=*]" = "$(SRCROOT)/$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Network Mom/Network Mom-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};

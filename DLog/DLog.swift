@@ -54,6 +54,8 @@ public class DLog {
     static public func log(_ category: DLogCategories,_ msg: String) {
         let message = DLog.formatDate() + " " + msg + "\n"
         DLog.logdata[category]!.insert(message)
-        DLog.doPrint(message)
+        if category != .monitor {
+            DLog.doPrint(message)
+        }
     }
 }
