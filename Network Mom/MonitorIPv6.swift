@@ -171,6 +171,10 @@ class MonitorIPv6: Monitor {
             coreMonitorIPv6.managedObjectContext?.delete(coreMonitorIPv6)
         }
     }
+    func licenseExpired() {
+        self.status = .Blue
+        self.lastAlertStatus = .Blue
+    }
 
     func sendPing(pingSocket: CFSocket?) {
         sendPing(pingSocket: pingSocket, id: 400)
@@ -215,6 +219,13 @@ class MonitorIPv6: Monitor {
         DLog.log(.monitor,"sent ping to \(ipv6.debugDescription) socket error \(socketError)")
     }
     public func latencyStatus() -> MonitorStatus? {
+        if status == .Red {
+            return MonitorStatus.Red
+        }
+        if status == .Blue {
+            return MonitorStatus.Blue
+        }
+
         if let currentLatency = latency.lastFiveMinute?.value, let yesterdayLatency = latency.lastDay?.value {
             if currentLatency > yesterdayLatency * Defaults.latencyPercentThresholdRed + Defaults.latencyStaticThreshold {
                 return MonitorStatus.Red

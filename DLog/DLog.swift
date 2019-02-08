@@ -49,7 +49,7 @@ public class DLog {
     }
 
     static func doPrint(_ message: String) {
-        print(message)
+        debugPrint(message)
     }
     static public func log(_ category: DLogCategories,_ msg: String) {
         let message = DLog.formatDate() + " " + msg + "\n"

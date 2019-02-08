@@ -12,6 +12,7 @@ import WebKit
 
 class MapAvailabilityReportController: NSWindowController {
 
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
     weak var delegate: MapWindowController?
     var pdfData = NSMutableData()
     var reportType: ReportType = .daily // daily by default
@@ -24,7 +25,7 @@ class MapAvailabilityReportController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
-        let availabilityReport = AvailabilityReport(reportType: reportType, map: delegate)
+        let availabilityReport = AvailabilityReport(reportType: reportType, map: delegate, license: appDelegate.license)
         let html = availabilityReport.makeHTML()
         webView.loadHTMLString(html, baseURL: nil)
         window?.title = "\(delegate?.name ?? "unknown") \(reportType.rawValue) availability report"

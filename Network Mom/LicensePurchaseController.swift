@@ -27,7 +27,7 @@ class LicensePurchaseController: NSWindowController {
     }
     
     @IBAction func purchaseOneYearLicense(_ sender: NSButton) {
-        if let license = license, let product = license.products[productIdentifiers.oneyear.rawValue] {
+        if let license = license, let product = license.products[productIdentifiers.annual.rawValue] {
             let payment = SKPayment(product: product)
             SKPaymentQueue.default().add(payment)
         }
@@ -44,6 +44,7 @@ class LicensePurchaseController: NSWindowController {
         if let license = license {
             let products = license.products.values.sorted() { $0.localizedDescription < $1.localizedDescription }
             textViewOutlet.string = ""
+            license.decryptReceiptSwifty()
             for product in products {
                 textViewOutlet.string += "\(product.productIdentifier)\n"
                 textViewOutlet.string += "\(product.localizedDescription)\n"
@@ -55,8 +56,12 @@ class LicensePurchaseController: NSWindowController {
                     textViewOutlet.string += "\(localizedPrice)\n"
                 }
                 textViewOutlet.string += "\n"
+                textViewOutlet.string += license.fullLicenseStatus
             }
         }
+        //let validator = ReceiptValidator()
+        //let result = validator.validateReceipt()
+        //textViewOutlet.string += "receipt validationr result \(result)"
     }
     @IBAction func restorePurchasesButton(_ sender: NSButton) {
             DLog.log(.userInterface,"trying to restore transactions")

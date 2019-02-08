@@ -5,6 +5,11 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pagerOnly" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="CoreLicense" representedClassName="CoreLicense" syncable="YES">
+        <attribute name="firstInstallDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastLicenseDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="trialSeconds" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="CoreMap" representedClassName="CoreMap" syncable="YES">
         <attribute name="availabilityDayData" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
         <attribute name="availabilityDayTimestamp" attributeType="Transformable" customClassName="[Int]" syncable="YES"/>
@@ -68,6 +73,7 @@
     </entity>
     <elements>
         <element name="CoreEmailAddress" positionX="-290.80859375" positionY="-241.64453125" width="128" height="90"/>
+        <element name="CoreLicense" positionX="-99" positionY="-90" width="128" height="90"/>
         <element name="CoreMap" positionX="-91.37890625" positionY="-123.35546875" width="128" height="268"/>
         <element name="CoreMonitorIPv4" positionX="-292.640625" positionY="-99.046875" width="128" height="343"/>
         <element name="CoreMonitorIPv6" positionX="99.71875" positionY="-99.55078125" width="128" height="343"/>

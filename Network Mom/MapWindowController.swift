@@ -234,7 +234,7 @@ class MapWindowController: NSWindowController {
     }
 
 
-    func emailReport(reportType: ReportType) {
+    func emailReport(reportType: ReportType, license: License?) {
         //let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("report.pdf")
         //let fileShortString = "Documents/report.pdf"
         //let filename = "report.pdf"
@@ -259,7 +259,7 @@ class MapWindowController: NSWindowController {
         let pdfData = NSMutableData()
 
         DLog.log(.userInterface,"map \(name) emailing \(reportType.rawValue) reports")
-        let availabilityReport = AvailabilityReport(reportType: reportType, map: self)
+        let availabilityReport = AvailabilityReport(reportType: reportType, map: self, license: license)
         let availabilityReportView = availabilityReport.makeView()
         availabilityReportView.translatesAutoresizingMaskIntoConstraints = false
         let html = availabilityReport.makeHTML()
@@ -282,6 +282,8 @@ class MapWindowController: NSWindowController {
             emailHash[email.email] = email
         }
         let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
+        
+            
         for recipient in emailReports {
             if let emailRecipient = emailHash[recipient] {
                 let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
@@ -312,9 +314,17 @@ class MapWindowController: NSWindowController {
         }
     }
     @objc func executePings() {
+        
         if monitors.count == 0 {
             return
         }
+        if appDelegate.license?.getLicenseStatus == .expired {
+            for monitor in monitors {
+                monitor.licenseExpired()
+            }
+            return
+        }
+        
         for i in 0..<monitors.count {
             if i % numberSweeps == pingSweepIteration {
                 if let target = monitors[i] as? MonitorIPv4 {

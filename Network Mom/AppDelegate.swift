@@ -41,7 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var configureEmailServerOutlet: NSMenuItem!
     
-    let license = License()
+    var license: License?
     
     public var ping4Socket: CFSocket?
     public var ping6Socket: CFSocket?
@@ -91,7 +91,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DLog.log(.userInterface,"DLog.log test")
         restoreAllConfig(self)
         
-        SKPaymentQueue.default().add(license)
+        if let license = license {
+            SKPaymentQueue.default().add(license)
+        } else {
+            DLog.log(.dataIntegrity,"ALERT: license data structure not found")
+        }
         
         if audioName != Constants.systemBeep {
             if let audioURL = Bundle.main.url(forResource: audioName, withExtension: "") {
@@ -292,12 +296,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     @objc func emailReports() {
         for map in maps {
-            map.emailReport(reportType: .daily)
+            map.emailReport(reportType: .daily, license: license)
         }
         let weekday = Calendar.current.component(.weekday, from: Date())
         if weekday == 1 {    //I think 1 is Monday
             for map in maps {
-                map.emailReport(reportType: .weekly)
+                map.emailReport(reportType: .weekly, license: license)
             }
         }
     }
@@ -439,6 +443,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DLog.log(.dataIntegrity,"restoring all config")
         loadEmailPassword()
         
+        //attempting to load license data from core data
+        DLog.log(.userInterface, "Attempting to load license from core data")
+        do {
+            let request = NSFetchRequest<CoreLicense>(entityName: "CoreLicense")
+            if let coreLicenseArray = try? managedContext.fetch(request), let coreLicense = coreLicenseArray.first {
+                self.license = License(coreLicense: coreLicense)
+                if self.license != nil {
+                    DLog.log(.dataIntegrity,"Successfully imported license history from Core Data")
+                }
+            } else {
+                // must be first run on this box
+                DLog.log(.dataIntegrity,"Created core license object, we should only do this once per install")
+                let coreLicense = CoreLicense(context: managedContext)
+                coreLicense.firstInstallDate = Date() as NSDate
+                coreLicense.lastLicenseDate = Date.distantPast as NSDate
+                self.license = License(coreLicense: coreLicense, newInstall: true)
+            }
+        }
+        
         //attempting to load emails from core data
         DLog.log(.dataIntegrity,"Attempting to read email list from Core Data")
         let request = NSFetchRequest<CoreEmailAddress>(entityName: "CoreEmailAddress")
@@ -509,14 +532,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
 
     @objc func sendAlertEmails() {
+        if let status = license?.getLicenseStatus {
+            switch status {
+            case .trial:
+                license?.useTrial(seconds: Defaults.emailTimerDuration)
+            case .expired:
+                return   // we dont send alerts when license is expired
+            case .licensed:
+                break
+            case .unknown:
+                DLog.log(.userInterface,"Warning: unable to determine license status")
+                break
+            }
+        } else {
+            DLog.log(.userInterface,"Warning: unable to determine license status")
+        }
         DLog.log(.mail,"Checking for email alerts to send")
         for email in emails {
             email.emailAlert()
         }
     }
-    
-    
-    
 }
 extension AppDelegate: ReceivedPing4Delegate {
     func receivedPing4(ip: UInt32, sequence: UInt16, id: UInt16) {

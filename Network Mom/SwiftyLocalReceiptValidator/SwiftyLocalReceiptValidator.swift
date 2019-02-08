@@ -34,11 +34,10 @@
 
 import Foundation
 import StoreKit
+import DLog
 #if os(macOS)
 import IOKit
-import OpenSSL
 #endif
-
 // MARK: Output
 enum ReceiptValidationResult {
     case success(ParsedReceipt)
@@ -90,7 +89,10 @@ struct ReceiptValidator {
     func validateReceipt() -> ReceiptValidationResult {
         do {
             let receiptData = try receiptLoader.loadReceipt()
-            let receiptContainer = try receiptExtractor.extractPKCS7Container(receiptData)
+            guard let receiptContainer = receiptExtractor.loadReceipt() else {
+                throw ReceiptValidationError.couldNotFindReceipt
+            }
+            //let receiptContainer = try receiptExtractor.extractPKCS7Container(receiptData)
             
             try receiptSignatureValidator.checkSignaturePresence(receiptContainer)
             try receiptSignatureValidator.checkSignatureAuthenticity(receiptContainer)
@@ -216,7 +218,46 @@ struct ReceiptLoader {
 }
 
 struct ReceiptExtractor {
-    func extractPKCS7Container(_ receiptData: Data) throws -> UnsafeMutablePointer<PKCS7> {
+    func loadReceipt() -> UnsafeMutablePointer<PKCS7>? {
+        // Load the receipt into a Data object
+        guard
+            let receiptUrl = Bundle.main.appStoreReceiptURL,
+            let receiptData = try? Data(contentsOf: receiptUrl)
+            else {
+                //receiptStatus = .noReceiptPresent
+                return nil
+        }
+        
+        // 1
+        let receiptBIO = BIO_new(BIO_s_mem())
+        let receiptBytes: [UInt8] = .init(receiptData)
+        BIO_write(receiptBIO, receiptBytes, Int32(receiptData.count))
+        // 2
+        let receiptPKCS7 = d2i_PKCS7_bio(receiptBIO, nil)
+        BIO_free(receiptBIO)
+        // 3
+        guard receiptPKCS7 != nil else {
+            //receiptStatus = .unknownReceiptFormat
+            return nil
+        }
+        
+        // Check that the container has a signature
+        guard OBJ_obj2nid(receiptPKCS7!.pointee.type) == NID_pkcs7_signed else {
+            //receiptStatus = .invalidPKCS7Signature
+            return nil
+        }
+        
+        // Check that the container contains data
+        let receiptContents = receiptPKCS7!.pointee.d.sign.pointee.contents
+        guard OBJ_obj2nid(receiptContents?.pointee.type) == NID_pkcs7_data else {
+            //receiptStatus = .invalidPKCS7Type
+            return nil
+        }
+        
+        return receiptPKCS7
+    }
+
+/*    func extractPKCS7Container(_ receiptData: Data) throws -> UnsafeMutablePointer<PKCS7> {
         let receiptBIO = BIO_new(BIO_s_mem())
         BIO_write(receiptBIO, (receiptData as NSData).bytes, Int32(receiptData.count))
         let receiptPKCS7Container = d2i_PKCS7_bio(receiptBIO, nil)
@@ -232,7 +273,7 @@ struct ReceiptExtractor {
         }
         
         return receiptPKCS7Container!
-    }
+    }*/
 }
 
 struct ReceiptSignatureValidator {
@@ -245,11 +286,49 @@ struct ReceiptSignatureValidator {
     }
     
     func checkSignatureAuthenticity(_ PKCS7Container: UnsafeMutablePointer<PKCS7>) throws {
-        let appleRootCertificateX509 = try loadAppleRootCertificate()
+        let validated = validateSigning(PKCS7Container)
+        DLog.log(.userInterface,"validated certificate \(validated)")
+        if !validated {
+            throw ReceiptValidationError.receiptSignatureInvalid
+        }
+        //let appleRootCertificateX509 = try loadAppleRootCertificate()
         
-        try verifyAuthenticity(appleRootCertificateX509, PKCS7Container: PKCS7Container)
+        //try verifyAuthenticity(appleRootCertificateX509, PKCS7Container: PKCS7Container)
     }
-fileprivate func loadAppleRootCertificate() throws -> UnsafeMutablePointer<X509> {
+    private func validateSigning(_ receipt: UnsafeMutablePointer<PKCS7>?) -> Bool {
+        guard
+            let rootCertUrl = Bundle.main
+                .url(forResource: "AppleIncRootCertificate", withExtension: "cer"),
+            let rootCertData = try? Data(contentsOf: rootCertUrl)
+            else {
+                //receiptStatus = .invalidAppleRootCertificate
+                return false
+        }
+        
+        let rootCertBio = BIO_new(BIO_s_mem())
+        let rootCertBytes: [UInt8] = .init(rootCertData)
+        BIO_write(rootCertBio, rootCertBytes, Int32(rootCertData.count))
+        let rootCertX509 = d2i_X509_bio(rootCertBio, nil)
+        BIO_free(rootCertBio)
+        
+        // 1
+        let store = X509_STORE_new()
+        X509_STORE_add_cert(store, rootCertX509)
+        
+        // 2
+        OPENSSL_init_crypto(UInt64(OPENSSL_INIT_ADD_ALL_DIGESTS), nil)
+        
+        // 3
+        let verificationResult = PKCS7_verify(receipt, nil, store, nil, nil, 0)
+        guard verificationResult == 1  else {
+            //receiptStatus = .failedAppleSignature
+            return false
+        }
+        
+        return true
+    }
+}
+/*fileprivate func loadAppleRootCertificate() throws -> UnsafeMutablePointer<X509> {
     //fileprivate func loadAppleRootCertificate() throws -> OpaquePointer {
         guard
             let appleRootCertificateURL = Bundle.main.url(forResource: "AppleIncRootCertificate", withExtension: "cer"),
@@ -277,8 +356,7 @@ fileprivate func loadAppleRootCertificate() throws -> UnsafeMutablePointer<X509>
         if result != 1 {
             throw ReceiptValidationError.receiptSignatureInvalid
         }
-    }
-}
+    }*/
 
 struct ReceiptParser {
     func parse(_ PKCS7Container: UnsafeMutablePointer<PKCS7>) throws -> ParsedReceipt {
@@ -540,3 +618,4 @@ struct ReceiptParser {
         return nil
     }
 }
+

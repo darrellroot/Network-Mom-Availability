@@ -38,10 +38,12 @@ class AvailabilityReport {
     var data: [RRDData]?
     var windowAvailability: [Int:Double] = [:]
     var overallAvailability: Double?
+    var license: License?
 
-    init(reportType: ReportType, map: MapWindowController?) {
+    init(reportType: ReportType, map: MapWindowController?, license: License?) {
         self.map = map
         self.reportType = reportType
+        self.license = license
         switch reportType {
         case .daily:
             timeInterval = 3600
@@ -112,6 +114,25 @@ table, th, td {
 </body>
 """
             return html
+        }
+        if let license = license {
+            switch license.getLicenseStatus {
+            case .licensed:
+                
+                html += "<h3>Network Mom License Valid Until \(license.lastLicenseString)</h3>\n"
+            case .trial:
+                let daysLeft = Int(license.trialSeconds / (3600 * 24))
+                html += "<h3>Network Mom Not Licensed, Trial Period Expires in \(daysLeft) days</h3>\n"
+            case .expired:
+                html += "<h3>Network Mom License Expired, No Data Available</h3>\n"
+                html += "<h3>Have the administrator purchase a license or exit the application</h3>\n"
+                return html
+            case .unknown:
+                html += "<h3>Network Mom License Status Unknown</h3>\n"
+            
+            }
+        } else {
+            html += "<h3>Network Mom License Status Unknown</h3>\n"
         }
         
         // Start availablity table

@@ -11,7 +11,7 @@
                 <outlet property="commentLabel" destination="RZg-m5-dbn" id="yEE-UN-IAE"/>
                 <outlet property="customView" destination="SqQ-EG-2op" id="YEG-bZ-haQ"/>
                 <outlet property="lineChart" destination="RGZ-aE-kcz" id="B0V-6V-pNj"/>
-                <outlet property="seletctButtonDataOutlet" destination="t3G-Sw-LIc" id="JmU-ox-NaM"/>
+                <outlet property="selectButtonDataOutlet" destination="t3G-Sw-LIc" id="q3d-6t-Lf9"/>
                 <outlet property="stackView" destination="klq-9u-P9V" id="Z26-ZN-oP1"/>
                 <outlet property="statusLabel" destination="yVE-Aa-DKb" id="jzK-Wd-DcK"/>
                 <outlet property="typeLabel" destination="8MA-HC-bG0" id="ln5-n3-idZ"/>
@@ -74,7 +74,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3G-Sw-LIc">
+                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3G-Sw-LIc" userLabel="Select Button Data Outlet">
                                         <rect key="frame" x="18" y="122" width="160" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="push" title="Graph Five Minute Data" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="kRL-2I-hwi" id="dA1-BL-ywe">

@@ -20,5 +20,6 @@ struct Defaults {
 
     static let pingTimerDuration: Int = 4
 
+    static let trialPeriodSeconds: Double = 3600 * 24 * 30
     private init() {}
 }
