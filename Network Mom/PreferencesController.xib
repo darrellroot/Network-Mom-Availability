@@ -19,8 +19,8 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="575" height="115"/>
+            <view key="contentView" wantsLayer="YES" misplaced="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <gridView xPlacement="fill" yPlacement="fill" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="xOY-3r-foU">
@@ -87,15 +87,7 @@
                                     </connections>
                                 </popUpButton>
                             </gridCell>
-                            <gridCell row="nqj-P8-6nj" column="DSL-Hf-uD7" xPlacement="leading" id="NGm-EB-OOF">
-                                <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5WH-Wf-YKT">
-                                    <rect key="frame" x="-2" y="-4" width="25" height="25"/>
-                                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xc6-MX-U7l">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                </button>
-                            </gridCell>
+                            <gridCell row="nqj-P8-6nj" column="DSL-Hf-uD7" xPlacement="leading" id="NGm-EB-OOF"/>
                             <gridCell row="nqj-P8-6nj" column="we0-UU-K6o" id="2Sb-Wd-zjD">
                                 <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fnq-Ll-iOM">
                                     <rect key="frame" x="177" y="-7" width="364" height="32"/>

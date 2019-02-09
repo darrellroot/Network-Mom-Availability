@@ -165,7 +165,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let calendar = Calendar(identifier: .iso8601)
         let components = DateComponents(calendar: calendar, timeZone: TimeZone.current, era: nil, year: nil, month: nil, day: nil, hour: 8, minute: 8, second: nil, nanosecond: nil, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
         if let dateToFire = calendar.nextDate(after: Date(), matching: components, matchingPolicy: .nextTime) {
-            emailReportTimer = Timer(fireAt: dateToFire, interval: 86400, target: self, selector: #selector(emailReports), userInfo: nil, repeats: true)
+            emailReportTimer = Timer(fireAt: dateToFire, interval: 86400, target: self, selector: #selector(dailyBookkeeping), userInfo: nil, repeats: true)
             RunLoop.current.add(emailReportTimer,forMode: .common)
             DLog.log(.dataIntegrity,"Daily report timer scheduled for \(dateToFire.description)")
         }
@@ -291,6 +291,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return paths[0]
     }
     
+    @objc func dailyBookkeeping() {
+        // every day we are licensed, we add an hour to the trial period, up to the 30-day max
+        if let license = license {
+            if license.getLicenseStatus == .licensed {
+                license.addTrialHour()
+            }
+        }
+        emailReports()
+    }
     @IBAction func emailDailyReports(_ sender: NSMenuItem) {
         emailReports()
     }
@@ -355,16 +364,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    @IBAction func networkMomCredits(_ sender: NSMenuItem) {
-        let staticHtmlController = StaticHtmlController()
-        staticHtmlController.resource = "credits"
-        staticHtmlController.showWindow(self)
-    }
-    @IBAction func networkMomLicenseAgreement(_ sender: NSMenuItem) {
-        let staticHtmlController = StaticHtmlController()
-        staticHtmlController.resource = "license"
-        staticHtmlController.showWindow(self)
-    }
     
     @IBAction func licensePurchase(_ sender: NSMenuItem) {
         if licensePurchaseController == nil {
@@ -381,12 +380,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         maps.last?.showWindow(self)
     }
 
-    @IBAction func privacyPolicy(_ sender: NSMenuItem) {
-        let staticHtmlController = StaticHtmlController()
-        staticHtmlController.resource = "privacy"
-        staticHtmlController.showWindow(self)
-    }
-    
     func showSaveAlert(url: URL) {
         let alert = NSAlert()
         alert.alertStyle = NSAlert.Style.critical

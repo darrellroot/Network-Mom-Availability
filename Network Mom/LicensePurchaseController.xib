@@ -7,96 +7,127 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LicensePurchaseController" customModule="Network_Mom_Availability" customModuleProvider="target">
             <connections>
-                <outlet property="scrollViewOutlet" destination="0Rl-qT-eQP" id="wFz-B6-98c"/>
-                <outlet property="textViewOutlet" destination="atV-yP-dz4" id="R9l-w3-Isg"/>
+                <outlet property="currentLicenseOutlet" destination="5GL-XH-Pts" id="JWN-Fy-Ezc"/>
+                <outlet property="licensePeriodOutlet" destination="mTo-S6-JM3" id="X3J-tc-CUr"/>
+                <outlet property="subscribeAnnualOutlet" destination="hEt-6b-EEt" id="hyg-3l-nB2"/>
+                <outlet property="subscribeMonthlyOutlet" destination="l0v-b3-hOO" id="4ua-ly-PaM"/>
+                <outlet property="trialPeriodOutlet" destination="ymZ-6b-9ln" id="sDA-4Q-3sc"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+        <window title="License Purchase and Status" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="540"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="621"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I5c-ii-6HC">
-                        <rect key="frame" x="14" y="222" width="111" height="32"/>
-                        <buttonCell key="cell" type="push" title="Check stuff" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1NH-o8-ZSw">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="checkStuffButton:" target="-2" id="QxW-lv-juB"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r2O-XV-pzP">
-                        <rect key="frame" x="312" y="222" width="154" height="32"/>
-                        <buttonCell key="cell" type="push" title="Restore Purchases" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rhg-6v-HJV">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="restorePurchasesButton:" target="-2" id="Wjo-1b-JIu"/>
-                        </connections>
-                    </button>
-                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rl-qT-eQP">
-                        <rect key="frame" x="20" y="20" width="440" height="189"/>
-                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="g0d-o9-hwm">
-                            <rect key="frame" x="0.0" y="0.0" width="440" height="189"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="atV-yP-dz4">
-                                    <rect key="frame" x="0.0" y="0.0" width="440" height="189"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="22" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APV-20-D7K">
+                        <rect key="frame" x="20" y="20" width="440" height="581"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TB9-Rc-xh1">
+                                <rect key="frame" x="79" y="556" width="283" height="25"/>
+                                <buttonCell key="cell" type="square" title="Restore Purchases and update license status" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mrW-pM-D80">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="restorePurchasesButton:" target="-2" id="a95-na-nTy"/>
+                                </connections>
+                            </button>
+                            <button horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="l0v-b3-hOO">
+                                <rect key="frame" x="111" y="509" width="218" height="25"/>
+                                <buttonCell key="cell" type="square" title="Subscribe to monthly subscription" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wak-Ep-hnb">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="purchaseMonthlySubscription:" target="-2" id="sQX-v8-goH"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-6b-EEt">
+                                <rect key="frame" x="116" y="462" width="209" height="25"/>
+                                <buttonCell key="cell" type="square" title="Subscribe to annual subscription" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W4J-gA-XhA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="purchaseOneYearLicense:" target="-2" id="0Jl-ad-WaB"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5GL-XH-Pts">
+                                <rect key="frame" x="147" y="423" width="147" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Current License Status:" id="zTl-ee-s8E">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="440" height="189"/>
-                                    <size key="maxSize" width="440" height="10000000"/>
-                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                </textView>
-                            </subviews>
-                        </clipView>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="fDj-JY-PCq">
-                            <rect key="frame" x="424" y="0.0" width="16" height="189"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l0v-b3-hOO">
-                        <rect key="frame" x="94" y="209" width="228" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Purchase monthly subscription" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wak-Ep-hnb">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="purchaseMonthlySubscription:" target="-2" id="sQX-v8-goH"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-6b-EEt">
-                        <rect key="frame" x="119" y="235" width="199" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Purchase one year license" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W4J-gA-XhA">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="purchaseOneYearLicense:" target="-2" id="0Jl-ad-WaB"/>
-                        </connections>
-                    </button>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mTo-S6-JM3">
+                                <rect key="frame" x="140" y="384" width="160" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="License Period Remaining" id="IlP-Tf-Asf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ymZ-6b-9ln">
+                                <rect key="frame" x="151" y="345" width="139" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Trial Period Remaining" id="wOl-at-tW0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jyM-bD-TXQ">
+                                <rect key="frame" x="-2" y="0.0" width="444" height="323"/>
+                                <textFieldCell key="cell" selectable="YES" id="oAc-Ux-o8F">
+                                    <font key="font" metaFont="system"/>
+                                    <mutableString key="title">Payment will be charged to iTunes Account at confirmation of purchase 
+Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period 
+Account will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal 
+Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user’s Account Settings in the App Store after purchase 
+Privacy policy: https://networkmom.net/availability/privacy.html
+
+Apple Licensed Application End User License Agreement:
+https://www.apple.com/legal/macapps/stdeula/
+
+Network Mom LLC additional license terms:
+https://networkmom.net/availability/license.html</mutableString>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="0Rl-qT-eQP" secondAttribute="trailing" constant="20" symbolic="YES" id="4nq-td-JPk"/>
-                    <constraint firstItem="I5c-ii-6HC" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="LBq-tu-kwp"/>
-                    <constraint firstItem="0Rl-qT-eQP" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="OwU-xP-uGB"/>
-                    <constraint firstAttribute="bottom" secondItem="0Rl-qT-eQP" secondAttribute="bottom" constant="20" symbolic="YES" id="Ozi-cZ-JpC"/>
-                    <constraint firstAttribute="trailing" secondItem="r2O-XV-pzP" secondAttribute="trailing" constant="20" symbolic="YES" id="hre-0G-2kH"/>
-                    <constraint firstItem="I5c-ii-6HC" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="j2c-ct-H4i"/>
-                    <constraint firstItem="r2O-XV-pzP" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="qRY-Y6-eSc"/>
-                    <constraint firstItem="0Rl-qT-eQP" firstAttribute="top" secondItem="I5c-ii-6HC" secondAttribute="bottom" constant="20" symbolic="YES" id="uTD-I1-R0u"/>
+                    <constraint firstItem="APV-20-D7K" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="1Sy-Si-59E"/>
+                    <constraint firstAttribute="trailing" secondItem="APV-20-D7K" secondAttribute="trailing" constant="20" symbolic="YES" id="7MM-oa-51I"/>
+                    <constraint firstItem="APV-20-D7K" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="mvg-1Y-TT0"/>
+                    <constraint firstAttribute="bottom" secondItem="APV-20-D7K" secondAttribute="bottom" constant="20" symbolic="YES" id="sCn-1Z-w6l"/>
                 </constraints>
             </view>
             <connections>

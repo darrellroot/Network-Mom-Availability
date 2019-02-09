@@ -53,6 +53,7 @@ class License: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver
             coreLicense.firstInstallDate = newValue as NSDate
         }
     }
+    let trialSecondsMax = 3600.0 * 24.0 * 30.0
     private(set) var trialSeconds: Double {
         get {
             return coreLicense.trialSeconds
@@ -61,7 +62,42 @@ class License: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver
             coreLicense.trialSeconds = newValue
         }
     }
-    
+    public var trialString: String {
+        if trialSeconds > 3600 * 24 {
+            let trialDays = Int(trialSeconds) / (3600 * 24)
+            return "\(trialDays) days"
+        } else if trialSeconds > 3600.0 {
+            let trialHours = Int(trialSeconds) / (3600)
+            return "\(trialHours) hours"
+        } else if trialSeconds > 0.0 {
+            return "< 1 hour"
+        } else {
+            return "None"
+        }
+    }
+
+    public var licenseSeconds: Double {
+        let timeLeft = lastLicenseDate.timeIntervalSince(Date())
+        if timeLeft < 0 {
+            return 0.0
+        } else {
+            return timeLeft
+        }
+    }
+    public var licenseString: String {
+        let licenseSeconds = self.licenseSeconds
+        if licenseSeconds > 3600 * 24 {
+            let licenseDays = Int(licenseSeconds) / (3600 * 24)
+            return "\(licenseDays) days"
+        } else if licenseSeconds > 3600.0 {
+            let licenseHours = Int(licenseSeconds) / (3600)
+            return "\(licenseHours) hours"
+        } else if licenseSeconds > 0.0 {
+            return "< 1 hour"
+        } else {
+            return "None"
+        }
+    }
     var lastLicenseString: String {
         return dateFormatter.string(from:lastLicenseDate)
     }
@@ -87,26 +123,35 @@ License Status \(getLicenseStatus.rawValue)
             if priorLicenseStatus != .trial {
                 DLog.log(.userInterface,"License status just changed: trying to restore transactions")
                 SKPaymentQueue.default().restoreCompletedTransactions()
+                priorLicenseStatus = .trial
+                DispatchQueue.main.asyncAfter(deadline: .now() + 60.0) {
+                    if self.getLicenseStatus == .trial {
+                        let alert = NSAlert()
+                        alert.messageText = "Warning: Network Mom License Expired, Trial Period Activated"
+                        alert.informativeText = "Check the License Purchase/Status menu"
+                        alert.alertStyle = .warning
+                        alert.addButton(withTitle: "OK")
+                        alert.runModal()
+                    }
+                }
             }
             priorLicenseStatus = .trial
-            let alert = NSAlert()
-            alert.messageText = "Warning: Network Mom License Expired, Trial Period Activated"
-            alert.informativeText = "Check the License Purchase/Status menu"
-            alert.alertStyle = .warning
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-
             return .trial
         } else {
             if priorLicenseStatus != .expired {
                 DLog.log(.userInterface,"License status just changed: trying to restore transactions")
                 SKPaymentQueue.default().restoreCompletedTransactions()
-                let alert = NSAlert()
-                alert.messageText = "Alert: Network Mom License Expired, Trial Expired"
-                alert.informativeText = "All monitoring will cease until a license is purchased"
-                alert.alertStyle = .critical
-                alert.addButton(withTitle: "OK")
-                alert.runModal()
+                priorLicenseStatus = .expired
+                DispatchQueue.main.asyncAfter(deadline: .now() + 60.0) {
+                    if self.getLicenseStatus == .expired {
+                        let alert = NSAlert()
+                        alert.messageText = "Alert: Network Mom License Expired, Trial Expired"
+                        alert.informativeText = "All monitoring will cease until a license is purchased"
+                        alert.alertStyle = .critical
+                        alert.addButton(withTitle: "OK")
+                        alert.runModal()
+                    }
+                }
             }
             priorLicenseStatus = .expired
             return .expired
@@ -121,6 +166,17 @@ License Status \(getLicenseStatus.rawValue)
         fatalError("should not get to this init")
         super.init()
         //self.requestProducts()
+    }
+    public func addTrialHour() {
+        // we should only execute this once a day, run by a timer in appDelegate
+        if self.getLicenseStatus == .licensed {
+            if trialSeconds < trialSecondsMax {
+                trialSeconds = trialSeconds + 3600.0
+            }
+            if trialSeconds > trialSecondsMax {
+                trialSeconds = trialSecondsMax
+            }
+        }
     }
     init(coreLicense: CoreLicense, newInstall: Bool = false) {
         self.coreLicense = coreLicense

@@ -29,38 +29,18 @@
                                     <action selector="aboutNetworkMom:" target="Voe-Tx-rLC" id="kel-YX-l3W"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Preferences" id="Xms-Rm-81o">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="preferencesMenuItem:" target="Voe-Tx-rLC" id="7uo-mH-bbA"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="License Purchase or Status" keyEquivalent="L" id="GTO-8Q-7p9">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="licensePurchase:" target="Voe-Tx-rLC" id="CBT-0T-Vp0"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="License Agreement" id="sas-0w-iIj">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="networkMomLicenseAgreement:" target="Voe-Tx-rLC" id="pso-XX-hDg"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Privacy Policy" id="4ee-Ea-4Af">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="privacyPolicy:" target="Voe-Tx-rLC" id="W92-oA-Sqg"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Credits" id="czO-eO-OTM">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="networkMomCredits:" target="Voe-Tx-rLC" id="Foz-au-K0T"/>
-                                </connections>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="D9k-t6-vT9"/>
-                            <menuItem title="Preferences…" keyEquivalent="," id="Vht-i8-31b"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="Vht-i8-31b">
+                                <connections>
+                                    <action selector="preferencesMenuItem:" target="-1" id="S9u-Jv-nNH"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="Dpi-SM-uoc"/>
                             <menuItem title="Services" id="xKL-ua-fxX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
