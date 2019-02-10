@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2F5061A721B33CCF00C19984 /* Network Mom Availability.help in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061A621B33CCF00C19984 /* Network Mom Availability.help */; };
-		2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061BC21B4A48D00C19984 /* mom-picture.jpg */; };
 		2F5061C421B4CC3600C19984 /* StaticHtmlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */; };
 		2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */; };
 		2F5061CF21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5061CD21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift */; };
@@ -411,7 +410,6 @@
 
 /* Begin PBXFileReference section */
 		2F5061A621B33CCF00C19984 /* Network Mom Availability.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Network Mom Availability.help"; sourceTree = "<group>"; };
-		2F5061BC21B4A48D00C19984 /* mom-picture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "mom-picture.jpg"; sourceTree = "<group>"; };
 		2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticHtmlController.swift; sourceTree = "<group>"; };
 		2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StaticHtmlController.xib; sourceTree = "<group>"; };
 		2F5061CD21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailNotificationConfigurationReportController.swift; sourceTree = "<group>"; };
@@ -902,14 +900,6 @@
 			path = "Network Mom Availability Help";
 			sourceTree = "<group>";
 		};
-		2F5061BB21B4A3CE00C19984 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				2F5061BC21B4A48D00C19984 /* mom-picture.jpg */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
 		2F5061C621B4CD6700C19984 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -1008,7 +998,6 @@
 				2F5061C621B4CD6700C19984 /* HTML */,
 				2F904E59219F7A440040530B /* icmpechorequest.swift */,
 				2F904E61219F7A460040530B /* IcmpV6EchoRequest.swift */,
-				2F5061BB21B4A3CE00C19984 /* Images */,
 				2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */,
 				2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */,
 				2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */,
@@ -1890,7 +1879,6 @@
 				2FF8D75A220BBCDE0095B451 /* AppleIncRootCertificate.cer in Resources */,
 				2F5061D621BC876900C19984 /* ShowStatisticsController.xib in Resources */,
 				2FA0297E21F923FD00ABAB9A /* AddIPv6MonitorsController.xib in Resources */,
-				2F5061BD21B4A48D00C19984 /* mom-picture.jpg in Resources */,
 				2FF8D7CF220BEAEB0095B451 /* opensslconf.h.orig in Resources */,
 				2F904E4A219F7A330040530B /* MonitorWindowController.xib in Resources */,
 				2F904FD221A3707B0040530B /* AddEmailRecipientController.xib in Resources */,

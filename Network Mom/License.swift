@@ -121,7 +121,7 @@ License Status \(getLicenseStatus.rawValue)
             return .licensed
         } else if (trialSeconds) > 0 {
             if priorLicenseStatus != .trial {
-                DLog.log(.userInterface,"License status just changed: trying to restore transactions")
+                DLog.log(.license,"License status just changed: trying to restore transactions")
                 SKPaymentQueue.default().restoreCompletedTransactions()
                 priorLicenseStatus = .trial
                 DispatchQueue.main.asyncAfter(deadline: .now() + 60.0) {
@@ -185,7 +185,7 @@ License Status \(getLicenseStatus.rawValue)
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .medium
         if newInstall {
-            DLog.log(.userInterface,"trying to restore transactions")
+            DLog.log(.license,"trying to restore transactions")
         SKPaymentQueue.default().restoreCompletedTransactions()
         }
         self.requestProducts()
@@ -271,26 +271,26 @@ License Status \(getLicenseStatus.rawValue)
 
     }
     func printTransaction(transaction: SKPaymentTransaction) {
-        print("product identifiers \(transaction.payment.productIdentifier)")
-        print("transaction identifiers \(transaction.transactionIdentifier)")
-        print("transaction date \(transaction.transactionDate)")
-        print("transaction state \(transaction.transactionState.rawValue)")
+        DLog.log(.license,"product identifiers \(transaction.payment.productIdentifier)")
+        DLog.log(.license,"transaction identifiers \(transaction.transactionIdentifier)")
+        DLog.log(.license,"transaction date \(transaction.transactionDate)")
+        DLog.log(.license,"transaction state \(transaction.transactionState.rawValue)")
         if let error = transaction.error {
-            print("error \(error.localizedDescription)")
+            DLog.log(.license,"error \(error.localizedDescription)")
         }
         for download in transaction.downloads {
-            print("download identifier \(download.contentIdentifier)")
-            print("download length \(download.contentLength)")
-            print("download version \(download.contentVersion)")
-            print("download transaction")
-            print("download state \(download.state)")
+            DLog.log(.license,"download identifier \(download.contentIdentifier)")
+            DLog.log(.license,"download length \(download.contentLength)")
+            DLog.log(.license,"download version \(download.contentVersion)")
+            DLog.log(.license,"download transaction")
+            DLog.log(.license,"download state \(download.state)")
             if let url = download.contentURL {
-                print("download url \(url)")
+                DLog.log(.license,"download url \(url)")
             }
             printTransaction(transaction: transaction)
         }
         if let original = transaction.original {
-            print("ORIGINAL TRANSACTION")
+            DLog.log(.license,"ORIGINAL TRANSACTION")
             printTransaction(transaction: original)
         }
     }
@@ -363,47 +363,47 @@ License Status \(getLicenseStatus.rawValue)
 /*    func decryptReceiptWenderlich() {
         receipt = Receipt()
         if let receiptStatus = receipt?.receiptStatus {
-            DLog.log(.userInterface,"receipt status \(receiptStatus.rawValue)")
+            DLog.log(.license,"receipt status \(receiptStatus.rawValue)")
         }
         guard receiptStatus == .validationSuccess else {
             return
         }
-        DLog.log(.userInterface,"Bundle Identifier: \(receipt!.bundleIdString!)")
-        DLog.log(.userInterface,"Bundle Version: \(receipt!.bundleVersionString!)")
+        DLog.log(.license,"Bundle Identifier: \(receipt!.bundleIdString!)")
+        DLog.log(.license,"Bundle Version: \(receipt!.bundleVersionString!)")
         let originalAppVersion: String
         if let originalVersion = receipt?.originalAppVersion {
             originalAppVersion = "Original Version: \(originalVersion)"
         } else {
             originalAppVersion = "Not Provided"
         }
-        DLog.log(.userInterface,"original app version \(originalAppVersion)")
+        DLog.log(.license,"original app version \(originalAppVersion)")
         let expirationDate: String
         if let receiptExpirationDate = receipt?.expirationDate {
             expirationDate = "Expiration Date: \(receiptExpirationDate)"
         } else {
             expirationDate = "Not Provided."
         }
-        DLog.log(.userInterface,"expirationDate \(expirationDate)")
+        DLog.log(.license,"expirationDate \(expirationDate)")
         let receiptCreationDate: String
         if let receiptCreation = receipt?.receiptCreationDate {
             receiptCreationDate = "Receipt Creation Date: \(receiptCreation)"
         } else {
             receiptCreationDate = "Not Provided."
         }
-        DLog.log(.userInterface,"receipt creation Date \(receiptCreationDate)")
+        DLog.log(.license,"receipt creation Date \(receiptCreationDate)")
     }
  */
     func invalidReceipt() {
-        DLog.log(.userInterface,"Invalid App Store receipt detected")
+        DLog.log(.license,"Invalid App Store receipt detected")
     }
     func decryptReceiptSwifty() -> Bool {
-        DLog.log(.userInterface,"Trying to analyze receipt")
+        DLog.log(.license,"Trying to analyze receipt")
         let receiptLoader = ReceiptLoader()
         let receiptData: Data
         do {
             receiptData = try receiptLoader.loadReceipt()
         } catch {
-            DLog.log(.userInterface,"Unable to load in app purchase receipt")
+            DLog.log(.license,"Unable to load in app purchase receipt")
             invalidReceipt()
             return false
         }
@@ -411,7 +411,7 @@ License Status \(getLicenseStatus.rawValue)
         let receiptExtractor = ReceiptExtractor()
         
         guard let receiptContainer: UnsafeMutablePointer<PKCS7> = receiptExtractor.loadReceipt() else {
-            DLog.log(.userInterface,"Unable to extract in app purchase receipt")
+            DLog.log(.license,"Unable to extract in app purchase receipt")
             invalidReceipt()
             return false
         }
@@ -421,7 +421,7 @@ License Status \(getLicenseStatus.rawValue)
         do {
             parsedReceipt = try receiptParser.parse(receiptContainer)
         } catch {
-            DLog.log(.userInterface,"Unable to parse in app purcase receipt")
+            DLog.log(.license,"Unable to parse in app purcase receipt")
             invalidReceipt()
             return false
         }
@@ -429,13 +429,13 @@ License Status \(getLicenseStatus.rawValue)
             if receiptCreationDate < self.firstInstallDate {
                 if let receiptCreationDate = parsedReceipt.receiptCreationDate {
                     self.firstInstallDate = receiptCreationDate
-                    DLog.log(.userInterface,"set first install date to \(String(describing: parsedReceipt.receiptCreationDate)) per parsed receipt creation date")
+                    DLog.log(.license,"set first install date to \(String(describing: parsedReceipt.receiptCreationDate)) per parsed receipt creation date")
                 }
             }
             for receipt in parsedReceipt.inAppPurchaseReceipts ?? [] {
-                DLog.log(.userInterface,"receipt type \(String(describing: receipt.productIdentifier)) expiration \(String(describing: receipt.subscriptionExpirationDate))")
+                DLog.log(.license,"receipt type \(String(describing: receipt.productIdentifier)) expiration \(String(describing: receipt.subscriptionExpirationDate))")
                 if let originalPurchaseDate = receipt.originalPurchaseDate, originalPurchaseDate < self.firstInstallDate {
-                    DLog.log(.userInterface,"set first install date to \(String(describing: parsedReceipt.receiptCreationDate)) per parsed receipt creation date")
+                    DLog.log(.license,"set first install date to \(String(describing: parsedReceipt.receiptCreationDate)) per parsed receipt creation date")
                     self.firstInstallDate = originalPurchaseDate
                 }
                 if let subscriptionExpirationDate = receipt.subscriptionExpirationDate {
@@ -443,11 +443,11 @@ License Status \(getLicenseStatus.rawValue)
                         if subscriptionExpirationDate > lastLicenseDate {
                             self.lastLicenseDate = subscriptionExpirationDate
                             let newDateString = dateFormatter.string(from: subscriptionExpirationDate)
-                            DLog.log(.userInterface,"updated last license date to \(newDateString)")
+                            DLog.log(.license,"updated last license date to \(newDateString)")
                         }
 /*                    } else {
                         self.lastLicenseDate = subscriptionExpirationDate
-                        DLog.log(.userInterface,"initially set last license date to \(dateFormatter.string(from: subscriptionExpirationDate))")
+                        DLog.log(.license,"initially set last license date to \(dateFormatter.string(from: subscriptionExpirationDate))")
                     }*/
                 }
             }
@@ -462,17 +462,17 @@ License Status \(getLicenseStatus.rawValue)
         do {
             try receiptSignatureValidator.checkSignaturePresence(receiptContainer)
         } catch {
-            DLog.log(.userInterface,"receipt signature presence error \(error.localizedDescription)")
+            DLog.log(.license,"receipt signature presence error \(error.localizedDescription)")
         }
         do {
             try receiptSignatureValidator.checkSignatureAuthenticity(receiptContainer)
         } catch {
-            DLog.log(.userInterface,"receipt signature authenticity error \(error.localizedDescription)")
+            DLog.log(.license,"receipt signature authenticity error \(error.localizedDescription)")
         }
         let validated = validateSigning(receiptContainer)
-        DLog.log(.userInterface,"Ray Wenderlich validation \(validated)")
+        DLog.log(.license,"Ray Wenderlich validation \(validated)")
         let validated2 = validateSigning2(receiptContainer)
-        DLog.log(.userInterface,"swifty validation \(validated2)")
+        DLog.log(.license,"swifty validation \(validated2)")
         return true
     }
     private func calculateTrialSeconds(testOnly: Bool) {
@@ -488,7 +488,7 @@ License Status \(getLicenseStatus.rawValue)
         } else {
             candidateTrialSeconds = 0
         }
-        print("""
+        DLog.log(.license,"""
 trial seconds calculation test only \(testOnly)
 timeSinceFirstInstall \(timeSinceFirstInstall)
 timeSinceLastLicense \(timeSinceLastLicense)

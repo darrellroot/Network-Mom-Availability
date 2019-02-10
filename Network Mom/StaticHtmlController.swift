@@ -1,5 +1,5 @@
 //
-//  PrivacyPolicyController.swift
+//  StaticHTMLController.swift
 //  Network Mom
 //
 //  Created by Darrell Root on 12/2/18.

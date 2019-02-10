@@ -54,7 +54,7 @@ class AddIPv6MonitorsController: NSWindowController, HostAddressQueryDelegate {
         invalid = "//Invalid lines or non-IPv6 addresses:\n"
         for line in lines {
             if line.starts(with: "//") {
-                print("comment detected \(line)")
+                DLog.log(.userInterface,"comment detected \(line)")
                 continue
             }
             var hostname: String? = nil

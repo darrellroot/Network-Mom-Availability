@@ -101,12 +101,12 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
         if tableColumn == tableViewOutlet.tableColumns[0] {
             cellIdentifier = CellIdentifier.Item
             text = items[row]
-            print("column 0")
+            //print("column 0")
         }
         if tableColumn == tableViewOutlet.tableColumns[1] {
             cellIdentifier = CellIdentifier.Number
             text = "\(numbers[row])"
-            print("column 1")
+            //print("column 1")
         }
 
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier.rawValue), owner: nil) as? NSTableCellView {

@@ -115,7 +115,7 @@ extension EmailNotificationConfigurationReportController: NSTableViewDataSource,
         }
     }
     func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
-        print("tableview sort descriptors changed")
+        DLog.log(.userInterface,"tableview sort descriptors changed")
         guard let sortDescriptor = tableView.sortDescriptors.first else { return }
         let ascending = sortDescriptor.ascending
         if let key = sortDescriptor.key,let order = CellIdentifier(rawValue: key) {
@@ -155,7 +155,6 @@ extension EmailNotificationConfigurationReportController: NSTableViewDataSource,
                 text = "reports"
             }
         }
-        //print("cell identifier \(cellIdentifier) text \(text)")
         
         if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier.rawValue), owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text

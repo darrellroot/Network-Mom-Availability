@@ -18,7 +18,7 @@ struct Defaults {
     static let latencyPercentThresholdYellow = 1.20
     static let pingSweepDuration: Int = 20 //must be an integer multiple of pingTimerDuration
 
-    static let pingTimerDuration: Int = 4
+    static let pingTimerDuration: Int = 1
 
     static let trialPeriodSeconds: Double = 3600 * 24 * 30
     private init() {}

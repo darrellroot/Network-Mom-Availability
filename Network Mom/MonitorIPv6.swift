@@ -216,7 +216,7 @@ class MonitorIPv6: Monitor {
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr_in6>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
         pingSentDate = Date()
-        DLog.log(.monitor,"sent ping to \(ipv6.debugDescription) socket error \(socketError)")
+        DLog.log(.icmp,"sent ping to \(ipv6.debugDescription) socket error \(socketError)")
     }
     public func latencyStatus() -> MonitorStatus? {
         if status == .Red {
@@ -241,7 +241,7 @@ class MonitorIPv6: Monitor {
         return MonitorStatus.Blue
     }
     func receivedPing(receivedip: IPv6Address, sequence: UInt16, id: UInt16) {
-        DLog.log(.monitor,"\(self.ipv6.debugDescription) received ping")
+        DLog.log(.icmp,"\(self.ipv6.debugDescription) received ping")
         guard receivedip == self.ipv6 && sequence == lastPingSequence && id == lastPingID else {
             DLog.log(.monitor,"icmp return mismatch sent \(ipv6.debugDescription) seq \(lastPingSequence) id \(lastPingID)")
             DLog.log(.monitor,"icmp return mismatch received \(receivedip) seq \(sequence) id \(id)")
@@ -250,7 +250,7 @@ class MonitorIPv6: Monitor {
         if let pingSentDate = pingSentDate {
             let interval = Date().timeIntervalSince(pingSentDate) * 1000
             latency.update(newData: interval)
-            DLog.log(.monitor,"ping interval \(interval)msec")
+            DLog.log(.icmp,"ping interval \(interval)msec")
         }
         lastSequenceReceived = sequence
         lastIdReceived = id

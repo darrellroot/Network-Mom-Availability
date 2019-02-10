@@ -85,7 +85,7 @@ class LicensePurchaseController: NSWindowController {
     }
     func updateDisplay() {
         guard let license = license else {
-            DLog.log(.userInterface,"Unable to access license information in license purchase screen")
+            DLog.log(.license,"Unable to access license information in license purchase screen")
             return
         }
         let status = license.getLicenseStatus
@@ -131,7 +131,7 @@ class LicensePurchaseController: NSWindowController {
     }*/
     @IBAction func restorePurchasesButton(_ sender: NSButton) {
         updateDisplay()
-        DLog.log(.userInterface,"trying to restore transactions")
+        DLog.log(.license,"trying to restore transactions")
         SKPaymentQueue.default().restoreCompletedTransactions()
         DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
             self.updateDisplay()

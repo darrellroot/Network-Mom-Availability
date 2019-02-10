@@ -217,7 +217,7 @@ class MonitorIPv4: Monitor {
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
         pingSentDate = Date()
-        DLog.log(.monitor,"sent ping to \(ipv4string) socketError \(socketError)")
+        DLog.log(.icmp,"sent ping to \(ipv4string) socketError \(socketError)")
     }
     
     public func latencyStatus() -> MonitorStatus? {
@@ -249,7 +249,7 @@ class MonitorIPv4: Monitor {
         return MonitorStatus.Blue
     }
     func receivedPing(ip: UInt32, sequence: UInt16, id: UInt16) {
-        DLog.log(.monitor,"\(self.ipv4string) received ping")
+        DLog.log(.icmp,"\(self.ipv4string) received ping")
         guard ip == self.ipv4 && sequence == lastPingSequence && id == lastPingID else {
             DLog.log(.monitor,"icmp return mismatch sent \(ipv4) seq \(lastPingSequence) id \(lastPingID)")
             DLog.log(.monitor,"icmp return mismatch received \(ip) seq \(sequence) id \(id)")
@@ -258,7 +258,7 @@ class MonitorIPv4: Monitor {
         if let pingSentDate = pingSentDate {
             let interval = Date().timeIntervalSince(pingSentDate) * 1000
             latency.update(newData: interval)
-            DLog.log(.monitor,"ping interval \(interval)msec")
+            DLog.log(.icmp,"ping interval \(interval)msec")
         }
         lastSequenceReceived = sequence
         lastIdReceived = id

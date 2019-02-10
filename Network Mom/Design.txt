@@ -46,4 +46,5 @@ Help:
     Network Mom Manual
     Email Feedback
     Email Bug Report
+    submit review
 

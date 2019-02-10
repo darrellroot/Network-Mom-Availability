@@ -72,7 +72,6 @@ class MonitorWindowController: NSWindowController {
     func updateFrames() {
         DLog.log(.userInterface,"in update frames")
         let standardHeight: CGFloat = 321.0
-        DLog.log(.userInterface,"detected latency enable")
         availabilityChart.isHidden = false
         
         let heightConstraint = NSLayoutConstraint(item: availabilityChart, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: standardHeight)

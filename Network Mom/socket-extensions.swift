@@ -119,19 +119,19 @@ extension sockaddr_in6 {
         withUnsafeBytes(of: &tmpaddr) { bytes in
             for byte in bytes {
                 if byte == 0 {
-                    print("00",terminator: "")
+                    //print("00",terminator: "")
                 } else if byte < 16 {
-                    print(String(format: "0%1x",byte),terminator: "")
+                    //print(String(format: "0%1x",byte),terminator: "")
                 } else {
-                    print(String(format: "%2x",byte),terminator: "")
+                    //print(String(format: "%2x",byte),terminator: "")
                 }
                 bytecount += 1
                 if bytecount % 2 == 0 && bytecount < 16 {
-                    print(":",terminator: "")
+                    //print(":",terminator: "")
                 }
             }
         }
-        print("")
+        //print("")
     }
     var string: String {
         var tmpaddr = self.sin6_addr

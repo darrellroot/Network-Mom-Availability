@@ -110,7 +110,7 @@ table, th, td {
 """
         guard windowAvailability.count > 0, let map = map else {
             html += """
-<h2>Error: Availability data not available for map</h2>
+<h2>Error: Insufficient availability data available for map report</h2>
 </body>
 """
             return html

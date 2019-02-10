@@ -39,6 +39,7 @@ class DeleteEmailRecipientController: NSWindowController, NSWindowDelegate {
     }
     
     @IBAction func deleteButton(_ sender: NSButton) {
+        DLog.log(.userInterface,"Deleting email address")
         resultLabel.stringValue = "Attempted to delete email"
         if let title = emailSelectorOutlet.selectedItem?.title, let titleEmail = title.components(separatedBy: " ").first {
             appDelegate.deleteEmail(addressToDelete: titleEmail)

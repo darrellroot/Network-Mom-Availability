@@ -283,7 +283,12 @@ class MapWindowController: NSWindowController {
         }
         let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
         
-            
+        let deviceListURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("deviceList-\(name).txt")
+        if reportType == .weekly {
+            exportMapMonitorListAsText(url: deviceListURL)
+        } else {
+            try? FileManager.default.removeItem(at: deviceListURL)
+        }
         for recipient in emailReports {
             if let emailRecipient = emailHash[recipient] {
                 let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
@@ -295,7 +300,14 @@ class MapWindowController: NSWindowController {
                 let attachment = Attachment(data: pdfData as Data, mime: "application/pdf", name: "report.pdf", inline: true, additionalHeaders: [:], relatedAttachments: [])
                 let htmlAttachment = Attachment(htmlContent: html)
                 //let attachment = Attachment(filePath: fileURL.relativeString)
-                let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "Network Mom Availability \(reportType.rawValue) report for map \(name)", text: message, attachments: [htmlAttachment,attachment], additionalHeaders: [:])
+                let filePath = deviceListURL.path
+                let mail: Mail
+                if reportType == .weekly {
+                    let deviceList = Attachment(filePath: filePath, mime: "text/plain", name: "deviceList-\(name).txt", inline: false, additionalHeaders: [:], relatedAttachments: [])
+                    mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "Network Mom Availability \(reportType.rawValue) report for map \(name)", text: message, attachments: [htmlAttachment,attachment,deviceList], additionalHeaders: [:])
+                } else {
+                    mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "Network Mom Availability \(reportType.rawValue) report for map \(name)", text: message, attachments: [htmlAttachment,attachment], additionalHeaders: [:])
+                }
                 //let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [], additionalHeaders: [:])
 
                 smtp.send(mail) { (error) in
@@ -327,6 +339,7 @@ class MapWindowController: NSWindowController {
         
         for i in 0..<monitors.count {
             if i % numberSweeps == pingSweepIteration {
+                //DLog.log(.other,"Executing i \(i) numberSweeps \(numberSweeps) pingSweepIteration \(pingSweepIteration)")
                 if let target = monitors[i] as? MonitorIPv4 {
                     target.sendPing(pingSocket: appDelegate.ping4Socket, id: mapIndex)
                 }
@@ -334,10 +347,11 @@ class MapWindowController: NSWindowController {
                     target.sendPing(pingSocket: appDelegate.ping6Socket, id: mapIndex)
                 }
             }
-            pingSweepIteration += 1
-            if pingSweepIteration >= numberSweeps {
-                pingSweepIteration = 0
+            //DLog.log(.other,"i \(i) numberSweeps \(numberSweeps) pingSweepIteration \(pingSweepIteration)")
             }
+        pingSweepIteration += 1
+        if pingSweepIteration >= numberSweeps {
+            pingSweepIteration = 0
         }
     }
     

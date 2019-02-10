@@ -36,6 +36,7 @@ class CoreDataStack {
             return
         }*/
         do {
+            DLog.log(.dataIntegrity,"Trying to save core data managed context")
             try managedContext.save()
         } catch let error as NSError {
             DLog.log(.dataIntegrity,"Unresolved Core Data Error \(error), \(error.userInfo)")

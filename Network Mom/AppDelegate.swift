@@ -88,13 +88,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        DLog.log(.userInterface,"DLog.log test")
+        DLog.log(.userInterface,"Application Did Finish Launching")
         restoreAllConfig(self)
         
         if let license = license {
             SKPaymentQueue.default().add(license)
         } else {
-            DLog.log(.dataIntegrity,"ALERT: license data structure not found")
+            DLog.log(.license,"ALERT: license data structure not found")
         }
         
         if audioName != Constants.systemBeep {
@@ -122,7 +122,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let typedData = data.bindMemory(to: UInt16.self, capacity: 80)
             let replyid = CFSwapInt16(typedData.advanced(by: 26).pointee)
             let replysequence = CFSwapInt16(typedData.advanced(by: 27).pointee)
-            DLog.log(.monitor,"got ipv6 packet from \(addr6.string) id \(replyid) sequence \(replysequence)")
+            DLog.log(.icmp,"got ipv6 packet from \(addr6.string) id \(replyid) sequence \(replysequence)")
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             if let ipv6 = IPv6Address(addr6.string) {
                 appDelegate.receivedPing6(ipv6: ipv6, sequence: replysequence, id: replyid)
@@ -148,7 +148,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let sequenceLowByte = typedData.advanced(by: 75).pointee
             let sequence = UInt16(sequenceHighByte) * 256 + UInt16(sequenceLowByte)
             let id = UInt16(idHighByte) * 256 + UInt16(idLowByte)
-            DLog.log(.monitor,"received icmp from \(sourceOctet1).\(sourceOctet2).\(sourceOctet3).\(sourceOctet4) id \(id)")
+            DLog.log(.icmp,"received icmp from \(sourceOctet1).\(sourceOctet2).\(sourceOctet3).\(sourceOctet4) id \(id)")
             let sourceIP: UInt32 = UInt32(sourceOctet1) * 256 * 256 * 256 + UInt32(sourceOctet2) * 256 * 256 + UInt32(sourceOctet3) * 256 + UInt32(sourceOctet4)
             let appDelegate = NSApplication.shared.delegate as! AppDelegate
             appDelegate.receivedPing4(ip: sourceIP, sequence: sequence, id: id)
@@ -167,7 +167,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let dateToFire = calendar.nextDate(after: Date(), matching: components, matchingPolicy: .nextTime) {
             emailReportTimer = Timer(fireAt: dateToFire, interval: 86400, target: self, selector: #selector(dailyBookkeeping), userInfo: nil, repeats: true)
             RunLoop.current.add(emailReportTimer,forMode: .common)
-            DLog.log(.dataIntegrity,"Daily report timer scheduled for \(dateToFire.description)")
+            DLog.log(.other,"Daily report timer scheduled for \(dateToFire.description)")
         }
     }
 
@@ -184,13 +184,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let response = alert.runModal()
         switch response {
         case NSApplication.ModalResponse.alertFirstButtonReturn:
-            DLog.log(.userInterface,"first button return")
+            DLog.log(.userInterface,"Terminate alert: first button return, cancelling")
             return NSApplication.TerminateReply.terminateCancel
         case NSApplication.ModalResponse.alertSecondButtonReturn:
-            DLog.log(.userInterface,"second button return")
+            DLog.log(.userInterface,"Terminate alert: second button return, terminating")
             return NSApplication.TerminateReply.terminateNow
         default:
-            DLog.log(.userInterface,"ERROR: unexpected response \(response)")
+            DLog.log(.userInterface,"ERROR: Terminate Alert unexpected response \(response)")
             return NSApplication.TerminateReply.terminateLater
         }
     }
@@ -202,7 +202,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     public func audioAlert(override: Bool = false) {
-        DLog.log(.userInterface, "audioAlert requested")
+        DLog.log(.monitor, "audioAlert requested")
         // override = true means we generate an audio alert regardless of preferences, used for testing
         if override {
             audioAlertPlay()
@@ -214,12 +214,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let currentDate = Date()
         if let lastAudioAlert = lastAudioAlert {
             if currentDate.timeIntervalSince(lastAudioAlert) < Double(audioAlertFrequency) {
-                DLog.log(.userInterface, "supressing audio alert due to short duration")
+                DLog.log(.monitor, "supressing audio alert due to short duration")
                 return
             }
         }
         lastAudioAlert = currentDate
-        DLog.log(.userInterface, "generating audio alert")
+        DLog.log(.monitor, "generating audio alert")
         audioAlertPlay()
     }
     public func setAudioSound(newSound: NSSound?, newTitle: String?) {
@@ -308,7 +308,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             map.emailReport(reportType: .daily, license: license)
         }
         let weekday = Calendar.current.component(.weekday, from: Date())
-        if weekday == 1 {    //I think 1 is Monday
+        if weekday == 2 {    //2 is a Monday
             for map in maps {
                 map.emailReport(reportType: .weekly, license: license)
             }
@@ -437,7 +437,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         loadEmailPassword()
         
         //attempting to load license data from core data
-        DLog.log(.userInterface, "Attempting to load license from core data")
+        DLog.log(.dataIntegrity, "Attempting to load license from core data")
         do {
             let request = NSFetchRequest<CoreLicense>(entityName: "CoreLicense")
             if let coreLicenseArray = try? managedContext.fetch(request), let coreLicense = coreLicenseArray.first {
@@ -534,11 +534,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             case .licensed:
                 break
             case .unknown:
-                DLog.log(.userInterface,"Warning: unable to determine license status")
+                DLog.log(.license,"Warning: unable to determine license status")
                 break
             }
         } else {
-            DLog.log(.userInterface,"Warning: unable to determine license status")
+            DLog.log(.license,"Warning: unable to determine license status")
         }
         DLog.log(.mail,"Checking for email alerts to send")
         for email in emails {

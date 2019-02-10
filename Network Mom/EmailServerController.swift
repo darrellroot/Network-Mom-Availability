@@ -65,7 +65,7 @@ class EmailServerController: NSWindowController, NSWindowDelegate {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrProtocol as String: Constants.networkmom]
         let status = SecItemDelete(query as CFDictionary)
-        DLog.log(.mail,"mail credentials keychain delete status \(status)")
+        DLog.log(.dataIntegrity,"mail credentials keychain delete status \(status)")
         DispatchQueue.main.async { [unowned self] in
             self.emailResultOutlet.stringValue = "Email credentials keychain deletion status \(status)"
         }
