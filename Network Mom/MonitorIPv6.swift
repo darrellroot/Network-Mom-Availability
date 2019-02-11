@@ -27,12 +27,12 @@ class MonitorIPv6: Monitor {
     var lastIdReceived: UInt16 = 0
     var lastSequenceReceived: UInt16 = 0
     private var pingSentDate: Date?
-    var status: MonitorStatus = .Blue {
+    var status: MonitorStatus = .Gray {
         didSet {
             viewDelegate?.needsDisplay = true
         }
     }
-    var lastAlertStatus: MonitorStatus = .Blue
+    var lastAlertStatus: MonitorStatus = .Gray
     var hostname: String?
     var comment: String? {
         didSet {
@@ -172,8 +172,8 @@ class MonitorIPv6: Monitor {
         }
     }
     func licenseExpired() {
-        self.status = .Blue
-        self.lastAlertStatus = .Blue
+        self.status = .Gray
+        self.lastAlertStatus = .Gray
     }
 
     func sendPing(pingSocket: CFSocket?) {
@@ -189,7 +189,7 @@ class MonitorIPv6: Monitor {
             if oldstatus != status {
                 DLog.log(.monitor,"target \(ipv6.debugDescription) status worsened to \(status)")
             }
-            if status != .Blue {
+            if status != .Gray {
                 // we don't count availability for devices which were never online
                 availability.update(newData: 0.0)
             }
@@ -216,14 +216,14 @@ class MonitorIPv6: Monitor {
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr_in6>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
         pingSentDate = Date()
-        DLog.log(.icmp,"sent ping to \(ipv6.debugDescription) socket error \(socketError)")
+        DLog.log(.icmp,"sent ping to \(ipv6.debugDescription) CFSocket error \(socketError.rawValue)")
     }
     public func latencyStatus() -> MonitorStatus? {
         if status == .Red {
             return MonitorStatus.Red
         }
-        if status == .Blue {
-            return MonitorStatus.Blue
+        if status == .Gray {
+            return MonitorStatus.Gray
         }
 
         if let currentLatency = latency.lastFiveMinute?.value, let yesterdayLatency = latency.lastDay?.value {
@@ -238,7 +238,7 @@ class MonitorIPv6: Monitor {
             }
             return MonitorStatus.Green
         }
-        return MonitorStatus.Blue
+        return MonitorStatus.Gray
     }
     func receivedPing(receivedip: IPv6Address, sequence: UInt16, id: UInt16) {
         DLog.log(.icmp,"\(self.ipv6.debugDescription) received ping")

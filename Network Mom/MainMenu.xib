@@ -95,6 +95,13 @@
                                     <action selector="exportMapMonitorListAsText:" target="-1" id="zBr-Zt-k0y"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="j4C-bA-VEj"/>
+                            <menuItem title="Edit Map" id="Bx4-hK-jAD">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="editMap:" target="-1" id="f5o-LZ-g2R"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="cjw-8g-S4k"/>
                             <menuItem title="Delete Map" id="Zla-YQ-zFB">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -691,7 +698,7 @@
                                     <action selector="mapAvailabilityReport:" target="-1" id="Be7-E3-tvb"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Email Notification Configuration Report" id="IHU-8a-am8">
+                            <menuItem title="Notification Configuration Report" id="IHU-8a-am8" userLabel="Notification Configuration Report">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="emailNotificationConfigurationReport:" target="Voe-Tx-rLC" id="1YU-SI-QCe"/>
@@ -703,7 +710,8 @@
                                     <action selector="showStatisticsMenu:" target="Voe-Tx-rLC" id="4Cu-ba-zeS"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Email Daily Reports" id="ciU-Pr-1GW">
+                            <menuItem isSeparatorItem="YES" id="HRQ-Zs-dy6"/>
+                            <menuItem title="Email Daily Reports To All Recipients" id="ciU-Pr-1GW">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="emailDailyReports:" target="Voe-Tx-rLC" id="1xd-OO-pA1"/>

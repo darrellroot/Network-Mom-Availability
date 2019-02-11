@@ -55,7 +55,8 @@ struct SMTPSocket {
 
     func write(_ text: String) throws {
         _ = try socket.write(from: text + CRLF)
-        DLog.log(.mail,text)
+        //DLog.log(.mail,text)
+        DLog.log(.mail,"sending email data in socket")
     }
 
     func write(_ data: Data) throws {

@@ -244,6 +244,9 @@
 		2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */; };
 		2F96034821AA33EE0037E026 /* DeleteEmailRecipientController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */; };
 		2F9C0D5A220E55F6002242AF /* SKProduct.PeriodUnit+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C0D59220E55F6002242AF /* SKProduct.PeriodUnit+extension.swift */; };
+		2F9C0D5C220FA981002242AF /* Collection+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C0D5B220FA981002242AF /* Collection+extensions.swift */; };
+		2F9C0D5F22111836002242AF /* EditMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C0D5D22111836002242AF /* EditMapController.swift */; };
+		2F9C0D6022111836002242AF /* EditMapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9C0D5E22111836002242AF /* EditMapController.xib */; };
 		2FA0296A21ED363900ABAB9A /* CoreMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */; };
 		2FA0296B21ED363900ABAB9A /* CoreMap+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */; };
 		2FA0296C21ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296421ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift */; };
@@ -659,6 +662,9 @@
 		2F96034521AA33EE0037E026 /* DeleteEmailRecipientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEmailRecipientController.swift; sourceTree = "<group>"; };
 		2F96034621AA33EE0037E026 /* DeleteEmailRecipientController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteEmailRecipientController.xib; sourceTree = "<group>"; };
 		2F9C0D59220E55F6002242AF /* SKProduct.PeriodUnit+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct.PeriodUnit+extension.swift"; sourceTree = "<group>"; };
+		2F9C0D5B220FA981002242AF /* Collection+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+extensions.swift"; sourceTree = "<group>"; };
+		2F9C0D5D22111836002242AF /* EditMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMapController.swift; sourceTree = "<group>"; };
+		2F9C0D5E22111836002242AF /* EditMapController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditMapController.xib; sourceTree = "<group>"; };
 		2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMap+CoreDataClass.swift"; path = "Network Mom/CoreMap+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMap+CoreDataProperties.swift"; path = "Network Mom/CoreMap+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2FA0296421ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreEmailAddress+CoreDataClass.swift"; path = "Network Mom/CoreEmailAddress+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -957,8 +963,6 @@
 		2F904D3C219F76170040530B /* Network Mom */ = {
 			isa = PBXGroup;
 			children = (
-				2FF8D758220BBCCC0095B451 /* Resources */,
-				2FE41D0E2209572C00AA7173 /* FileIcon.iconset */,
 				2F904FCF21A3707B0040530B /* AddEmailRecipientController.swift */,
 				2F904FD021A3707B0040530B /* AddEmailRecipientController.xib */,
 				2F904E32219F7A130040530B /* AddIPv4MonitorController.swift */,
@@ -976,6 +980,7 @@
 				2FA0298721FBAE7C00ABAB9A /* AvailabilityReport.swift */,
 				2F904E36219F7A140040530B /* ChartsFormatter.swift */,
 				2F96034321A9F28E0037E026 /* CodableDataStructure.swift */,
+				2F9C0D5B220FA981002242AF /* Collection+extensions.swift */,
 				2F904FBF21A206250040530B /* Constants.swift */,
 				2F904E51219F7A420040530B /* ControllerDelegate.swift */,
 				2FD136E621E54E7D00770B09 /* CoreDataModel.xcdatamodeld */,
@@ -986,11 +991,15 @@
 				2F904E40219F7A200040530B /* Design.txt */,
 				2FA02AF4220001CF00ABAB9A /* Double+extensions.swift */,
 				2F904E46219F7A320040530B /* DragMonitorView.swift */,
+				2F9C0D5D22111836002242AF /* EditMapController.swift */,
+				2F9C0D5E22111836002242AF /* EditMapController.xib */,
 				2F904FC521A36D190040530B /* EmailAddress.swift */,
+				2F904FC321A3687C0040530B /* EmailConfiguration.swift */,
 				2F5061CD21B5EA3700C19984 /* EmailNotificationConfigurationReportController.swift */,
 				2F5061CE21B5EA3700C19984 /* EmailNotificationConfigurationReportController.xib */,
 				2F904E34219F7A130040530B /* EmailServerController.swift */,
 				2F904E35219F7A140040530B /* EmailServerController.xib */,
+				2FE41D0E2209572C00AA7173 /* FileIcon.iconset */,
 				2FA0298321F947A200ABAB9A /* FlipScrollView.swift */,
 				2F904E5E219F7A450040530B /* FlipStackView.swift */,
 				2F904E58219F7A440040530B /* FlipView.swift */,
@@ -1001,10 +1010,9 @@
 				2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */,
 				2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */,
 				2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */,
+				2FE41D1C220A680700AA7173 /* License.swift */,
 				2FE41D18220A668D00AA7173 /* LicensePurchaseController.swift */,
 				2FE41D19220A668D00AA7173 /* LicensePurchaseController.xib */,
-				2FE41D1C220A680700AA7173 /* License.swift */,
-				2FF8D753220B9F980095B451 /* SwiftyLocalReceiptValidator */,
 				2F904E44219F7A320040530B /* MainMenu.xib */,
 				2F904FD721A4B17D0040530B /* ManageEmailNotificationsController.swift */,
 				2F904FD821A4B17D0040530B /* ManageEmailNotificationsController.xib */,
@@ -1024,6 +1032,7 @@
 				2FC0B3A021AFB51B00C44DB5 /* Notification.swift */,
 				2FC771D02203845A00CAE008 /* PreferencesController.swift */,
 				2FC771D12203845A00CAE008 /* PreferencesController.xib */,
+				2FF8D758220BBCCC0095B451 /* Resources */,
 				2F904E56219F7A430040530B /* RRDBuffer.swift */,
 				2F904E5A219F7A440040530B /* RRDBufferDouble.swift */,
 				2F904E5F219F7A450040530B /* RRDData.swift */,
@@ -1032,12 +1041,12 @@
 				2F904E2D219F79FF0040530B /* ShowLogController.xib */,
 				2F5061D321BC876900C19984 /* ShowStatisticsController.swift */,
 				2F5061D421BC876900C19984 /* ShowStatisticsController.xib */,
+				2F9C0D59220E55F6002242AF /* SKProduct.PeriodUnit+extension.swift */,
 				2F904E55219F7A430040530B /* socket-extensions.swift */,
 				2F5061C221B4CC3600C19984 /* StaticHtmlController.swift */,
 				2F5061C321B4CC3600C19984 /* StaticHtmlController.xib */,
-				2F9C0D59220E55F6002242AF /* SKProduct.PeriodUnit+extension.swift */,
 				2F904E60219F7A460040530B /* String+extensions.swift */,
-				2F904FC321A3687C0040530B /* EmailConfiguration.swift */,
+				2FF8D753220B9F980095B451 /* SwiftyLocalReceiptValidator */,
 				2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */,
 			);
 			path = "Network Mom";
@@ -1888,6 +1897,7 @@
 				2FE41D1B220A668D00AA7173 /* LicensePurchaseController.xib in Resources */,
 				2F904E4F219F7A330040530B /* MapWindowController.xib in Resources */,
 				2FC771CF2202789F00CAE008 /* sampleGraph.pdf in Resources */,
+				2F9C0D6022111836002242AF /* EditMapController.xib in Resources */,
 				2FC771DE2203B38D00CAE008 /* warning-sound.wav in Resources */,
 				2FA0297C21F7C88600ABAB9A /* AddIPv4MonitorsController.xib in Resources */,
 				2FE41D11220957BF00AA7173 /* Images.xcassets in Resources */,
@@ -1997,6 +2007,7 @@
 				2F904E68219F7A460040530B /* RRDGauge.swift in Sources */,
 				2FE41D1A220A668D00AA7173 /* LicensePurchaseController.swift in Sources */,
 				2FC696B6220D525F00177B66 /* CoreLicense+CoreDataProperties.swift in Sources */,
+				2F9C0D5C220FA981002242AF /* Collection+extensions.swift in Sources */,
 				2F904E3C219F7A140040530B /* EmailServerController.swift in Sources */,
 				2FA0297B21F7C88600ABAB9A /* AddIPv4MonitorsController.swift in Sources */,
 				2F5061D221BC744100C19984 /* Array+extensions.swift in Sources */,
@@ -2016,6 +2027,7 @@
 				2F5061C421B4CC3600C19984 /* StaticHtmlController.swift in Sources */,
 				2F904E6E219F7A460040530B /* MonitorIPv4.swift in Sources */,
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
+				2F9C0D5F22111836002242AF /* EditMapController.swift in Sources */,
 				2FF8D752220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift in Sources */,
 				2FA02AF5220001CF00ABAB9A /* Double+extensions.swift in Sources */,
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,

@@ -23,14 +23,14 @@
             <rect key="contentRect" x="196" y="240" width="480" height="540"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="621"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="689"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="22" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APV-20-D7K">
-                        <rect key="frame" x="20" y="20" width="440" height="581"/>
+                        <rect key="frame" x="20" y="20" width="440" height="649"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TB9-Rc-xh1">
-                                <rect key="frame" x="79" y="556" width="283" height="25"/>
+                                <rect key="frame" x="79" y="624" width="283" height="25"/>
                                 <buttonCell key="cell" type="square" title="Restore Purchases and update license status" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mrW-pM-D80">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <button horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="l0v-b3-hOO">
-                                <rect key="frame" x="111" y="509" width="218" height="25"/>
+                                <rect key="frame" x="111" y="577" width="218" height="25"/>
                                 <buttonCell key="cell" type="square" title="Subscribe to monthly subscription" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wak-Ep-hnb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hEt-6b-EEt">
-                                <rect key="frame" x="116" y="462" width="209" height="25"/>
+                                <rect key="frame" x="116" y="530" width="209" height="25"/>
                                 <buttonCell key="cell" type="square" title="Subscribe to annual subscription" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W4J-gA-XhA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -60,7 +60,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5GL-XH-Pts">
-                                <rect key="frame" x="147" y="423" width="147" height="17"/>
+                                <rect key="frame" x="147" y="491" width="147" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Current License Status:" id="zTl-ee-s8E">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -68,7 +68,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mTo-S6-JM3">
-                                <rect key="frame" x="140" y="384" width="160" height="17"/>
+                                <rect key="frame" x="140" y="452" width="160" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="License Period Remaining" id="IlP-Tf-Asf">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -76,7 +76,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ymZ-6b-9ln">
-                                <rect key="frame" x="151" y="345" width="139" height="17"/>
+                                <rect key="frame" x="151" y="413" width="139" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Trial Period Remaining" id="wOl-at-tW0">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -84,13 +84,16 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jyM-bD-TXQ">
-                                <rect key="frame" x="-2" y="0.0" width="444" height="323"/>
+                                <rect key="frame" x="-2" y="0.0" width="444" height="391"/>
                                 <textFieldCell key="cell" selectable="YES" id="oAc-Ux-o8F">
                                     <font key="font" metaFont="system"/>
                                     <mutableString key="title">Payment will be charged to iTunes Account at confirmation of purchase 
 Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period 
 Account will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal 
-Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user’s Account Settings in the App Store after purchase 
+Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user’s Account Settings in the App Store after purchase.
+
+Any remaining free trial period on this Macintosh will be saved until the end of a purchased license period, but other Macintoshes under the same account may not receive a free trial (see help for details).
+
 Privacy policy: https://networkmom.net/availability/privacy.html
 
 Apple Licensed Application End User License Agreement:

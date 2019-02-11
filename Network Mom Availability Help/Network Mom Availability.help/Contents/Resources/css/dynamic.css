@@ -52,6 +52,24 @@ li.Heading2 {
     margin-top: 0;
     margin-bottom: 0.5em;
 }
+body.Custom3, li.Custom3, span.Custom3 {
+    font-family: "Menlo-Regular","Menlo",sans-serif;
+    font-size: 11.000000px;
+    color: RGBA(0,0,0,1.000000);
+}
+span.Custom3_link  {
+    font-family: "Menlo-Regular","Menlo",sans-serif;
+    font-size: 11.000000px;
+    color: #0000ff;
+}
+p.Custom3 {
+    margin-top: 0;
+    margin-bottom: 0.0px;
+}
+li.Custom3 {
+    margin-top: 0;
+    margin-bottom: 0.0em;
+}
 body.Custom2, li.Custom2, span.Custom2 {
     font-family: "Times-Bold","Times",serif;
     font-size: 16.000000px;

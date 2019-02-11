@@ -23,12 +23,12 @@ class MonitorIPv4: Monitor {
     var lastIdReceived: UInt16 = 0
     var lastSequenceReceived: UInt16 = 0
     private var pingSentDate: Date?
-    var status: MonitorStatus = .Blue {
+    var status: MonitorStatus = .Gray {
         didSet {
             viewDelegate?.needsDisplay = true
         }
     }
-    var lastAlertStatus: MonitorStatus = .Blue
+    var lastAlertStatus: MonitorStatus = .Gray
     var hostname: String?
     var comment: String? {
         didSet {
@@ -72,8 +72,8 @@ class MonitorIPv4: Monitor {
         }
     }
     func licenseExpired() {
-        self.status = .Blue
-        self.lastAlertStatus = .Blue
+        self.status = .Gray
+        self.lastAlertStatus = .Gray
     }
     func writeCoreData() {
         guard let coreData = coreMonitorIPv4 else {
@@ -186,7 +186,7 @@ class MonitorIPv4: Monitor {
             if oldstatus != status {
                 DLog.log(.monitor,"target \(ipv4string) status worsened to \(status)")
             }
-            if status != .Blue {
+            if status != .Gray {
                 // we don't count availability on devices which were never online
                 availability.update(newData: 0.0)
                 if let mapWindowController = mapDelegate {
@@ -217,7 +217,7 @@ class MonitorIPv4: Monitor {
         let mySockCFData = NSData(bytes: &sockaddrin,length: MemoryLayout<sockaddr>.size) as CFData
         let socketError = CFSocketSendData(pingSocket, mySockCFData as CFData, myPacketCFData, 1)
         pingSentDate = Date()
-        DLog.log(.icmp,"sent ping to \(ipv4string) socketError \(socketError)")
+        DLog.log(.icmp,"sent ping to \(ipv4string) CFSocketError \(socketError.rawValue)")
     }
     
     public func latencyStatus() -> MonitorStatus? {
@@ -225,8 +225,8 @@ class MonitorIPv4: Monitor {
         if status == .Red {
             return MonitorStatus.Red
         }
-        if status == .Blue {
-            return MonitorStatus.Blue
+        if status == .Gray {
+            return MonitorStatus.Gray
         }
         var yesterdayLatency: Double? = nil
         if let tempLatency = latency.lastDay?.value {
@@ -246,7 +246,7 @@ class MonitorIPv4: Monitor {
             }
             return MonitorStatus.Green
         }
-        return MonitorStatus.Blue
+        return MonitorStatus.Gray
     }
     func receivedPing(ip: UInt32, sequence: UInt16, id: UInt16) {
         DLog.log(.icmp,"\(self.ipv4string) received ping")

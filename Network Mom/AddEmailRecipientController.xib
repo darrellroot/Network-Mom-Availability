@@ -100,13 +100,13 @@
                             <gridCell row="957-qY-SyB" column="wTx-Kc-sSP" id="CzS-8v-zRb">
                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GH4-IX-Zgz">
                                     <rect key="frame" x="243" y="53" width="200" height="25"/>
-                                    <popUpButtonCell key="cell" type="push" title="Pager (small alerts only)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="AWa-dT-4Ap" id="ANn-6q-C9J">
+                                    <popUpButtonCell key="cell" type="push" title="Email (reports allowed)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="kba-Rm-ATw" id="ANn-6q-C9J">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="menu"/>
                                         <menu key="menu" id="IgG-US-JX3">
                                             <items>
-                                                <menuItem title="Pager (small alerts only)" state="on" id="AWa-dT-4Ap"/>
-                                                <menuItem title="Email (reports allowed)" id="kba-Rm-ATw"/>
+                                                <menuItem title="Email (reports allowed)" state="on" tag="1" id="kba-Rm-ATw"/>
+                                                <menuItem title="Pager (small alerts only)" tag="2" id="AWa-dT-4Ap"/>
                                             </items>
                                         </menu>
                                     </popUpButtonCell>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="EditMapController" customModule="Network_Mom_Availability" customModuleProvider="target">
+            <connections>
+                <outlet property="mapFieldOutlet" destination="2Dh-2h-xrg" id="SQz-WR-84z"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Edit Map" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" wantsLayer="YES" misplaced="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="317" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pgR-45-zn9">
+                        <rect key="frame" x="18" y="20" width="73" height="22"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Map Name:" id="BMF-OD-ljw">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Dh-2h-xrg">
+                        <rect key="frame" x="97" y="20" width="200" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="ieN-BX-HfX"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ZeX-Ub-F99">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="mapFieldAction:" target="-2" id="JpH-Sf-SWz"/>
+                        </connections>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pgR-45-zn9" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" symbolic="YES" id="5Ui-G0-2wM"/>
+                    <constraint firstItem="pgR-45-zn9" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="9RF-2d-PnT"/>
+                    <constraint firstAttribute="bottom" secondItem="pgR-45-zn9" secondAttribute="bottom" constant="20" symbolic="YES" id="9oY-aL-J2O"/>
+                    <constraint firstItem="2Dh-2h-xrg" firstAttribute="leading" secondItem="pgR-45-zn9" secondAttribute="trailing" constant="8" symbolic="YES" id="G9d-b8-kVj"/>
+                    <constraint firstAttribute="bottom" secondItem="2Dh-2h-xrg" secondAttribute="bottom" constant="20" symbolic="YES" id="gSp-4B-5Xu"/>
+                    <constraint firstAttribute="trailing" secondItem="2Dh-2h-xrg" secondAttribute="trailing" constant="20" symbolic="YES" id="ld1-wa-cyP"/>
+                    <constraint firstItem="2Dh-2h-xrg" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="oW2-Zk-KeG"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+        </window>
+    </objects>
+</document>

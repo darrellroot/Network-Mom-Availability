@@ -15,6 +15,12 @@ struct Constants {
     static let audioAlertFrequency = "audioAlertFrequency"
     static let audioName = "audioName"
     // End UserDefault key constants
+    // Core data entities
+    static let CoreEmailAddress = "CoreEmailAddress"
+    static let CoreLicense = "CoreLicense"
+    static let CoreMap = "CoreMap"
+    static let CoreMonitorIPv4 = "CoreMonitorIPv4"
+    static let CoreMonitorIPv6 = "CoreMonitorIPv6"
     
     //
     static let systemBeep = "System Beep"

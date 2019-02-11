@@ -186,12 +186,12 @@ table, th, td {
         html += "</table>\n"
         // End top 5 availability report
         
-        // Start Blue report
+        // Start Gray report
         html += "<h2>Monitors which have not resonded since last Network Mom reboot</h2>\n"
         html += "<h3>These are not included in availability data calculations</h3>\n"
         html += "<table><tr><th>Monitor</th><th>Status</th></tr>\n"
         for monitor in map.monitors {
-            if monitor.status == .Blue {
+            if monitor.status == .Gray {
                 html += "<tr><td>\(monitor.label)</td><td>Never online</td></tr>\n"
             }
         }
@@ -252,18 +252,37 @@ table, th, td {
         guard windowAvailability.count > 0 else {
             return lineChart    // returning empty linechart if no data
         }
+        var minY = 1.0
         var chartDataEntry: [ChartDataEntry] = []
         for dataPoint in windowAvailability.sorted(by: { $0.key < $1.key }) {
             chartDataEntry.append(ChartDataEntry(x: Double(dataPoint.key), y: dataPoint.value))
+            if dataPoint.value < minY {
+                minY = dataPoint.value
+            }
         }
         let line1 = LineChartDataSet(values: chartDataEntry, label: "Availability")
         line1.valueFormatter = chartsFormatterBlank
         line1.colors = [NSColor.systemBlue]
         let lineChartData = LineChartData()
         lineChartData.addDataSet(line1)
-        lineChart.rightAxis.axisMinimum = 0.0
+        let yAxisMinimum: Double
+        switch minY {
+        case ..<0.9:
+            yAxisMinimum = 0.0
+        case (0.9..<0.99):
+            yAxisMinimum = 0.9
+        case (0.99..<0.999):
+            yAxisMinimum = 0.99
+        case (0.999..<0.9999):
+            yAxisMinimum = 0.999
+        case 0.9999...:
+            yAxisMinimum = 0.9999
+        default:
+            yAxisMinimum = 0.0
+        }
+        lineChart.rightAxis.axisMinimum = yAxisMinimum
         lineChart.rightAxis.axisMaximum = 1.0
-        lineChart.leftAxis.axisMinimum = 0.0
+        lineChart.leftAxis.axisMinimum = yAxisMinimum
         lineChart.leftAxis.axisMaximum = 1.0
         lineChart.xAxis.valueFormatter = chartsFormatterDateShort
         lineChart.leftAxis.valueFormatter = chartsFormatterPercent

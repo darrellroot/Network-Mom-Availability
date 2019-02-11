@@ -87,11 +87,12 @@ If you agree, send the code above back to \(sender.email).
         }
         emailResultOutlet.stringValue = "Code matches"
         var pagerOnly: Bool
-        switch emailTypeOutlet.indexOfSelectedItem {
-        case 0:
-            pagerOnly = true
-        case 1:
+        //switch emailTypeOutlet.indexOfSelectedItem {
+        switch emailTypeOutlet.selectedTag() {
+        case 1: // email
             pagerOnly = false
+        case 2: // pager
+            pagerOnly = true
         default:
             // should not get here
             pagerOnly = false

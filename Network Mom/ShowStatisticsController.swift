@@ -17,6 +17,8 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
     var items: [String] = []
     var numbers: [Int] = []
     
+    var managedContext: NSManagedObjectContext?
+    
     @IBOutlet weak var tableViewOutlet: NSTableView!
     
     override var windowNibName: NSNib.Name? {
@@ -31,8 +33,29 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
     override func windowDidLoad() {
         super.windowDidLoad()
 
+        
+        if let lastSaveTimeElapsed = appDelegate.lastSaveTimeElapsed {
+            items.append("Last Data Save Time Required (msec)")
+            numbers.append(Int(lastSaveTimeElapsed * 1000.0))
+        } else {
+            items.append("Data not saved since last restart")
+            numbers.append(-1)
+        }
+        
         items.append("Maps")
         numbers.append(appDelegate.maps.count)
+
+        if let managedContext = managedContext {
+            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreMap)
+            let coreLicenses = try? managedContext.count(for: fetchRequest)
+            if let coreLicenses = coreLicenses {
+                items.append("Core Data Maps")
+                numbers.append(coreLicenses)
+            } else {
+                items.append("Core Data Maps Fetch Error")
+                numbers.append(-1)
+            }
+        }
         
         items.append("Monitors")
         var total = 0
@@ -41,6 +64,30 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
         }
         numbers.append(total)
         
+        if let managedContext = managedContext {
+            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreMonitorIPv4)
+            let coreLicenses = try? managedContext.count(for: fetchRequest)
+            if let coreLicenses = coreLicenses {
+                items.append("Core Data IPv4 Monitors")
+                numbers.append(coreLicenses)
+            } else {
+                items.append("Core Data IPv4 Monitors Fetch Error")
+                numbers.append(-1)
+            }
+        }
+        
+        if let managedContext = managedContext {
+            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreMonitorIPv6)
+            let coreLicenses = try? managedContext.count(for: fetchRequest)
+            if let coreLicenses = coreLicenses {
+                items.append("Core Data IPv6 Monitors")
+                numbers.append(coreLicenses)
+            } else {
+                items.append("Core Data IPv6 Monitors Fetch Error")
+                numbers.append(-1)
+            }
+        }
+
         items.append("Monitor Views")
         total = 0
         for map in appDelegate.maps {
@@ -51,8 +98,29 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
         items.append("Email Destinations")
         numbers.append(appDelegate.emails.count)
         
-        //items.append("Core Data Email Destinations")
-        //numbers.append(appDelegate.coreEmails.count)
+        if let managedContext = managedContext {
+            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreEmailAddress)
+            let coreLicenses = try? managedContext.count(for: fetchRequest)
+            if let coreLicenses = coreLicenses {
+                items.append("Core Data Email Addresses")
+                numbers.append(coreLicenses)
+            } else {
+                items.append("Core Data Email Addresses Fetch Error")
+                numbers.append(-1)
+            }
+        }
+
+        if let managedContext = managedContext {
+            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreLicense)
+            let coreLicenses = try? managedContext.count(for: fetchRequest)
+            if let coreLicenses = coreLicenses {
+                items.append("Core Data Licenses")
+                numbers.append(coreLicenses)
+            } else {
+                items.append("Core Data Licenses Fetch Error")
+                numbers.append(-1)
+            }
+        }
         
         items.append("Add Email Recipient Windows")
         numbers.append(appDelegate.addEmailRecipientControllers.count)

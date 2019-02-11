@@ -27,6 +27,7 @@ class MapWindowController: NSWindowController {
     var ipv6monitors: [MonitorIPv6] = []  // just used during encoding
     var emailAlerts: [String] = [] //each string is an email address inside the appDelegate.emails
     var emailReports: [String] = [] //each string is an email address inside the appDelegate.emails
+    var editMapController: EditMapController?
     
     @IBOutlet weak var mainView: NSView!
 
@@ -119,6 +120,15 @@ class MapWindowController: NSWindowController {
         alert.runModal()
     }
 
+    @IBAction func editMap(_ sender: NSMenuItem) {
+        if editMapController != nil {
+            editMapController?.showWindow(self)
+        } else {
+            editMapController = EditMapController()
+            editMapController?.mapDelegate = self
+            editMapController?.showWindow(self)
+        }
+    }
     @IBAction func exportMapMonitorListAsText(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"exportMapMonitorListAsText selected")
         let savePanel = NSSavePanel()
@@ -340,10 +350,10 @@ class MapWindowController: NSWindowController {
         for i in 0..<monitors.count {
             if i % numberSweeps == pingSweepIteration {
                 //DLog.log(.other,"Executing i \(i) numberSweeps \(numberSweeps) pingSweepIteration \(pingSweepIteration)")
-                if let target = monitors[i] as? MonitorIPv4 {
+                if let target = monitors[safe: i] as? MonitorIPv4 {
                     target.sendPing(pingSocket: appDelegate.ping4Socket, id: mapIndex)
                 }
-                if let target = monitors[i] as? MonitorIPv6 {
+                if let target = monitors[safe: i] as? MonitorIPv6 {
                     target.sendPing(pingSocket: appDelegate.ping6Socket, id: mapIndex)
                 }
             }

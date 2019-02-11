@@ -42,6 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var configureEmailServerOutlet: NSMenuItem!
     
     var license: License?
+    var lastSaveTimeElapsed: Double?
     
     public var ping4Socket: CFSocket?
     public var ping6Socket: CFSocket?
@@ -439,7 +440,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //attempting to load license data from core data
         DLog.log(.dataIntegrity, "Attempting to load license from core data")
         do {
-            let request = NSFetchRequest<CoreLicense>(entityName: "CoreLicense")
+            let request = NSFetchRequest<CoreLicense>(entityName: Constants.CoreLicense)
             if let coreLicenseArray = try? managedContext.fetch(request), let coreLicense = coreLicenseArray.first {
                 self.license = License(coreLicense: coreLicense)
                 if self.license != nil {
@@ -457,7 +458,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         //attempting to load emails from core data
         DLog.log(.dataIntegrity,"Attempting to read email list from Core Data")
-        let request = NSFetchRequest<CoreEmailAddress>(entityName: "CoreEmailAddress")
+        let request = NSFetchRequest<CoreEmailAddress>(entityName: Constants.CoreEmailAddress)
         let sortDescriptor = NSSortDescriptor(key: "email",ascending: true)
         request.sortDescriptors = [sortDescriptor]
         do {
@@ -474,7 +475,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             DLog.log(.dataIntegrity,"Failed to read email addresses from Core data error: \(error)")
         }
 
-        let mapRequest = NSFetchRequest<CoreMap>(entityName: "CoreMap")
+        let mapRequest = NSFetchRequest<CoreMap>(entityName: Constants.CoreMap)
         do {
             let coreMaps = try managedContext.fetch(mapRequest)
             DLog.log(.dataIntegrity,"read \(coreMaps.count) maps from core data")
@@ -500,6 +501,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         let success = coreDataStack.saveContext()
         let timeElapsed = Date().timeIntervalSince(startSaveTime)
+        self.lastSaveTimeElapsed = timeElapsed
         if success {
             DLog.log(.dataIntegrity,"Core Data Saved in \(timeElapsed) seconds")
         } else {
@@ -519,6 +521,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DLog.log(.userInterface,"show statistics menu")
         let showStatisticsController = ShowStatisticsController()
         showStatisticsControllers.append(showStatisticsController)
+        showStatisticsController.managedContext = managedContext
         showStatisticsController.showWindow(self)
     }
     

@@ -101,7 +101,7 @@ extension sockaddr_in6 {
         self.sin6_flowinfo = 0
         let retval = inet_pton(AF_INET6, ipv6.debugDescription, &(self.sin6_addr))
         //DLog.log(.dataIntegrity,"inet_pton \(ipv6.debugDescription)")
-        self.printout()
+        //self.printout()
         if retval != 1 {
             DLog.log(.dataIntegrity,"inet_pton failed")
             return nil
@@ -113,25 +113,25 @@ extension sockaddr_in6 {
         DLog.log(.monitor,"family \(self.sin6_family)")
         DLog.log(.monitor,"port \(self.sin6_port)")
         DLog.log(.monitor,"flowinfo \(self.sin6_flowinfo)")
-        //print("sin6 addr \(self.sin6_addr)")
+        print("sin6 addr \(self.sin6_addr)")
         var tmpaddr = self.sin6_addr
         var bytecount = 0
         withUnsafeBytes(of: &tmpaddr) { bytes in
             for byte in bytes {
                 if byte == 0 {
-                    //print("00",terminator: "")
+                    print("00",terminator: "")
                 } else if byte < 16 {
-                    //print(String(format: "0%1x",byte),terminator: "")
+                    print(String(format: "0%1x",byte),terminator: "")
                 } else {
-                    //print(String(format: "%2x",byte),terminator: "")
+                    print(String(format: "%2x",byte),terminator: "")
                 }
                 bytecount += 1
                 if bytecount % 2 == 0 && bytecount < 16 {
-                    //print(":",terminator: "")
+                    print(":",terminator: "")
                 }
             }
         }
-        //print("")
+        print("")
     }
     var string: String {
         var tmpaddr = self.sin6_addr

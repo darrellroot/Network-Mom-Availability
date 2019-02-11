@@ -25,7 +25,7 @@ enum MonitorStatus: String, Codable {
     case Yellow = "Failed last test"
     case Orange = "Failed last two tests"
     case Red = "Offline"
-    case Blue = "Never Online"
+    case Gray = "Never Online"
     
     var improve: MonitorStatus {
         switch self {
@@ -33,7 +33,7 @@ enum MonitorStatus: String, Codable {
         case .Yellow: return .Green
         case .Orange: return .Yellow
         case .Red: return .Orange
-        case .Blue: return .Orange
+        case .Gray: return .Orange
         }
     }
     var worsen: MonitorStatus {
@@ -42,7 +42,7 @@ enum MonitorStatus: String, Codable {
         case .Yellow: return .Orange
         case .Orange: return .Red
         case .Red: return .Red
-        case .Blue: return .Blue
+        case .Gray: return .Gray
         }
     }
     var nsColor: NSColor {
@@ -51,7 +51,7 @@ enum MonitorStatus: String, Codable {
         case .Yellow: return NSColor.systemYellow
         case .Orange: return NSColor.systemOrange
         case .Red: return NSColor.systemRed
-        case .Blue: return NSColor.systemBlue
+        case .Gray: return NSColor.systemGray
         }
     }
     var cgColor: CGColor {
@@ -60,7 +60,7 @@ enum MonitorStatus: String, Codable {
         case .Yellow: return NSColor.systemYellow.cgColor
         case .Orange: return NSColor.systemOrange.cgColor
         case .Red: return NSColor.systemRed.cgColor
-        case .Blue: return NSColor.systemBlue.cgColor
+        case .Gray: return NSColor.systemGray.cgColor
         }
     }
 }
