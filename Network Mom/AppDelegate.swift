@@ -302,17 +302,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         emailReports()
     }
     @IBAction func emailDailyReports(_ sender: NSMenuItem) {
-        emailReports()
+        emailReports(reportType: .daily)
+    }
+    @IBAction func emailWeeklyReports(_ sender: NSMenuItem) {
+        emailReports(reportType: .weekly)
+    }
+    @IBAction func emailMonthlyReports(_ sender: NSMenuItem) {
+        emailReports(reportType: .monthly)
+    }
+    
+    func emailReports(reportType: ReportType) {
+        for map in maps {
+            map.emailReport(reportType: reportType, license: license)
+        }
     }
     @objc func emailReports() {
-        for map in maps {
-            map.emailReport(reportType: .daily, license: license)
-        }
-        let weekday = Calendar.current.component(.weekday, from: Date())
+        let now = Date()
+        emailReports(reportType: .daily)
+        let weekday = Calendar.current.component(.weekday, from: now)
         if weekday == 2 {    //2 is a Monday
-            for map in maps {
-                map.emailReport(reportType: .weekly, license: license)
-            }
+            emailReports(reportType: .weekly)
+        }
+        let monthday = Calendar.current.component(.day, from: now)
+        if monthday == 2 { // 2nd of the month
+            emailReports(reportType: .monthly)
         }
     }
     @IBAction func emailNotificationConfigurationReport(_ sender: NSMenuItem) {

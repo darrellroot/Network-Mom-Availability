@@ -13,6 +13,7 @@ import Charts
 enum ReportType: String {
     case daily
     case weekly
+    case monthly
 }
 
 class AvailabilityReport {
@@ -51,6 +52,9 @@ class AvailabilityReport {
         case .weekly:
             timeInterval = 86400
             totalDuration = timeInterval * 7
+        case .monthly:
+            timeInterval = 86400
+            totalDuration = timeInterval * 31
         }
         currentTime = Int(Date().timeIntervalSinceReferenceDate)
         endTime = (currentTime / timeInterval) * timeInterval // rounding down to even time interval
@@ -66,6 +70,8 @@ class AvailabilityReport {
         case .daily:
             data = map?.availability.getData(dataType: .OneHour)
         case .weekly:
+            data = map?.availability.getData(dataType: .OneDay)
+        case .monthly:
             data = map?.availability.getData(dataType: .OneDay)
         }
         var availabilityNumerator = 0.0
@@ -143,6 +149,8 @@ table, th, td {
         case .daily:
             html += "<table><tr><th>Start Of Hour</th><th>Availability</th></tr>"
         case .weekly:
+            html += "<table><tr><th>Start Of Day</th><th>Availability</th></tr>"
+        case .monthly:
             html += "<table><tr><th>Start Of Day</th><th>Availability</th></tr>"
         }
         for (timestamp,availabilityPoint) in windowAvailability.sorted(by: { $0.key < $1.key }) {

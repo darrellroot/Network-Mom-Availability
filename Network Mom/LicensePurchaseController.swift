@@ -83,7 +83,7 @@ class LicensePurchaseController: NSWindowController {
         button.title = title
         button.sizeToFit()
     }
-    func updateDisplay() {
+    public func updateDisplay() {
         guard let license = license else {
             DLog.log(.license,"Unable to access license information in license purchase screen")
             return

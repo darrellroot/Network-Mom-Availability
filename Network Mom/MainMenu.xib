@@ -698,16 +698,16 @@
                                     <action selector="mapAvailabilityReport:" target="-1" id="Be7-E3-tvb"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Monthly Map Availability Report" tag="3" id="quv-my-9tS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="mapAvailabilityReport:" target="-1" id="ufP-rQ-tXU"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Notification Configuration Report" id="IHU-8a-am8" userLabel="Notification Configuration Report">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="emailNotificationConfigurationReport:" target="Voe-Tx-rLC" id="1YU-SI-QCe"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Show Statistics" id="F1M-Gc-o9I" userLabel="Show Statistics">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="showStatisticsMenu:" target="Voe-Tx-rLC" id="4Cu-ba-zeS"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="HRQ-Zs-dy6"/>
@@ -715,6 +715,18 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="emailDailyReports:" target="Voe-Tx-rLC" id="1xd-OO-pA1"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Email Weekly Reports To All Recipients" id="vml-Do-0Kc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="emailWeeklyReports:" target="Voe-Tx-rLC" id="zCh-Yx-dzC"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Email Monthly Reports To All Recipients" id="0Q3-46-ZFB">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="emailMonthlyReports:" target="Voe-Tx-rLC" id="i9S-yW-w9r"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -733,6 +745,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showLogMenu:" target="Voe-Tx-rLC" id="Vxc-Gi-3i2"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show Statistics" id="F1M-Gc-o9I" userLabel="Show Statistics">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showStatisticsMenu:" target="Voe-Tx-rLC" id="4Cu-ba-zeS"/>
                                 </connections>
                             </menuItem>
                         </items>

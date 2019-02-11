@@ -458,10 +458,17 @@ class MapWindowController: NSWindowController {
         let mapAvailabilityReportController = MapAvailabilityReportController()
         mapAvailabilityReportControllers.append(mapAvailabilityReportController)
         mapAvailabilityReportController.delegate = self
-        if sender.tag == 2 {
+        switch sender.tag {
+        case 1:
+            mapAvailabilityReportController.reportType = .daily
+        case 2:
             mapAvailabilityReportController.reportType = .weekly
+        case 3:
+            mapAvailabilityReportController.reportType = .monthly
+        default:
+            DLog.log(.userInterface,"Error in map availability report menu item: no tag detected")
+            mapAvailabilityReportController.reportType = .daily
         }
-
         mapAvailabilityReportController.showWindow(self)
     }
 

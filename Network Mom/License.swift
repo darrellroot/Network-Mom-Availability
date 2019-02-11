@@ -34,6 +34,7 @@ class License: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver
 //    var receipt: Receipt?
 //    var receiptStatus: ReceiptStatus?
     let dateFormatter = DateFormatter()
+    let appDelegate = NSApplication.shared.delegate as! AppDelegate
     
     var coreLicense: CoreLicense
     var newInstall: Bool //set to true if first install until we get license and install history, then set to false
@@ -117,6 +118,12 @@ License Status \(getLicenseStatus.rawValue)
     var getLicenseStatus: LicenseStatus {
         let date = Date()
         if date < self.lastLicenseDate {
+            if priorLicenseStatus != .licensed {
+                if let licensePurchaseController = appDelegate.licensePurchaseController {
+                    priorLicenseStatus = .licensed
+                    licensePurchaseController.updateDisplay()
+                }
+            }
             priorLicenseStatus = .licensed
             return .licensed
         } else if (trialSeconds) > 0 {
