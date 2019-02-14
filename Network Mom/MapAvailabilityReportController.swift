@@ -10,7 +10,7 @@ import Cocoa
 import DLog
 import WebKit
 
-class MapAvailabilityReportController: NSWindowController {
+class MapAvailabilityReportController: NSWindowController,NSWindowDelegate {
 
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     weak var delegate: MapWindowController?

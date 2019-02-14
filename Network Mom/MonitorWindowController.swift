@@ -10,7 +10,7 @@ import Cocoa
 import Charts
 import DLog
 
-class MonitorWindowController: NSWindowController {
+class MonitorWindowController: NSWindowController, NSWindowDelegate {
     
     @IBOutlet weak var customView: NSView!
     @IBOutlet weak var lineChart: LineChartView!
@@ -21,6 +21,7 @@ class MonitorWindowController: NSWindowController {
     @IBOutlet weak var stackView: FlipStackView!
     @IBOutlet weak var selectButtonDataOutlet: NSPopUpButton!
     
+    
     let chartsFormatterBlank = ChartsFormatterBlank()
     let chartsFormatterPercent = ChartsFormatterPercent()
     let chartsFormatterDateShort = ChartsFormatterDateShort()
@@ -28,7 +29,8 @@ class MonitorWindowController: NSWindowController {
     let chartsFormatterMsec = ChartsFormatterMsec()
     
     weak var monitor: Monitor?
-    
+    weak var dragMonitorView: DragMonitorView?
+
     let dateFormatter = DateFormatter()
     
     convenience init() {
@@ -50,6 +52,9 @@ class MonitorWindowController: NSWindowController {
         if let monitor = monitor, let window = window {
             window.title = monitor.label.replacingOccurrences(of: "\n", with: "   ")
         }
+    }
+    func windowWillClose(_ notification: Notification) {
+        dragMonitorView?.monitorWindowController = nil
     }
     override func windowDidLoad() {
         super.windowDidLoad()

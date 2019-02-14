@@ -9,7 +9,7 @@
 import Cocoa
 import DLog
 
-class PreferencesController: NSWindowController {
+class PreferencesController: NSWindowController, NSWindowDelegate {
 
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
     
@@ -25,6 +25,9 @@ class PreferencesController: NSWindowController {
         return NSNib.Name("PreferencesController")
     }
 
+    func windowWillClose(_ notification: Notification) {
+        appDelegate.preferencesController = nil
+    }
     override func windowDidLoad() {
         super.windowDidLoad()
         

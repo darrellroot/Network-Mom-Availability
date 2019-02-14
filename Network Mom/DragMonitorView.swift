@@ -13,7 +13,7 @@ class DragMonitorView: NSView {
 
     weak var monitor: Monitor?
     weak var controllerDelegate: ControllerDelegate?
-    private var monitorWindowController: MonitorWindowController?
+    var monitorWindowController: MonitorWindowController?
     var boxes: [NSBox] = []
     
     var selected: Bool = false {
@@ -167,6 +167,7 @@ extension DragMonitorView {
             DLog.log(.userInterface,"doubleclick")
             if let monitor = monitor {
                 monitorWindowController = MonitorWindowController()
+                monitorWindowController?.dragMonitorView = self
                 monitorWindowController?.monitor = monitor
                 monitorWindowController?.showWindow(self)
             }
