@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page40" pageName="Show logs" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">The </content>
+            <content style="Normal bold">Help -&gt; Show Logs</content>
+            <content style="Normal"> menu item is another diagnostic designed to help troubleshoot problems with Network Mom Availability itself.  Logs are in one of eight categories:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">dns (related to IP address and hostname queries)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">dataIntegrity (related to saving and restoring data)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">icmp (verbose logging of sending and receiving pings)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">dns (related to IP address and hostname queries)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Monitor (availability status changes in monitor targets)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Mail (related to sending email)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">userInterface (related to opening and closing windows)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">other</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability saves the most recent 1000 log messages of each type since the last application restart.</content>
+        </line>
+        <line Align="Left">
+            <image height="577.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="477.0" topMargin="0.0" imageId="show-log-2.png"></image>
+        </line>
+    </contents>
+</page>

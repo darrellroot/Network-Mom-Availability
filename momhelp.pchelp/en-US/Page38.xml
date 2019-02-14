@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page38" pageName="Diagnostics" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability includes some diagnostics for troubleshooting operation of the monitoring system itself.</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Reports -&gt; Show statistics</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Help -&gt; Show logs</content>
+                </line>
+            </listItem>
+        </list>
+    </contents>
+</page>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page27" pageName="Notifications" title="Notifications">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability sends 2 types of notifications by email:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Alert: This is a short but frequent email sent when devices go down or recover.  These are designed to be short enough to be received by SMS text message.</content>
+                    <image height="169.205" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="498.0" topMargin="0.0" imageId="alert-sample.png"></image>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Report: This are daily, weekly, and monthly emails with detailed performance data.  These are too large to be viewed by SMS text message.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left" leftIndent="36">
+            <image height="259.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="443.0" topMargin="0.0" imageId="report-sample-short.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Setting up notifications requires the following steps:</content>
+            <image height="116.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="267.0" topMargin="0.0" imageId="notification-menu.png"></image>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Configure the email server and sender (“from” address)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Add each email recipient.  This includes identifying if that email destination can receive large emails (reports).  Each email recipient must give permission to receive emails by replying with a 4-digit passcode, which you must enter into Network Mom.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Manage email notification: For each map and each email address, configure what types of email notifications it receives.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">The following menu items are related to notifications:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal bold">
+                <line Align="Left">
+                    <content style="Normal bold">Notifications -&gt; Delete email recipient:</content>
+                    <content style="Normal"> This deletes this email recipient and unsubscribes them from all notifications.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal bold">
+                <line Align="Left">
+                    <content style="Normal bold">Reports -&gt; Email Notification Configuration Report</content>
+                    <content style="Normal">: This shows a summary report of each map, email address, and reports to which it is subscribed.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+    </contents>
+</page>

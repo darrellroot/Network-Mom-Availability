@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page4" pageName="Setting up Network Mom Availability" title="SettingUp">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Here are the steps to build a fully operational Network Mom Availability monitoring system.</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Install and configure your monitoring system Macintosh.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Install “Network Mom Availability” from the MacOS App Store.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">If needed, configure and test the program’s ability to automatically start after a reboot (only possible with some configurations).</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">“Maps -&gt; New Maps” to create your maps (one map is configured by default).</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">“Monitors -&gt; Add IPv4/IPv6 Monitor” to add monitoring targets to a map.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">“Notifications -&gt; Configure Email Server and Sender” to configure your “from” email address and credentials.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">“Notifications -&gt; Configure Email Recipients” to create potential alert and report recipients.  To prevent accidental email “spamming”, a 4-digit “permission code” is emailed to reach requested recipient.  You must enter this code into Network Mom Availability before automated alerts or reports can be sent to that recipient.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">“Notifications -&gt; Manage Email Notifications” to subscribe email recipients to alerts and reports.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">“Maps -&gt; Save”.  While the application automatically saves data every 24 hours and before each graceful application exit, we recommending manually saving after major configuration changes.</content>
+                </line>
+            </listItem>
+        </list>
+    </contents>
+</page>

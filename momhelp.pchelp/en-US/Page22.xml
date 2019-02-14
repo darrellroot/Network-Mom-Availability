@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page22" pageName="Availability monitor states" title="AvailabilityStates">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability “tests” each monitor (with an IPv4 ping or an IPv6 ping) every 30 seconds.  Availability monitors have the following states:</content>
+        </line>
+        <list ListStyle="listDisc">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Gray: Never online.  This monitor has not responded to a ping since the last Network Mom Availability restart or since the monitor was added to monitoring.  It is possible this monitor is misconfigured, or that the target host blocks ICMP pings.   If all your monitors turn Gray, your license may have expired.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Green: Online.  This monitor passed recent tests and is responsive to ping.  Green is good!  That’s on the CCNA exam ;-)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Yellow: This monitor failed a test recently.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Orange: This monitor failed two tests recently.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Red: This monitor failed the three most recent tests.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">Each time a ping is successful, the monitor transitions between states as follows:</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Red -&gt; Orange -&gt; Yellow -&gt; Green</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">For newly created monitors, or after a restart, the initial transition is as follows:</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Gray -&gt; Orange -&gt; Yellow -&gt; Green</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">When a target fails to respond to a ping within 30 seconds, the monitor transitions states as follows:</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Green -&gt; Yellow -&gt; Orange -&gt; Red</content>
+        </line>
+    </contents>
+</page>

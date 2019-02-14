@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page30" pageName="Configure Email Server and Sender" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Use </content>
+            <content style="Normal bold">Notifications -&gt; Configure Email Server and Sender </content>
+            <content style="Normal">to configure your email server and “from” address for alerts and reports.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability sends email using SMTP encrypted with TLS on TCP port 587.  Email providers require an authenticated username and password to send email.  Many email providers require 2-factor authentication for the first use of email which Network Mom Availability does not support.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">This may require you to request an “application specific password” (iCloud) or “allow less secure applications” (Google) for you to send email successfully with your provider.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability saves the email password in process memory and (encrypted) in the Apple keychain on the monitoring host.  Whether you enable iCloud keychain syncing is up to you.  Network Mom Availability does not save the email password in any other location.  Anyone with the user account password of the monitoring Macintosh can run Utilities -&gt; Keychain Access to view the email password.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">We recommend using a dedicated non-personal email account with a unique password for originating alerts and reports.  You need to monitor this email address from your email client to receive “email permission code” replies and bounce messages.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability version 1.0 has a known interoperability problem with Yahoo Mail preventing report attachments &gt; 8KB.  We’ve added a “send large test email” button to the </content>
+            <content style="Normal bold">Notifications -&gt; Configure Email Server and Sender</content>
+            <content style="Normal"> page to detect if this applies to your email provider.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">To save your email server configuration, click </content>
+            <content style="Normal bold">Send Small Test Email </content>
+            <content style="Normal">or </content>
+            <content style="Normal bold">Send Large Test Email</content>
+            <content style="Normal">.  Network Mom Availability will only save your configuration if it sends the email successfully.  Make sure to check if you received the email.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">A reminder that email delivery is not instantaneous.  Different providers have different response times for delivering email.  Choosing a “fast and reliable” email provider may be helpful.  Network outages can also prevent email delivery, which would prevent outage alert delivery.</content>
+        </line>
+        <line Align="Left">
+            <image height="357.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="686.0" topMargin="0.0" imageId="email-server-configuration.png"></image>
+        </line>
+    </contents>
+</page>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page6" pageName="Recommended System Configuration" title="Recommended">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <image height="340.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="595.0" topMargin="0.0" imageId="about-this-mac.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Because Network Mom Availability measures availability and latency, for accurate measurements pick a monitoring system configuration which minimizes the loss or delay of network traffic.  Delay or loss at your monitoring host can mask out issues with your network.  We recommend the following system configuration to achieve the most accurate availability measurement:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">A dedicated Network Mom Availability monitoring host will minimize packet loss or latency changes due to competing applications on the system.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">A desktop system (such as an iMac or a Mac Mini) is superior to a laptop for 24-hour network monitoring (although a laptop deals better with monitoring through power outages).</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Network Mom Availability requires macOS Mojave Version 10.14.0 or later.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Use a physical ethernet port, rather than WiFi, for the monitoring host.  If you are using a laptop, this may require purchasing an ethernet dongle.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Plug the monitoring host in a highly available and central part of the network.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Place the Network Mom Availability system in your Network Operation Center so support personnel can view the screen and hear audible alerts.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Configure the monitoring host to never go to sleep in system preferences -&gt; energy saver.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <image height="218.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="594.0" topMargin="0.0" imageId="energy-saver.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">8)	Network Mom Availability saves its "from" email password in the MacOS Keychain.  We recommend using a non-personal account with a unique password for Network Mom Availability "from" email.  This may affect whether you want to enable iCloud Keychain Syncing.  See Configure Email Server below for details.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+    </contents>
+</page>

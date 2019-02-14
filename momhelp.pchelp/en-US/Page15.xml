@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page15" pageName="Maps" title="Maps">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Email alerts and reports are </content>
+            <content style="Normal bold">per map</content>
+            <content style="Normal">.  The theory is that all devices in a map are supported by a particular support team.  If you have multiple teams, use a different map for each team.  We recommend at least 2 maps per team: one for devices which require 24x7 paging alerts, the second for less important devices where emailing the support team is sufficient.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom availability creates one map by default.  You can rename this map in </content>
+            <content style="Normal bold">Maps -&gt; Edit Map</content>
+            <content style="Normal">.  You can delete a map with </content>
+            <content style="Normal bold">Maps -&gt; Delete Map</content>
+            <content style="Normal"> (this requires confirmation).  Deleting a map deletes all data for all monitors in that map and cannot be undone!</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">You can create new maps with </content>
+            <content style="Normal bold">Maps -&gt; New Map</content>
+            <content style="Normal">.</content>
+        </line>
+        <line Align="Left">
+            <image height="123.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="444.0" topMargin="0.0" imageId="new-map-menu.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The </content>
+            <content style="Normal bold">Maps -&gt; Arrange Monitors</content>
+            <content style="Normal"> menu will rearrange your monitors in a (roughly) square grid sorted alphanumerically by label.</content>
+        </line>
+        <line Align="Left">
+            <image height="250.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="507.0" topMargin="0.0" imageId="arrange-monitors.png"></image>
+        </line>
+    </contents>
+</page>

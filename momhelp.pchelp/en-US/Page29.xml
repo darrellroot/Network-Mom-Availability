@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page29" pageName="Email -&gt; SMS gateways from cellphone providers" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Most cellphone providers have gateway email -&gt; SMS addresses.  For example, emailing 5551234567@txt.att.net will result in a SMS/text message to 5551234567 </content>
+            <content style="Normal bold">if and only if that cellphone number is with ATT</content>
+            <content style="Normal">.  Here are a few example email -&gt; SMS gateways for your convenience:</content>
+        </line>
+        <list ListStyle="listDisc">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">ATT: 5551234567@txt.att.net</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Sprint: 5551234567@messaging.sprintpcs.com</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">T-Mobile: 5551234567@tmomail.net</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Verizon: 5551234567@vtext.com</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">Please double check and test the above email gateways before relying on them.  Text message fees may apply.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Make sure to understand the speed and reliability of your cellphone provider’s email-&gt;SMS gateway before relying solely on alerts through the gateway.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal bold">These address types should be configured for alerts only</content>
+            <content style="Normal">.</content>
+        </line>
+    </contents>
+</page>

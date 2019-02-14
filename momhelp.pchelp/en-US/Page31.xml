@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page31" pageName="Configure Email Recipient" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">To configure an email recipient select the </content>
+            <content style="Normal bold">Notifications -&gt; Configure Email Recipient</content>
+            <content style="Normal"> menu.</content>
+        </line>
+        <line Align="Left">
+            <image height="210.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="366.0" topMargin="0.0" imageId="configure-email-recipient-menu.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom LLC does not want anyone subscribed to automated email alerts without their permission.  Network Mom Availability calculates and emails a deterministic 4-digit permission code to each proposed email recipient.  That code must be entered into Network Mom Availability before that email address can be sent email alerts or reports.  The same email address always results in the same code.  It is not necessary to “keep the window open” between generating/emailing the permission codes and entering the responses.  This system is designed to prevent accidental email spamming, not intentional malicious spamming.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Enter the recipient name and email address.  Select whether the email address goes to a SMS/pager (alerts only) or a regular email account (reports allowed).  Then click “send test email with permission code”.</content>
+        </line>
+        <line Align="Left">
+            <image height="294.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="486.0" topMargin="0.0" imageId="configure-email-recipient.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">This will result in an email being sent to that recipient with a 4-digit permission code and explanatory message:</content>
+        </line>
+        <line Align="Left">
+            <image height="225.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="783.0" topMargin="0.0" imageId="mom-email-permission.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The user should reply to the sender with that code.  Then you reselect Notifications -&gt; Configure Email Recipient and reenter the name, email address, email type, and permission code.  Then </content>
+            <content style="Normal bold">hit return in the permission code field</content>
+            <content style="Normal">.  If you enter the correct code the “created new email recipient” message will appear.</content>
+        </line>
+        <line Align="Left">
+            <image height="314.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="478.0" topMargin="0.0" imageId="email-code-entered.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+    </contents>
+</page>

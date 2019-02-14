@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page41" pageName="Release Notes" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability Release History:</content>
+        </line>
+        <list ListStyle="listDisc">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Version 1.0: February 2019</content>
+                </line>
+            </listItem>
+        </list>
+    </contents>
+</page>

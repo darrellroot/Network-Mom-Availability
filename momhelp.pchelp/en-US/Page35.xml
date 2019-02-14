@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page35" pageName="Delete email recipient" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">To delete an email recipient, select Notifications -&gt; Delete Email Recipient</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">Select the recipient and hit </content>
+            <content style="Normal bold">delete</content>
+            <content style="Normal">.  This immediately unsubscribes the recipient from all email alerts and reports and deletes the recipient.</content>
+        </line>
+        <line Align="Left">
+            <image height="120.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="764.0" topMargin="0.0" imageId="delete-email-recipient.png"></image>
+        </line>
+    </contents>
+</page>

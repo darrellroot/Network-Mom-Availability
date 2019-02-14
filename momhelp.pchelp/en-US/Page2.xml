@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page2" pageName="License information" title="License">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability users are subject to the standard Apple "Licensed Application End User License Agreement" available at https://www.apple.com/legal/macapps/stdeula/ with the following additional terms:</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability, like any software, can fail.</content>
+        </line>
+        <list ListStyle="listHyphen">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">It can crash.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">It can fail to restart after a power outage or system reboot.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">It can fail to detect an outage.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">It can fail to alert on an outage.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Alerts can fail to be delivered to support teams for many reasons, including the outage itself preventing delivery.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Slow or unreliable email -&gt; SMS gateways (by cellphone providers) may also prevent delivery of alerts.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Alerts or reports can contain inaccurate or incomplete information.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Network Mom Availability can “forget” it’s configuration, monitoring, or latency data.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">It can generate an abnormal amount of network traffic or email.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">It can generate improperly formatted monitoring traffic, causing your infrastructure to “react badly”.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">It can generate properly formatted monitoring traffic, but your infrastructure may “react badly” anyway.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">It can be configured to send emails to people who do not want to receive those emails (or who change their minds about receiving those emails), and then send emails repeatedly.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">By using Network Mom Availability, you are agreeing not to hold Network Mom LLC responsible for any damages, direct or indirect, caused by the above problems.  You also agree not to use Network Mom Availability to send unwanted email alerts.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The standard Apple "Licensed Application End User License Agreement" already expresses the "AS IS" nature of the application in paragraph e, making the above terms redundant. But we emphasize that Network Mom Availability is just one imperfect tool to help detect outages. Not an omniscient infallible tool. If you demand a perfect tool, don't purchase Network Mom Availability and please delete any binaries you already downloaded. Allowing you to determine if Network Mom Availability meets your needs is the primary reason we offer a 30-day free trial.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom LLC encourages customers to operate two Network Mom Availability instances to monitor each other (in addition to monitoring the network) from two different locations. The default in-app license purchase allows multiple Network Mom Availability instances to be operated by one organization under one Apple ID with only one purchase. Even with this mitigation, certain types of outages may not be detected or may prevent Network Mom Availability from successfully alerting support personnel.</content>
+        </line>
+        <line Align="Left">
+            <image height="606.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="653.0" topMargin="0.0" imageId="license-status.png"></image>
+        </line>
+    </contents>
+</page>

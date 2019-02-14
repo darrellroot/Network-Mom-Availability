@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page39" pageName="Show statistics" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">The </content>
+            <content style="Normal bold">Reports -&gt; Show statistics</content>
+            <content style="Normal"> menu item shows statistics regarding the Network Mom Availability application itself.  These can be useful when submitting reports to feedback@networkmom.net.  In particular, because Network Mom Availability is meant to be a “long running application”, while developing the application we paid particular attention to memory leaks and CPU consumption over long periods.</content>
+        </line>
+        <line Align="Left">
+            <image height="376.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="441.0" topMargin="0.0" imageId="show-statistics2.png"></image>
+        </line>
+    </contents>
+</page>

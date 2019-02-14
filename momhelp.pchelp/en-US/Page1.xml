@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page1" pageName="Audio Alerts" title="Audio">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Audio alerts are disabled by default.  To enable audio alerts, select </content>
+            <content style="Normal bold">Network Mom Availability -&gt; Preferences</content>
+            <content style="Normal">.</content>
+        </line>
+        <line Align="Left">
+            <image height="160.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="840.0" topMargin="0.0" imageId="audio-alert.png"></image>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Set the audio alert frequency to “one minute” or “five minute” rather than the default network.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Choose your preferred audio alert.  Hit “test” to sample the sound.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">You may need to adjust your Macintosh volume.  If you choose “system beep” you can control that in </content>
+            <content style="Normal bold">System Preferences -&gt; Sound -&gt; Select an alert sound</content>
+            <content style="Normal">.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+    </contents>
+</page>

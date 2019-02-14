@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page20" pageName="Adding multiple monitors by hostname" title="AddingMultipleHostname">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Highlight your desired map and then select </content>
+            <content style="Normal bold">Monitors -&gt; Add IPv4 Monitors by Hostnames</content>
+            <content style="Normal"> or </content>
+            <content style="Normal bold">Monitors -&gt; Add IPv6 Monitors by Hostnames</content>
+            <content style="Normal">.</content>
+        </line>
+        <line Align="Left">
+            <image height="231.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="586.0" topMargin="0.0" imageId="add-monitors-by-hostnames.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">You can enter a list of proposed monitors in the following formats:</content>
+        </line>
+        <list ListStyle="listDisc">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">HOSTNAME</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">HOSTNAME, COMMENT</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">If a hostname has multiple IP addresses of the requested protocol, all of them will be added to monitoring.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Duplicate IPs (within a map) will not be added to monitoring.</content>
+        </line>
+    </contents>
+</page>

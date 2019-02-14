@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page25" pageName="Latency monitor states and thresholds" title="Latency">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Every availability monitor includes a latency monitor.  The latency monitor has its own colored small rectangle inside the larger availability rectangle.  The color of the latency rectangle is based on a comparison of:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">The latency of ICMP to that target during the most recently completed 5-minute interval (ignoring the interval currently in progress).</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">“Yesterday’s average latency” to that target.  “yesterday” is based on midnight UTC time.  If “yesterday’s latency” is not yet available, the “prior 60 minute latency” may be used.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">The color of the latency rectangle is calculated as follows:</content>
+        </line>
+        <list ListStyle="listDisc">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Green: Current latency &lt; Yesterday latency * 1.2 + 10msec</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Yellow: Current latency &lt; Yesterday latency * 1.5  + 10msec</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Orange: Current latency &lt; Yesterday latency * 1.8 + 10msec</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Red: Current latency &gt;= Yesterday latency * 1.8 + 10msec</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <image height="95.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="244.0" topMargin="0.0" imageId="latency-yellow.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Latency measurements are highly susceptible to load on the monitoring host as well as time-of-day fluctuations due to routine network usage.  </content>
+            <content style="Normal bold">Latency changes never result in email or audible alerts</content>
+            <content style="Normal">.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Double-clicking on a monitor will bring up graphs of the historic availability (top) and latency (bottom).  This can be useful for troubleshooting performance problems.</content>
+        </line>
+        <line Align="Left">
+            <image height="685.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="480.0" topMargin="0.0" imageId="graphs-daily.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The daily email report for a map includes a list of the five monitors with the largest recent percentage latency increase.  This can be helpful for WAN engineers to detect when traffic rerouted to a suboptimal path.  These comparisons are always based on “UTC days”.</content>
+        </line>
+        <line Align="Left">
+            <image height="316.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="522.0" topMargin="0.0" imageId="latency-daily-report.png"></image>
+        </line>
+    </contents>
+</page>

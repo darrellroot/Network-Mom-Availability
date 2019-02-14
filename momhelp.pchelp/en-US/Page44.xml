@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page44" pageName="Availability Manifesto" title="Manifesto">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Do you run a network?</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Do you run servers?</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Are you supposed to keep them “highly available”?</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Do you know what their availability was yesterday?</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Do you know which server had the lowest availability yesterday?</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Did the latency on one of your WAN links increase yesterday?</content>
+        </line>
+        <line Align="Left">
+            <image height="480.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="510.0" topMargin="0.0" imageId="availability.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability is an easy-to-use tool for measuring and reporting availability and latency.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal bold">Know</content>
+            <content style="Normal"> what the availability of your network is.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal bold">Find</content>
+            <content style="Normal"> problems and fix them!</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal bold">Increase</content>
+            <content style="Normal"> your network availability.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">99.9% “three nines” availability is 86.4 seconds of downtime per device per day.  This is easy with the discipline of measuring availability and fixing problems.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">99.99% “four nines” availability is 8.64 seconds of downtime per device per day.  This is hard but possible in a solid corporate network.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">99.999% “five nines” availability is 25.92 seconds of downtime per device per </content>
+            <content style="Normal bold">month</content>
+            <content style="Normal">.  If you ping test every 30 seconds, missing one ping means the device has failed for the month.  This is only achievable in hardened corporate datacenters.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The first step to achieving high availability is to measure it.  That is why </content>
+            <content style="Normal bold">Network Mom Availability</content>
+            <content style="Normal"> is here.</content>
+        </line>
+    </contents>
+</page>

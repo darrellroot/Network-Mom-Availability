@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page33" pageName="Recommended email and map strategy" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Email alerts and reports are per map.  The theory is that all devices in a map are supported by a particular support team.  If you have multiple teams, use different maps for each team.  We recommend at least 2 maps per team:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">One map for devices which require 24x7 paging</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">One map for less important devices where emailing the support team is sufficient</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">Email alerts are frequent and small.  When alerts from an unstable or large network go to a pager/SMS/text message, they can keep support engineers up all night.  Network Mom Availability queues up all device-down/device-up alerts in 5-minute intervals and aggregates them into one alert email per recipient.  This delays the initial report of trouble, but prevents “text message storms” from distracting engineers from troubleshooting.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The fewer the devices in the “24x7” map, the less likely your on-call engineers will be paged.  Hence the need for the “less important device” map, where problems can wait for business hours to fix.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Email reports are infrequent: usually one per day per map per recipient.  An extra report is generated weekly and monthly.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">We recommend the following alert and report subscriptions:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Subscribe your on-call engineer’s SMS email to the 24x7 map for alerts.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Subscribe your entire support team group email (not SMS) to alerts and reports for all maps.  This should include your 1st level manager.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Subscribe your 2nd level manager to reports only.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Consider adding your network operation center (if any) to alerts or reports.  Physically positioning your monitoring Macintosh in your NOC and enabling audio alerts can be helpful for situational awareness and for major outages where email connectivity goes offline (no alerts!).</content>
+                </line>
+            </listItem>
+        </list>
+    </contents>
+</page>

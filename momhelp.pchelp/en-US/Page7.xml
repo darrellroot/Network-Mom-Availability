@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page7" pageName="Configuring Automatic Restart" title="Configuring">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Configuring Network Mom Availability to automatically restart after a power outage is difficult and only possible with some configurations.  Here are the steps to attempt it:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Configure the monitoring Macintosh to restart automatically after a power failure in </content>
+                    <content style="Normal bold">System Preferences -&gt; Energy Saver</content>
+                    <content style="Normal">.  This is only possible for desktop systems.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">In </content>
+                    <content style="Normal bold">System Preferences -&gt; Users &amp; Groups -&gt; Login Options</content>
+                    <content style="Normal"> enable automatic login.  This may require only having one user account on the system.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">In </content>
+                    <content style="Normal bold">System Preferences -&gt; Users &amp; Groups -&gt; Login Items</content>
+                    <content style="Normal"> add Network Mom Availability to the list of applications to automatically start when the user logs in.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">We recommend testing that this works, but make sure to manually </content>
+            <content style="Normal bold">Maps -&gt; Save</content>
+            <content style="Normal"> in Network Mom Availability before abruptly power cycling the system.  Abruptly power cycling the system is dangerous to the system.  Do so at your own risk.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Enabling automatic login is a security risk.  This makes it easy for anyone with physical access to the machine to obtain data.  If you enable automatic login, we recommend:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Placing the monitoring Macintosh in a secure area, such as a manned network operation center or locked office.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Using a dedicated Macintosh, with dedicated (non-personal) monitoring accounts.  This minimizes the data that can be stolen from the machine.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">An alternative is to put your Network Mom Availability host on a UPS, although we have found that the UPS is often the most likely component to fail (especially with the “power off” button most desktop UPS’ prominently feature).</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">This is one advantage of using a laptop for a monitoring host: it has an internal battery to monitor through power outages.</content>
+        </line>
+    </contents>
+</page>

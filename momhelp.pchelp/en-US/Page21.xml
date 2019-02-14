@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page21" pageName="Delete selected monitors" title="DeleteSelected">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">You can select one monitor in a map by clicking on the monitor.  A black edge will appear around the monitor.  Using shift-click you can select multiple monitors.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Then select </content>
+            <content style="Normal bold">Monitors -&gt; Delete Selected Monitors</content>
+            <content style="Normal"> to delete those monitors.  This deletes all historic availability and latency data for those monitors.  This cannot be undone.</content>
+        </line>
+        <line Align="Left">
+            <image height="243.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="408.0" topMargin="0.0" imageId="delete-selected-monitors.png"></image>
+        </line>
+    </contents>
+</page>

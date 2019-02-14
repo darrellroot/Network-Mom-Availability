@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page0" pageName="Network Mom Overview" title="Overview">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">See </content>
+            <content style="Normal" linkTarget="https://networkmom.net">https://networkmom.net</content>
+            <content style="Normal"> for updated information.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Email feedback@networkmom.net to provide feedback regarding Network Mom Availability</content>
+        </line>
+        <line Align="Left">
+            <image height="213.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="336.0" topMargin="0.0" imageId="overview.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability is a network and host monitoring application for IT professionals.  It has the following features:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Group devices to be monitored into maps.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Associate each map with alert notification recipients and report notification recipients.  In the current version all notifications use email delivery.  Most cell providers have email-&gt;SMS gateways allowing short emails to result in text messages.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Ping hosts or network devices with an IPv4 ICMP ping.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Ping hosts or network devices with an IPv6 ICMP ping.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Measure and graph the “availability” of hosts (what percentage of pings they responded to).</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Measure and graph the latency of hosts (how many milliseconds did it take to receive a ping reply).</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Generate email alerts when devices change stage between “responsive” versus “unresponsive”.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Generate daily, weekly, and monthly email availability reports.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Automatically save data daily and before each (graceful) application exit.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Manually save data when requested (recommended before and after significant configuration changes).</content>
+                </line>
+            </listItem>
+        </list>
+    </contents>
+</page>

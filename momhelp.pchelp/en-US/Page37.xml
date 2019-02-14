@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page37" pageName="Daily and Weekly Reports" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Daily reports are emailed automatically once per day.  One email per map per report recipient.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Weekly reports are emailed each Monday, immediately after emailing the daily reports.  In addition to the report, this includes a text export of the devices monitored.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Monthly reports are emailed on the 2nd of each month and cover the previous 31 days of data.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">It is also possible to use the </content>
+            <content style="Normal bold">Reports -&gt; Daily/Weekly/Monthly Map Availability Report</content>
+            <content style="Normal"> menu item to generate a current report to the screen.  This report can be copy/pasted into an email, but does not include the availability graph (known issue).</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">We also have menu items to manually email availability reports to all recipients.  These are in addition to the automatic reports.  These menu items are designed for testing during initial setup.  Be careful not to spam your report recipients!</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The daily report includes the following sections:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Header: This shows the map name, and start and end of the time period for the report.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Availability: This includes an “overall availability” score for the map for the entire period, followed by a chart of the availability per hour or per day (depending on whether the report is daily, weekly, or monthly).</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Bottom-5 availability: This shows the 5 monitors with the worst availability.  </content>
+                    <content style="Normal bold">Fix these and your availability will improve!</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Top-5 availability: This shows the 5 monitors with the best availability.  If your best availabilities are significantly below 100%, it is possible you have a global problem or a problem near your monitoring station.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Monitors which have never responded: These “BLUE STATUS” devices are not included in your availability calculations.  It is possible these monitors are misconfigured (wrong IP address?), or they may not respond to pings at all.  These are worth cleaning up.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">5 monitors with largest recent average latency increase: If you are monitoring a WAN, you want to keep an eye on latency increases.  Your ISP may have rerouted your circuits to a suboptimal path (</content>
+                    <content style="Normal bold">worth fixing</content>
+                    <content style="Normal">).  Normal fluctuations can cause wide discrepancies in this arithmetic average of the latency.  LAN devices with small (absolute) latency may appear to suffer large percentage increases which have no operational impact (1msec to 2msec, </content>
+                    <content style="Normal bold">not worth fixing</content>
+                    <content style="Normal">).  The latency report is useful but needs human judgement.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Availability graph: This graph repeats the data in the availability chart (#2) visually.  It is only included in email reports, not menu-triggered reports (known issue).  The bottom of the availability scale is determined by the lowest availability data point.  It could be 0% (zero nines), 90% (one nine), 99% (two nines), 99.9% (three nines) or 99.99% (four nines).</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Custom">Network Mom Availability Daily Report</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom0">Map: Home and Internet map</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">Start Date: Jan 31, 2019 at 5:00:00 PM America/Los_Angeles</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">End Date: Feb 1, 2019 at 5:00:00 PM America/Los_Angeles</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">Overall Availability 91.471%</content>
+        </line>
+        <table>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Start Of Hour</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Availability</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Jan 31, 2019 at 5:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">94.883</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Jan 31, 2019 at 6:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">93.092</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Jan 31, 2019 at 8:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">96.129</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Jan 31, 2019 at 9:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">96.503</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Jan 31, 2019 at 10:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">98.739</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Jan 31, 2019 at 11:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">100.000</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 12:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">100.000</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 1:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">93.103</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 2:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">91.935</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 3:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">92.308</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 4:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">81.481</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 5:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">75.000</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 6:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">92.308</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 7:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">73.684</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 8:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">79.310</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 9:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">81.818</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 10:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">92.385</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 11:00:00 AM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">92.509</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 12:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">93.445</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 1:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">94.556</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 2:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">97.017</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 3:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">97.019</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="184.85" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Feb 1, 2019 at 4:00:00 PM</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="78.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">96.605</content>
+                    </line>
+                </column>
+            </row>
+        </table>
+        <line Align="Left">
+            <content style="Custom0">Five monitors with worst availability during this interval</content>
+        </line>
+        <table>
+            <row>
+                <column color="#000000" rowSpan="1" width="347.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Monitor</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Availablity</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="347.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">192.168.0.25</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">22.607</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="347.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">192.168.0.16</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">58.615</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="347.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.foxnews.com 2001:559:19:609b::1324</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">98.846</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="347.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.wsj.com 2600:9000:202d:2e00:3:4b0:de80:93a1</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">98.846</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="347.8" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.cnn.com 2a04:4e42:2d::323</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">98.846</content>
+                    </line>
+                </column>
+            </row>
+        </table>
+        <line Align="Left">
+            <content style="Custom0">Five monitors with best availability during this interval</content>
+        </line>
+        <table>
+            <row>
+                <column color="#000000" rowSpan="1" width="329.15" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Monitor</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Availablity</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="329.15" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.wsj.com 13.35.125.122</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">100.000</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="329.15" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.wsj.com 13.35.125.34</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">100.000</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="329.15" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.wsj.com 13.35.125.101</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">100.000</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="329.15" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.wsj.com 13.35.125.40</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">100.000</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="329.15" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.hostname.com 54.221.207.100 My Apple TV</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="74.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">99.820</content>
+                    </line>
+                </column>
+            </row>
+        </table>
+        <line Align="Left">
+            <content style="Custom0">Monitors which have not resonded since last Network Mom reboot</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">These are not included in availability data calculations</content>
+        </line>
+        <table>
+            <row>
+                <column color="#000000" rowSpan="1" width="316.7" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Monitor</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="83.05" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Status</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="316.7" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.networkmom.net 74.119.239.234</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="83.05" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Never online</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="316.7" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">2620::33</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="83.05" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Never online</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="316.7" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.nodomain.com 2601::4802:0:1cf5:0:b441:0</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="83.05" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Never online</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="316.7" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">2620::90d9:73ff:0:fe9a</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="83.05" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Never online</content>
+                    </line>
+                </column>
+            </row>
+        </table>
+        <line Align="Left">
+            <content style="Custom0">Five monitors with largest recent percentage latency increase</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">Prior period start Jan 30, 2019 at 4:00:00 PM</content>
+        </line>
+        <line Align="Left">
+            <content style="Custom1">Current period start Jan 31, 2019 at 4:00:00 PM</content>
+        </line>
+        <table>
+            <row>
+                <column color="#000000" rowSpan="1" width="252.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Monitor</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="113.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Prior Period Latency (msec)</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="125" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Current Period Latency (msec)</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="62.2" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">Increase Factor</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="252.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">192.168.0.25</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="113.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">24.04</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="125" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">46.42</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="62.2" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">1.931</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="252.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.wsj.com 2600:9000:202d:3e00:3:4b0:de80:93a1</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="113.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">27.48</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="125" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">44.24</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="62.2" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">1.610</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="252.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.wsj.com 2600:9000:202d:1a00:3:4b0:de80:93a1</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="113.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">27.85</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="125" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">42.66</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="62.2" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">1.532</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="252.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">www.google.com 2607:f8b0:4005:805::2004</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="113.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">30.27</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="125" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">44.54</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="62.2" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">1.471</content>
+                    </line>
+                </column>
+            </row>
+            <row>
+                <column color="#000000" rowSpan="1" width="252.4" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">192.168.0.16</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="113.35" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">27.70</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="125" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">40.36</content>
+                    </line>
+                </column>
+                <column color="#000000" rowSpan="1" width="62.2" borderWidth="1" VerticalAlign="middle" background-color="transparent" columnSpan="1">
+                    <line Align="Left">
+                        <content style="Custom2">1.457</content>
+                    </line>
+                </column>
+            </row>
+        </table>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <image height="500.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="570.0" topMargin="0.0" imageId="report.pdf"></image>
+                </line>
+            </listItem>
+        </list>
+    </contents>
+</page>

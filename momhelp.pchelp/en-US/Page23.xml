@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page23" pageName="When email alerts are generated" title="EmailAlerts">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability wants to alert support personnel as soon as possible when outages happen.  But paging support personnel too frequently can cause alarms to be ignored and drive network engineers insane.  Network Mom Availability strives to strike a balance.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">When a monitor transitions from status Green to status Red, an alert notification is queued.  This requires 3 failed pings over a 90-second interval.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">When a monitor transitions from status Red to status Green, a (good) alert notification is queued.  This requires 3 successful pings over a 90-second interval.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Every 5 minutes, all alert notifications for each email destination are bundled into one email and sent. This may mean that an outage does not result in an alert email for 2-7 minutes.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Email alerts are </content>
+            <content style="Normal bold">not</content>
+            <content style="Normal"> generated for transitioning from the Gray state.  This means new devices can be added to monitoring without fear of paging network engineers.  But it also means that alerts may not be generated after a power outage which reboots your monitoring host (all monitors start at Gray after an application restart).</content>
+        </line>
+        <line Align="Left">
+            <image height="176.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="518.0" topMargin="0.0" imageId="alert-sample.png"></image>
+        </line>
+    </contents>
+</page>

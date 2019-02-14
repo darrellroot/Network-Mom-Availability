@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page34" pageName="Manage email notifications" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Select the Notifications -&gt; Manage Email Notifications item to manage notifications.</content>
+        </line>
+        <line Align="Left">
+            <image height="207.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="805.0" topMargin="0.0" imageId="manage-email-notifications.png"></image>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Select the map</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Select the email address</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">At this point the current notification setting for that map/email combination will automatically be populated.  Change it as needed.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">If the email address is an “alert only” email address, the “reports” options will not be available.  You will need to go to </content>
+            <content style="Normal bold">Notifications -&gt; Configure Email Recipient</content>
+            <content style="Normal"> to allow reports.  This will require the 4-digit permission code.</content>
+        </line>
+    </contents>
+</page>

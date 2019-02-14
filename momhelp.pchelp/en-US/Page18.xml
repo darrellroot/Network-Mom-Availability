@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page18" pageName="Adding multiple monitors by IP addresses" title="AddingMultipleIP">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal0">The best way to add a large number of monitors to a map is by a list of hostnames or IP addresses.  Highlight the map you want to add monitors to and select Monitors -&gt; Add Monitors by IPv4/IPv6 addresses.</content>
+            <image height="319.0" style="Normal0" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="583.0" topMargin="0.0" imageId="add-monitors-by-ip.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">Simply pasting in a list of IP addresses (one per line) will be successful, but you can input a list of hosts in the following formats:</content>
+        </line>
+        <list ListStyle="listDisc">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">ipaddress</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">ipaddress, hostname</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">ipaddress, hostname, comment</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">Each IP address could be IPv4 or IPv6.  Do not include commas in the comment.  When you click </content>
+            <content style="Normal bold">import</content>
+            <content style="Normal">, Network Mom Availability will import each line and report which lines are imported successfully and unsuccessfully.  IPs already monitored will not be duplicated.  Network Mom Availability assumes your hostname&lt;-&gt;IP address mappings are correct.  All monitoring is done by IP address.</content>
+        </line>
+        <line Align="Left">
+            <image height="343.259" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="316.0" topMargin="0.0" imageId="after-monitor-import-by-ip.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">After adding a large number of monitors, it may be helpful to use the </content>
+            <content style="Normal bold">Monitors -&gt; Arrange Monitors</content>
+            <content style="Normal"> command.  This will arrange all monitors on that map (both new ones and existing ones) in a rough alphabetized grid.  This rearrangement cannot be undone.</content>
+        </line>
+    </contents>
+</page>

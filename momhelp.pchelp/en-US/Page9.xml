@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page9" pageName="Performance" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability pings 5% of monitored devices each second, resulting in a full ping sweep once every 20 seconds.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability saves up to 1200 datapoints for each monitored device:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Up to 400 5-minute datapoints</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Up to 400 1-hour datapoints</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Up to 400 1-day datapoints</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">Network Mom Availability saves up to 1000 log messages for each of the 8 log categories.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The data is saved in “rolling buffers”.  Once each buffer is full, new data erases old data.  But memory consumption will increase until the buffers are full.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">We successfully tested Network Mom Availability on a 2013 iMac monitoring over 500 hosts spread across 15 maps with less than 10% CPU utilization.  We also ran a development version of Network Mom Availability for months hunting for memory leaks.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">That said, all monitoring systems can be overloaded (and our hunt for memory leaks continues).  Prior to failure, an overloaded monitoring host can adversely impact reported availability statistics.  Here are some tips:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">The “Five monitors with best availability” in the report help identify whether your monitoring host is overloaded.  If you cannot measure 100% for any device on a “good day” without any known outages, the problem is likely in the vicinity of your monitoring host.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">The workload of a map increases proportional to N^2 as the number of devices in the map increases.  Monitoring 100 hosts in each of 5 maps is less work than 500 hosts in 1 map.  This may be improved in a future version.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Saving the data is resource intensive.  The time required to save the data is featured at the top of the </content>
+                    <content style="Normal bold">Help -&gt; Show Statistics</content>
+                    <content style="Normal"> menu.  If some monitors turn yellow when you execute a manual </content>
+                    <content style="Normal bold">Maps-&gt;Save</content>
+                    <content style="Normal">, that is indicative of borderline performance problems.  Data is automatically saved daily at morning report time (8:07AM).</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Wired ethernet is superior to WiFi for monitoring.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Dedicated monitoring hosts provide more consistent performance and data.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">The </content>
+                    <content style="Normal bold">Utilities -&gt; Activity Monitor</content>
+                    <content style="Normal">  application can show you the CPU and memory consumption of Network Mom Availability.  We do not believe the “sent/received packets” data in activity monitor is accurate for Network Mom Availability.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal0">
+                <line Align="Left">
+                    <content style="Normal0">Do not run out of disk space!  Use </content>
+                    <content style="Normal0 bold">About This Mac -&gt; Storage</content>
+                    <content style="Normal0"> to see how much space is available.  Network Mom Availability saves its data in ~/Library/Containers/net.networkmom.availability.  The program does not use much disk space, but a full filesystem is bad for data integrity and performance.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <image height="100.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="428.0" topMargin="0.0" imageId="activity-monitor-memory.png"></image>
+        </line>
+        <line Align="Left">
+            <image height="96.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="561.0" topMargin="0.0" imageId="activity-monitor.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom LLC is very interested in feedback from our customers monitoring large networks.  Your data may help us increase the number of devices future versions can monitor.</content>
+        </line>
+    </contents>
+</page>

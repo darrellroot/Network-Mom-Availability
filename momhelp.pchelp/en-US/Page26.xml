@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page26" pageName="Show monitor detail" title="ShowMonitor">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">To show detailed information about a monitor, including a graph of historic availability and latency, double-click on the monitor in the map.  The detail view will show:</content>
+        </line>
+        <list ListStyle="listDisc">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Hostname and IP address (in title bar)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Comment (can be updated)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Monitor type (IPv4 ping or IPv6 ping)</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Current availability state</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Graph of historic availability</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Graph of historic latency</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">There is a time selector which allows you to graph 5-minute data, hourly data, or daily data.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Graphs will not display meaningful data until sufficient data is collected for that monitor.</content>
+        </line>
+        <line Align="Left">
+            <image height="806.5" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="432.0" topMargin="0.0" imageId="monitor-detail.png"></image>
+        </line>
+    </contents>
+</page>

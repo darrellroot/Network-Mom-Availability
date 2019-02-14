@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page36" pageName="Email Notification Configuration Report" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">To see a list of all email subscriptions, select </content>
+            <content style="Normal bold">Reports -&gt; Email Notification Configuration Report</content>
+        </line>
+        <line Align="Left">
+            <image height="125.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="921.0" topMargin="0.0" imageId="email-notification-report.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">This shows every email address subscribed to each map.  It also shows whether that email address is subscribed to alerts, reports, or both.</content>
+        </line>
+    </contents>
+</page>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page17" pageName="Adding one Monitor to a Map" title="AddingMonitor">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Select the map you want to add the monitor to.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Select </content>
+                    <content style="Normal bold">Monitors -&gt; Add IPv4 Monitor</content>
+                    <content style="Normal"> or </content>
+                    <content style="Normal bold">Monitors -&gt; Add IPv6 Monitor.</content>
+                    <image height="199.0" style="Normal bold" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="474.0" topMargin="0.0" imageId="add-ipv4-monitor-menu2.png"></image>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Enter the hostname or IP address of the target, and </content>
+                    <content style="Normal bold">hit return</content>
+                    <content style="Normal">.  Network Mom Availability will validate the hostname or IP address and perform DNS resolution.</content>
+                    <image height="259.895" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="432.0" topMargin="0.0" imageId="add-ipv4-monitor.png"></image>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Click </content>
+                    <content style="Normal bold">Add Monitor</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">(optional) Click and drag the monitor in the map to reposition it.</content>
+                </line>
+            </listItem>
+        </list>
+        <line Align="Left">
+            <content style="Normal">If you enter a hostname, and the host has multiple IPv4 or multiple IPv6 addresses, Network Mom Availability will pick one address (only) to monitor.  This may not be what you want.  For hostnames with multiple IP addresses, we recommend using Monitors -&gt; Add Monitors by IPv4/IPv6 addresses to have full control over which IPs you monitor.  In general, if you are monitoring a “virtual server” with multiple IP addresses, you will want to monitor them all.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The above rule does not apply to a “typical” host which has one IPv4 and one IPv6 address.  In that case, </content>
+            <content style="Normal bold">Monitors -&gt; Add IPv4 Monitor</content>
+            <content style="Normal"> will monitor the IPv4 address, and </content>
+            <content style="Normal bold">Monitors -&gt; Add IPv6 Monitor</content>
+            <content style="Normal"> will monitor the IPv6 address.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+    </contents>
+</page>

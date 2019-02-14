@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page16" pageName="Monitors" title="Monitors">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Normal">A monitor has several elements:</content>
+        </line>
+        <list ListStyle="listDecimalRP">
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Address: (required) This could be an IPv4 or IPv6 address.  This is the actual target of the monitoring.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Test Type: (required) This could be ICMPv4 or ICMPv6.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Hostname: (optional)  This could be automatically detected by Network Mom Availability at the time of monitor creation, or manually entered by the user.  While DNS-&gt;IP address mappings may change over time, Network Mom Availability does not automatically update the hostname or IP address.  If the IP address of a monitored target changes, you must delete the monitor and create a new one with the updated address.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Comment: (optional)  This descriptive text is included on the map and in alert messages.  It can help support personnel understand the type of device or the impact of it being down.</content>
+                </line>
+            </listItem>
+        </list>
+    </contents>
+</page>

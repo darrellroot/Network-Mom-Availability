@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page8" pageName="Credits" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Heading2">Programmer</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">Network Mom Availability is written by Darrell Root for Network Mom LLC.  Darrell worked as a Unix system administrator and network engineer for 25 years prior to moving into independent software development.    Darrell holds a CCIE Emeritus certification (#8302).  His goal is to make easy-to-use network management software for small and medium businesses.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Swift</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">Network Mom Availability is written in Swift: the new programming language developed by Apple.  Chris Lattner led the original development.  Swift is an excellent programming language.  The strict types and optionals, in particular, prevent many programming errors.  We also thank Apple for the entire Macintosh development environment.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Charts</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">Network Mom Availability uses the Charts framework available at https://cocoapods.org/pods/Charts by Daniel Cohen Gindi and Philipp Jahoda.  Charts is made available under the Apache-2.0 license.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Swift-SMTP, LoggerAPI, BlueCryptor, BlueSocket, BlueSSLService</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">These libraries, made available on GitHub under https://github.com/IBM-Swift by IBM, are covered by the Apache-2.0 license and are used for sending email.  Thank you IBM!</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">SwiftyLocalReceiptValidator</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">We use parts of SwiftyLocalReceiptValidator from https://github.com/andrewcbancroft/SwiftyLocalReceiptValidator by Andrew Bancroft, published under the MIT license.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">OpenSSL</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">This product includes a static library built from OpenSSL source code to decrypt and validate in-app-purchase receipt data from Apple.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">* Copyright (c) 1998-2018 The OpenSSL Project.  All rights reserved.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">build_openssl.sh</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">We used a shell script by Jon Cardasis at https://gist.github.com/joncardasis/1ab22cd31473d99c56ea109bc6b3d115 to help build our static OpenSSL library.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Audio Files</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">Audio files are from freesound.org and are available under the creative commons attribution license or creative commons 0 license.  Audio files include sw_school_pa_alert.wav by jppi_Stu, aircraftalarm.wav by guitarguy1985, Doorbell Alert.wav by ChrisButler99, Warning sound by satchdev, Warning Signal Science Fiction SF by SooundsofTh.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">SwiftyPing</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">SwiftyPing is available on Github at https://github.com/imas145/SwiftyPing by user imas145 under the MIT license.  While we do not use the source code directly, figuring out how to send ICMP packets with Swift and the CFNetwork (Objective-C-based) framework was difficult.  imas145's SwiftyPing example was essential.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">MRTG/RRDtool</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">Tobi Oetiker's MRTG and RRDtool at https://www.oetiker.ch/en/oss/projects/ have been the gold standard for network bandwidth monitoring for decades.  While we don't use any of their source code (wrong language!), our availability and latency data structures are designed similarly to Tobi's "round robin database".  MRTG’s charts, in particular, are beautiful.  Thank you Tobi!</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Stackoverflow.com</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">Dozens of problems solved thanks to the excellent contributors at stackoverflow.com.  Every (successful) solution got an upvote.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">RayWenderlich.com</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">Thank you for the excellent books, tutorials, and sample code.  In particular the Core Data book and the In-App-Purchase and Receipt Validation tutorials.</content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Help Crafter</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal0">The help bundle for this application, as well as the HTML help manual, was produced using Help Crafter, available on the MacOS App Store by Putercraft LLC.</content>
+        </line>
+    </contents>
+</page>
