@@ -21,10 +21,10 @@ struct Constants {
     static let CoreLicense = "CoreLicense"
     static let GracePeriod = "GracePeriod"
     static let gracePeriodTransaction = "100"
-    static let gracePeriodDuration = 1800.0
-    //static let GraceLicenseDuration = 3600.0 * 24.0 * 31.0
-    static let annualLicenseDuration = 3600.0 * 1.0 * 1.0
-    //static let annualLicenseDuration = 3600.0 * 24.0 * 366.0
+    //static let gracePeriodDuration = 1800.0
+    static let gracePeriodDuration = 3600.0 * 24.0 * 31.0
+    //static let annualLicenseDuration = 3600.0 * 1.0 * 1.0
+    static let annualLicenseDuration = 3600.0 * 24.0 * 366.0
     static let CoreMap = "CoreMap"
     static let CoreMonitorIPv4 = "CoreMonitorIPv4"
     static let CoreMonitorIPv6 = "CoreMonitorIPv6"
