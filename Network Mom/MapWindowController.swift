@@ -340,7 +340,7 @@ class MapWindowController: NSWindowController {
         if monitors.count == 0 {
             return
         }
-        if appDelegate.license?.getLicenseStatus == .expired {
+        if appDelegate.license?.licenseStatus == .expired {
             for monitor in monitors {
                 monitor.licenseExpired()
             }

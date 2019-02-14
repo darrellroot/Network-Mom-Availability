@@ -247,6 +247,9 @@
 		2F9C0D5C220FA981002242AF /* Collection+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C0D5B220FA981002242AF /* Collection+extensions.swift */; };
 		2F9C0D5F22111836002242AF /* EditMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C0D5D22111836002242AF /* EditMapController.swift */; };
 		2F9C0D6022111836002242AF /* EditMapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9C0D5E22111836002242AF /* EditMapController.xib */; };
+		2F9C0D6622137B3E002242AF /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C0D6522137B3E002242AF /* License.swift */; };
+		2F9C0D6D22149A57002242AF /* CoreLicense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C0D6B22149A57002242AF /* CoreLicense+CoreDataClass.swift */; };
+		2F9C0D6E22149A57002242AF /* CoreLicense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9C0D6C22149A57002242AF /* CoreLicense+CoreDataProperties.swift */; };
 		2FA0296A21ED363900ABAB9A /* CoreMap+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */; };
 		2FA0296B21ED363900ABAB9A /* CoreMap+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */; };
 		2FA0296C21ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0296421ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift */; };
@@ -277,8 +280,6 @@
 		2FA35D9421AA4CC900556A26 /* LoggerAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904D51219F769D0040530B /* LoggerAPI.framework */; };
 		2FC0B3A121AFB51B00C44DB5 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0B3A021AFB51B00C44DB5 /* Notification.swift */; };
 		2FC0B3A321AFC06800C44DB5 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC0B3A221AFC06800C44DB5 /* Defaults.swift */; };
-		2FC696B5220D525F00177B66 /* CoreLicense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC696B3220D525F00177B66 /* CoreLicense+CoreDataClass.swift */; };
-		2FC696B6220D525F00177B66 /* CoreLicense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC696B4220D525F00177B66 /* CoreLicense+CoreDataProperties.swift */; };
 		2FC771CF2202789F00CAE008 /* sampleGraph.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771CE2202789F00CAE008 /* sampleGraph.pdf */; };
 		2FC771D22203845A00CAE008 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC771D02203845A00CAE008 /* PreferencesController.swift */; };
 		2FC771D32203845A00CAE008 /* PreferencesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FC771D12203845A00CAE008 /* PreferencesController.xib */; };
@@ -295,7 +296,6 @@
 		2FE41D132209595300AA7173 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE41D122209595300AA7173 /* StoreKit.framework */; };
 		2FE41D1A220A668D00AA7173 /* LicensePurchaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE41D18220A668D00AA7173 /* LicensePurchaseController.swift */; };
 		2FE41D1B220A668D00AA7173 /* LicensePurchaseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FE41D19220A668D00AA7173 /* LicensePurchaseController.xib */; };
-		2FE41D1D220A680700AA7173 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE41D1C220A680700AA7173 /* License.swift */; };
 		2FF8D752220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8D751220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift */; };
 		2FF8D756220B9FCA0095B451 /* pkcs7_union_accessors.c in Sources */ = {isa = PBXBuildFile; fileRef = 2FF8D755220B9FCA0095B451 /* pkcs7_union_accessors.c */; };
 		2FF8D75A220BBCDE0095B451 /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2FF8D759220BBCDE0095B451 /* AppleIncRootCertificate.cer */; };
@@ -665,6 +665,9 @@
 		2F9C0D5B220FA981002242AF /* Collection+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+extensions.swift"; sourceTree = "<group>"; };
 		2F9C0D5D22111836002242AF /* EditMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMapController.swift; sourceTree = "<group>"; };
 		2F9C0D5E22111836002242AF /* EditMapController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditMapController.xib; sourceTree = "<group>"; };
+		2F9C0D6522137B3E002242AF /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
+		2F9C0D6B22149A57002242AF /* CoreLicense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreLicense+CoreDataClass.swift"; path = "Network Mom/CoreLicense+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2F9C0D6C22149A57002242AF /* CoreLicense+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreLicense+CoreDataProperties.swift"; path = "Network Mom/CoreLicense+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMap+CoreDataClass.swift"; path = "Network Mom/CoreMap+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMap+CoreDataProperties.swift"; path = "Network Mom/CoreMap+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2FA0296421ED363900ABAB9A /* CoreEmailAddress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreEmailAddress+CoreDataClass.swift"; path = "Network Mom/CoreEmailAddress+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -687,8 +690,6 @@
 		2FA02AF4220001CF00ABAB9A /* Double+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+extensions.swift"; sourceTree = "<group>"; };
 		2FC0B3A021AFB51B00C44DB5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		2FC0B3A221AFC06800C44DB5 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		2FC696B3220D525F00177B66 /* CoreLicense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreLicense+CoreDataClass.swift"; path = "Network Mom/CoreLicense+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2FC696B4220D525F00177B66 /* CoreLicense+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreLicense+CoreDataProperties.swift"; path = "Network Mom/CoreLicense+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2FC771CE2202789F00CAE008 /* sampleGraph.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sampleGraph.pdf; sourceTree = "<group>"; };
 		2FC771D02203845A00CAE008 /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		2FC771D12203845A00CAE008 /* PreferencesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesController.xib; sourceTree = "<group>"; };
@@ -705,7 +706,6 @@
 		2FE41D122209595300AA7173 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2FE41D18220A668D00AA7173 /* LicensePurchaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensePurchaseController.swift; sourceTree = "<group>"; };
 		2FE41D19220A668D00AA7173 /* LicensePurchaseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LicensePurchaseController.xib; sourceTree = "<group>"; };
-		2FE41D1C220A680700AA7173 /* License.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
 		2FF8D751220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLocalReceiptValidator.swift; sourceTree = "<group>"; };
 		2FF8D754220B9FCA0095B451 /* pkcs7_union_accessors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pkcs7_union_accessors.h; sourceTree = "<group>"; };
 		2FF8D755220B9FCA0095B451 /* pkcs7_union_accessors.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pkcs7_union_accessors.c; sourceTree = "<group>"; };
@@ -918,8 +918,8 @@
 		2F904D31219F76170040530B = {
 			isa = PBXGroup;
 			children = (
-				2FC696B3220D525F00177B66 /* CoreLicense+CoreDataClass.swift */,
-				2FC696B4220D525F00177B66 /* CoreLicense+CoreDataProperties.swift */,
+				2F9C0D6B22149A57002242AF /* CoreLicense+CoreDataClass.swift */,
+				2F9C0D6C22149A57002242AF /* CoreLicense+CoreDataProperties.swift */,
 				2FE41D10220957BF00AA7173 /* Images.xcassets */,
 				2FA0296221ED363900ABAB9A /* CoreMap+CoreDataClass.swift */,
 				2FA0296321ED363900ABAB9A /* CoreMap+CoreDataProperties.swift */,
@@ -1010,7 +1010,7 @@
 				2F5061D721BDE7EC00C19984 /* ImportMonitorListController.swift */,
 				2F5061D821BDE7EC00C19984 /* ImportMonitorListController.xib */,
 				2FA0298121F93FEB00ABAB9A /* Integer+extensions.swift */,
-				2FE41D1C220A680700AA7173 /* License.swift */,
+				2F9C0D6522137B3E002242AF /* License.swift */,
 				2FE41D18220A668D00AA7173 /* LicensePurchaseController.swift */,
 				2FE41D19220A668D00AA7173 /* LicensePurchaseController.xib */,
 				2F904E44219F7A320040530B /* MainMenu.xib */,
@@ -1980,6 +1980,7 @@
 				2FD136EE21E5560900770B09 /* CoreDataStack.swift in Sources */,
 				2F904E6A219F7A460040530B /* icmpechorequest.swift in Sources */,
 				2F904E6F219F7A460040530B /* FlipStackView.swift in Sources */,
+				2F9C0D6622137B3E002242AF /* License.swift in Sources */,
 				2F5061D921BDE7EC00C19984 /* ImportMonitorListController.swift in Sources */,
 				2F904FD121A3707B0040530B /* AddEmailRecipientController.swift in Sources */,
 				2F904E69219F7A460040530B /* FlipView.swift in Sources */,
@@ -1997,16 +1998,13 @@
 				2FA0298421F947A200ABAB9A /* FlipScrollView.swift in Sources */,
 				2FA0296D21ED363900ABAB9A /* CoreEmailAddress+CoreDataProperties.swift in Sources */,
 				2F904FC021A206250040530B /* Constants.swift in Sources */,
-				2FE41D1D220A680700AA7173 /* License.swift in Sources */,
 				2F904E39219F7A140040530B /* AppDelegate.swift in Sources */,
-				2FC696B5220D525F00177B66 /* CoreLicense+CoreDataClass.swift in Sources */,
 				2F904E2E219F79FF0040530B /* ShowLogController.swift in Sources */,
 				2FA0296F21ED363900ABAB9A /* CoreMonitorIPv4+CoreDataProperties.swift in Sources */,
 				2FA0296A21ED363900ABAB9A /* CoreMap+CoreDataClass.swift in Sources */,
 				2FD136F021E949E400770B09 /* NetworkMomError.swift in Sources */,
 				2F904E68219F7A460040530B /* RRDGauge.swift in Sources */,
 				2FE41D1A220A668D00AA7173 /* LicensePurchaseController.swift in Sources */,
-				2FC696B6220D525F00177B66 /* CoreLicense+CoreDataProperties.swift in Sources */,
 				2F9C0D5C220FA981002242AF /* Collection+extensions.swift in Sources */,
 				2F904E3C219F7A140040530B /* EmailServerController.swift in Sources */,
 				2FA0297B21F7C88600ABAB9A /* AddIPv4MonitorsController.swift in Sources */,
@@ -2029,6 +2027,7 @@
 				2F904E3E219F7A140040530B /* ChartsFormatter.swift in Sources */,
 				2F9C0D5F22111836002242AF /* EditMapController.swift in Sources */,
 				2FF8D752220B9F3F0095B451 /* SwiftyLocalReceiptValidator.swift in Sources */,
+				2F9C0D6E22149A57002242AF /* CoreLicense+CoreDataProperties.swift in Sources */,
 				2FA02AF5220001CF00ABAB9A /* Double+extensions.swift in Sources */,
 				2F904E6B219F7A460040530B /* RRDBufferDouble.swift in Sources */,
 				2F904E70219F7A460040530B /* RRDData.swift in Sources */,
@@ -2040,6 +2039,7 @@
 				2FA0298221F93FEB00ABAB9A /* Integer+extensions.swift in Sources */,
 				2FA0298821FBAE7C00ABAB9A /* AvailabilityReport.swift in Sources */,
 				2F904E64219F7A460040530B /* MonitorEnumeration.swift in Sources */,
+				2F9C0D6D22149A57002242AF /* CoreLicense+CoreDataClass.swift in Sources */,
 				2FF8D756220B9FCA0095B451 /* pkcs7_union_accessors.c in Sources */,
 				2FA0298021F9241100ABAB9A /* AddIPv6MonitorsController.swift in Sources */,
 				2F96034721AA33EE0037E026 /* DeleteEmailRecipientController.swift in Sources */,
@@ -2452,7 +2452,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Network Mom/Network Mom.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/include";
@@ -2469,7 +2469,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "-lcrypto";
 				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.availability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Test profile for home computers";
 				SWIFT_OBJC_BRIDGING_HEADER = "Network Mom/Network Mom-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -2484,9 +2484,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Network Mom/Network Mom.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
+				DEVELOPMENT_TEAM = "";
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/include";
 				INFOPLIST_FILE = "Network Mom/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

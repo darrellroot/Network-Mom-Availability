@@ -16,9 +16,9 @@
         <window title="Edit Map" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="contentRect" x="196" y="240" width="0.0" height="0.0"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" wantsLayer="YES" misplaced="YES" id="se5-gp-TjO">
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="317" height="62"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -34,6 +34,7 @@
                         <rect key="frame" x="97" y="20" width="200" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="200" id="ieN-BX-HfX"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="nv7-Ly-zBT"/>
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ZeX-Ub-F99">
                             <font key="font" metaFont="system"/>
@@ -51,6 +52,7 @@
                     <constraint firstAttribute="bottom" secondItem="pgR-45-zn9" secondAttribute="bottom" constant="20" symbolic="YES" id="9oY-aL-J2O"/>
                     <constraint firstItem="2Dh-2h-xrg" firstAttribute="leading" secondItem="pgR-45-zn9" secondAttribute="trailing" constant="8" symbolic="YES" id="G9d-b8-kVj"/>
                     <constraint firstAttribute="bottom" secondItem="2Dh-2h-xrg" secondAttribute="bottom" constant="20" symbolic="YES" id="gSp-4B-5Xu"/>
+                    <constraint firstItem="2Dh-2h-xrg" firstAttribute="centerY" secondItem="pgR-45-zn9" secondAttribute="centerY" id="i2R-2m-JkM"/>
                     <constraint firstAttribute="trailing" secondItem="2Dh-2h-xrg" secondAttribute="trailing" constant="20" symbolic="YES" id="ld1-wa-cyP"/>
                     <constraint firstItem="2Dh-2h-xrg" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" symbolic="YES" id="oW2-Zk-KeG"/>
                 </constraints>

@@ -2,7 +2,7 @@
 //  CoreLicense+CoreDataProperties.swift
 //  Network Mom Availability
 //
-//  Created by Darrell Root on 2/7/19.
+//  Created by Darrell Root on 2/13/19.
 //  Copyright © 2019 Darrell Root LLC. All rights reserved.
 //
 //
@@ -17,8 +17,10 @@ extension CoreLicense {
         return NSFetchRequest<CoreLicense>(entityName: "CoreLicense")
     }
 
-    @NSManaged public var firstInstallDate: NSDate?
-    @NSManaged public var lastLicenseDate: NSDate?
-    @NSManaged public var trialSeconds: Double
+    @NSManaged public var product: String
+    @NSManaged public var purchaseDate: Date
+    @NSManaged public var startDate: Date
+    @NSManaged public var endDate: Date
+    @NSManaged public var transactionIdentifier: String
 
 }

@@ -122,13 +122,10 @@ table, th, td {
             return html
         }
         if let license = license {
-            switch license.getLicenseStatus {
+            switch license.licenseStatus {
             case .licensed:
                 
                 html += "<h3>Network Mom License Valid Until \(license.lastLicenseString)</h3>\n"
-            case .trial:
-                let daysLeft = Int(license.trialSeconds / (3600 * 24))
-                html += "<h3>Network Mom Not Licensed, Trial Period Expires in \(daysLeft) days</h3>\n"
             case .expired:
                 html += "<h3>Network Mom License Expired, No Data Available</h3>\n"
                 html += "<h3>Have the administrator purchase a license or exit the application</h3>\n"

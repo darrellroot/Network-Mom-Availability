@@ -108,7 +108,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         if maps.count == 0 {
             // initial launch
-            let newMap = MapWindowController(name: "Map 0", mapIndex: maps.count)
+            let newMap = MapWindowController(name: "Map 1", mapIndex: maps.count)
             maps.append(newMap)
             maps[0].showWindow(self)
         }
@@ -293,12 +293,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func dailyBookkeeping() {
-        // every day we are licensed, we add an hour to the trial period, up to the 30-day max
-        if let license = license {
-            if license.getLicenseStatus == .licensed {
-                license.addTrialHour()
-            }
-        }
         emailReports()
     }
     @IBAction func emailDailyReports(_ sender: NSMenuItem) {
@@ -377,8 +371,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    
-    
     @IBAction func licensePurchase(_ sender: NSMenuItem) {
         if licensePurchaseController == nil {
             licensePurchaseController = LicensePurchaseController()
@@ -451,8 +443,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         loadEmailPassword()
         
         //attempting to load license data from core data
-        DLog.log(.dataIntegrity, "Attempting to load license from core data")
-        do {
+        self.license = License()
+        
+/* old core data implementation
+         do {
             let request = NSFetchRequest<CoreLicense>(entityName: Constants.CoreLicense)
             if let coreLicenseArray = try? managedContext.fetch(request), let coreLicense = coreLicenseArray.first {
                 self.license = License(coreLicense: coreLicense)
@@ -467,7 +461,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 coreLicense.lastLicenseDate = Date.distantPast as NSDate
                 self.license = License(coreLicense: coreLicense, newInstall: true)
             }
-        }
+        }*/
         
         //attempting to load emails from core data
         DLog.log(.dataIntegrity,"Attempting to read email list from Core Data")
@@ -541,10 +535,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
 
     @objc func sendAlertEmails() {
-        if let status = license?.getLicenseStatus {
+        if let status = license?.licenseStatus {
             switch status {
-            case .trial:
-                license?.useTrial(seconds: Defaults.emailTimerDuration)
             case .expired:
                 return   // we dont send alerts when license is expired
             case .licensed:

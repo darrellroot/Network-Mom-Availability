@@ -46,7 +46,7 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
         numbers.append(appDelegate.maps.count)
 
         if let managedContext = managedContext {
-            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreMap)
+            let fetchRequest = NSFetchRequest<CoreMap>(entityName: Constants.CoreMap)
             let coreLicenses = try? managedContext.count(for: fetchRequest)
             if let coreLicenses = coreLicenses {
                 items.append("Core Data Maps")
@@ -65,7 +65,7 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
         numbers.append(total)
         
         if let managedContext = managedContext {
-            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreMonitorIPv4)
+            let fetchRequest = NSFetchRequest<CoreMonitorIPv4>(entityName: Constants.CoreMonitorIPv4)
             let coreLicenses = try? managedContext.count(for: fetchRequest)
             if let coreLicenses = coreLicenses {
                 items.append("Core Data IPv4 Monitors")
@@ -77,7 +77,7 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
         }
         
         if let managedContext = managedContext {
-            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreMonitorIPv6)
+            let fetchRequest = NSFetchRequest<CoreMonitorIPv6>(entityName: Constants.CoreMonitorIPv6)
             let coreLicenses = try? managedContext.count(for: fetchRequest)
             if let coreLicenses = coreLicenses {
                 items.append("Core Data IPv6 Monitors")
@@ -87,6 +87,7 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
                 numbers.append(-1)
             }
         }
+        
 
         items.append("Monitor Views")
         total = 0
@@ -99,7 +100,7 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
         numbers.append(appDelegate.emails.count)
         
         if let managedContext = managedContext {
-            let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreEmailAddress)
+            let fetchRequest = NSFetchRequest<CoreEmailAddress>(entityName: Constants.CoreEmailAddress)
             let coreLicenses = try? managedContext.count(for: fetchRequest)
             if let coreLicenses = coreLicenses {
                 items.append("Core Data Email Addresses")
@@ -114,10 +115,10 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
             let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreLicense)
             let coreLicenses = try? managedContext.count(for: fetchRequest)
             if let coreLicenses = coreLicenses {
-                items.append("Core Data Licenses")
+                items.append("Core Data License v2")
                 numbers.append(coreLicenses)
             } else {
-                items.append("Core Data Licenses Fetch Error")
+                items.append("Core Data License v2 Fetch Error")
                 numbers.append(-1)
             }
         }

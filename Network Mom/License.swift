@@ -2,216 +2,150 @@
 //  License.swift
 //  Network Mom Availability
 //
-//  Created by Darrell Root on 2/5/19.
+//  Created by Darrell Root on 2/12/19.
 //  Copyright © 2019 Darrell Root LLC. All rights reserved.
 //
 
 import Cocoa
-import StoreKit
 import DLog
+import StoreKit
 
 enum productIdentifiers: String {
-    case annual = "net.networkmom.availability.annual"
-    case monthly = "net.networkmom.availability.monthly"
+    case annual = "net.networkmom.availability.v1.oneyear"
+    //case annual = "net.networkmom.availability.annual"
+    //case monthly = "net.networkmom.availability.monthly"
 }
-
-
-/*enum ReceiptValidationError: Error {
-    case receiptNotFound
-    case jsonResponseIsNotValid(description: String)
-    case notBought
-    case expired
-}*/
+//    static let licenseDuration = [Constants.annual:300]
 
 enum LicenseStatus: String {
     case licensed
-    case trial
     case expired
     case unknown
 }
-
 class License: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
-//    var receipt: Receipt?
-//    var receiptStatus: ReceiptStatus?
+    
     let dateFormatter = DateFormatter()
     let appDelegate = NSApplication.shared.delegate as! AppDelegate
-    
-    var coreLicense: CoreLicense
-    var newInstall: Bool //set to true if first install until we get license and install history, then set to false
-    var lastLicenseDate: Date {
-        get {
-            return coreLicense.lastLicenseDate as Date? ?? Date.distantPast
-        }
-        set {
-            coreLicense.lastLicenseDate = newValue as NSDate
-        }
-    }
-    var firstInstallDate: Date {
-        get {
-            return coreLicense.firstInstallDate as Date? ?? Date()
-        }
-        set {
-            coreLicense.firstInstallDate = newValue as NSDate
-        }
-    }
-    let trialSecondsMax = 3600.0 * 24.0 * 30.0
-    private(set) var trialSeconds: Double {
-        get {
-            return coreLicense.trialSeconds
-        }
-        set {
-            coreLicense.trialSeconds = newValue
-        }
-    }
-    public var trialString: String {
-        if trialSeconds > 3600 * 24 {
-            let trialDays = Int(trialSeconds) / (3600 * 24)
-            return "\(trialDays) days"
-        } else if trialSeconds > 3600.0 {
-            let trialHours = Int(trialSeconds) / (3600)
-            return "\(trialHours) hours"
-        } else if trialSeconds > 0.0 {
-            return "< 1 hour"
-        } else {
-            return "None"
-        }
-    }
+    var managedContext: NSManagedObjectContext!
+    var coreLicenses: [CoreLicense] = []
+    var sortedCoreLicenses: [CoreLicense] = []
 
-    public var licenseSeconds: Double {
-        let timeLeft = lastLicenseDate.timeIntervalSince(Date())
-        if timeLeft < 0 {
-            return 0.0
-        } else {
-            return timeLeft
-        }
-    }
-    public var licenseString: String {
-        let licenseSeconds = self.licenseSeconds
-        if licenseSeconds > 3600 * 24 {
-            let licenseDays = Int(licenseSeconds) / (3600 * 24)
-            return "\(licenseDays) days"
-        } else if licenseSeconds > 3600.0 {
-            let licenseHours = Int(licenseSeconds) / (3600)
-            return "\(licenseHours) hours"
-        } else if licenseSeconds > 0.0 {
-            return "< 1 hour"
-        } else {
-            return "None"
-        }
-    }
-    var lastLicenseString: String {
-        return dateFormatter.string(from:lastLicenseDate)
-    }
-    var firstInstallString: String {
-        return dateFormatter.string(from:firstInstallDate)
-    }
-    var fullLicenseStatus: String {
-        return """
-First Install Date: \(firstInstallString)
-License In Effect Until: \(lastLicenseString)
-Trial Period Seconds Remaining: \(trialSeconds)
-License Status \(getLicenseStatus.rawValue)
-"""
-    }
-    private var priorLicenseStatus: LicenseStatus?
+    var products: [String:SKProduct] = [:]
+    private var productsRequest: SKProductsRequest?
+    private var receiptRefreshRequest: SKReceiptRefreshRequest?
     
-    var getLicenseStatus: LicenseStatus {
-        let date = Date()
-        if date < self.lastLicenseDate {
-            if priorLicenseStatus != .licensed {
-                if let licensePurchaseController = appDelegate.licensePurchaseController {
-                    priorLicenseStatus = .licensed
-                    licensePurchaseController.updateDisplay()
-                }
+    var lastLicenseStatus: LicenseStatus = .unknown
+    var licenseStatus: LicenseStatus {
+        guard let lastLicenseDate = lastLicenseDate else {
+            if lastLicenseStatus != .unknown {
+                DLog.log(.license,"Error: license status changed to unknown")
             }
-            priorLicenseStatus = .licensed
+            lastLicenseStatus = .unknown
+            return .unknown
+        }
+        if Date() < lastLicenseDate {
+            lastLicenseStatus = .licensed
             return .licensed
-        } else if (trialSeconds) > 0 {
-            if priorLicenseStatus != .trial {
-                DLog.log(.license,"License status just changed: trying to restore transactions")
-                SKPaymentQueue.default().restoreCompletedTransactions()
-                priorLicenseStatus = .trial
-                DispatchQueue.main.asyncAfter(deadline: .now() + 60.0) {
-                    if self.getLicenseStatus == .trial {
-                        let alert = NSAlert()
-                        alert.messageText = "Warning: Network Mom License Expired, Trial Period Activated"
-                        alert.informativeText = "Check the License Purchase/Status menu"
-                        alert.alertStyle = .warning
-                        alert.addButton(withTitle: "OK")
-                        alert.runModal()
-                    }
-                }
-            }
-            priorLicenseStatus = .trial
-            return .trial
         } else {
-            if priorLicenseStatus != .expired {
-                DLog.log(.userInterface,"License status just changed: trying to restore transactions")
-                SKPaymentQueue.default().restoreCompletedTransactions()
-                priorLicenseStatus = .expired
-                DispatchQueue.main.asyncAfter(deadline: .now() + 60.0) {
-                    if self.getLicenseStatus == .expired {
-                        let alert = NSAlert()
-                        alert.messageText = "Alert: Network Mom License Expired, Trial Expired"
-                        alert.informativeText = "All monitoring will cease until a license is purchased"
-                        alert.alertStyle = .critical
-                        alert.addButton(withTitle: "OK")
-                        alert.runModal()
-                    }
+            if lastLicenseStatus == .licensed {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "Warning: Network Mom License Expired"
+                    alert.informativeText = "Check the License Purchase/Status menu"
+                    alert.alertStyle = .warning
+                    alert.addButton(withTitle: "OK")
+                    alert.runModal()
                 }
             }
-            priorLicenseStatus = .expired
+            lastLicenseStatus = .expired
             return .expired
         }
     }
-    var products: [String:SKProduct] = [:]
+    var licenseString: String {
+        switch self.licenseStatus {
+        case .expired:
+            return "None"
+        case .unknown:
+            return "Unknown"
+        case .licensed:
+            guard let lastLicenseDate = lastLicenseDate else { return "Unknown" }
+            let timeInterval = lastLicenseDate.timeIntervalSinceNow
+            let timeString = time2String(seconds: timeInterval)
+            return timeString
+        }
+        // should never get here
+    }
+    func time2String(seconds: Double) -> String {
+        if seconds > 3600 * 24 {
+            let days = Int(seconds) / (3600 * 24)
+            return "\(days) days"
+        } else if seconds > 3600.0 {
+            let hours = Int(seconds) / (3600)
+            return "\(hours) hours"
+        } else if seconds > 0.0 {
+            return "< 1 hour"
+        } else {
+            return "None"
+        }
+    }
 
-    let productIdentifiers: Set<String> = ["net.networkmom.availability.monthly","net.networkmom.availability.annual"]
-    private var productsRequest: SKProductsRequest?
+    var lastLicenseString: String {
+        guard let lastLicenseDate = lastLicenseDate else {
+            return "Unknown"
+        }
+        let dateString = dateFormatter.string(from: lastLicenseDate)
+        return dateString
+    }
+    var lastLicenseDate: Date?
 
     override init() {
-        fatalError("should not get to this init")
+        managedContext = appDelegate.managedContext
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
         super.init()
-        //self.requestProducts()
-    }
-    public func addTrialHour() {
-        // we should only execute this once a day, run by a timer in appDelegate
-        if self.getLicenseStatus == .licensed {
-            if trialSeconds < trialSecondsMax {
-                trialSeconds = trialSeconds + 3600.0
+        let request = NSFetchRequest<CoreLicense>(entityName: Constants.CoreLicense)
+        if let coreLicenseArray = try? managedContext.fetch(request) {
+            DLog.log(.license,"Found core license data: \(coreLicenseArray.count) entries")
+            DLog.log(.dataIntegrity,"Found core license data")
+            self.coreLicenses = coreLicenseArray
+            if self.coreLicenses.count == 0 {
+                makeGraceLicense()
             }
-            if trialSeconds > trialSecondsMax {
-                trialSeconds = trialSecondsMax
-            }
+        } else {
+            makeGraceLicense()
         }
+        requestProducts()
+        analyzeLicense()
     }
-    init(coreLicense: CoreLicense, newInstall: Bool = false) {
-        self.coreLicense = coreLicense
-        self.newInstall = newInstall
-        super.init()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
-        if newInstall {
-            DLog.log(.license,"trying to restore transactions")
+    private func makeGraceLicense() {
+        DLog.log(.license,"No license data found, acting as new install")
+        DLog.log(.dataIntegrity,"No license data found, acting as new install")
+        let endDate = Date() + Constants.gracePeriodDuration
+        let graceLicense =  CoreLicense(context: managedContext, product: Constants.GracePeriod, purchaseDate: Date(), startDate: Date(), endDate: endDate, transactionIdentifier: Constants.gracePeriodTransaction)
+        coreLicenses.append(graceLicense)
+    }
+    public func refreshReceipt() {
+        receiptRefreshRequest?.cancel()
+        receiptRefreshRequest = SKReceiptRefreshRequest()
+        receiptRefreshRequest?.delegate = self
+        receiptRefreshRequest?.start()
+    }
+    func requestDidFinish(_ request: SKRequest) {
+        DLog.log(.license,"Receipt refresh request finished")
+        getLicensesFromReceipt()
+        //printLicenses()
+        analyzeLicense()
         SKPaymentQueue.default().restoreCompletedTransactions()
-        }
-        self.requestProducts()
-    }
-    public func useTrial(seconds: Double) {
-        self.trialSeconds = self.trialSeconds - seconds
-        if self.trialSeconds < 0 {
-            self.trialSeconds = 0
-        }
     }
     private func requestProducts() {
         productsRequest?.cancel()
-        productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+        productsRequest = SKProductsRequest(productIdentifiers: [productIdentifiers.annual.rawValue])
         productsRequest?.delegate = self
         productsRequest?.start()
     }
-    
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         for product in response.products {
+            DLog.log(.license,"Got product response for product \(product.productIdentifier)")
             products[product.productIdentifier] = product
         }
     }
@@ -222,84 +156,187 @@ License Status \(getLicenseStatus.rawValue)
             case .purchased:
                 complete(transaction: transaction)
             case .failed:
-                fail(transaction: transaction)
+                //fail(transaction: transaction)
+                break
             case .restored:
                 restore(transaction: transaction)
+                break
             case .deferred:
                 break
             case .purchasing:
                 break
-                
             }
         }
-    }
-    private func complete(transaction: SKPaymentTransaction) {
-        let success = decryptReceiptSwifty()
-        printTransaction(transaction: transaction)
-        SKPaymentQueue.default().finishTransaction(transaction)
-        
-        /*DispatchQueue.main.async {
-            let alert = NSAlert()
-            alert.messageText = "in-app purchase succeeded"
-            alert.alertStyle = .informational
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-        }*/
     }
     private func restore(transaction: SKPaymentTransaction) {
-        let success = decryptReceiptSwifty()
-        printTransaction(transaction: transaction)
-        SKPaymentQueue.default().finishTransaction(transaction)
-
-        /*DispatchQueue.main.async {
-            let alert = NSAlert()
-            alert.messageText = "in-app restore succeeded"
-            alert.alertStyle = .informational
-            alert.addButton(withTitle: "OK")
-            alert.runModal()
-        }*/
+        DLog.log(.license,"Received Restore")
+        processTransaction(transaction: transaction)
     }
-/*    private func deliverPurchaseNotificationFor(identifier: String?) {
-        guard let identifier = identifier else { return }
-    }*/
-    private func fail(transaction: SKPaymentTransaction) {
-        printTransaction(transaction: transaction)
-        if let error = transaction.error {
-            /*DispatchQueue.main.async {
-                let alert = NSAlert()
-                alert.messageText = "Warning: in-app purchase failed"
-                alert.informativeText = error.localizedDescription
-                alert.alertStyle = .warning
-                alert.addButton(withTitle: "OK")
-                alert.runModal()
-            }*/
-        }
-        SKPaymentQueue.default().finishTransaction(transaction)
-
+    private func complete(transaction: SKPaymentTransaction) {
+        DLog.log(.license,"Transaction complete")
+        processTransaction(transaction: transaction)
     }
-    func printTransaction(transaction: SKPaymentTransaction) {
-        DLog.log(.license,"product identifiers \(transaction.payment.productIdentifier)")
-        DLog.log(.license,"transaction identifiers \(transaction.transactionIdentifier)")
-        DLog.log(.license,"transaction date \(transaction.transactionDate)")
-        DLog.log(.license,"transaction state \(transaction.transactionState.rawValue)")
-        if let error = transaction.error {
-            DLog.log(.license,"error \(error.localizedDescription)")
-        }
-        for download in transaction.downloads {
-            DLog.log(.license,"download identifier \(download.contentIdentifier)")
-            DLog.log(.license,"download length \(download.contentLength)")
-            DLog.log(.license,"download version \(download.contentVersion)")
-            DLog.log(.license,"download transaction")
-            DLog.log(.license,"download state \(download.state)")
-            if let url = download.contentURL {
-                DLog.log(.license,"download url \(url)")
+    func transactionNotLicensed(transactionIdentifier: String) -> Bool {
+        return !transactionAlreadyLicensed(transactionIdentifier: transactionIdentifier)
+    }
+    func transactionAlreadyLicensed(transactionIdentifier: String) -> Bool {
+        for license in coreLicenses {
+            if transactionIdentifier == license.transactionIdentifier {
+                return true
             }
-            printTransaction(transaction: transaction)
         }
-        if let original = transaction.original {
-            DLog.log(.license,"ORIGINAL TRANSACTION")
-            printTransaction(transaction: original)
+        return false
+    }
+    
+    private func processTransaction(transaction: SKPaymentTransaction) {
+        printTransaction(transaction: transaction)
+        let productIdentifier = transaction.payment.productIdentifier
+        guard let transactionIdentifier = transaction.transactionIdentifier else {
+            DLog.log(.license,"Error: in process transaction but no transaction identifier")
+            return
         }
+        let transactionDate = transaction.transactionDate ?? Date()
+        
+        if transactionAlreadyLicensed(transactionIdentifier: transactionIdentifier) {
+            DLog.log(.license,"Transaction ID \(transactionIdentifier) already in core data, finishing transaction")
+            SKPaymentQueue.default().finishTransaction(transaction)
+            return
+        }
+        // Now we have a new transaction to enter
+        switch productIdentifier {
+        case productIdentifiers.annual.rawValue:
+            let newLicense =  CoreLicense(context: managedContext, product: productIdentifier, purchaseDate: transactionDate, startDate: Date(), endDate: nil, transactionIdentifier: transactionIdentifier)
+            coreLicenses.append(newLicense)
+            if saveLicenses() {
+                DLog.log(.license,"transaction processed and license saved, finishing transaction")
+                SKPaymentQueue.default().finishTransaction(transaction)
+            }
+            analyzeLicense()
+        default:
+            DLog.log(.license,"Error: unknown product identifier \(productIdentifier)")
+        }
+    }
+    
+    private func saveLicenses() -> Bool {
+        do {
+            try managedContext.save()
+        } catch {
+            DLog.log(.license,"Error: failed to save core data license \(error.localizedDescription)")
+            return false
+        }
+        return true
+    }
+    private func printTransaction(transaction: SKPaymentTransaction) {
+        DLog.log(.license,"\nPRINTING TRANSACTION")
+        DLog.log(.license,"product identifiers \(transaction.payment.productIdentifier)")
+        DLog.log(.license,"transaction identifiers \(String(describing: transaction.transactionIdentifier))")
+        DLog.log(.license,"transaction date \(String(describing: transaction.transactionDate))")
+        DLog.log(.license,"transaction state \(transaction.transactionState.rawValue)")
+        DLog.log(.license,"END PRINTING TRANSACTION\n")
+    }
+    public func printLicenses() {
+        DLog.log(.license,"Printing \(coreLicenses.count) licenses")
+        for license in coreLicenses {
+            DLog.log(.license,"\(license.product) \(license.transactionIdentifier) \(license.purchaseDate) \(license.startDate) \(license.endDate)")
+        }
+        DLog.log(.license,"trying to get and print receipt")
+        guard let receipt = getReceipt() else {
+            DLog.log(.license,"unable to get receipt")
+            return
+        }
+        printReceipt(receipt)
+    }
+    
+    func analyzeLicense() {
+        DLog.log(.license,"Started analyze license")
+        self.sortedCoreLicenses = self.coreLicenses.sorted() {$0.purchaseDate < $1.purchaseDate }
+        for loop in 0 ..< self.sortedCoreLicenses.count {
+            let newStartDate: Date
+            if loop == 0 {
+                if self.sortedCoreLicenses[safe: loop]?.purchaseDate == nil {
+                    DLog.log(.license,"License Error: invalid purchase date in first license\n")
+                }
+                newStartDate = self.sortedCoreLicenses[safe: loop]?.purchaseDate ?? Date()
+                self.sortedCoreLicenses[safe: loop]?.startDate = newStartDate
+            } else {
+                let priorEndDate = self.sortedCoreLicenses[safe: loop-1]?.endDate ?? Date.distantPast
+                let currentPurchaseDate = self.sortedCoreLicenses[safe: loop]?.purchaseDate ?? Date.distantPast
+                newStartDate = max(priorEndDate,currentPurchaseDate)
+                self.sortedCoreLicenses[safe: loop]?.startDate = newStartDate
+            }
+            let licenseDuration: TimeInterval
+            switch self.sortedCoreLicenses[safe: loop]?.product {
+            case productIdentifiers.annual.rawValue:
+                licenseDuration = Constants.annualLicenseDuration
+            case Constants.GracePeriod:
+                licenseDuration = Constants.gracePeriodDuration
+            default:
+                DLog.log(.license,"Unknown license product detected \(String(describing: self.sortedCoreLicenses[safe: loop]?.product))")
+                licenseDuration = 0.0
+            }
+            self.sortedCoreLicenses[safe: loop]?.endDate = newStartDate + licenseDuration
+        }
+        if let lastDate = self.sortedCoreLicenses.last?.endDate {
+            self.lastLicenseDate = lastDate
+        } else {
+            DLog.log(.license,"License error: unable to determine last license date")
+            self.lastLicenseDate = Date().addingTimeInterval(86400)
+        }
+        DLog.log(.license,"Last License Date \(String(describing: self.lastLicenseDate))")
+        let _ = saveLicenses()
+        DispatchQueue.main.async {
+            self.appDelegate.licensePurchaseController?.updateDisplay()
+        }
+    }
+    
+    private func getLicensesFromReceipt() {
+        guard let parsedReceipt = getReceipt() else { return }
+
+        for purchase in parsedReceipt.inAppPurchaseReceipts ?? [] {
+            if let transactionIdentifier = purchase.transactionIdentifier, transactionNotLicensed(transactionIdentifier: transactionIdentifier), let purchaseDate = purchase.purchaseDate, let product = purchase.productIdentifier {
+                guard product == productIdentifiers.annual.rawValue else {
+                    DLog.log(.license,"Invalid product identifier \(product) found")
+                    return
+                }
+                let newLicense = CoreLicense(context: managedContext, product: product, purchaseDate: purchaseDate, startDate: purchaseDate, endDate: nil, transactionIdentifier: transactionIdentifier)
+                coreLicenses.append(newLicense)
+                DLog.log(.license,"Activated new license ID")
+            }
+        }
+    }
+    private func printReceipt(_ receipt: ParsedReceipt) {
+        DLog.log(.license,"PRINTING RECEIPT")
+        DLog.log(.license,"bundle id \(String(describing: receipt.bundleIdentifier)) receiptCreationDate \(String(describing: receipt.receiptCreationDate))")
+        for inAppPurchase in receipt.inAppPurchaseReceipts ?? [] {
+            DLog.log(.license,"product \(inAppPurchase.productIdentifier ?? "unknown") transactionID \(inAppPurchase.transactionIdentifier ?? "unknown") originalTransactionID \(inAppPurchase.originalTransactionIdentifier ?? "unknown") purchaseDate \(String(describing: inAppPurchase.purchaseDate))")
+        }
+    }
+    
+    private func getReceipt() -> ParsedReceipt? {
+        DLog.log(.license,"Trying to analyze receipt")
+        let receiptLoader = ReceiptLoader()
+        let receiptData: Data
+        do {
+            receiptData = try receiptLoader.loadReceipt()
+        } catch {
+            DLog.log(.license,"Unable to load in app purchase receipt")
+            return nil
+        }
+        
+        let receiptExtractor = ReceiptExtractor()
+        guard let receiptContainer: UnsafeMutablePointer<PKCS7> = receiptExtractor.loadReceipt() else {
+            DLog.log(.license,"Unable to extract in app purchase receipt")
+            return nil
+        }
+        let receiptParser = ReceiptParser()
+        var parsedReceipt: ParsedReceipt?
+        do {
+            parsedReceipt = try receiptParser.parse(receiptContainer)
+        } catch {
+            DLog.log(.license,"Unable to parse in app purcase receipt")
+            return nil
+        }
+        return parsedReceipt
     }
     private func loadReceipt() -> UnsafeMutablePointer<PKCS7>? {
         // Load the receipt into a Data object
@@ -335,6 +372,7 @@ License Status \(getLicenseStatus.rawValue)
         }
         return receiptPKCS7
     }
+
     
     private func validateSigning(_ receipt: UnsafeMutablePointer<PKCS7>?) -> Bool {
         guard
@@ -367,151 +405,8 @@ License Status \(getLicenseStatus.rawValue)
         
         return true
     }
-/*    func decryptReceiptWenderlich() {
-        receipt = Receipt()
-        if let receiptStatus = receipt?.receiptStatus {
-            DLog.log(.license,"receipt status \(receiptStatus.rawValue)")
-        }
-        guard receiptStatus == .validationSuccess else {
-            return
-        }
-        DLog.log(.license,"Bundle Identifier: \(receipt!.bundleIdString!)")
-        DLog.log(.license,"Bundle Version: \(receipt!.bundleVersionString!)")
-        let originalAppVersion: String
-        if let originalVersion = receipt?.originalAppVersion {
-            originalAppVersion = "Original Version: \(originalVersion)"
-        } else {
-            originalAppVersion = "Not Provided"
-        }
-        DLog.log(.license,"original app version \(originalAppVersion)")
-        let expirationDate: String
-        if let receiptExpirationDate = receipt?.expirationDate {
-            expirationDate = "Expiration Date: \(receiptExpirationDate)"
-        } else {
-            expirationDate = "Not Provided."
-        }
-        DLog.log(.license,"expirationDate \(expirationDate)")
-        let receiptCreationDate: String
-        if let receiptCreation = receipt?.receiptCreationDate {
-            receiptCreationDate = "Receipt Creation Date: \(receiptCreation)"
-        } else {
-            receiptCreationDate = "Not Provided."
-        }
-        DLog.log(.license,"receipt creation Date \(receiptCreationDate)")
-    }
- */
-    func invalidReceipt() {
-        DLog.log(.license,"Invalid App Store receipt detected")
-    }
-    func decryptReceiptSwifty() -> Bool {
-        DLog.log(.license,"Trying to analyze receipt")
-        let receiptLoader = ReceiptLoader()
-        let receiptData: Data
-        do {
-            receiptData = try receiptLoader.loadReceipt()
-        } catch {
-            DLog.log(.license,"Unable to load in app purchase receipt")
-            invalidReceipt()
-            return false
-        }
-        
-        let receiptExtractor = ReceiptExtractor()
-        
-        guard let receiptContainer: UnsafeMutablePointer<PKCS7> = receiptExtractor.loadReceipt() else {
-            DLog.log(.license,"Unable to extract in app purchase receipt")
-            invalidReceipt()
-            return false
-        }
-        
-        let receiptParser = ReceiptParser()
-        var parsedReceipt: ParsedReceipt?
-        do {
-            parsedReceipt = try receiptParser.parse(receiptContainer)
-        } catch {
-            DLog.log(.license,"Unable to parse in app purcase receipt")
-            invalidReceipt()
-            return false
-        }
-        if let parsedReceipt = parsedReceipt, let receiptCreationDate = parsedReceipt.receiptCreationDate {
-            if receiptCreationDate < self.firstInstallDate {
-                if let receiptCreationDate = parsedReceipt.receiptCreationDate {
-                    self.firstInstallDate = receiptCreationDate
-                    DLog.log(.license,"set first install date to \(String(describing: parsedReceipt.receiptCreationDate)) per parsed receipt creation date")
-                }
-            }
-            for receipt in parsedReceipt.inAppPurchaseReceipts ?? [] {
-                DLog.log(.license,"receipt type \(String(describing: receipt.productIdentifier)) expiration \(String(describing: receipt.subscriptionExpirationDate))")
-                if let originalPurchaseDate = receipt.originalPurchaseDate, originalPurchaseDate < self.firstInstallDate {
-                    DLog.log(.license,"set first install date to \(String(describing: parsedReceipt.receiptCreationDate)) per parsed receipt creation date")
-                    self.firstInstallDate = originalPurchaseDate
-                }
-                if let subscriptionExpirationDate = receipt.subscriptionExpirationDate {
-                    //if let lastLicenseDate = lastLicenseDate {
-                        if subscriptionExpirationDate > lastLicenseDate {
-                            self.lastLicenseDate = subscriptionExpirationDate
-                            let newDateString = dateFormatter.string(from: subscriptionExpirationDate)
-                            DLog.log(.license,"updated last license date to \(newDateString)")
-                        }
-/*                    } else {
-                        self.lastLicenseDate = subscriptionExpirationDate
-                        DLog.log(.license,"initially set last license date to \(dateFormatter.string(from: subscriptionExpirationDate))")
-                    }*/
-                }
-            }
-        }
-        if newInstall {
-            calculateTrialSeconds(testOnly: false)
-        } else {
-            calculateTrialSeconds(testOnly: true)
-        }
-        let receiptSignatureValidator = ReceiptSignatureValidator()
-        
-        do {
-            try receiptSignatureValidator.checkSignaturePresence(receiptContainer)
-        } catch {
-            DLog.log(.license,"receipt signature presence error \(error.localizedDescription)")
-        }
-        do {
-            try receiptSignatureValidator.checkSignatureAuthenticity(receiptContainer)
-        } catch {
-            DLog.log(.license,"receipt signature authenticity error \(error.localizedDescription)")
-        }
-        let validated = validateSigning(receiptContainer)
-        DLog.log(.license,"Ray Wenderlich validation \(validated)")
-        let validated2 = validateSigning2(receiptContainer)
-        DLog.log(.license,"swifty validation \(validated2)")
-        return true
-    }
-    private func calculateTrialSeconds(testOnly: Bool) {
-        var candidateTrialSeconds: Double
-        let timeSinceFirstInstall = Date().timeIntervalSince(self.firstInstallDate)
-        let timeSinceLastLicense = Date().timeIntervalSince(self.lastLicenseDate)
-        if timeSinceLastLicense < 0 {
-            candidateTrialSeconds = Defaults.trialPeriodSeconds
-        } else if timeSinceLastLicense < Defaults.trialPeriodSeconds {
-            candidateTrialSeconds = Defaults.trialPeriodSeconds - timeSinceLastLicense
-        } else if timeSinceFirstInstall < Defaults.trialPeriodSeconds {
-            candidateTrialSeconds = Defaults.trialPeriodSeconds - timeSinceFirstInstall
-        } else {
-            candidateTrialSeconds = 0
-        }
-        DLog.log(.license,"""
-trial seconds calculation test only \(testOnly)
-timeSinceFirstInstall \(timeSinceFirstInstall)
-timeSinceLastLicense \(timeSinceLastLicense)
-candidateTrialSeconds \(candidateTrialSeconds)
-""")
-        if testOnly {
-            //do nothing for real
-            return
-        }
-        if candidateTrialSeconds > Defaults.trialPeriodSeconds {
-            //should not get here
-            self.trialSeconds = Defaults.trialPeriodSeconds
-        } else {
-            self.trialSeconds = candidateTrialSeconds
-        }
-    }
+
+    
     private func validateSigning2(_ receipt: UnsafeMutablePointer<PKCS7>?) -> Bool {
         guard
             let rootCertUrl = Bundle.main
@@ -541,4 +436,5 @@ candidateTrialSeconds \(candidateTrialSeconds)
         }
         return true
     }
+
 }

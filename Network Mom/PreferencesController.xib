@@ -17,10 +17,10 @@
         <window title="Network Mom Availability Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="contentRect" x="196" y="240" width="0.0" height="0.0"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" wantsLayer="YES" misplaced="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="575" height="115"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <gridView xPlacement="fill" yPlacement="fill" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="xOY-3r-foU">
@@ -59,7 +59,7 @@
                                 </popUpButton>
                             </gridCell>
                             <gridCell row="HYr-VD-9Gv" column="DSL-Hf-uD7" id="yh7-U9-KIy">
-                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O04-YZ-zRh">
+                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="O04-YZ-zRh">
                                     <rect key="frame" x="-2" y="27" width="181" height="21"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Select Audio Alert Frequency" id="SZK-JH-POr">
                                         <font key="font" usesAppearanceFont="YES"/>
