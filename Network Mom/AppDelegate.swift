@@ -175,7 +175,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         _ = saveAllConfig(self)
     }
-    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+/*
+     // rejected due to user interface guidelines.  Saving to resubmit later. 2/14/19
+     
+     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
         let alert = NSAlert()
         alert.alertStyle = NSAlert.Style.critical
         alert.messageText = "Do you really want to quit Network Mom?"
@@ -195,6 +198,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return NSApplication.TerminateReply.terminateLater
         }
     }
+*/
     private func audioAlertPlay() {
         if let currentSound = currentSound {
             currentSound.play()

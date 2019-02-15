@@ -115,10 +115,10 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
             let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreLicense)
             let coreLicenses = try? managedContext.count(for: fetchRequest)
             if let coreLicenses = coreLicenses {
-                items.append("Core Data License v2")
+                items.append("Core Data License")
                 numbers.append(coreLicenses)
             } else {
-                items.append("Core Data License v2 Fetch Error")
+                items.append("Core Data License Fetch Error")
                 numbers.append(-1)
             }
         }
