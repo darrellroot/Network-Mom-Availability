@@ -66,9 +66,15 @@ class EmailServerController: NSWindowController, NSWindowDelegate {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
                                     kSecAttrProtocol as String: Constants.networkmom]
         let status = SecItemDelete(query as CFDictionary)
-        DLog.log(.dataIntegrity,"mail credentials keychain delete status \(status)")
+        let statusString: String
+        if let cfStatusString = SecCopyErrorMessageString(status, nil) {
+            statusString = String(cfStatusString)
+        } else {
+            statusString = status.description
+        }
+        DLog.log(.dataIntegrity,"mail credentials keychain delete status:\(statusString)")
         DispatchQueue.main.async { [unowned self] in
-            self.emailResultOutlet.stringValue = "Email credentials keychain deletion status \(status)"
+            self.emailResultOutlet.stringValue = "Email credentials keychain deletion status:\n\(statusString)"
         }
     }
     @IBAction func hostnamePressed(_ sender: Any) {
@@ -119,14 +125,13 @@ class EmailServerController: NSWindowController, NSWindowDelegate {
                                                 kSecValueData as String: senderPassword,
                                                 kSecAttrProtocol as String: Constants.networkmom]
                     status = SecItemAdd(query as CFDictionary, nil)
-                    switch status {
-                    case 0:
-                        statusString = "successful"
-                    case -25299:
-                        statusString = "keychain already set"
-                    default:
-                        break
+                    let statusString: String
+                    if let cfStatusString = SecCopyErrorMessageString(status, nil) {
+                        statusString = String(cfStatusString)
+                    } else {
+                        statusString = status.description
                     }
+                    
                     DLog.log(.mail,"mail credentials keychain status: \(statusString)")
                 }
                 DispatchQueue.main.async { [unowned self] in

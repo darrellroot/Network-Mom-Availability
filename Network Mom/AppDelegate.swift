@@ -350,9 +350,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 kSecAttrProtocol as String: Constants.networkmom]
             var item: CFTypeRef?
             let status = SecItemCopyMatching(query as CFDictionary, &item)
+            let statusString: String
+            if let cfStatusString = SecCopyErrorMessageString(status, nil) {
+                statusString = String(cfStatusString)
+            } else {
+                statusString = status.description
+            }
             guard status == errSecSuccess else {
-                DLog.log(.dataIntegrity,"Mail account keychain not found at startup, status \(status)")
-                DLog.log(.mail,"Mail account keychain not found at startup, status \(status)")
+                DLog.log(.dataIntegrity,"Mail account keychain not found at startup, status \(statusString)")
+                DLog.log(.mail,"Mail account keychain not found at startup, status \(statusString)")
                 return
             }
             guard let existingItem = item as? [String : Any],
