@@ -68,7 +68,7 @@
                                 <rect key="frame" x="-2" y="122" width="444" height="306"/>
                                 <textFieldCell key="cell" selectable="YES" id="oAc-Ux-o8F">
                                     <font key="font" metaFont="system"/>
-                                    <mutableString key="title">Payment will be charged to iTunes Account at confirmation of purchase 
+                                    <string key="title">Payment will be charged to iTunes Account at confirmation of purchase 
 This subscription does _not_ automatically renew.  Monitoring and alerting will automatically cease, and all monitors will appear to turn gray, when the license period ends.  Daily, weekly, and monthly reports include the remaining license duration. 
 Any remaining free trial period will be added to the new license period.
 
@@ -78,7 +78,7 @@ Apple Licensed Application End User License Agreement:
 https://www.apple.com/legal/macapps/stdeula/
 
 Network Mom LLC additional license terms:
-https://networkmom.net/availability/license.html  License history:</mutableString>
+https://networkmom.net/availability/license.html  License history:</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

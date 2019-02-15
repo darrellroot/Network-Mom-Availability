@@ -60,6 +60,7 @@ class EmailServerController: NSWindowController, NSWindowDelegate {
         userDefaults.removeObject(forKey: Constants.emailServerHostname)
         userDefaults.removeObject(forKey: Constants.emailServerUsername)
         clearEmailKeychain()
+        appDelegate.emailConfiguration = nil
     }
     func clearEmailKeychain() {
         let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,

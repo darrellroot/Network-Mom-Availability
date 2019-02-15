@@ -61,17 +61,24 @@ class ManageEmailNotificationsController: NSWindowController, NSWindowDelegate {
     
     private func setRadioButtons() {
         let mapIndex = mapSelectorOutlet.indexOfSelectedItem
-        guard mapIndex >= 0 else { return }
-        guard mapIndex < maps.count else { return }
-        let map = maps[mapIndex]
         let emailIndex = emailSelectorOutlet.indexOfSelectedItem
-        guard emailIndex >= 0 else { return }
-        guard emailIndex < appDelegate.emails.count else { return }
-        let email = appDelegate.emails[emailIndex]
+        if maps.count == 0 || appDelegate.emails.count == 0 {
+            radioNoneOutlet.isEnabled = false
+            radioAlertOutlet.isEnabled = false
+            radioReportOutlet.isEnabled = false
+            radioAlertReportOutlet.isEnabled = false
+            return
+        }
+        guard let map = maps[safe: mapIndex] else { return }
+        guard let email = appDelegate.emails[safe: emailIndex] else { return }
         if email.pagerOnly {
+            radioNoneOutlet.isEnabled = true
+            radioAlertOutlet.isEnabled = true
             radioReportOutlet.isEnabled = false
             radioAlertReportOutlet.isEnabled = false
         } else {
+            radioNoneOutlet.isEnabled = true
+            radioAlertOutlet.isEnabled = true
             radioReportOutlet.isEnabled = true
             radioAlertReportOutlet.isEnabled = true
         }
@@ -100,11 +107,9 @@ class ManageEmailNotificationsController: NSWindowController, NSWindowDelegate {
         guard mapIndex < maps.count else { return }
         let map = maps[mapIndex]
         let emailIndex = emailSelectorOutlet.indexOfSelectedItem
-        guard emailIndex < appDelegate.emails.count else { return }
-        let email = appDelegate.emails[emailIndex]
+        guard let email = appDelegate.emails[safe: emailIndex] else { return }
         let reportIndex = map.emailReports.firstIndex(of: email.email)
         let alertIndex = map.emailAlerts.firstIndex(of: email.email)
-        
         if radioNoneOutlet.state == .on {
             if let reportIndex = reportIndex {
                 map.emailReports.remove(at: reportIndex)

@@ -46,10 +46,14 @@ class AddEmailRecipientController: NSWindowController, NSWindowDelegate {
         }
         let code = abs(address.djb2hash % 10000)
         
-        if let emailConfiguration = appDelegate.emailConfiguration {
-            let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
-            let recipient = Mail.User(name: name, email: address)
-            let text = """
+        guard let emailConfiguration = appDelegate.emailConfiguration else {
+            DLog.log(.mail,"Unable to send test email, No email configuration")
+            self.emailResultOutlet.stringValue = "Unable to send test/permission email.\nNo server/sender email configuration.\nUse the \"Notifications->Configure Email Server and Sender\" menu item."
+            return
+        }
+        let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
+        let recipient = Mail.User(name: name, email: address)
+        let text = """
 Your Network Mom permission code is \(code)
 
 Network Mom Availability is a MacOS application which monitors network devices to measure their availability and latency.
@@ -58,21 +62,20 @@ Network Mom Availability is a MacOS application which monitors network devices t
 
 If you agree, send the code above back to \(sender.email).
 """
-            let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom permission code is \(code)", text: text)
-            let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
-            smtp.send(mail) { (error) in
-                if let error = error {
-                    DLog.log(.mail,"email error \(error)")
-                    if let error = error as? SMTPError {
-                        DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.description }
-                    } else {
-                        DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.localizedDescription }
-                    }
+        let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom permission code is \(code)", text: text)
+        let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
+        smtp.send(mail) { (error) in
+            if let error = error {
+                DLog.log(.mail,"email error \(error)")
+                if let error = error as? SMTPError {
+                    DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.description }
                 } else {
-                    DLog.log(.mail,"mail sent successfully")
-                    DispatchQueue.main.async { [unowned self] in
-                        self.emailResultOutlet.stringValue = "Permission Code Emailed Successfully"
-                    }
+                    DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.localizedDescription }
+                }
+            } else {
+                DLog.log(.mail,"mail sent successfully")
+                DispatchQueue.main.async { [unowned self] in
+                    self.emailResultOutlet.stringValue = "Permission Code Emailed Successfully"
                 }
             }
         }
