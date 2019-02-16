@@ -60,10 +60,28 @@ class LicensePurchaseController: NSWindowController, NSTableViewDataSource, NSTa
         formatter.numberStyle = .currency
         formatter.locale = product.priceLocale
         let localizedPrice = formatter.string(from: product.price) ?? "Error: price unknown"
+        
+        let localizedTitle: String
+        // dealing with problem in apple app store, hope to retire this code
+        if product.localizedTitle.count < 1 {
+            DLog.log(.license,"Error product.localizedTitle is \(product.localizedTitle) count \(product.localizedTitle.count )")
+            localizedTitle = Constants.backupLocalizedProductTitle
+        } else {
+            localizedTitle = product.localizedTitle
+        }
+        
+        let localizedDescription: String
+        if product.localizedDescription.count < 1 {
+            DLog.log(.license,"Error product.localizedDescription is \(product.localizedDescription) count \(product.localizedDescription.count )")
+            localizedDescription = Constants.backupLocalizedProductDescription
+        } else {
+            localizedDescription = product.localizedTitle
+        }
+        // end of app store problem
 
         let title = """
-        \(product.localizedTitle)
-        \(product.localizedDescription)
+        \(localizedTitle)
+        \(localizedDescription)
         \(localizedPrice)
         """
         button.title = title
@@ -108,6 +126,9 @@ class LicensePurchaseController: NSWindowController, NSTableViewDataSource, NSTa
             text = license?.sortedCoreLicenses[safe: row]?.product ?? "Unknown"
             if let alternateText = license?.products[text]?.localizedTitle {
                 text = alternateText
+            }
+            if text.count < 1 {
+                text = Constants.backupLocalizedProductTitle
             }
         case tableViewOutlet.tableColumns[1]:
             cellIdentifier = CellIdentifier.PurchaseDate

@@ -243,7 +243,6 @@ class MapWindowController: NSWindowController {
         } while didADelete == true
     }
 
-
     func emailReport(reportType: ReportType, license: License?) {
         //let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("report.pdf")
         //let fileShortString = "Documents/report.pdf"
@@ -256,19 +255,18 @@ class MapWindowController: NSWindowController {
         //let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save, NSPrintInfo.AttributeKey.jobSavingURL: fileURL]
         //let printOpts: [NSPrintInfo.AttributeKey: Any] = [NSPrintInfo.AttributeKey.jobDisposition: NSPrintInfo.JobDisposition.save]
         //let printInfo = NSPrintInfo(dictionary: printOpts)
-
-        guard let emailConfiguration = appDelegate.emailConfiguration else {
+        guard let emailConfiguration = self.appDelegate.emailConfiguration else {
             DLog.log(.dataIntegrity,"No Email Configuration, unable to email map availability reports")
             return
         }
-        guard emailReports.count > 0 else {
+        guard self.emailReports.count > 0 else {
             DLog.log(.dataIntegrity,"No Email report recipients, skipping map availability reports")
             return
         }
 
         let pdfData = NSMutableData()
 
-        DLog.log(.userInterface,"map \(name) emailing \(reportType.rawValue) reports")
+        DLog.log(.userInterface,"map \(self.name) emailing \(reportType.rawValue) reports")
         let availabilityReport = AvailabilityReport(reportType: reportType, map: self, license: license)
         let availabilityReportView = availabilityReport.makeView()
         availabilityReportView.translatesAutoresizingMaskIntoConstraints = false
@@ -286,20 +284,20 @@ class MapWindowController: NSWindowController {
         printOperation.showsProgressPanel = false
         printOperation.run()
 
-        let emails = appDelegate.emails
+        let emails = self.appDelegate.emails
         var emailHash: [String: EmailAddress] = [:]
         for email in emails {
             emailHash[email.email] = email
         }
         let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
         
-        let deviceListURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("deviceList-\(name).txt")
+        let deviceListURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("deviceList-\(self.name).txt")
         if reportType == .weekly {
-            exportMapMonitorListAsText(url: deviceListURL)
+            self.exportMapMonitorListAsText(url: deviceListURL)
         } else {
             try? FileManager.default.removeItem(at: deviceListURL)
         }
-        for recipient in emailReports {
+        for recipient in self.emailReports {
             if let emailRecipient = emailHash[recipient] {
                 let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
                 let recipient = Mail.User(name: emailRecipient.name, email: emailRecipient.email)
@@ -313,23 +311,24 @@ class MapWindowController: NSWindowController {
                 let filePath = deviceListURL.path
                 let mail: Mail
                 if reportType == .weekly {
-                    let deviceList = Attachment(filePath: filePath, mime: "text/plain", name: "deviceList-\(name).txt", inline: false, additionalHeaders: [:], relatedAttachments: [])
-                    mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "Network Mom Availability \(reportType.rawValue) report for map \(name)", text: message, attachments: [htmlAttachment,attachment,deviceList], additionalHeaders: [:])
+                    let deviceList = Attachment(filePath: filePath, mime: "text/plain", name: "deviceList-\(self.name).txt", inline: false, additionalHeaders: [:], relatedAttachments: [])
+                    mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "Network Mom Availability \(reportType.rawValue) report for map \(self.name)", text: message, attachments: [htmlAttachment,attachment,deviceList], additionalHeaders: [:])
                 } else {
-                    mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "Network Mom Availability \(reportType.rawValue) report for map \(name)", text: message, attachments: [htmlAttachment,attachment], additionalHeaders: [:])
+                    mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "Network Mom Availability \(reportType.rawValue) report for map \(self.name)", text: message, attachments: [htmlAttachment,attachment], additionalHeaders: [:])
                 }
                 //let mail = Mail(from: sender, to: [recipient], cc: [], bcc: [], subject: "test email report", text: message, attachments: [], additionalHeaders: [:])
-
-                smtp.send(mail) { (error) in
-                    if let error = error {
-                        DLog.log(.mail,"email error \(error)")
-                        if let error = error as? SMTPError {
-                            DLog.log(.mail,error.description)
+                DispatchQueue.global(qos: .background).async { [unowned self] in
+                    smtp.send(mail) { (error) in
+                        if let error = error {
+                            DLog.log(.mail,"email error \(error)")
+                            if let error = error as? SMTPError {
+                                DLog.log(.mail,error.description)
+                            } else {
+                                DLog.log(.mail,error.localizedDescription)
+                            }
                         } else {
-                            DLog.log(.mail,error.localizedDescription)
+                            DLog.log(.mail,"alert mail sent successfully")
                         }
-                    } else {
-                        DLog.log(.mail,"alert mail sent successfully")
                     }
                 }
             }

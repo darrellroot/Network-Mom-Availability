@@ -18,19 +18,19 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Email Server Configuration" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="540" height="400"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="540" height="340"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <rect key="frame" x="0.0" y="0.0" width="553" height="340"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <stackView distribution="fillEqually" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xA5-Oh-7LA">
-                        <rect key="frame" x="20" y="20" width="500" height="300"/>
+                        <rect key="frame" x="20" y="20" width="513" height="300"/>
                         <subviews>
                             <gridView xPlacement="fill" yPlacement="fill" rowAlignment="none" rowSpacing="10" columnSpacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zCZ-bF-b5Q">
-                                <rect key="frame" x="0.0" y="93" width="500" height="207"/>
+                                <rect key="frame" x="0.0" y="93" width="513" height="207"/>
                                 <rows>
                                     <gridRow id="4kK-z6-6Nc"/>
                                     <gridRow id="wgB-1v-NtL"/>
@@ -45,7 +45,7 @@
                                 <gridCells>
                                     <gridCell row="4kK-z6-6Nc" column="U1h-0t-ott" id="AM4-Tj-Jgj">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQB-pz-vOw">
-                                            <rect key="frame" x="-2" y="185" width="197" height="22"/>
+                                            <rect key="frame" x="-2" y="185" width="207" height="22"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Email SMTP Server Hostname" id="fkY-hN-2AL">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -55,7 +55,7 @@
                                     </gridCell>
                                     <gridCell row="4kK-z6-6Nc" column="8Bq-k4-hRH" id="6xD-52-m1c">
                                         <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-rT-KPl">
-                                            <rect key="frame" x="203" y="185" width="297" height="22"/>
+                                            <rect key="frame" x="213" y="185" width="300" height="22"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="IQN-8d-qdv">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -68,8 +68,8 @@
                                     </gridCell>
                                     <gridCell row="wgB-1v-NtL" column="U1h-0t-ott" id="TSW-rO-3de">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e9g-wI-fD5">
-                                            <rect key="frame" x="-2" y="153" width="197" height="22"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Sender Email Username" id="mrc-ag-ezF">
+                                            <rect key="frame" x="-2" y="153" width="207" height="22"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Sender Email Account" id="mrc-ag-ezF">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -78,7 +78,7 @@
                                     </gridCell>
                                     <gridCell row="wgB-1v-NtL" column="8Bq-k4-hRH" id="nNx-P4-o06">
                                         <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V95-8r-9Ep">
-                                            <rect key="frame" x="203" y="153" width="297" height="22"/>
+                                            <rect key="frame" x="213" y="153" width="300" height="22"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="ofd-Lv-Lb6">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -88,7 +88,7 @@
                                     </gridCell>
                                     <gridCell row="dFR-P7-Wee" column="U1h-0t-ott" id="pMg-Q0-PwY">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c6y-fQ-sDo">
-                                            <rect key="frame" x="-2" y="121" width="197" height="22"/>
+                                            <rect key="frame" x="-2" y="121" width="207" height="22"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Sender Email Password" id="BQe-kN-e8V">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -98,7 +98,7 @@
                                     </gridCell>
                                     <gridCell row="dFR-P7-Wee" column="8Bq-k4-hRH" id="Iba-mj-PEE">
                                         <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gvg-VL-T7n" customClass="NSSecureTextField">
-                                            <rect key="frame" x="203" y="121" width="297" height="22"/>
+                                            <rect key="frame" x="213" y="121" width="300" height="22"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="LwD-P5-B1d">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -108,7 +108,7 @@
                                     </gridCell>
                                     <gridCell row="E1P-zb-pad" column="U1h-0t-ott" id="9Py-Hg-SlQ">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Trc-Cu-LBH">
-                                            <rect key="frame" x="-2" y="89" width="197" height="22"/>
+                                            <rect key="frame" x="-2" y="89" width="207" height="22"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Test destination email address" id="qZR-XS-cTu">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -118,7 +118,7 @@
                                     </gridCell>
                                     <gridCell row="E1P-zb-pad" column="8Bq-k4-hRH" id="jom-pm-mKo">
                                         <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z8F-r6-3sA">
-                                            <rect key="frame" x="203" y="89" width="297" height="22"/>
+                                            <rect key="frame" x="213" y="89" width="300" height="22"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="B1I-oW-xMA">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -128,10 +128,10 @@
                                     </gridCell>
                                     <gridCell row="ya2-JY-n6C" column="U1h-0t-ott" id="acl-fq-jWR">
                                         <stackView key="contentView" distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cFb-i7-P89">
-                                            <rect key="frame" x="0.0" y="0.0" width="193" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="203" height="79"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hz8-6d-4Bw">
-                                                    <rect key="frame" x="-6" y="51" width="205" height="32"/>
+                                                    <rect key="frame" x="-6" y="51" width="215" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Clear Email Server Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Q0u-42-hDy">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -141,7 +141,7 @@
                                                     </connections>
                                                 </button>
                                                 <button horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="GG6-80-AzX">
-                                                    <rect key="frame" x="-6" y="22" width="205" height="32"/>
+                                                    <rect key="frame" x="-6" y="22" width="215" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Send Small Test Email" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ivr-br-Q0f">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -151,7 +151,7 @@
                                                     </connections>
                                                 </button>
                                                 <button horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="9Cm-JJ-Oi0">
-                                                    <rect key="frame" x="-6" y="-7" width="205" height="32"/>
+                                                    <rect key="frame" x="-6" y="-7" width="215" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Send Large Test Email" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZHo-yk-AoC">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -183,7 +183,10 @@
                                     </gridCell>
                                     <gridCell row="ya2-JY-n6C" column="8Bq-k4-hRH" id="Dlk-u4-rIA">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0vk-zr-yp1">
-                                            <rect key="frame" x="203" y="0.0" width="297" height="79"/>
+                                            <rect key="frame" x="213" y="0.0" width="300" height="79"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="300" id="b7i-jy-JeP"/>
+                                            </constraints>
                                             <textFieldCell key="cell" borderStyle="border" id="1JH-l3-lmu">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -194,7 +197,7 @@
                                 </gridCells>
                             </gridView>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kcc-Xa-BBW">
-                                <rect key="frame" x="-2" y="0.0" width="504" height="85"/>
+                                <rect key="frame" x="-2" y="0.0" width="517" height="85"/>
                                 <textFieldCell key="cell" selectable="YES" id="q3Z-sb-B4l">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">Network mom will send email using SMTP on port 587, encrypted with TLS.  We recommend using a dediciated (non-personal) email account with a unique password.  You may need to set "allow less secure applications" or "set an application-specific password" with your email provider.  See help for more detailed information.</string>

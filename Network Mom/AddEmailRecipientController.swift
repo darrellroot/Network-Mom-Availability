@@ -64,18 +64,20 @@ If you agree, send the code above back to \(sender.email).
 """
         let mail = Mail(from: sender, to: [recipient], subject: "Your Network Mom permission code is \(code)", text: text)
         let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
-        smtp.send(mail) { (error) in
-            if let error = error {
-                DLog.log(.mail,"email error \(error)")
-                if let error = error as? SMTPError {
-                    DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.description }
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            smtp.send(mail) { (error) in
+                if let error = error {
+                    DLog.log(.mail,"email error \(error)")
+                    if let error = error as? SMTPError {
+                        DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.description }
+                    } else {
+                        DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.localizedDescription }
+                    }
                 } else {
-                    DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.localizedDescription }
-                }
-            } else {
-                DLog.log(.mail,"mail sent successfully")
-                DispatchQueue.main.async { [unowned self] in
-                    self.emailResultOutlet.stringValue = "Permission Code Emailed Successfully"
+                    DLog.log(.mail,"mail sent successfully")
+                    DispatchQueue.main.async { [unowned self] in
+                        self.emailResultOutlet.stringValue = "Permission Code Emailed Successfully"
+                    }
                 }
             }
         }

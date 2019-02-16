@@ -87,28 +87,30 @@ class EmailAddress: Equatable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(email)
     }
-    public func emailAlert() {
-        if pendingNotifications.isEmpty { return }
-        if let emailConfiguration = appDelegate.emailConfiguration {
-            let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
-            let recipient = Mail.User(name: self.name, email: self.email)
-            var message = ""
-            for notification in pendingNotifications {
-                message = message + notification.description + "\n"
-            }
-            pendingNotifications = []
-            let mail = Mail(from: sender, to: [recipient], subject: "Network Mom Alert", text: message)
-            let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
-            smtp.send(mail) { (error) in
-                if let error = error {
-                    DLog.log(.mail,"email error \(error)")
-                    if let error = error as? SMTPError {
-                        DLog.log(.mail,error.description)
+    @objc func emailAlert() {
+        DispatchQueue.global(qos: .background).async { [unowned self] in
+            if self.pendingNotifications.isEmpty { return }
+            if let emailConfiguration = self.appDelegate.emailConfiguration {
+                let sender = Mail.User(name: "Network Mom", email: emailConfiguration.username)
+                let recipient = Mail.User(name: self.name, email: self.email)
+                var message = ""
+                for notification in self.pendingNotifications {
+                    message = message + notification.description + "\n"
+                }
+                self.pendingNotifications = []
+                let mail = Mail(from: sender, to: [recipient], subject: "Network Mom Alert", text: message)
+                let smtp = SMTP(hostname: emailConfiguration.server, email: emailConfiguration.username, password: emailConfiguration.password, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
+                smtp.send(mail) { (error) in
+                    if let error = error {
+                        DLog.log(.mail,"email error \(error)")
+                        if let error = error as? SMTPError {
+                            DLog.log(.mail,error.description)
+                        } else {
+                            DLog.log(.mail,error.localizedDescription)
+                        }
                     } else {
-                        DLog.log(.mail,error.localizedDescription)
+                        DLog.log(.mail,"alert mail sent successfully")
                     }
-                } else {
-                    DLog.log(.mail,"alert mail sent successfully")
                 }
             }
         }

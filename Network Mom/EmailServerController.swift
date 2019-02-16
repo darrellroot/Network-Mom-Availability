@@ -57,20 +57,28 @@ class EmailServerController: NSWindowController, NSWindowDelegate {
         senderEmailUsernameOutlet.stringValue = ""
         senderEmailPasswordOutlet.stringValue = ""
         testDestinationEmailOutlet.stringValue = ""
+        clearEmailKeychain()
         userDefaults.removeObject(forKey: Constants.emailServerHostname)
         userDefaults.removeObject(forKey: Constants.emailServerUsername)
-        clearEmailKeychain()
         appDelegate.emailConfiguration = nil
     }
     func clearEmailKeychain() {
-        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+        var statusString: String
+        if let senderEmail = self.userDefaults.string(forKey: Constants.emailServerUsername) {
+            let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                    kSecAttrAccount as String: senderEmail,
                                     kSecAttrProtocol as String: Constants.networkmom]
-        let status = SecItemDelete(query as CFDictionary)
-        let statusString: String
-        if let cfStatusString = SecCopyErrorMessageString(status, nil) {
-            statusString = String(cfStatusString)
-        } else {
-            statusString = status.description
+            let status = SecItemDelete(query as CFDictionary)
+            if let cfStatusString = SecCopyErrorMessageString(status, nil) {
+                statusString = String(cfStatusString)
+                if status == 0 {
+                    statusString = "Success"
+                }
+            } else {
+                statusString = status.description
+            }
+        } else { //unable to figure out senderEmail
+            statusString = "Unable to identify sender email to delete from keychain"
         }
         DLog.log(.dataIntegrity,"mail credentials keychain delete status:\(statusString)")
         DispatchQueue.main.async { [unowned self] in
@@ -103,39 +111,47 @@ class EmailServerController: NSWindowController, NSWindowDelegate {
             mail = Mail(from: sender, to: [destination], subject: "Small test email from Network Mom Availability", text: "If you receive this, your email server configuration is working.")
         }
         smtp = SMTP(hostname: hostname, email: senderEmail, password: senderPassword, port: 587, tlsMode: .requireSTARTTLS, tlsConfiguration: nil, authMethods: [], domainName: "localhost")
-        smtp.send(mail) { (error) in
-            if let error = error {
-                DLog.log(.mail,"email error \(error)")
-                if let error = error as? SMTPError {
-                    DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.description }
-                } else {
-                    DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.localizedDescription }
-                }
-            } else {
-                self.userDefaults.set(hostname, forKey: Constants.emailServerHostname)
-                self.userDefaults.set(senderEmail, forKey: Constants.emailServerUsername)
-                self.appDelegate.emailConfiguration = EmailConfiguration(server: hostname, username: senderEmail, password: senderPassword)
-                var status: OSStatus = 0
-                var statusString = "unknown \(status)"
-                if let senderPassword = senderPassword.data(using: String.Encoding.utf8) {
-                    self.clearEmailKeychain()
-                    let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
-                                                kSecAttrAccount as String: senderEmail,
-                                                kSecAttrServer as String: hostname,
-                                                kSecValueData as String: senderPassword,
-                                                kSecAttrProtocol as String: Constants.networkmom]
-                    status = SecItemAdd(query as CFDictionary, nil)
-                    let statusString: String
-                    if let cfStatusString = SecCopyErrorMessageString(status, nil) {
-                        statusString = String(cfStatusString)
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            self.smtp.send(mail) { (error) in
+                if let error = error {
+                    DLog.log(.mail,"email error \(error)")
+                    if let error = error as? SMTPError {
+                        DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.description }
                     } else {
-                        statusString = status.description
+                        DispatchQueue.main.async { [unowned self] in self.emailResultOutlet.stringValue = error.localizedDescription }
                     }
-                    
-                    DLog.log(.mail,"mail credentials keychain status: \(statusString)")
-                }
-                DispatchQueue.main.async { [unowned self] in
-                    self.emailResultOutlet.stringValue = "Email sent\nSettings saved\n keychain update status: \(statusString)"
+                } else {
+                    self.userDefaults.set(hostname, forKey: Constants.emailServerHostname)
+                    self.userDefaults.set(senderEmail, forKey: Constants.emailServerUsername)
+                    self.appDelegate.emailConfiguration = EmailConfiguration(server: hostname, username: senderEmail, password: senderPassword)
+                    var status: OSStatus = 0
+                    var statusString = "unknown \(status)"
+                    if let senderPassword = senderPassword.data(using: String.Encoding.utf8) {
+                        self.clearEmailKeychain()
+                        /*                    let addQuery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                         kSecAttrService as String: Constants.networkmom,
+                         kSecAttrAccount as String: hostname,
+                         kSecValueData as String: senderPassword]*/
+                        
+                        let query: [String: Any] = [kSecClass as String: kSecClassInternetPassword,
+                                                    kSecAttrAccount as String: senderEmail,
+                                                    kSecAttrServer as String: hostname,
+                                                    kSecValueData as String: senderPassword,
+                                                    kSecAttrProtocol as String: Constants.networkmom]
+                        status = SecItemAdd(query as CFDictionary, nil)
+                        if let cfStatusString = SecCopyErrorMessageString(status, nil) {
+                            statusString = String(cfStatusString)
+                            if status == 0 {
+                                statusString = "Success"
+                            }
+                        } else {
+                            statusString = status.description
+                        }
+                        DLog.log(.mail,"mail credentials keychain status: \(statusString)")
+                    }
+                    DispatchQueue.main.async { [unowned self] in
+                        self.emailResultOutlet.stringValue = "Email sent\nSettings saved\n keychain update status: \(statusString)"
+                    }
                 }
             }
         }

@@ -35,4 +35,8 @@ struct Constants {
     // Used for keychain search
     static let networkmom = "Network Mom"
     private init() {}
+    
+    // backup product information
+    static let backupLocalizedProductTitle = "One Year License"
+    static let backupLocalizedProductDescription = "Unlocks All Network Mom Availability Features"
 }

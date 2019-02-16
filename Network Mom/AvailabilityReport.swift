@@ -164,31 +164,41 @@ table, th, td {
             }
         }
         // Start bottom 5 availability report
-        html += "<h2>Five monitors with worst availability during this interval</h2>\n"
-        html += "<table><tr><th>Monitor</th><th>Availablity</th></tr>\n"
-        do {
-            let monitorList = monitorAvailability.keys.sorted() { monitorAvailability[$0] ?? 0.5 < monitorAvailability[$1] ?? 0.5 }
-            for i in 0..<5 {
-                if i < monitorList.count, let monitorValue = monitorAvailability[monitorList[i]] {
-                    html += "<tr><td>\(monitorList[i])</td><td>\(monitorValue.percentThree)</td>\n"
+        if monitorAvailability.count == 0 {
+            html += "<h2>Insufficient data for worst device availability section</h2>\n"
+            html += "<h3>Daily availability data is recalculated at midnight UTC time</h3>\n"
+        } else {
+            html += "<h2>Five monitors with worst availability during this interval</h2>\n"
+            html += "<table><tr><th>Monitor</th><th>Availablity</th></tr>\n"
+            do {
+                let monitorList = monitorAvailability.keys.sorted() { monitorAvailability[$0] ?? 0.5 < monitorAvailability[$1] ?? 0.5 }
+                for i in 0..<5 {
+                    if i < monitorList.count, let monitorValue = monitorAvailability[monitorList[i]] {
+                        html += "<tr><td>\(monitorList[i])</td><td>\(monitorValue.percentThree)</td>\n"
+                    }
                 }
             }
+            html += "</table>\n"
         }
-        html += "</table>\n"
         // End bottom 5 availability report
         
         // Start top 5 availability report
-        html += "<h2>Five monitors with best availability during this interval</h2>\n"
-        html += "<table><tr><th>Monitor</th><th>Availablity</th></tr>\n"
-        do {
-            let monitorList = monitorAvailability.keys.sorted() { monitorAvailability[$0] ?? 0.5 > monitorAvailability[$1] ?? 0.5 }
-            for i in 0..<5 {
-                if i < monitorList.count, let monitorValue = monitorAvailability[monitorList[i]] {
-                    html += "<tr><td>\(monitorList[i])</td><td>\(monitorValue.percentThree)</td>\n"
+        if monitorAvailability.count == 0 {
+            html += "<h2>Insufficient data for best device availability section</h2>\n"
+            html += "<h3>Daily availability data is recalculated at midnight UTC time</h3>\n"
+        } else {
+            html += "<h2>Five monitors with best availability during this interval</h2>\n"
+            html += "<table><tr><th>Monitor</th><th>Availablity</th></tr>\n"
+            do {
+                let monitorList = monitorAvailability.keys.sorted() { monitorAvailability[$0] ?? 0.5 > monitorAvailability[$1] ?? 0.5 }
+                for i in 0..<5 {
+                    if i < monitorList.count, let monitorValue = monitorAvailability[monitorList[i]] {
+                        html += "<tr><td>\(monitorList[i])</td><td>\(monitorValue.percentThree)</td>\n"
+                    }
                 }
             }
+            html += "</table>\n"
         }
-        html += "</table>\n"
         // End top 5 availability report
         
         // Start Gray report
@@ -243,6 +253,7 @@ table, th, td {
                 html += "</table></n>"
             } else {
                 html += "<h2>Monitor Latency Increase Data Not Available</h2>\n"
+                html += "<h3>Daily latency data is recalculated at midnight UTC time</h3>\n"
             }
             // End Latency Increase Report
         }

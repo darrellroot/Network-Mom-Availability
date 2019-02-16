@@ -146,6 +146,8 @@ class License: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         for product in response.products {
             DLog.log(.license,"Got product response for product \(product.productIdentifier)")
+            DLog.log(.license,"Product localized title: \(product.localizedTitle)")
+            DLog.log(.license,"Product localized description: \(product.localizedDescription)")
             products[product.productIdentifier] = product
         }
     }
