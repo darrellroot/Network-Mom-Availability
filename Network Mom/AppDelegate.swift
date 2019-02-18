@@ -506,7 +506,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         fixMapIndex()
     }
-
+    @IBAction func reviewNetworkMom(_ sender: NSMenuItem) {
+        // Note: Replace the XXXXXXXXXX below with the App Store ID for your app
+        //       You can find the App Store ID in your app's product URL
+        guard let writeReviewURL = URL(string: "https://itunes.apple.com/app/id1451571383?action=write-review")
+            else {
+                DLog.log(.userInterface,"Invalid URL in reviewNetworkMom")
+                return
+            }
+        do {
+            try NSWorkspace.shared.open(writeReviewURL, options: [], configuration: [:])
+        } catch {
+            DLog.log(.userInterface,"Unable to open write review URL error \(error.localizedDescription)")
+        }
+    }
+    
     @IBAction func saveConfigMenu(_ sender: Any) {
         let _ : Bool = saveAllConfig(sender)
     }

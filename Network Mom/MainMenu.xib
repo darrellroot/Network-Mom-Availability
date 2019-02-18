@@ -754,6 +754,13 @@
                                     <action selector="showStatisticsMenu:" target="Voe-Tx-rLC" id="4Cu-ba-zeS"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="mol-x5-Od3"/>
+                            <menuItem title="Review Network Mom Availability" id="8jf-QI-lk1">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="reviewNetworkMom:" target="Voe-Tx-rLC" id="RAf-wC-dlH"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>

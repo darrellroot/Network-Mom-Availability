@@ -4,22 +4,27 @@
     <keywords></keywords>
     <contents>
         <line Align="Left">
-            <content style="Normal">Version 1.1 released February 2019 only has minor cosmetic changes from 1.0.</content>
+            <content style="Normal">Version 1.1 released 22 February 2019 only has minor cosmetic changes from 1.0.  This is the initial public release.</content>
         </line>
         <list ListStyle="listDecimalRP">
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">Fixed cosmetic problem with product title in “License Purchase or Status” screen</content>
+                    <content style="Normal">Added “Review Network Mom Availability” menu item.</content>
                 </line>
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal"> Added “no email server configured” warning to “configure email recipient” window.</content>
+                    <content style="Normal"> Fixed cosmetic problem with product title in “License Purchase or Status” screen</content>
                 </line>
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
                     <content style="Normal">Substantial editing to the “help book”.</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Added “no email server configured” warning to “configure email recipient” window.</content>
                 </line>
             </listItem>
         </list>
