@@ -72,7 +72,7 @@
                 <line Align="Left">
                     <content style="Normal">The </content>
                     <content style="Normal bold">Utilities -&gt; Activity Monitor</content>
-                    <content style="Normal">  application can show you the CPU and memory consumption of Network Mom Availability.  We do not believe the “sent/received packets” data in activity monitor is accurate for Network Mom Availability.</content>
+                    <content style="Normal">  application show you the CPU and memory consumption of Network Mom Availability.  We do not believe the “sent/received packets” data in activity monitor is accurate for Network Mom Availability.</content>
                 </line>
             </listItem>
             <listItem style="Normal0">

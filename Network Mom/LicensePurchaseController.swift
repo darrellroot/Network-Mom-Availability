@@ -75,7 +75,7 @@ class LicensePurchaseController: NSWindowController, NSTableViewDataSource, NSTa
             DLog.log(.license,"Error product.localizedDescription is \(product.localizedDescription) count \(product.localizedDescription.count )")
             localizedDescription = Constants.backupLocalizedProductDescription
         } else {
-            localizedDescription = product.localizedTitle
+            localizedDescription = product.localizedDescription
         }
         // end of app store problem
 

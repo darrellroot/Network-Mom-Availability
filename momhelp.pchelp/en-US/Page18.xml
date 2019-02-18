@@ -18,12 +18,12 @@
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">ipaddress, hostname</content>
+                    <content style="Normal">ipaddress,hostname</content>
                 </line>
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">ipaddress, hostname, comment</content>
+                    <content style="Normal">ipaddress,hostname,comment</content>
                 </line>
             </listItem>
         </list>
@@ -38,7 +38,7 @@
         <line Align="Left">
             <content style="Normal">After adding a large number of monitors, it may be helpful to use the </content>
             <content style="Normal bold">Monitors -&gt; Arrange Monitors</content>
-            <content style="Normal"> command.  This will arrange all monitors on that map (both new ones and existing ones) in a rough alphabetized grid.  This rearrangement cannot be undone.</content>
+            <content style="Normal"> command.  This will arrange all monitors on that map (both new ones and existing ones) in a rough alphabetized grid sorted by hostname.  This rearrangement cannot be undone.</content>
         </line>
     </contents>
 </page>

@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<page pageId="Page11" pageName="Maps" title="">
+<page pageId="Page11" pageName="Version 1.1 Release Notes:" title="">
     <abstract></abstract>
     <keywords></keywords>
     <contents>
+        <line Align="Left">
+            <content style="Normal">Version 1.1 released February 2019 only has minor cosmetic changes from 1.0.</content>
+        </line>
         <list ListStyle="listDecimalRP">
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">)	</content>
-                    <textElement style="Normal" textId="Header"></textElement>
+                    <content style="Normal">Fixed cosmetic problem with product title in “License Purchase or Status” screen</content>
                 </line>
             </listItem>
-            <listItem style="Custom">
+            <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Custom">Email alerts and repo</content>
+                    <content style="Normal"> Added “no email server configured” warning to “configure email recipient” window.</content>
                 </line>
             </listItem>
-            <listItem style="Normal"></listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Substantial editing to the “help book”.</content>
+                </line>
+            </listItem>
         </list>
     </contents>
 </page>

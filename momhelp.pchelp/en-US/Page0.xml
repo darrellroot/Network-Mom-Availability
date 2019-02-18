@@ -50,12 +50,12 @@
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">Generate email alerts when devices change stage between “responsive” versus “unresponsive”.</content>
+                    <content style="Normal">Generate email alerts when devices change state between “responsive” versus “unresponsive”.</content>
                 </line>
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">Generate daily, weekly, and monthly email availability reports.</content>
+                    <content style="Normal">Generate daily, weekly, and monthly email availability and latency reports.</content>
                 </line>
             </listItem>
             <listItem style="Normal">

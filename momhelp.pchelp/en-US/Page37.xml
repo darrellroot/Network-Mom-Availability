@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<page pageId="Page37" pageName="Daily and Weekly Reports" title="">
+<page pageId="Page37" pageName="Reports" title="">
     <abstract></abstract>
     <keywords></keywords>
     <contents>
@@ -26,7 +26,7 @@
         <list ListStyle="listDecimalRP">
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">Header: This shows the map name, and start and end of the time period for the report.</content>
+                    <content style="Normal">Header: This shows the map name, and start and end of the time period for the report.  It also shows the number of days remaining on the current license.</content>
                 </line>
             </listItem>
             <listItem style="Normal">
@@ -47,7 +47,7 @@
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">Monitors which have never responded: These “BLUE STATUS” devices are not included in your availability calculations.  It is possible these monitors are misconfigured (wrong IP address?), or they may not respond to pings at all.  These are worth cleaning up.</content>
+                    <content style="Normal">Monitors which have never responded: These “GRAY STATUS” devices are not included in your availability calculations.  It is possible these monitors are misconfigured (wrong IP address?), or they may not respond to pings at all.  These are worth cleaning up.</content>
                 </line>
             </listItem>
             <listItem style="Normal">

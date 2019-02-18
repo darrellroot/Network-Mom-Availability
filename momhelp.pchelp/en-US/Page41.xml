@@ -9,7 +9,12 @@
         <list ListStyle="listDisc">
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">Version 1.0: February 2019</content>
+                    <content style="Normal">Version 1.0: February 2019: Initial release</content>
+                </line>
+            </listItem>
+            <listItem style="Normal">
+                <line Align="Left">
+                    <content style="Normal">Version 1.1: February 2019: Cosmetic and documentation updates</content>
                 </line>
             </listItem>
         </list>

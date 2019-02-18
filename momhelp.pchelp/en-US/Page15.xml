@@ -25,7 +25,7 @@
         </line>
         <line Align="Left">
             <content style="Normal">The </content>
-            <content style="Normal bold">Maps -&gt; Arrange Monitors</content>
+            <content style="Normal bold">Monitors -&gt; Arrange Monitors</content>
             <content style="Normal"> menu will rearrange your monitors in a (roughly) square grid sorted alphanumerically by label.</content>
         </line>
         <line Align="Left">

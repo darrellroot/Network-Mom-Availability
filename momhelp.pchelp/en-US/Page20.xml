@@ -24,7 +24,7 @@
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">HOSTNAME, COMMENT</content>
+                    <content style="Normal">HOSTNAME,COMMENT</content>
                 </line>
             </listItem>
         </list>

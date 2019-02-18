@@ -31,7 +31,7 @@
             <content style="Heading2">SwiftyLocalReceiptValidator</content>
         </line>
         <line Align="Left">
-            <content style="Heading2">We use parts of SwiftyLocalReceiptValidator from https://github.com/andrewcbancroft/SwiftyLocalReceiptValidator by Andrew Bancroft, published under the MIT license.</content>
+            <content style="Normal0">We use parts of SwiftyLocalReceiptValidator from https://github.com/andrewcbancroft/SwiftyLocalReceiptValidator by Andrew Bancroft, published under the MIT license.</content>
         </line>
         <line Align="Left">
             <content style="Heading2">OpenSSL</content>

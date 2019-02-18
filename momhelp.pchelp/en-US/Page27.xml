@@ -23,8 +23,10 @@
             <image height="259.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="443.0" topMargin="0.0" imageId="report-sample-short.png"></image>
         </line>
         <line Align="Left">
-            <content style="Normal">Setting up notifications requires the following steps:</content>
             <image height="116.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="267.0" topMargin="0.0" imageId="notification-menu.png"></image>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Setting up notifications requires the following steps:</content>
         </line>
         <list ListStyle="listDecimalRP">
             <listItem style="Normal">

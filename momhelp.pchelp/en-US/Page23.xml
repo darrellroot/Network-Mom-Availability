@@ -7,10 +7,10 @@
             <content style="Normal">Network Mom Availability wants to alert support personnel as soon as possible when outages happen.  But paging support personnel too frequently can cause alarms to be ignored and drive network engineers insane.  Network Mom Availability strives to strike a balance.</content>
         </line>
         <line Align="Left">
-            <content style="Normal">When a monitor transitions from status Green to status Red, an alert notification is queued.  This requires 3 failed pings over a 90-second interval.</content>
+            <content style="Normal">When a monitor transitions from status Green to status Red, an alert notification is queued.  This requires 3 failed pings over a 60-second interval.</content>
         </line>
         <line Align="Left">
-            <content style="Normal">When a monitor transitions from status Red to status Green, a (good) alert notification is queued.  This requires 3 successful pings over a 90-second interval.</content>
+            <content style="Normal">When a monitor transitions from status Red to status Green, a (good) alert notification is queued.  This requires 3 successful pings over a 60-second interval.</content>
         </line>
         <line Align="Left">
             <content style="Normal">Every 5 minutes, all alert notifications for each email destination are bundled into one email and sent. This may mean that an outage does not result in an alert email for 2-7 minutes.</content>

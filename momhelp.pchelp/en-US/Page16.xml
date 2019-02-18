@@ -19,7 +19,9 @@
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal">Hostname: (optional)  This could be automatically detected by Network Mom Availability at the time of monitor creation, or manually entered by the user.  While DNS-&gt;IP address mappings may change over time, Network Mom Availability does not automatically update the hostname or IP address.  If the IP address of a monitored target changes, you must delete the monitor and create a new one with the updated address.</content>
+                    <content style="Normal">Hostname: (optional)  This could be automatically detected by Network Mom Availability at the time of monitor creation, or manually entered by the user.  While DNS-&gt;IP address mappings may change over time, Network Mom Availability does not automatically update the hostname or IP address.  If the IP address of a monitored target changes, you must delete the monitor and create a new one with the updated address.  </content>
+                    <content style="Normal bold">Map-&gt;Arrange Monitors</content>
+                    <content style="Normal"> sorts monitors by hostname.</content>
                 </line>
             </listItem>
             <listItem style="Normal">

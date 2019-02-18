@@ -27,6 +27,9 @@ class AddEmailRecipientController: NSWindowController, NSWindowDelegate {
         super.windowDidLoad()
         emailResultOutlet.stringValue = ""
         emailNameOutlet.stringValue = ""
+        if appDelegate.emailConfiguration == nil {
+            self.emailResultOutlet.stringValue = "Warning: No server/sender email configuration.\nYou will be unable to add email recipients.\nUse the \"Notifications->Configure Email Server and Sender\" menu item."
+        }
     }
     func windowWillClose(_ notification: Notification) {
         DLog.log(.userInterface,"addemailrecipientcontroller closing")
