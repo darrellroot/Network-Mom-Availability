@@ -2452,7 +2452,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Network Mom/Network Mom.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/include";
@@ -2466,10 +2466,11 @@
 					"$(PROJECT_DIR)/OpenSSL/lib",
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				"OTHER_LDFLAGS[arch=*]" = "-lcrypto";
 				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.availability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Test profile for home computers";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Network Mom/Network Mom-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -2484,9 +2485,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Network Mom/Network Mom.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8DU2Q8ABKY;
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/include";
 				INFOPLIST_FILE = "Network Mom/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2498,6 +2499,7 @@
 					"$(PROJECT_DIR)/OpenSSL/lib",
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/OpenSSL/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				"OTHER_LDFLAGS[arch=*]" = "-lcrypto";
 				PRODUCT_BUNDLE_IDENTIFIER = net.networkmom.availability;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2893,6 +2895,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = darrellroot.com.DLog;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2922,6 +2925,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = darrellroot.com.DLog;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
