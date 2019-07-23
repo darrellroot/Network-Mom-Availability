@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct IcmpV6EchoRequest {
     var type: UInt8 = 128
     var code: UInt8 = 0
