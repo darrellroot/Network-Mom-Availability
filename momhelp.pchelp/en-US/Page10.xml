@@ -1,41 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<page pageId="Page10" pageName="Purchasing a License" title="">
+<page pageId="Page10" pageName="Version 1.2 Release Notes" title="">
     <abstract></abstract>
     <keywords></keywords>
     <contents>
         <line Align="Left">
-            <image height="606.0" style="Normal" leftMargin="0.0" bottomMargin="0.0" rightMargin="0.0" width="653.0" topMargin="0.0" imageId="license-status.png"></image>
+            <content style="Normal">With version 1.2 (23 July 2019) we changed the business model for Network Mom Availability from “free 30 day trial followed by 1-year in-app license purchase” to “up-front-permanent-purchase” with a much lower cost.</content>
         </line>
         <line Align="Left">
-            <content style="Normal"></content>
-        </line>
-        <line Align="Left">
-            <content style="Normal">Network Mom is licensed for 30 days for free.  We encourage you to try Network Mom Availability and make certain it meets your needs before spending any money.  Network Mom LLC licenses Network Mom Availability through Apple's MacOS App Store.  As of February 2019 Network Mom Availability is:</content>
-        </line>
-        <line Align="Left">
-            <content style="Normal">	1.	Free for 30 days.</content>
-        </line>
-        <line Align="Left">
-            <content style="Normal">	2.	$99.99 USD for a 1-year unlock.</content>
-        </line>
-        <line Align="Left">
-            <content style="Normal">You can purchase a license in the </content>
-            <content style="Normal bold">Network Mom Availability -&gt; License Purchase or Status</content>
-            <content style="Normal"> menu.  The purchase is </content>
-            <content style="Normal bold">not automatically recurring</content>
-            <content style="Normal">.  Emailed reports include a reminder of the license expiration date.</content>
-        </line>
-        <line Align="Left">
-            <content style="Normal">Network Mom LLC makes no guarantees that Network Mom Availability will run on future versions of MacOS.  Purchasing a Network Mom Availability license will support us as we add features to this monitoring system.</content>
-        </line>
-        <line Align="Left">
-            <content style="Normal">Once the license expires, all monitors will turn gray.  Reports will cease to carry useful data.  Alerts will not function.</content>
-        </line>
-        <line Align="Left">
-            <content style="Normal">A purchased license is valid on all Macintoshes operating under a particular iCloud account.  Network Mom LLC encourages our customers to run Network Mom Availability on two diverse monitoring stations to minimize the risk that an outage at one location will prevent alerts from getting to support personnel.</content>
-        </line>
-        <line Align="Left">
-            <content style="Normal">Make sure to review our “License information” page at https://networkmom.net/availability/license.html (or under “License Information” in this Help Book).  There are dozens of reasons why Network Mom Availability (or any other monitoring system) may be unable to deliver alerts successfully in case of an outage.  By using Network Mom Availability you agree not to hold us liable for that unfortunate reality.</content>
+            <content style="Normal">Anyone who downloaded Network Mom Availability prior to the change will have full functionality without any additional purchase.</content>
         </line>
     </contents>
 </page>

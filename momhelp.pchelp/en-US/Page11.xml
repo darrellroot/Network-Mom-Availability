@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<page pageId="Page11" pageName="Version 1.1 Release Notes:" title="">
+<page pageId="Page11" pageName="Version 1.1 Release Notes" title="">
     <abstract></abstract>
     <keywords></keywords>
     <contents>
@@ -14,7 +14,7 @@
             </listItem>
             <listItem style="Normal">
                 <line Align="Left">
-                    <content style="Normal"> Fixed cosmetic problem with product title in “License Purchase or Status” screen</content>
+                    <content style="Normal">Fixed cosmetic problem with product title in “License Purchase or Status” screen</content>
                 </line>
             </listItem>
             <listItem style="Normal">

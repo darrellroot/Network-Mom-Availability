@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page pageId="Page13" pageName="Our Other Software" title="">
+    <abstract></abstract>
+    <keywords></keywords>
+    <contents>
+        <line Align="Left">
+            <content style="Heading2">Network Mom ACL Analyzer</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Network Mom ACL Analyzer analyzes Cisco® IOS®, IOS-XR®, NX-OS, and ASA IPv4 access-lists.  As of July 2019, it has two main functions:</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">• It finds errors in ACL configurations, including dreaded “misconfigured do-not-care-bit” errors (which have caused multiple security incidents at multiple companies).</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">• It tests specific UDP or TCP sockets against large ACL files to determine if the ACL already permits the socket.  This can prevent the addition of duplicate lines to ACLs.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">The ACL analyzer successfully analyzed a 50,000-line ACL in under 20 seconds.</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">As of July 2019, other ACL analyzer features are in development including:</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">• IPv6 support</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">• Duplicate ACL detection</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">• Additional platform support (next on the list are IOS-XE® and Arista® EOS®).</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">If you manage ACLs on Cisco network devices, get the Network Mom ACL Analyzer from the MacOS App Store.  For $10, you can’t afford not to buy! ;-)</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal"></content>
+        </line>
+        <line Align="Left">
+            <content style="Heading2">Netrek</content>
+        </line>
+        <line Align="Left">
+            <content style="Normal">Netrek was the Internet’s _first_ team game.  Originally implemented in 1988, Netrek programmers pioneered network programming for Internet gaming.  I recently reimplemented a Netrek client in Swift using SpriteKit.  A binary is available in the MacOS App Store.  Source code is available under the MIT license in my GitHub repository.</content>
+        </line>
+    </contents>
+</page>
