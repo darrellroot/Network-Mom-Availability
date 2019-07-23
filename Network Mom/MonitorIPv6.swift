@@ -171,10 +171,6 @@ class MonitorIPv6: Monitor {
             coreMonitorIPv6.managedObjectContext?.delete(coreMonitorIPv6)
         }
     }
-    func licenseExpired() {
-        self.status = .Gray
-        self.lastAlertStatus = .Gray
-    }
 
     func sendPing(pingSocket: CFSocket?) {
         sendPing(pingSocket: pingSocket, id: 400)

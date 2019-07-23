@@ -6,7 +6,7 @@
 //  Copyright © 2019 Darrell Root LLC. All rights reserved.
 //
 //
-
+/*
 import Foundation
 import CoreData
 
@@ -24,3 +24,4 @@ extension CoreLicense {
     @NSManaged public var transactionIdentifier: String
 
 }
+*/

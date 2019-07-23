@@ -111,7 +111,7 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
             }
         }
 
-        if let managedContext = managedContext {
+        /*if let managedContext = managedContext {
             let fetchRequest = NSFetchRequest<CoreLicense>(entityName: Constants.CoreLicense)
             let coreLicenses = try? managedContext.count(for: fetchRequest)
             if let coreLicenses = coreLicenses {
@@ -121,7 +121,7 @@ class ShowStatisticsController: NSWindowController, NSWindowDelegate, NSTableVie
                 items.append("Core Data License Fetch Error")
                 numbers.append(-1)
             }
-        }
+        }*/
         
         items.append("Add Email Recipient Windows")
         numbers.append(appDelegate.addEmailRecipientControllers.count)

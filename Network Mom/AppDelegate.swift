@@ -41,7 +41,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var configureEmailServerOutlet: NSMenuItem!
     
-    var license: License?
     var lastSaveTimeElapsed: Double?
     
     public var ping4Socket: CFSocket?
@@ -60,7 +59,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let userDefaults = UserDefaults.standard
     var emailAlertTimer : Timer!
     var emailReportTimer : Timer!
-    var licensePurchaseController : LicensePurchaseController?
     var currentSound: NSSound?
     var lastAudioAlert: Date?
     var audioAlertFrequency: Int {
@@ -91,12 +89,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         DLog.log(.userInterface,"Application Did Finish Launching")
         restoreAllConfig(self)
-        
-        if let license = license {
-            SKPaymentQueue.default().add(license)
-        } else {
-            DLog.log(.license,"ALERT: license data structure not found")
-        }
         
         if audioName != Constants.systemBeep {
             if let audioURL = Bundle.main.url(forResource: audioName, withExtension: "") {
@@ -311,7 +303,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func emailReports(reportType: ReportType) {
         for map in maps {
-            map.emailReport(reportType: reportType, license: license)
+            map.emailReport(reportType: reportType)
         }
     }
     @objc func emailReports() {
@@ -381,13 +373,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func licensePurchase(_ sender: NSMenuItem) {
-        if licensePurchaseController == nil {
-            licensePurchaseController = LicensePurchaseController()
-            licensePurchaseController?.license = license
-        }
-        licensePurchaseController?.showWindow(self)
-    }
     @IBAction func newMap(_ sender: NSMenuItem) {
         DLog.log(.userInterface,"New Map Selected")
         let newName = createUniqueMapName()
@@ -452,26 +437,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         DLog.log(.dataIntegrity,"restoring all config")
         loadEmailPassword()
         
-        //attempting to load license data from core data
-        self.license = License()
-        
-/* old core data implementation
-         do {
-            let request = NSFetchRequest<CoreLicense>(entityName: Constants.CoreLicense)
-            if let coreLicenseArray = try? managedContext.fetch(request), let coreLicense = coreLicenseArray.first {
-                self.license = License(coreLicense: coreLicense)
-                if self.license != nil {
-                    DLog.log(.dataIntegrity,"Successfully imported license history from Core Data")
-                }
-            } else {
-                // must be first run on this box
-                DLog.log(.dataIntegrity,"Created core license object, we should only do this once per install")
-                let coreLicense = CoreLicense(context: managedContext)
-                coreLicense.firstInstallDate = Date() as NSDate
-                coreLicense.lastLicenseDate = Date.distantPast as NSDate
-                self.license = License(coreLicense: coreLicense, newInstall: true)
-            }
-        }*/
         
         //attempting to load emails from core data
         DLog.log(.dataIntegrity,"Attempting to read email list from Core Data")
@@ -559,19 +524,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
 
     @objc func sendAlertEmails() {
-        if let status = license?.licenseStatus {
-            switch status {
-            case .expired:
-                return   // we dont send alerts when license is expired
-            case .licensed:
-                break
-            case .unknown:
-                DLog.log(.license,"Warning: unable to determine license status")
-                break
-            }
-        } else {
-            DLog.log(.license,"Warning: unable to determine license status")
-        }
         DLog.log(.mail,"Checking for email alerts to send")
         for email in emails {
             email.emailAlert()

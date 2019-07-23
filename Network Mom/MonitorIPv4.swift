@@ -71,10 +71,6 @@ class MonitorIPv4: Monitor {
             latency = RRDGauge(fiveMinData: fiveMinCoreData, fiveMinTime: fiveMinCoreTime, oneHourData: oneHourCoreData, oneHourTime: oneHourCoreTime, dayData: dayCoreData, dayTime: dayCoreTime)
         }
     }
-    func licenseExpired() {
-        self.status = .Gray
-        self.lastAlertStatus = .Gray
-    }
     func writeCoreData() {
         guard let coreData = coreMonitorIPv4 else {
             DLog.log(.dataIntegrity,"Warning: no coreMonitorIPv4 core data structure in MonitorIPv4 \(ipv4string)")

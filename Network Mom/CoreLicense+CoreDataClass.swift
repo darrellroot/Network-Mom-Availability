@@ -6,7 +6,7 @@
 //  Copyright © 2019 Darrell Root LLC. All rights reserved.
 //
 //
-
+/*
 import Foundation
 import CoreData
 import DLog
@@ -39,3 +39,4 @@ public class CoreLicense: NSManagedObject {
     }
 
 }
+*/

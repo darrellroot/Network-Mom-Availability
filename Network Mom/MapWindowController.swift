@@ -243,7 +243,7 @@ class MapWindowController: NSWindowController {
         } while didADelete == true
     }
 
-    func emailReport(reportType: ReportType, license: License?) {
+    func emailReport(reportType: ReportType) {
         //let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("report.pdf")
         //let fileShortString = "Documents/report.pdf"
         //let filename = "report.pdf"
@@ -267,7 +267,7 @@ class MapWindowController: NSWindowController {
         let pdfData = NSMutableData()
 
         DLog.log(.userInterface,"map \(self.name) emailing \(reportType.rawValue) reports")
-        let availabilityReport = AvailabilityReport(reportType: reportType, map: self, license: license)
+        let availabilityReport = AvailabilityReport(reportType: reportType, map: self)
         let availabilityReportView = availabilityReport.makeView()
         availabilityReportView.translatesAutoresizingMaskIntoConstraints = false
         let html = availabilityReport.makeHTML()
@@ -337,12 +337,6 @@ class MapWindowController: NSWindowController {
     @objc func executePings() {
         
         if monitors.count == 0 {
-            return
-        }
-        if appDelegate.license?.licenseStatus == .expired {
-            for monitor in monitors {
-                monitor.licenseExpired()
-            }
             return
         }
         

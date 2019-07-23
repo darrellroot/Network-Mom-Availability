@@ -25,7 +25,7 @@ class MapAvailabilityReportController: NSWindowController,NSWindowDelegate {
 
     override func windowDidLoad() {
         super.windowDidLoad()
-        let availabilityReport = AvailabilityReport(reportType: reportType, map: delegate, license: appDelegate.license)
+        let availabilityReport = AvailabilityReport(reportType: reportType, map: delegate)
         let html = availabilityReport.makeHTML()
         webView.loadHTMLString(html, baseURL: nil)
         window?.title = "\(delegate?.name ?? "unknown") \(reportType.rawValue) availability report"

@@ -19,6 +19,5 @@ protocol Monitor: AnyObject {
     var latency: RRDGauge { get }
     func latencyStatus() -> MonitorStatus?
     var viewFrame: NSRect? { get set }
-    func licenseExpired()
     func writeCoreData()
 }
