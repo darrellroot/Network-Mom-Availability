@@ -78,13 +78,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
     }
-    
-    
+   /*
     @IBAction func aboutNetworkMom(_ sender: NSMenuItem) {
         let staticHtmlController = StaticHtmlController()
         staticHtmlController.resource = "about"
         staticHtmlController.showWindow(self)
-    }
+    }*/
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         DLog.log(.userInterface,"Application Did Finish Launching")

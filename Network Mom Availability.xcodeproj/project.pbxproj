@@ -261,7 +261,7 @@
 		2FA0297421F26C8000ABAB9A /* DLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904FAD219FC1C60040530B /* DLog.framework */; };
 		2FA0297521F26C8700ABAB9A /* DLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904FAD219FC1C60040530B /* DLog.framework */; };
 		2FA0297621F26C8F00ABAB9A /* DLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F904FAD219FC1C60040530B /* DLog.framework */; };
-		2FA0297821F2A3DD00ABAB9A /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297721F2A3DD00ABAB9A /* about.html */; };
+		2FA0297821F2A3DD00ABAB9A /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297721F2A3DD00ABAB9A /* Credits.html */; };
 		2FA0297B21F7C88600ABAB9A /* AddIPv4MonitorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA0297921F7C88600ABAB9A /* AddIPv4MonitorsController.swift */; };
 		2FA0297C21F7C88600ABAB9A /* AddIPv4MonitorsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297A21F7C88600ABAB9A /* AddIPv4MonitorsController.xib */; };
 		2FA0297E21F923FD00ABAB9A /* AddIPv6MonitorsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */; };
@@ -666,7 +666,7 @@
 		2FA0296821ED363900ABAB9A /* CoreMonitorIPv6+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMonitorIPv6+CoreDataClass.swift"; path = "Network Mom/CoreMonitorIPv6+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2FA0296921ED363900ABAB9A /* CoreMonitorIPv6+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreMonitorIPv6+CoreDataProperties.swift"; path = "Network Mom/CoreMonitorIPv6+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2FA0297221F0209400ABAB9A /* UInt32+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt32+extensions.swift"; sourceTree = "<group>"; };
-		2FA0297721F2A3DD00ABAB9A /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		2FA0297721F2A3DD00ABAB9A /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		2FA0297921F7C88600ABAB9A /* AddIPv4MonitorsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIPv4MonitorsController.swift; sourceTree = "<group>"; };
 		2FA0297A21F7C88600ABAB9A /* AddIPv4MonitorsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddIPv4MonitorsController.xib; sourceTree = "<group>"; };
 		2FA0297D21F923FD00ABAB9A /* AddIPv6MonitorsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddIPv6MonitorsController.xib; sourceTree = "<group>"; };
@@ -781,7 +781,7 @@
 		2F5061C621B4CD6700C19984 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
-				2FA0297721F2A3DD00ABAB9A /* about.html */,
+				2FA0297721F2A3DD00ABAB9A /* Credits.html */,
 				2FC771CE2202789F00CAE008 /* sampleGraph.pdf */,
 			);
 			path = HTML;
@@ -1631,7 +1631,7 @@
 				2FE41D0F2209572C00AA7173 /* FileIcon.iconset in Resources */,
 				2F904FDA21A4B17D0040530B /* ManageEmailNotificationsController.xib in Resources */,
 				2F5061C521B4CC3600C19984 /* StaticHtmlController.xib in Resources */,
-				2FA0297821F2A3DD00ABAB9A /* about.html in Resources */,
+				2FA0297821F2A3DD00ABAB9A /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,7 +26,7 @@
                             <menuItem title="About Network Mom Availability" id="f2p-J0-WkT">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="aboutNetworkMom:" target="Voe-Tx-rLC" id="kel-YX-l3W"/>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="Ybs-R1-8GF"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="D9k-t6-vT9"/>
