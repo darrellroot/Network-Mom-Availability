@@ -1,0 +1,9 @@
+The authors of Network Mom Availability do not want your private information and do not collect your information
+using Network Mom Availability.
+
+Network Mom Availability does not harvest any customer information. Network Mom Availability makes outbound
+monitoring requests (currently via ICMP), generates reports, and emails reports and alerts.  It saves
+information locally on the device.  It does not send any information off the monitoring station except
+as configured by the user.
+
+Network Mom Availability uses the old (2017) IBM frameworks SMTP, SMTPError, SMTPSocket, Swift STMTP, and TLSConfiguration.
